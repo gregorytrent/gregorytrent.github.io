@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maurice Thailand Education Visa Plan</title>
+  <style>
+    :root{
+      --bg:#0f1115;
+      --panel:#171b22;
+      --panel2:#1d2430;
+      --text:#f2f4f7;
+      --muted:#b8c0cc;
+      --accent:#c7a86b;
+      --line:#313b4d;
+      --red:#ff6b6b;
+      --blue:#96c2ff;
+      --good:#86d39e;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      background:linear-gradient(180deg,#0d1016 0%,#121824 100%);
+      color:var(--text);
+      line-height:1.55;
+    }
+    .wrap{max-width:1180px;margin:0 auto;padding:28px 18px 60px}
+    .hero,.section,.card{
+      background:rgba(23,27,34,.94);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 10px 28px rgba(0,0,0,.18);
+    }
+    .hero{padding:28px}
+    .section{padding:22px;margin-top:20px}
+    .card{padding:16px}
+    h1,h2,h3{margin:0 0 10px}
+    h1{font-size:2rem;line-height:1.15}
+    h2{font-size:1.2rem;color:var(--accent);border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:14px}
+    h3{font-size:1rem;color:#fff;margin-top:12px}
+    p{margin:8px 0 12px}
+    .sub{color:var(--muted);max-width:980px}
+    .tag{
+      display:inline-block;padding:6px 10px;border-radius:999px;background:#222a38;border:1px solid #3d4a63;
+      color:var(--accent);font-size:.84rem;margin:4px 6px 0 0;
+    }
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:14px}
+    .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.95rem}
+    th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+    th{background:var(--panel2);color:var(--accent)}
+    .note{background:#19212c;border-left:4px solid var(--accent);padding:14px 16px;border-radius:10px;margin:14px 0}
+    .critical{background:#2a1212;border:2px solid var(--red);border-radius:14px;padding:14px 16px;margin-top:14px}
+    .critical strong{color:var(--red)}
+    .timeline{display:grid;gap:14px;margin-top:10px}
+    .step{border:1px solid var(--line);background:#141922;border-radius:14px;padding:14px}
+    .step-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:8px}
+    .date{color:var(--blue);font-weight:700;white-space:nowrap}
+    .checklist{display:grid;gap:10px;margin-top:10px}
+    .check-item{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#151b24}
+    .check-item input{margin-top:3px}
+    .decision{margin-top:12px;border:1px solid #42506a;border-radius:12px;padding:12px 14px;background:#171f2b}
+    .decision strong{color:var(--accent)}
+    ul{margin:8px 0 12px 22px;padding:0}
+    li{margin:6px 0}
+    .footer{color:var(--muted);font-size:.9rem;margin-top:24px}
+    @media (max-width:800px){
+      .grid2{grid-template-columns:1fr}
+      .wrap{padding:18px 12px 40px}
+      h1{font-size:1.65rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>Maurice — Thailand Move Plan</h1>
+      <p class="sub">Structured for an <strong>October 2026 move</strong>. Maurice already has a passport, will live with family in Thailand, will have <strong>no housing cost</strong>, and will use a Thai education visa path while protecting his long-term degree progress through a U.S.-based school strategy.</p>
+      <div>
+        <span class="tag">October 2026 move target</span>
+        <span class="tag">Passport already secured</span>
+        <span class="tag">No housing cost</span>
+        <span class="tag">ED visa path</span>
+        <span class="tag">USD + THB included</span>
+        <span class="tag">Interactive check-off plan</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Why the U.S. School Path Is Still Best</h2>
+      <p>If Maurice wants to live in Thailand while going to school, the strongest plan is to keep his main college in the United States and use a Thai school to support his visa. Thailand has an education visa, called the ED visa, that allows a student to stay in the country while enrolled in an approved school. This works well for legal stay and daily structure, but it is not the strongest way to protect a college degree.</p>
+      <p>A U.S. college keeps Maurice on a path toward a degree that is widely recognized and easier to use later for jobs, transfer, or graduate school. The biggest risk in switching the main degree path to Thailand is <strong>credit loss</strong>. Thai schools may accept U.S. credits, but that process is case by case. In a better case, Maurice may lose about <strong>0% to 25%</strong> of credits if the classes line up well. In a more common middle case, he could lose about <strong>25% to 50%</strong>. In a worse case, especially if the classes do not match the Thai program well, he could lose <strong>more than 50%</strong> of usable progress and be forced to repeat classes.</p>
+      <p>Cost is where Thailand becomes attractive. A Thai language program tied to an ED visa is usually much cheaper than a full U.S. degree path. The Thai school can handle the visa and provide structure. The U.S. school can remain the real degree path. In simple terms, the Thai school supports where Maurice lives now. The U.S. school supports where he is going later.</p>
+      <div class="note">
+        <strong>Best model:</strong> Thai school = legal stay + structure. U.S. school = degree protection + future flexibility.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Cost Snapshot</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>USD</th>
+            <th>Thai Baht</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Thai school tuition (annual)</td>
+            <td>US$700–US$1,400</td>
+            <td>฿25,000–฿50,000</td>
+            <td>For an ED-visa-supporting school/program</td>
+          </tr>
+          <tr>
+            <td>ED visa application</td>
+            <td>US$80</td>
+            <td>฿2,800</td>
+            <td>Initial visa filing estimate</td>
+          </tr>
+          <tr>
+            <td>Visa extensions (annual)</td>
+            <td>US$165–US$220</td>
+            <td>฿5,700–฿7,600</td>
+            <td>Approx. every 90 days</td>
+          </tr>
+          <tr>
+            <td>Flight to Thailand</td>
+            <td>US$900–US$1,400</td>
+            <td>฿31,500–฿49,000</td>
+            <td>Working estimate for October move</td>
+          </tr>
+          <tr>
+            <td>Arrival / setup</td>
+            <td>US$100–US$200</td>
+            <td>฿3,500–฿7,000</td>
+            <td>SIM, basic supplies, local setup</td>
+          </tr>
+          <tr>
+            <td>Monthly living (no rent)</td>
+            <td>US$500–US$850</td>
+            <td>฿17,000–฿30,000</td>
+            <td>Food, transport, phone, personal spending</td>
+          </tr>
+          <tr>
+            <td>Year 1 total (excluding U.S. college)</td>
+            <td>US$7,845–US$13,300</td>
+            <td>฿269,000–฿469,000</td>
+            <td>Includes tuition, visa, flight, setup, and living</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note">
+        <strong>Main financial advantage:</strong> because Maurice will live with family, he avoids a major housing cost that could otherwise add roughly <strong>US$300–US$700 per month / ฿10,500–฿24,500 per month</strong>.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>10-Point Chronological Must-Do Plan</h2>
+      <div class="timeline">
+        <div class="step">
+          <div class="step-head"><h3>1. Choose the Thai school</h3><div class="date">May 2026</div></div>
+          <p>Select a legitimate school that supports the ED visa. Avoid any school that seems built mainly to sell visas rather than education.</p>
+          <p><strong>Cost:</strong> US$700–US$1,400 / ฿25,000–฿50,000 annual tuition</p>
+          <label class="check-item"><input type="checkbox"> <span>School selected and legitimacy checked</span></label>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><h3>2. Secure enrollment documents</h3><div class="date">May–June 2026</div></div>
+          <p>Obtain the acceptance letter and tuition receipt needed for the visa application.</p>
+          <p><strong>Cost:</strong> Included in tuition</p>
+          <label class="check-item"><input type="checkbox"> <span>Acceptance letter and tuition receipt received</span></label>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><h3>3. Confirm U.S. college continuity</h3><div class="date">June 2026</div></div>
+          <p>Keep Maurice enrolled or ready to enroll in a U.S. online college so the degree path stays protected.</p>
+          <p><strong>Cost:</strong> Varies by school; planning range US$5,000–US$15,000 per year</p>
+          <label class="check-item"><input type="checkbox"> <span>U.S. school strategy confirmed</span></label>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><h3>4. Apply for the ED visa</h3><div class="date">July 2026</div></div>
+          <p>Submit the application with passport and school documents. Maurice already has the passport, which removes one major delay.</p>
+          <p><strong>Cost:</strong> US$80 / ฿2,800</p>
+          <label class="check-item"><input type="checkbox"> <span>ED visa application submitted</span></label>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><h3>5. Book October flight</h3><div class="date">August 2026</div></div>
+          <p>Book the move flight once the visa path is secure enough to proceed.</p>
+          <p><strong>Cost:</strong> US$900–US$1,400 / ฿31,500–฿49,000</p>
+          <label class="check-item"><input type="checkbox"> <span>Flight booked</span></label>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><h3>6. Build first 90-day living budget</h3><div class="date">August–September 2026</div></div>
+          <p>Because housing is covered, Maurice mainly needs a controlled budget for food, transportation, phone, and personal spending.</p>
+          <p><strong>Cost:</strong> US$1,500–US$2,550 / ฿51,000–฿90,000 for the first 90 days</p>
+          <label class="check-item"><input type="checkbox"> <span>First 90-day cash plan prepared</span></label>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><h3>7. Complete move paperwork and packing</h3><div class="date">September 2026</div></div>
+          <p>Organize school documents, visa documents, U.S. college access, and travel essentials. Pack for student living, not vacation living.</p>
+          <p><strong>Cost:</strong> Variable</p>
+          <label class="check-item"><input type="checkbox"> <span>Documents and luggage ready</span></label>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><h3>8. Execute arrival setup</h3><div class="date">October 2026</div></div>
+          <p>Once in Thailand, set up the SIM card, basic supplies, transport method, and school start process.</p>
+          <p><strong>Cost:</strong> US$100–US$200 / ฿3,500–฿7,000</p>
+          <label class="check-item"><input type="checkbox"> <span>Arrival setup complete</span></label>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><h3>9. Maintain attendance and immigration compliance</h3><div class="date">October 2026 onward</div></div>
+          <p>Maurice must attend classes and remain compliant with immigration rules and extension timing.</p>
+          <p><strong>Cost:</strong> US$55 / ฿1,900 per extension, about US$165–US$220 / ฿5,700–฿7,600 annually</p>
+          <label class="check-item"><input type="checkbox"> <span>Attendance and extension calendar created</span></label>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><h3>10. Conduct 12-month review</h3><div class="date">September–October 2027</div></div>
+          <p>At the one-year mark, decide whether Maurice should renew the ED path, change visa strategy, or return to the U.S.</p>
+          <p><strong>Cost:</strong> New tuition cycle if renewed: US$700–US$1,400 / ฿25,000–฿50,000</p>
+          <label class="check-item"><input type="checkbox"> <span>Annual review completed</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Dated October 2026 Move Calendar</h2>
+      <div class="grid2">
+        <div class="card">
+          <h3>May 2026</h3>
+          <div class="checklist">
+            <label class="check-item"><input type="radio" name="may-school"> <span>School shortlist created</span></label>
+            <label class="check-item"><input type="radio" name="may-school"> <span>Final school selected</span></label>
+          </div>
+        </div>
+        <div class="card">
+          <h3>June 2026</h3>
+          <div class="checklist">
+            <label class="check-item"><input type="radio" name="june-us"> <span>U.S. school path confirmed</span></label>
+            <label class="check-item"><input type="radio" name="june-us"> <span>Acceptance / tuition documents received</span></label>
+          </div>
+        </div>
+        <div class="card">
+          <h3>July 2026</h3>
+          <div class="checklist">
+            <label class="check-item"><input type="radio" name="july-visa"> <span>ED visa application prepared</span></label>
+            <label class="check-item"><input type="radio" name="july-visa"> <span>ED visa application submitted</span></label>
+          </div>
+        </div>
+        <div class="card">
+          <h3>August 2026</h3>
+          <div class="checklist">
+            <label class="check-item"><input type="radio" name="aug-flight"> <span>Flight budget approved</span></label>
+            <label class="check-item"><input type="radio" name="aug-flight"> <span>Flight booked</span></label>
+          </div>
+        </div>
+        <div class="card">
+          <h3>September 2026</h3>
+          <div class="checklist">
+            <label class="check-item"><input type="radio" name="sept-pack"> <span>Documents packed and backed up</span></label>
+            <label class="check-item"><input type="radio" name="sept-pack"> <span>First 90-day budget fully funded</span></label>
+          </div>
+        </div>
+        <div class="card">
+          <h3>October 2026</h3>
+          <div class="checklist">
+            <label class="check-item"><input type="radio" name="oct-move"> <span>Maurice arrives in Thailand</span></label>
+            <label class="check-item"><input type="radio" name="oct-move"> <span>School and immigration compliance routine begins</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Move Decisions</h2>
+      <div class="decision">
+        <strong>Main Degree Path</strong>
+        <ul>
+          <li><input type="radio" name="degree"> Keep U.S. online college as the primary degree path</li>
+          <li><input type="radio" name="degree"> Explore full Thai university transfer later only if clearly beneficial</li>
+        </ul>
+      </div>
+      <div class="decision">
+        <strong>Cost Control Approach</strong>
+        <ul>
+          <li><input type="radio" name="budget"> Tight budget: US$500/month / ฿17,000 per month target</li>
+          <li><input type="radio" name="budget"> Moderate budget: US$650–US$750/month / ฿22,000–฿26,000 per month target</li>
+          <li><input type="radio" name="budget"> Higher comfort budget: US$850/month / ฿30,000 per month target</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Critical Rules</h2>
+      <div class="critical">
+        <strong>Must not fail class attendance.</strong>
+        <ul>
+          <li>The school is part of the legal stay structure.</li>
+          <li>If Maurice stops attending, the visa path can weaken quickly.</li>
+          <li>The Thai school is not just a school decision. It is an immigration decision.</li>
+        </ul>
+      </div>
+      <div class="critical">
+        <strong>Must protect the degree path.</strong>
+        <ul>
+          <li>Do not casually transfer into a Thai degree program without a hard credit review.</li>
+          <li>Real planning risk: potential loss of 25%–50% of credits, or even more in a poor transfer match.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="footer">Prepared as a standalone HTML plan for Maurice with dated milestones, costs in USD and Thai baht, interactive check-off controls, and the recommended school narrative built in.</p>
+  </div>
+</body>
+</html>
