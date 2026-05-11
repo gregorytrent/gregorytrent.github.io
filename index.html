@@ -21,22 +21,12 @@
       color:var(--text);
       padding:24px;
     }
-    .wrap{
-      max-width:900px;
-      margin:0 auto;
-    }
-    h1{
-      margin:0 0 10px;
-      font-size:32px;
-    }
-    .sub{
-      color:var(--muted);
-      margin-bottom:24px;
-      line-height:1.5;
-    }
+    .wrap{max-width:900px;margin:0 auto}
+    h1{margin:0 0 10px;font-size:32px}
+    .sub{color:var(--muted);margin-bottom:24px;line-height:1.5}
     .grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
       gap:18px;
     }
     .card{
@@ -49,240 +39,32 @@
       padding:18px;
       transition:.15s ease;
     }
-    .card:hover{
-      transform:translateY(-2px);
-      border-color:var(--accent);
-    }
-    .card h2{
-      margin:0 0 8px;
-      font-size:22px;
-    }
-    .card p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.5;
-    }
-    .footer{
-      margin-top:24px;
-      color:var(--muted);
-      font-size:14px;
-    }
+    .card:hover{transform:translateY(-2px);border-color:var(--accent)}
+    .card h2{margin:0 0 8px;font-size:22px}
+    .card p{margin:0;color:var(--muted);line-height:1.5}
   </style>
 </head>
 <body>
   <div class="wrap">
     <h1>Gregory Trent Tools</h1>
-    <div class="sub">Mobile-friendly hub for travel planning, packing, and study tools.</div>
+    <div class="sub">Mobile-friendly hub for your planning tools.</div>
 
     <div class="grid">
-      <a class="card" href="/packinglist.html">
+      <a class="card" href="/packing-list.html">
         <h2>Packing Checklist</h2>
         <p>Open the packing checklist with tabs, progress, and saved checkoffs.</p>
       </a>
 
       <a class="card" href="/relocationfinal.html">
-        <h2>Thailand Recon Planner</h2>
-        <p>Open the Thailand recon plan, scoring, notes, and daily execution structure.</p>
+        <h2>Thailand Recon</h2>
+        <p>Open your Thailand recon planner, scoring, notes, and itinerary.</p>
       </a>
 
       <a class="card" href="/theoeducation.html">
         <h2>Theo Education</h2>
-        <p>Open the theology / education planning page.</p>
+        <p>Open your theology and education page.</p>
       </a>
     </div>
-
-    <div class="footer">
-      Tip: Add this homepage to your iPhone Home Screen and use it as your launch page.
-    </div>
   </div>
-</body>
-</html>    </div>
-  </div>
-
-  <div class="panel active" id="itinerary"></div>
-
-  <div class="panel" id="prep">
-    <div class="card">
-      <div class="section-title">Pre-trip Checklist</div>
-      <div class="list" id="prepList"></div>
-    </div>
-    <div class="card">
-      <div class="section-title">Reference Communities</div>
-      <div class="grid" id="communities"></div>
-    </div>
-  </div>
-
-  <div class="panel" id="need">
-    <div class="card">
-      <div class="section-title">Smooth Interactions</div>
-      <div class="list" id="needList"></div>
-    </div>
-    <div class="card">
-      <div class="section-title">Safety Rules</div>
-      <div class="list" id="safeList"></div>
-    </div>
-  </div>
-
-  <div class="panel" id="score">
-    <div class="score-grid" id="scoreGrid"></div>
-  </div>
-
-  <div class="panel" id="notes">
-    <div class="card">
-      <div class="section-title">Working Notes</div>
-      <div class="small" style="margin:8px 0 10px">Track addresses, agents, rent, road feel, flood concerns, grocery distance, wife-fit observations, and final rankings.</div>
-      <textarea class="notes" id="notesBox" placeholder="Type notes here..."></textarea>
-    </div>
-  </div>
-
-  <div class="footer">Checks, scores, and notes save in your browser on this device when local storage is available.</div>
-</div>
-
-<script>
-const itinerary = [
-  {day:"Day 1",date:"Fri, Jun 5",title:"Bangkok arrival → Hua Hin",city:"Hua Hin",mode:"Official airport coach from BKK to Hua Hin; backup = official taxi / Grab",stay:"Nong Kae / Soi 94–102 corridor",objective:"Recover, orient, and do only a light evening recon.",tasks:["Land, clear immigration, collect bags, get cash/SIM/water","Take official airport coach if timing works","Check in and rest","Do one short loop: grocery, pharmacy, road feel, neighborhood quiet","No major property tours"]},
-  {day:"Day 2",date:"Sat, Jun 6",title:"Hua Hin full recon",city:"Hua Hin",mode:"Morning = Grab/taxi, afternoon = realtor haul, evening = Grab/taxi",stay:"Hua Hin base",objective:"Pressure-test Nong Kae, Thap Tai, and Hin Lek Fai.",tasks:["Tour Nong Kae, Thap Tai, and Hin Lek Fai","See only homes/villas 232+ sqm / 2,500+ sq ft","Ask about rent, utilities, management, repairs, flood history, internet","Revisit top 1–2 zones after dark","Rank best area, best community, best property"]},
-  {day:"Day 3",date:"Sun, Jun 7",title:"Hua Hin second pass → Pattaya/Jomtien",city:"Pattaya/Jomtien",mode:"Morning = Grab/taxi, then direct coach Hua Hin → Pattaya, then Grab/taxi",stay:"Jomtien or Pratumnak",objective:"Lock your Hua Hin baseline, then shift to Jomtien.",tasks:["Revisit top 1–2 Hua Hin finalists only","Take direct coach to Pattaya/Jomtien","Check in at Jomtien/Pratumnak base","Walk or drive a short evening neighborhood loop"]},
-  {day:"Day 4",date:"Mon, Jun 8",title:"Pattaya/Jomtien full recon",city:"Pattaya/Jomtien",mode:"Morning = Grab/taxi, afternoon = realtor haul, evening = Grab/taxi",stay:"Jomtien or Pratumnak",objective:"Test whether Jomtien beats Hua Hin on convenience without becoming too busy.",tasks:["Focus on Jomtien and Pratumnak","Evaluate noise, traffic, grocery access, clinic access, livability","Compare convenience vs crowding","Revisit the strongest area at night"]},
-  {day:"Day 5",date:"Tue, Jun 9",title:"Pattaya/Jomtien second pass → Bangkok outskirts",city:"Bangkok outskirts",mode:"Morning = Grab/taxi, then bus/private car to Bangkok side, then Grab",stay:"Bang Na / Prawet / Lat Krabang side",objective:"Treat Bangkok as a fallback and departure buffer, not a main scouting market.",tasks:["Revisit top Pattaya/Jomtien finalists only","Travel to Bangkok outskirts / airport side","Check in and do a short evening services-and-roads test","Pack and confirm airport transfer plan"]},
-  {day:"Day 6",date:"Wed, Jun 10",title:"Bangkok outskirts fallback test",city:"Bangkok outskirts",mode:"Grab/taxi only",stay:"Airport-side hotel",objective:"Answer whether Bangkok-edge living is acceptable as a fallback.",tasks:["Test one corridor only: Bang Na/Prawet or Lat Krabang","Check traffic, groceries, healthcare, calm, airport practicality","Finalize rankings and notes","Sleep early for 7:00 AM departure next day"]},
-  {day:"Day 7",date:"Thu, Jun 11",title:"Hotel → BKK → depart",city:"BKK",mode:"Hotel car / official taxi / Grab",stay:"Departure day",objective:"No friction. Airport only.",tasks:["Depart hotel early","Go straight to BKK","No detours, no sightseeing"]}
-];
-const prepChecklist = ["Complete TDAC within 3 days of arrival","Confirm passport has 6+ months validity","Install Grab and save payment method","Save hotel addresses and confirmations","Create recon spreadsheet","Message at least one agent in each target market","Set rule: do not sign on first viewing","Keep meds, chargers, one change of clothes, and key papers in carry-on"];
-const needToKnow = [["Hello","Sawasdee khráp"],["Thank you","Khop khun khráp"],["Excuse me / sorry","Khor thot khráp"],["Tourist police","1155"],["Behavior","Stay calm, soft-spoken, patient, and respectful"],["Customs","Remove shoes where others do, avoid touching heads, do not point feet at people or sacred things"]];
-const safetyRules = ["Use official airport coach, official taxi, hotel car, or Grab. Skip random ride offers.","Do half-day realtor haul maximum. Finish each city with self-guided testing.","Morning for neighborhood walks and road tests. Afternoon for meetings and indoor admin.","Last night stays airport-side. No downtown Bangkok gamble before a 7:00 AM flight.","No signing on first viewing. Revisit finalists at night if possible."];
-const starterCommunities = {"Hua Hin":["Mali Boutique","Mali Prestige","Mali Signature","Baan Ing Phu","Palm Hills"],"Pattaya/Jomtien":["Jomtien core","Pratumnak","Selected managed developments near Jomtien beach side"],"Bangkok outskirts":["Bang Na","Prawet","Lat Krabang"]};
-const scoreCats = ["Calm","Convenience","Housing fit","Healthcare access","Grocery access","Road stress","Noise","Wife-fit","Cost-value","Could I do ordinary life here?"];
-const cities = ["Hua Hin","Pattaya/Jomtien","Bangkok outskirts"];
-
-function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
-function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
-
-const itineraryEl = document.getElementById('itinerary');
-itinerary.forEach((d, di) => {
-  const card = document.createElement('div');
-  card.className = 'card';
-  card.innerHTML = '<div class="section-title">'+d.day+' · '+d.title+'</div><div class="small" style="margin-top:4px">'+d.date+' · '+d.city+'</div><div class="meta"><div class="pill">Mode: '+d.mode+'</div><div class="pill">Stay: '+d.stay+'</div></div><div class="small" style="margin-top:10px"><strong>Objective:</strong> '+d.objective+'</div><div class="list" id="tasks-'+di+'"></div>';
-  itineraryEl.appendChild(card);
-  const tasksEl = card.querySelector('#tasks-'+di);
-  d.tasks.forEach((t, ti) => {
-    const key = 'day-'+di+'-'+ti;
-    const row = document.createElement('div');
-    row.className = 'item';
-    row.innerHTML = '<input type="checkbox" id="'+key+'"><label for="'+key+'" class="txt">'+t+'</label>';
-    tasksEl.appendChild(row);
-  });
-});
-
-const prepList = document.getElementById('prepList');
-prepChecklist.forEach((t, i) => {
-  const key = 'prep-'+i;
-  const row = document.createElement('div');
-  row.className = 'item';
-  row.innerHTML = '<input type="checkbox" id="'+key+'"><label for="'+key+'" class="txt">'+t+'</label>';
-  prepList.appendChild(row);
-});
-
-const communities = document.getElementById('communities');
-Object.entries(starterCommunities).forEach(([city, arr]) => {
-  const c = document.createElement('div');
-  c.className = 'card';
-  c.innerHTML = '<div class="section-title">'+city+'</div><div class="list">'+arr.map(x=>'<div class="item"><div class="txt">'+x+'</div></div>').join('')+'</div>';
-  communities.appendChild(c);
-});
-
-const needList = document.getElementById('needList');
-needToKnow.forEach(([k,v]) => {
-  const row = document.createElement('div');
-  row.className = 'item';
-  row.innerHTML = '<div><strong>'+k+'</strong><div class="small" style="margin-top:3px">'+v+'</div></div>';
-  needList.appendChild(row);
-});
-
-const safeList = document.getElementById('safeList');
-safetyRules.forEach(v => {
-  const row = document.createElement('div');
-  row.className = 'item';
-  row.innerHTML = '<div class="txt">'+v+'</div>';
-  safeList.appendChild(row);
-});
-
-const scoreGrid = document.getElementById('scoreGrid');
-cities.forEach(city => {
-  const wrap = document.createElement('div');
-  wrap.className = 'score-card';
-  wrap.innerHTML = '<div class="section-title">'+city+' <span id="total-'+city+'"></span></div>';
-  scoreCats.forEach(cat => {
-    const row = document.createElement('div');
-    row.className = 'score-row';
-    row.innerHTML = '<label>'+cat+'</label><input type="number" min="0" max="10" id="score-'+city+'-'+cat+'" value="0">';
-    wrap.appendChild(row);
-  });
-  scoreGrid.appendChild(wrap);
-});
-
-const notesBox = document.getElementById('notesBox');
-notesBox.value = safeGet('recon-notes') || '';
-notesBox.addEventListener('input', () => safeSet('recon-notes', notesBox.value));
-
-document.querySelectorAll('.tab').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    document.getElementById(btn.dataset.tab).classList.add('active');
-    safeSet('recon-active-tab', btn.dataset.tab);
-    window.scrollTo({top:0,behavior:'smooth'});
-  });
-});
-
-function updateTotals(){
-  const checks = [...document.querySelectorAll('input[type="checkbox"]')];
-  let checked = 0;
-  checks.forEach(c => {
-    const row = c.closest('.item');
-    if (c.checked){checked++; row.classList.add('done');}
-    else row.classList.remove('done');
-  });
-  document.getElementById('checkedCount').textContent = checked;
-  document.getElementById('totalCount').textContent = checks.length;
-  document.getElementById('progressPct').textContent = (checks.length ? Math.round(checked/checks.length*100) : 0) + '%';
-
-  cities.forEach(city => {
-    let total = 0;
-    scoreCats.forEach(cat => {
-      const el = document.getElementById('score-'+city+'-'+cat);
-      total += Number(el.value || 0);
-      safeSet('score-'+city+'-'+cat, el.value || 0);
-    });
-    document.getElementById('total-'+city).textContent = '· Total ' + total;
-  });
-}
-
-document.querySelectorAll('input[type="checkbox"]').forEach(c => {
-  const saved = safeGet('check-'+c.id);
-  c.checked = saved === '1';
-  c.addEventListener('change', () => {
-    safeSet('check-'+c.id, c.checked ? '1' : '0');
-    updateTotals();
-  });
-});
-
-cities.forEach(city => {
-  scoreCats.forEach(cat => {
-    const el = document.getElementById('score-'+city+'-'+cat);
-    const saved = safeGet('score-'+city+'-'+cat);
-    if (saved !== null) el.value = saved;
-    el.addEventListener('input', updateTotals);
-  });
-});
-
-const savedTab = safeGet('recon-active-tab');
-if (savedTab && document.getElementById(savedTab)) {
-  document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b.dataset.tab === savedTab));
-  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === savedTab));
-}
-updateTotals();
-</script>
 </body>
 </html>
