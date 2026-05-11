@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packing Checklist</title>
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --panel: #ffffff;
+      --line: #d7dde5;
+      --text: #1f2933;
+      --muted: #52606d;
+      --accent: #5b4fcf;
+      --accent-soft: #eceafe;
+      --done: #e8f7ee;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+    }
+    .sub {
+      color: var(--muted);
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    button {
+      border: 1px solid var(--line);
+      background: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button:hover { background: #f9fafb; }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .card .num {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .tab-btn {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 14px;
+    }
+    .tab-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    .tab-panel {
+      display: none;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .tab-panel.active { display: block; }
+    .section {
+      margin-bottom: 24px;
+      border-top: 1px solid #eef2f6;
+      padding-top: 18px;
+    }
+    .section:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+    h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+    h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: var(--accent);
+    }
+    .note {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0 0 12px;
+      line-height: 1.5;
+    }
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 10px 16px;
+    }
+    label.item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: #fff;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+    label.item.done {
+      background: var(--done);
+      border-color: #9fd3b2;
+    }
+    .item input[type="radio"] {
+      margin-top: 3px;
+      transform: scale(1.15);
+    }
+    .item span {
+      line-height: 1.35;
+      font-size: 15px;
+    }
+    .muted { color: var(--muted); }
+    .footer-note {
+      margin-top: 22px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    @media print {
+      body { background: white; }
+      .toolbar, .tabs { display: none; }
+      .tab-panel { display: block !important; page-break-inside: avoid; margin-bottom: 16px; }
+      .wrap { max-width: 100%; padding: 0; }
+      .card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Packing Checklist</h1>
+    <div class="sub">Tabbed packing checklist with radio-button checkoffs. Your progress saves in this browser on this device.</div>
+
+    <div class="toolbar">
+      <button onclick="markAllCurrentTab()">Check All Items in Current Tab</button>
+      <button onclick="clearCurrentTab()">Clear Current Tab</button>
+      <button onclick="clearAllItems()">Clear Entire Checklist</button>
+      <button onclick="window.print()">Print / Save PDF</button>
+    </div>
+
+    <div class="summary">
+      <div class="card"><div class="num" id="doneCount">0</div><div>Items Checked</div></div>
+      <div class="card"><div class="num" id="totalCount">0</div><div>Total Items</div></div>
+      <div class="card"><div class="num" id="remainingCount">0</div><div>Items Remaining</div></div>
+      <div class="card"><div class="num" id="percentCount">0%</div><div>Completion</div></div>
+    </div>
+
+    <div class="tabs" id="tabs"></div>
+    <div id="panels"></div>
+
+    <div class="footer-note">Notes: Keep all medications, CPAP, chargers, and critical documents in carry-on or quick-access luggage. Meloxicam may increase bleeding risk with Eliquis; hydrocodone and methocarbamol may increase drowsiness. Confirm trip use with your prescriber or pharmacist.</div>
+  </div>
+
+  <script>
+    const data = [
+      {
+        tab: 'Documents & Essentials',
+        sections: [
+          {
+            title: 'Critical Documents and Daily-Carry Essentials',
+            note: 'Keep these accessible, not buried in checked luggage.',
+            items: [
+              'Wallet', 'Driver\'s license or state ID', 'Passport', 'Insurance cards', 'Debit card', 'Credit card',
+              'Cash in small bills', 'Phone', 'House keys', 'Vehicle keys', 'Glasses', 'Sunglasses',
+              'Printed medication list', 'Printed emergency contacts', 'Printed doctor contact list'
+            ]
+          },
+          {
+            title: 'Quick-Access Travel Bag',
+            note: 'Keep these with you during travel day.',
+            items: [
+              'Phone charging cable', 'Fast wall charger', 'Portable power bank', 'Car charger',
+              'Daily medications pouch', 'Compression socks for travel day', 'Water bottle', 'Protein bar or snack',
+              'Earbuds', 'Hand sanitizer', 'Tissues'
+            ]
+          }
+        ]
+      },
+      {
+        tab: 'Medicines & Health',
+        sections: [
+          {
+            title: 'Morning (AM) Medications',
+            note: 'Pack full trip supply plus 7 extra days when possible.',
+            items: [
+              'Eliquis (Apixaban) 2.5 mg', 'Nebivolol 5 mg', 'Lipitor (Atorvastatin) 10 mg',
+              'Omeprazole 20 mg — AM dose', 'OTC antihistamine — AM dose', 'Empagliflozin 25 mg tablet — AM dose',
+              'Gabapentin 600 mg — AM dose', 'Omega-3 supplement', 'Testosterone 0.74 mL IM/SQ every 4 days'
+            ]
+          },
+          {
+            title: 'Midday Medication',
+            note: 'Keep this in a day-carry medication pouch.',
+            items: ['Gabapentin 600 mg — midday dose']
+          },
+          {
+            title: 'Evening (PM) Medications',
+            note: '',
+            items: [
+              'Eliquis (Apixaban) 2.5 mg — PM dose', 'Losartan 25 mg', 'Omeprazole 20 mg — PM dose',
+              'OTC antihistamine — PM dose', 'Gabapentin 600 mg — PM dose'
+            ]
+          },
+          {
+            title: 'Pain / Neck Medications',
+            note: 'Pack only as directed and keep clearly separated from routine daily medications.',
+            items: [
+              'Methylprednisolone 4 mg tablets', 'Hydrocodone/acetaminophen 5 mg / 325 mg tablets',
+              'Meloxicam 15 mg tablets', 'Methocarbamol 750 mg tablets'
+            ]
+          },
+          {
+            title: 'Medication Support Items',
+            note: '',
+            items: [
+              'Original prescription bottles', 'Pill organizer', 'Dosing schedule sheet', '7 extra days of routine medications',
+              'Syringes / needles for testosterone if needed', 'Alcohol prep pads', 'Small sharps container or safe disposal container'
+            ]
+          },
+          {
+            title: 'Medical Support Items',
+            note: '',
+            items: [
+              'CPAP machine', 'CPAP hose', 'CPAP mask', 'CPAP power cord', 'CPAP extension cord if needed',
+              'Compression socks', 'Blood pressure cuff', 'Pulse oximeter', 'Thermometer', 'Bandages',
+              'Antibiotic ointment', 'Moisturizer', 'Lip balm'
+            ]
+          },
+          {
+            title: 'Supplements / Workout Support',
+            note: '',
+            items: [
+              'Creatine', 'HMB', 'L-carnitine', 'Amino acid powder / drink mix', 'Pre-workout',
+              'Whey protein', 'Sustained protein', 'Electrolyte packets', 'Shaker bottle', 'Measuring scoop'
+            ]
+          }
+        ]
+      },
+      {
+        tab: 'Workout Gear',
+        sections: [
+          {
+            title: 'Workout Clothing',
+            note: 'Pack enough for each training day plus 1–2 backups.',
+            items: [
+              'Moisture-wicking workout shirts', 'Sleeveless training tops', 'Compression shirts if used',
+              'Workout shorts', 'Joggers', 'Compression shorts / tights if used', 'Athletic underwear',
+              'Athletic socks', 'Extra socks', 'Sweat towel'
+            ]
+          },
+          {
+            title: 'Shoes and Training Accessories',
+            note: '',
+            items: [
+              'Training shoes', 'Walking shoes', 'Shower slides', 'Weightlifting gloves', 'Lifting belt if used',
+              'Knee sleeves or braces', 'Wrist wraps', 'Headbands', 'Gym bag', 'Refillable water bottle'
+            ]
+          },
+          {
+            title: 'Recovery Items',
+            note: '',
+            items: ['Massage gun', 'Resistance bands', 'Foam roller or compact recovery roller']
+          }
+        ]
+      },
+      {
+        tab: 'Casual Clothing',
+        sections: [
+          {
+            title: 'Casual and Everyday Clothing',
+            note: '',
+            items: [
+              'Casual short-sleeve shirts', 'Polo shirts', 'Casual long-sleeve shirts', 'Jeans',
+              'Casual slacks', 'Casual belt', 'Undershirts', 'Underwear', 'Casual socks',
+              'Sleepwear', 'Lounge shorts or sweatpants', 'Light jacket', 'Sweater or quarter-zip', 'Rain jacket if needed'
+            ]
+          }
+        ]
+      },
+      {
+        tab: 'Dress Outfits',
+        sections: [
+          {
+            title: 'Dress Outfit 1',
+            note: 'Pack as a complete set.',
+            items: [
+              'Dress shirt — Outfit 1', 'Dress pants — Outfit 1', 'Belt — Outfit 1', 'Dress shoes — Outfit 1',
+              'Dress socks — Outfit 1', 'Undershirt — Outfit 1', 'Watch — Outfit 1', 'Tie — Outfit 1',
+              'Pocket square — Outfit 1 if needed', 'Cufflinks — Outfit 1 if shirt requires them'
+            ]
+          },
+          {
+            title: 'Dress Outfit 2',
+            note: '',
+            items: [
+              'Dress shirt — Outfit 2', 'Dress pants — Outfit 2', 'Belt — Outfit 2', 'Dress shoes — Outfit 2',
+              'Dress socks — Outfit 2', 'Undershirt — Outfit 2', 'Tie — Outfit 2', 'Pocket square — Outfit 2'
+            ]
+          },
+          {
+            title: 'Dress Outfit 3',
+            note: '',
+            items: [
+              'Dress shirt — Outfit 3', 'Dress pants — Outfit 3', 'Belt — Outfit 3', 'Dress shoes — Outfit 3',
+              'Dress socks — Outfit 3', 'Undershirt — Outfit 3', 'Tie — Outfit 3'
+            ]
+          },
+          {
+            title: 'Extra Dress Items',
+            note: '',
+            items: [
+              '1–2 backup dress shirts', '1 backup tie', '1 extra belt', 'Shoe polish sponge',
+              'Lint roller', 'Collar stays', 'Stain remover pen'
+            ]
+          }
+        ]
+      },
+      {
+        tab: 'Suits & Accessories',
+        sections: [
+          {
+            title: 'Per Suit',
+            note: 'Pack each suit as a full system.',
+            items: [
+              'Suit jacket', 'Suit pants', 'Matching dress shirt', 'Tie', 'Pocket square',
+              'Belt', 'Dress shoes', 'Dress socks', 'Undershirt'
+            ]
+          },
+          {
+            title: 'Suit Accessories',
+            note: '',
+            items: [
+              'Tie clips', 'Cufflinks', 'Collar stays', 'Lapel pin if worn', 'Watch', 'Dress handkerchief',
+              'Suit garment bag', 'Structured hangers', 'Travel steamer', 'Wrinkle-release spray',
+              'Lint roller', 'Shoe trees if space allows'
+            ]
+          },
+          {
+            title: 'Recommended Color Structure',
+            note: '',
+            items: [
+              'Navy suit', 'Charcoal suit', 'Black suit if event is very formal', 'White dress shirt',
+              'Light blue dress shirt', 'Subtle striped or textured dress shirt', 'Brown dress shoes',
+              'Black dress shoes', 'Black belt', 'Brown belt', 'Conservative ties', 'One statement tie',
+              'White pocket square', 'Coordinated patterned pocket square'
+            ]
+          },
+          {
+            title: 'General Accessories',
+            note: '',
+            items: [
+              'Backup watch', 'Rings', 'Bracelet if worn', 'Reading glasses', 'Hat / cap',
+              'Umbrella', 'Small sewing kit', 'Safety pins'
+            ]
+          }
+        ]
+      },
+      {
+        tab: 'Electronics',
+        sections: [
+          {
+            title: 'Primary Devices',
+            note: '',
+            items: [
+              'iPad', 'iPad charger', 'Laptop', 'Laptop charger', 'Phone', 'Phone charger',
+              'AirPods or earbuds', 'Headphones', 'Mouse', 'Portable power bank'
+            ]
+          },
+          {
+            title: 'Cables and Support Tech',
+            note: '',
+            items: [
+              'Car charger', 'HDMI cable', 'Extension cord', 'Travel power strip', 'Flash drive', 'Portable speaker if needed'
+            ]
+          }
+        ]
+      },
+      {
+        tab: 'Grooming & Laundry',
+        sections: [
+          {
+            title: 'Toiletries and Grooming',
+            note: '',
+            items: [
+              'Toothbrush', 'Toothpaste', 'Floss picks', 'Mouthwash', 'Deodorant', 'Body wash',
+              'Shampoo', 'Conditioner', 'Razor', 'Shaving cream', 'Comb / brush', 'Nail clippers',
+              'Lotion', 'Cologne', 'Beard trimmer', 'Clippers', 'Aftershave', 'Hair product',
+              'Breath mints', 'Facial cleanser', 'Face moisturizer'
+            ]
+          },
+          {
+            title: 'Laundry / Clothing Care',
+            note: '',
+            items: [
+              'Laundry bag for dirty clothes', 'Travel detergent pods', 'Dryer sheets', 'Stain remover pen', 'Lint roller', 'Compact steamer', 'Spare hangers'
+            ]
+          }
+        ]
+      },
+      {
+        tab: 'Quantity Model',
+        sections: [
+          {
+            title: '7-Day Trip Quantity Guide',
+            note: 'Adjust up or down based on trip length.',
+            items: [
+              '7 workout shirts', '5 workout shorts / joggers', '3 casual shirts', '2 polos', '2 pairs jeans / casual pants',
+              '3 dress shirts', '2 full suits', '2 ties', '2 pocket squares', '10 underwear', '10 pairs socks',
+              '3 pairs dress socks', '1 sleep set', '1 light jacket', '1 pair walking shoes', '1 pair training shoes', '1 pair dress shoes'
+            ]
+          },
+          {
+            title: 'Medication and Supplement Quantity Guide',
+            note: '',
+            items: [
+              'All prescriptions for full trip plus 7 extra days', '3–4 pairs of compression socks',
+              'Protein powder portions for each day plus extras', 'Enough pre-workout for each training day plus extras',
+              'Enough creatine / HMB / carnitine / amino acids for each training day plus extras'
+            ]
+          }
+        ]
+      },
+      {
+        tab: 'Final Check',
+        sections: [
+          {
+            title: 'Final Pre-Departure Review',
+            note: 'Use this before walking out the door.',
+            items: [
+              'Medications packed', 'CPAP packed', 'Chargers packed', 'Dress shoes packed', 'Belts packed',
+              'Ties and cufflinks packed', 'Workout gear packed', 'Compression socks packed', 'IDs and cards packed',
+              'Emergency contact sheet packed', 'iPad packed', 'Laptop packed'
+            ]
+          },
+          {
+            title: 'Suit Packing Method',
+            note: 'These are action steps, not just items.',
+            items: [
+              'Each suit placed in garment bag', 'Each suit matched with exact shirt, tie, socks, belt, and shoes',
+              'Ties and pocket squares placed in separate zip pouches', 'Dress shoes stuffed with socks or shoe trees',
+              'Cufflinks, tie clips, and collar stays placed in one small hard case',
+              'All medicines moved to carry-on or personal bag'
+            ]
+          }
+        ]
+      }
+    ];
+
+    const tabsEl = document.getElementById('tabs');
+    const panelsEl = document.getElementById('panels');
+    let currentTab = 0;
+
+    function slugify(text) {
+      return text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    }
+
+    function buildUI() {
+      data.forEach((tabData, tabIndex) => {
+        const btn = document.createElement('button');
+        btn.className = 'tab-btn' + (tabIndex === 0 ? ' active' : '');
+        btn.textContent = tabData.tab;
+        btn.onclick = () => activateTab(tabIndex);
+        tabsEl.appendChild(btn);
+
+        const panel = document.createElement('div');
+        panel.className = 'tab-panel' + (tabIndex === 0 ? ' active' : '');
+        panel.dataset.tabIndex = tabIndex;
+
+        tabData.sections.forEach((section, sectionIndex) => {
+          const sectionDiv = document.createElement('div');
+          sectionDiv.className = 'section';
+          sectionDiv.innerHTML = `
+            <h2>${section.title}</h2>
+            ${section.note ? `<p class="note">${section.note}</p>` : ''}
+            <div class="checklist"></div>
+          `;
+          const checklist = sectionDiv.querySelector('.checklist');
+
+          section.items.forEach((item, itemIndex) => {
+            const key = `tab${tabIndex}-sec${sectionIndex}-item${itemIndex}`;
+            const checked = localStorage.getItem(key) === 'true';
+            const label = document.createElement('label');
+            label.className = 'item' + (checked ? ' done' : '');
+            label.innerHTML = `
+              <input type="radio" name="${key}" ${checked ? 'checked' : ''} data-key="${key}">
+              <span>${item}</span>
+            `;
+            const radio = label.querySelector('input');
+            radio.addEventListener('change', function() {
+              localStorage.setItem(key, this.checked ? 'true' : 'false');
+              label.classList.toggle('done', this.checked);
+              updateSummary();
+            });
+            checklist.appendChild(label);
+          });
+          panel.appendChild(sectionDiv);
+        });
+        panelsEl.appendChild(panel);
+      });
+      updateSummary();
+    }
+
+    function activateTab(index) {
+      currentTab = index;
+      document.querySelectorAll('.tab-btn').forEach((btn, i) => btn.classList.toggle('active', i === index));
+      document.querySelectorAll('.tab-panel').forEach((panel, i) => panel.classList.toggle('active', i === index));
+    }
+
+    function getCurrentPanelRadios() {
+      return document.querySelector(`.tab-panel[data-tab-index="${currentTab}"]`).querySelectorAll('input[type="radio"]');
+    }
+
+    function markAllCurrentTab() {
+      getCurrentPanelRadios().forEach(radio => {
+        radio.checked = true;
+        localStorage.setItem(radio.dataset.key, 'true');
+        radio.closest('label').classList.add('done');
+      });
+      updateSummary();
+    }
+
+    function clearCurrentTab() {
+      getCurrentPanelRadios().forEach(radio => {
+        radio.checked = false;
+        localStorage.setItem(radio.dataset.key, 'false');
+        radio.closest('label').classList.remove('done');
+      });
+      updateSummary();
+    }
+
+    function clearAllItems() {
+      document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.checked = false;
+        localStorage.setItem(radio.dataset.key, 'false');
+        radio.closest('label').classList.remove('done');
+      });
+      updateSummary();
+    }
+
+    function updateSummary() {
+      const radios = document.querySelectorAll('input[type="radio"]');
+      const total = radios.length;
+      const done = [...radios].filter(r => localStorage.getItem(r.dataset.key) === 'true').length;
+      const remaining = total - done;
+      const pct = total ? Math.round((done / total) * 100) : 0;
+      document.getElementById('doneCount').textContent = done;
+      document.getElementById('totalCount').textContent = total;
+      document.getElementById('remainingCount').textContent = remaining;
+      document.getElementById('percentCount').textContent = pct + '%';
+    }
+
+    buildUI();
+  </script>
+</body>
+</html>
