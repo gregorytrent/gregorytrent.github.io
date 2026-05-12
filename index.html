@@ -11,7 +11,6 @@
       --line:#2b3650;
       --text:#eef2ff;
       --muted:#b8c1d9;
-      --accent:#7c5cff;
       --soft:#0d1424;
     }
     *{box-sizing:border-box}
@@ -27,7 +26,7 @@
       margin:0 auto;
       padding:18px;
     }
-    h1,h2,h3{margin:0}
+    h1,h2{margin:0}
     .hero{
       background:var(--card);
       border:1px solid var(--line);
@@ -48,14 +47,6 @@
       padding:18px;
       margin-bottom:16px;
     }
-    .grid{
-      display:grid;
-      gap:16px;
-    }
-    .two{
-      display:grid;
-      gap:16px;
-    }
     .label{
       font-size:14px;
       color:var(--muted);
@@ -68,7 +59,11 @@
       border:1px solid var(--line);
       border-radius:12px;
       padding:12px;
-      font-size:18px;
+      font-size:20px;
+    }
+    .two{
+      display:grid;
+      gap:16px;
     }
     .result{
       background:var(--soft);
@@ -77,9 +72,13 @@
       padding:14px;
     }
     .big{
-      font-size:30px;
+      font-size:32px;
       font-weight:800;
       margin-top:6px;
+    }
+    .phrase-grid{
+      display:grid;
+      gap:16px;
     }
     .phrase{
       background:var(--soft);
@@ -92,7 +91,7 @@
       font-weight:800;
     }
     .phrase-th{
-      font-size:30px;
+      font-size:32px;
       font-weight:800;
       margin-top:8px;
       line-height:1.35;
@@ -108,31 +107,9 @@
       margin-top:8px;
       line-height:1.45;
     }
-    .links{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:14px;
-    }
-    .link-card{
-      display:block;
-      text-decoration:none;
-      color:var(--text);
-      background:var(--soft);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:16px;
-    }
-    .link-card h3{
-      margin-bottom:8px;
-      font-size:20px;
-    }
-    .link-card p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.45;
-    }
     @media(min-width:800px){
       .two{grid-template-columns:1fr 1fr}
+      .phrase-grid{grid-template-columns:1fr 1fr}
     }
   </style>
 </head>
@@ -142,45 +119,44 @@
     <a href="/packing-list.html" style="color:#b8c1d9; text-decoration:none; margin-right:18px;">Packing</a>
     <a href="/relocationfinal.html" style="color:#b8c1d9; text-decoration:none; margin-right:18px;">Thailand Recon</a>
     <a href="/thailand-recon-planner.html" style="color:#b8c1d9; text-decoration:none; margin-right:18px;">Recon Planner App</a>
+    <a href="/thailand-recon-planner.html#notes" style="color:#b8c1d9; text-decoration:none; margin-right:18px;">Notes</a>
     <a href="/theoeducation.html" style="color:#b8c1d9; text-decoration:none;">Theo Education</a>
   </div>
 
   <div class="wrap">
     <div class="hero">
       <h1>Utilities</h1>
-      <div class="sub">Baht ⇄ USD converter, SQM ⇄ SQFT converter, and large-font Thailand transaction phrases.</div>
+      <div class="sub">Baht ⇄ USD converter, SQM ⇄ SQFT converter, and large-font transaction phrases.</div>
     </div>
 
     <div class="card">
       <h2>Baht ⇄ USD Converter</h2>
       <div class="sub">Set your own exchange rate. Default is Thai baht per 1 USD.</div>
 
-      <div class="grid" style="margin-top:16px;">
+      <div style="margin-top:16px">
+        <div class="label">Exchange rate (THB per 1 USD)</div>
+        <input id="fxRate" type="number" step="0.01" min="0.01" value="36.50">
+      </div>
+
+      <div class="two" style="margin-top:16px">
         <div>
-          <div class="label">Exchange rate (THB per 1 USD)</div>
-          <input id="fxRate" type="number" step="0.01" min="0.01" value="36.50">
+          <div class="label">Thai baht (THB)</div>
+          <input id="thbInput" type="number" step="0.01" min="0" placeholder="Enter baht">
         </div>
-
-        <div class="two">
-          <div>
-            <div class="label">Thai baht (THB)</div>
-            <input id="thbInput" type="number" step="0.01" min="0" placeholder="Enter baht">
-          </div>
-          <div>
-            <div class="label">US dollars (USD)</div>
-            <input id="usdInput" type="number" step="0.01" min="0" placeholder="Enter dollars">
-          </div>
+        <div>
+          <div class="label">US dollars (USD)</div>
+          <input id="usdInput" type="number" step="0.01" min="0" placeholder="Enter dollars">
         </div>
+      </div>
 
-        <div class="two">
-          <div class="result">
-            <div class="label">THB → USD</div>
-            <div class="big" id="thbToUsd">$0.00</div>
-          </div>
-          <div class="result">
-            <div class="label">USD → THB</div>
-            <div class="big" id="usdToThb">฿0.00</div>
-          </div>
+      <div class="two" style="margin-top:16px">
+        <div class="result">
+          <div class="label">THB → USD</div>
+          <div class="big" id="thbToUsd">$0.00</div>
+        </div>
+        <div class="result">
+          <div class="label">USD → THB</div>
+          <div class="big" id="usdToThb">฿0.00</div>
         </div>
       </div>
     </div>
@@ -189,36 +165,35 @@
       <h2>SQM ⇄ SQFT Converter</h2>
       <div class="sub">Useful for Thailand property listings.</div>
 
-      <div class="grid" style="margin-top:16px;">
-        <div class="two">
-          <div>
-            <div class="label">Square meters (sqm)</div>
-            <input id="sqmInput" type="number" step="0.01" min="0" placeholder="Enter sqm">
-          </div>
-          <div>
-            <div class="label">Square feet (sq ft)</div>
-            <input id="sqftInput" type="number" step="0.01" min="0" placeholder="Enter sq ft">
-          </div>
+      <div class="two" style="margin-top:16px">
+        <div>
+          <div class="label">Square meters (sqm)</div>
+          <input id="sqmInput" type="number" step="0.01" min="0" placeholder="Enter sqm">
         </div>
-
-        <div class="two">
-          <div class="result">
-            <div class="label">SQM → SQFT</div>
-            <div class="big" id="sqmToSqft">0.00 sq ft</div>
-          </div>
-          <div class="result">
-            <div class="label">SQFT → SQM</div>
-            <div class="big" id="sqftToSqm">0.00 sqm</div>
-          </div>
+        <div>
+          <div class="label">Square feet (sq ft)</div>
+          <input id="sqftInput" type="number" step="0.01" min="0" placeholder="Enter sq ft">
         </div>
-
-        <div class="sub"><strong>Reference:</strong> 232 sqm ≈ 2,497.23 sq ft</div>
       </div>
+
+      <div class="two" style="margin-top:16px">
+        <div class="result">
+          <div class="label">SQM → SQFT</div>
+          <div class="big" id="sqmToSqft">0.00 sq ft</div>
+        </div>
+        <div class="result">
+          <div class="label">SQFT → SQM</div>
+          <div class="big" id="sqftToSqm">0.00 sqm</div>
+        </div>
+      </div>
+
+      <div class="sub" style="margin-top:12px"><strong>Reference:</strong> 232 sqm ≈ 2,497.23 sq ft</div>
     </div>
 
     <div class="card">
       <h2>Transaction Phrases</h2>
-      <div class="grid" style="margin-top:16px;">
+
+      <div class="phrase-grid" style="margin-top:16px">
         <div class="phrase">
           <div class="phrase-en">How much is this?</div>
           <div class="phrase-th">อันนี้ราคาเท่าไหร่ครับ</div>
@@ -288,28 +263,6 @@
           <div class="phrase-rom">khàawp khun khráp</div>
           <div class="phrase-note">Always useful.</div>
         </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>Other Pages</h2>
-      <div class="links" style="margin-top:16px">
-        <a class="link-card" href="/packing-list.html">
-          <h3>Packing</h3>
-          <p>Open the packing checklist.</p>
-        </a>
-        <a class="link-card" href="/relocationfinal.html">
-          <h3>Thailand Recon</h3>
-          <p>Open the main Thailand recon page.</p>
-        </a>
-        <a class="link-card" href="/thailand-recon-planner.html">
-          <h3>Recon Planner App</h3>
-          <p>Open the interactive recon planner.</p>
-        </a>
-        <a class="link-card" href="/theoeducation.html">
-          <h3>Theo Education</h3>
-          <p>Open the theology/education page.</p>
-        </a>
       </div>
     </div>
   </div>
