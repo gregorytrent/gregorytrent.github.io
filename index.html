@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Working Notes & Utilities</title>
+  <title>Utilities</title>
   <style>
     :root{
       --bg:#071124;
@@ -51,7 +51,7 @@
     }
     h1,h2{margin:0}
     h1{
-      font-size:60px;
+      font-size:56px;
       line-height:1.05;
       font-weight:800;
       letter-spacing:-1px;
@@ -63,10 +63,10 @@
     }
     .sub{
       color:var(--muted);
-      font-size:26px;
-      line-height:1.45;
-      font-weight:700;
-      margin-bottom:24px;
+      font-size:18px;
+      line-height:1.5;
+      font-weight:600;
+      margin-bottom:20px;
       max-width:950px;
     }
     .small{
@@ -76,7 +76,7 @@
     }
     textarea{
       width:100%;
-      min-height:420px;
+      min-height:380px;
       background:var(--soft);
       color:var(--text);
       border:2px solid #31457a;
@@ -179,9 +179,9 @@
       .card{padding:18px;border-radius:22px}
       h1{font-size:38px}
       h2{font-size:26px}
-      .sub{font-size:22px;line-height:1.4}
+      .sub{font-size:18px;line-height:1.45}
       textarea{
-        min-height:340px;
+        min-height:300px;
         font-size:22px;
         padding:20px;
         border-radius:22px;
@@ -194,7 +194,7 @@
 </head>
 <body>
   <div class="topnav">
-    <a href="/" class="active">Notes + Utilities</a>
+    <a href="/" class="active">Utilities</a>
     <a href="/packing-list.html">Packing</a>
     <a href="/relocationfinal.html">Thailand Recon</a>
     <a href="/thailand-recon-planner.html">Recon Planner App</a>
@@ -203,16 +203,8 @@
 
   <div class="wrap">
     <div class="card">
-      <h1>Working Notes</h1>
-      <div class="sub">
-        Track addresses, agents, rent, road feel, flood concerns, grocery distance, wife-fit observations, and final rankings.
-      </div>
-      <textarea id="notesBox" placeholder="Type notes here..."></textarea>
-      <div class="toolbar">
-        <button onclick="copyNotes()">Copy Notes</button>
-        <button onclick="clearNotes()">Clear Notes</button>
-      </div>
-      <div class="small" style="margin-top:14px;">Notes save in this browser on this device.</div>
+      <h1>Utilities</h1>
+      <div class="sub">Baht converter, property-size converter, working notes, and large-font transaction phrases.</div>
     </div>
 
     <div class="card">
@@ -274,6 +266,22 @@
       </div>
 
       <div class="small" style="margin-top:12px;"><strong>Reference:</strong> 232 sqm ≈ 2,497.23 sq ft</div>
+    </div>
+
+    <div class="card">
+      <h2>Working Notes</h2>
+      <div class="sub">
+        Track addresses, agents, rent, road feel, flood concerns, grocery distance, wife-fit observations, and final rankings.
+      </div>
+
+      <textarea id="notesBox" placeholder="Type notes here..."></textarea>
+
+      <div class="toolbar">
+        <button onclick="copyNotes()">Copy Notes</button>
+        <button onclick="clearNotes()">Clear Notes</button>
+      </div>
+
+      <div class="small" style="margin-top:14px;">Notes save in this browser on this device.</div>
     </div>
 
     <div class="card">
