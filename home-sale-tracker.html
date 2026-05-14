@@ -1,14 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Trent Home Sale Tracker</title><link rel="apple-touch-icon" href="https://gregorytrent.github.io/icon.png">
+<title>Trent Home Sale Tracker</title>
+<link rel="apple-touch-icon" href="https://gregorytrent.github.io/icon.png">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#f0f0f0;min-height:100vh;font-size:14px}
-#pin-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:#0a0a0a}
+.top-nav{display:flex;flex-wrap:wrap;gap:10px;padding:14px;background:#111;justify-content:center;border-bottom:2px solid #FFD700;position:relative;z-index:50}
+.top-nav a{color:#FFD700!important;text-decoration:none!important;font-weight:800;padding:8px 12px;border:1px solid #333;border-radius:8px;background:#1a1a1a;font-size:13px;white-space:nowrap}
+.top-nav a:hover{background:#FFD700;color:#0a0a0a!important}
+#pin-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 58px);padding:20px;background:#0a0a0a}
 .pin-card{background:#1a1a1a;border:2px solid #FFD700;border-radius:20px;padding:32px 28px;width:100%;max-width:340px;text-align:center;box-shadow:0 4px 40px rgba(255,215,0,0.2)}
 .pin-title{font-size:22px;font-weight:800;margin-bottom:4px;color:#FFD700;text-transform:uppercase;letter-spacing:2px}
 .pin-sub{font-size:12px;color:#666;margin-bottom:28px;text-transform:uppercase;letter-spacing:1px}
@@ -46,8 +49,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .btn-dark:hover{background:#FFC200;border-color:#FFC200;color:#0a0a0a}
 .btn-sm{padding:6px 10px;font-size:12px;border-radius:8px}
 .btn-icon{padding:6px 8px;border-radius:8px}
-<a href="https://gregorytrent.github.io/thailand--planner.html" style="color:#FFD700;font-size:12px;text-decoration:none;padding:4px 8px;border:1px solid #333;border-radius:8px;margin-right:4px;">🗺  Planner</a>
-  .btn-ghost{border:none;background:none;color:#555;font-size:12px;cursor:pointer;padding:4px 8px}
+.btn-ghost{border:none;background:none;color:#555;font-size:12px;cursor:pointer;padding:4px 8px}
 .btn-ghost:hover{color:#FFD700}
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin-bottom:16px}
 .stat-card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:12px 14px;position:relative;overflow:hidden}
@@ -105,11 +107,11 @@ tr:not(.row-sold):hover{background:#222}
 .modal-actions{display:flex;gap:8px;justify-content:flex-end}
 .modal-handle{width:40px;height:4px;background:#333;border-radius:4px;margin:0 auto 20px}
 .app-footer{text-align:center;padding:20px 0 0;font-size:11px;color:#333}
-@media(max-width:500px){.stats-grid{grid-template-columns:repeat(3,1fr)}.stat-value{font-size:17px}.modal-grid{grid-template-columns:1fr}table{min-width:600px}.charts-row{grid-template-columns:1fr}}
+@media(max-width:500px){.top-nav{gap:6px;padding:10px}.top-nav a{font-size:11px;padding:7px 8px}.stats-grid{grid-template-columns:repeat(3,1fr)}.stat-value{font-size:17px}.modal-grid{grid-template-columns:1fr}table{min-width:600px}.charts-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-  <nav class="top-nav">
+<nav class="top-nav">
   <a href="index.html">Utilities</a>
   <a href="packing-list.html">Packing</a>
   <a href="relocationfinal.html">Thailand Recon</a>
@@ -285,7 +287,7 @@ if(sessionStorage.getItem('hst')===APP_PIN){document.getElementById('pin-screen'
 function checkPin(){var v=document.getElementById('pin-input').value.trim();if(v===APP_PIN){sessionStorage.setItem('hst',APP_PIN);document.getElementById('pin-screen').style.display='none';document.getElementById('app').style.display='block';boot();}else{document.getElementById('pin-error').textContent='Incorrect PIN — try again';document.getElementById('pin-input').value='';document.getElementById('pin-input').focus();}}
 function doLogout(){sessionStorage.removeItem('hst');location.reload();}
 var db=null;var items=[];var editId=null;
-function boot(){fillSelects();firebase.initializeApp(FIREBASE_CONFIG);db=firebase.database();db.ref('.info/connected').on('value',function(s){var on=s.val();document.getElementById('sync-dot').style.background=on?'#FFD700':'#f59e0b';document.getElementById('sync-msg').textContent=on?'Live sync':'necting...';});db.ref('items').on('value',function(snap){var d=snap.val();if(d&&Object.keys(d).length){items=Object.values(d).sort(function(a,b){return +a.id-+b.id;});}else{var batch={};SEED.forEach(function(i){batch[i.id]=i;});db.ref('items').set(batch);items=SEED.slice();}renderAll();});}
+function boot(){fillSelects();firebase.initializeApp(FIREBASE_CONFIG);db=firebase.database();db.ref('.info/connected').on('value',function(s){var on=s.val();document.getElementById('sync-dot').style.background=on?'#FFD700':'#f59e0b';document.getElementById('sync-msg').textContent=on?'Live sync':'Connecting...';});db.ref('items').on('value',function(snap){var d=snap.val();if(d&&Object.keys(d).length){items=Object.values(d).sort(function(a,b){return +a.id-+b.id;});}else{var batch={};SEED.forEach(function(i){batch[i.id]=i;});db.ref('items').set(batch);items=SEED.slice();}renderAll();});}
 function setField(id,field,val){if(db)db.ref('items/'+id).update({[field]:val});}
 function delItem(id){if(confirm('Remove this item?')&&db)db.ref('items/'+id).remove();}
 function addItem(){var name=document.getElementById('ni-name').value.trim();if(!name){alert('Please enter an item name.');return;}var id=Date.now().toString();if(db)db.ref('items/'+id).set({id:id,name:name,category:document.getElementById('ni-cat').value,room:document.getElementById('ni-room').value,phase:document.getElementById('ni-phase').value,status:document.getElementById('ni-status').value,platform:document.getElementById('ni-plat').value,askingPrice:document.getElementById('ni-ask').value,soldPrice:document.getElementById('ni-sold').value,notes:document.getElementById('ni-notes').value});['ni-name','ni-ask','ni-sold','ni-notes'].forEach(function(i){document.getElementById(i).value='';});document.getElementById('add-form').classList.remove('open');}
@@ -305,4 +307,3 @@ function fillSelects(){function add(id,val,label){var o=document.createElement('
 </script>
 </body>
 </html>
-```
