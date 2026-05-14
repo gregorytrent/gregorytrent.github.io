@@ -7,41 +7,71 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#f0f0f0;min-height:100vh;font-size:14px}
+
+/* PIN */
 #pin-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:#0a0a0a}
-.pin-card{background:#1a1a1a;border:1.5px solid #FFD700;border-radius:20px;padding:32px 28px;width:100%;max-width:340px;text-align:center;box-shadow:0 4px 32px rgba(255,215,0,0.15)}
-.pin-icon{font-size:48px;margin-bottom:16px}
-.pin-title{font-size:22px;font-weight:700;margin-bottom:4px;color:#FFD700}
-.pin-sub{font-size:13px;color:#888;margin-bottom:28px}
-.pin-input{width:100%;padding:14px;font-size:28px;text-align:center;letter-spacing:10px;border:2px solid #333;border-radius:12px;outline:none;margin-bottom:16px;transition:border-color .2s;background:#111;color:#FFD700}
+.pin-card{background:#1a1a1a;border:2px solid #FFD700;border-radius:20px;padding:32px 28px;width:100%;max-width:340px;text-align:center;box-shadow:0 4px 40px rgba(255,215,0,0.2)}
+.pin-emblem{margin:0 auto 16px;display:block}
+.pin-title{font-size:22px;font-weight:800;margin-bottom:4px;color:#FFD700;text-transform:uppercase;letter-spacing:2px}
+.pin-sub{font-size:12px;color:#666;margin-bottom:28px;text-transform:uppercase;letter-spacing:1px}
+.pin-input{width:100%;padding:14px;font-size:28px;text-align:center;letter-spacing:10px;border:2px solid #333;border-radius:12px;outline:none;margin-bottom:16px;background:#111;color:#FFD700}
 .pin-input:focus{border-color:#FFD700}
-.pin-btn{width:100%;padding:15px;background:#FFD700;color:#0a0a0a;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:background .15s}
+.pin-btn{width:100%;padding:15px;background:#FFD700;color:#0a0a0a;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;text-transform:uppercase;letter-spacing:1px}
 .pin-btn:hover{background:#FFC200}
 .pin-error{color:#ff5555;font-size:13px;margin-top:10px;min-height:18px}
-#app{display:none;padding:16px;max-width:1100px;margin:0 auto;padding-bottom:40px}
-.app-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;gap:12px;flex-wrap:wrap}
-.app-header h1{font-size:20px;font-weight:700;color:#FFD700}
-.app-header p{font-size:12px;color:#666;margin-top:3px}
-.sync-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#f59e0b;margin-right:5px;vertical-align:middle}
-.header-btns{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+/* Banner */
+.banner{background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 40%,#0a0a0a 100%);border-bottom:3px solid #FFD700;padding:16px 16px 12px;margin:-16px -16px 20px;position:relative;overflow:hidden}
+.banner::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,215,0,0.02) 10px,rgba(255,215,0,0.02) 20px)}
+.banner-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
+.banner-left{display:flex;align-items:center;gap:14px}
+.banner-text h1{font-size:22px;font-weight:900;color:#FFD700;text-transform:uppercase;letter-spacing:2px;line-height:1}
+.banner-text p{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-top:3px}
+.banner-right{display:flex;align-items:center;gap:10px}
+.sync-pill{display:flex;align-items:center;gap:6px;background:#111;border:1px solid #333;border-radius:20px;padding:5px 12px;font-size:11px;color:#888}
+.sync-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#f59e0b}
+
+/* Charts row */
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.chart-card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:14px}
+.chart-title{font-size:10px;color:#666;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;font-weight:700}
+.donut-wrap{display:flex;align-items:center;gap:14px}
+.donut-legend{flex:1}
+.legend-item{display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:11px;color:#aaa}
+.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.phase-bars{display:flex;flex-direction:column;gap:8px}
+.phase-bar-row{display:flex;flex-direction:column;gap:3px}
+.phase-bar-label{display:flex;justify-content:space-between;font-size:11px;color:#aaa}
+.phase-bar-track{background:#222;border-radius:4px;height:8px;overflow:hidden}
+.phase-bar-fill{height:8px;border-radius:4px;transition:width .8s ease}
+
+/* Buttons */
 .btn{padding:9px 16px;border:1.5px solid #333;border-radius:10px;font-size:13px;background:#1a1a1a;cursor:pointer;transition:all .15s;color:#f0f0f0;font-weight:500;white-space:nowrap}
 .btn:hover{border-color:#FFD700;color:#FFD700}
 .btn:active{transform:scale(0.97)}
-.btn-dark{background:#FFD700;color:#0a0a0a;border-color:#FFD700;font-weight:700}
+.btn-dark{background:#FFD700;color:#0a0a0a;border-color:#FFD700;font-weight:800}
 .btn-dark:hover{background:#FFC200;border-color:#FFC200;color:#0a0a0a}
 .btn-sm{padding:6px 10px;font-size:12px;border-radius:8px}
 .btn-icon{padding:6px 8px;border-radius:8px}
 .btn-ghost{border:none;background:none;color:#555;font-size:12px;cursor:pointer;padding:4px 8px}
 .btn-ghost:hover{color:#FFD700}
+
+/* Stats */
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin-bottom:16px}
-.stat-card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:12px 14px}
+.stat-card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:12px 14px;position:relative;overflow:hidden}
+.stat-card::after{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:#FFD700}
 .stat-label{font-size:10px;color:#666;text-transform:uppercase;letter-spacing:0.5px}
 .stat-value{font-size:20px;font-weight:700;margin-top:4px;color:#FFD700}
-.progress-wrap{background:#1a1a1a;border-radius:20px;height:5px;margin-bottom:6px;overflow:hidden}
-.progress-bar{height:5px;background:#FFD700;border-radius:20px;transition:width .6s ease}
+
+/* Progress */
+.progress-wrap{background:#1a1a1a;border-radius:20px;height:6px;margin-bottom:6px;overflow:hidden;border:1px solid #222}
+.progress-bar{height:6px;background:linear-gradient(90deg,#FFD700,#FFC200);border-radius:20px;transition:width .6s ease}
 .progress-text{font-size:11px;color:#555;text-align:right;margin-bottom:18px}
+
+/* Add form */
 .add-form{background:#1a1a1a;border-radius:14px;padding:18px;margin-bottom:16px;display:none;border:1.5px solid #FFD700}
 .add-form.open{display:block}
-.add-form-title{font-size:14px;font-weight:600;margin-bottom:14px;color:#FFD700}
+.add-form-title{font-size:14px;font-weight:700;margin-bottom:14px;color:#FFD700;text-transform:uppercase;letter-spacing:1px}
 .add-form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
 .add-form-grid .full{grid-column:1/-1}
 .field-label{font-size:10px;color:#666;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px;font-weight:600}
@@ -54,17 +84,17 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 .count-bar span{font-size:12px;color:#555}
 .table-wrap{background:#1a1a1a;border-radius:14px;overflow:hidden;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #2a2a2a}
 table{width:100%;min-width:680px;border-collapse:collapse;font-size:13px}
-thead tr{background:#111;border-bottom:1.5px solid #FFD700}
-th{padding:10px;text-align:left;font-size:10px;font-weight:700;color:#FFD700;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+thead tr{background:#111;border-bottom:2px solid #FFD700}
+th{padding:10px;text-align:left;font-size:10px;font-weight:800;color:#FFD700;text-transform:uppercase;letter-spacing:0.8px;white-space:nowrap}
 td{padding:8px;border-bottom:1px solid #222;vertical-align:middle}
 tr:last-child td{border-bottom:none}
 tr.row-sold{background:#0d1a0d}
 tr:not(.row-sold):hover{background:#222}
 .item-name{font-size:13px;font-weight:500;color:#f0f0f0}
 .item-sub{font-size:10px;color:#555;margin-top:2px}
-.badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.3px}
-.bp1{background:#2a1a00;color:#FFD700}
-.bp2{background:#0d0d2a;color:#8888ff}
+.badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10px;font-weight:800;letter-spacing:0.5px}
+.bp1{background:#3a2800;color:#FFD700;border:1px solid #FFD700}
+.bp2{background:#0d0d2a;color:#8888ff;border:1px solid #333}
 .sel-status{font-size:11px;padding:5px 24px 5px 8px;border-radius:7px;border:1.5px solid #333;cursor:pointer;font-weight:600;min-width:95px;width:100%;color:#f0f0f0}
 .ss-available{background:#1a1a1a;color:#888;border-color:#333}
 .ss-listed{background:#0d1a2a;color:#60a5fa;border-color:#1e3a5f}
@@ -76,24 +106,42 @@ tr:not(.row-sold):hover{background:#222}
 .price-inp{width:82px;padding:5px 5px 5px 18px;border:1.5px solid #2a2a2a;border-radius:7px;font-size:12px;background:#111;color:#f0f0f0;appearance:none;-webkit-appearance:none;outline:none}
 .price-inp:focus{border-color:#FFD700}
 .price-inp::-webkit-outer-spin-button,.price-inp::-webkit-inner-spin-button{-webkit-appearance:none}
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:flex-end;justify-content:center}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:200;align-items:flex-end;justify-content:center}
 @media(min-width:600px){.modal-bg{align-items:center;padding:20px}}
 .modal-bg.open{display:flex}
-.modal-box{background:#1a1a1a;border:1.5px solid #FFD700;border-radius:20px 20px 0 0;padding:24px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto}
+.modal-box{background:#1a1a1a;border:2px solid #FFD700;border-radius:20px 20px 0 0;padding:24px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto}
 @media(min-width:600px){.modal-box{border-radius:20px}}
-.modal-box h2{font-size:16px;font-weight:700;margin-bottom:18px;color:#FFD700}
+.modal-box h2{font-size:16px;font-weight:800;margin-bottom:18px;color:#FFD700;text-transform:uppercase;letter-spacing:1px}
 .modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
 .modal-grid .full{grid-column:1/-1}
 .modal-actions{display:flex;gap:8px;justify-content:flex-end}
 .modal-handle{width:40px;height:4px;background:#333;border-radius:4px;margin:0 auto 20px}
 .app-footer{text-align:center;padding:20px 0 0;font-size:11px;color:#333}
-@media(max-width:500px){.stats-grid{grid-template-columns:repeat(3,1fr)}.stat-value{font-size:17px}.modal-grid{grid-template-columns:1fr}table{min-width:600px}}
+#app{display:none;padding:16px;max-width:1100px;margin:0 auto;padding-bottom:40px}
+@media(max-width:500px){.stats-grid{grid-template-columns:repeat(3,1fr)}.stat-value{font-size:17px}.modal-grid{grid-template-columns:1fr}table{min-width:600px}.charts-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+
+<!-- PIN -->
 <div id="pin-screen">
   <div class="pin-card">
-    <div class="pin-icon">🏠</div>
+    <svg class="pin-emblem" width="80" height="80" viewBox="0 0 80 80">
+      <!-- Steelers-inspired hypocycloid diamond emblem -->
+      <circle cx="40" cy="40" r="38" fill="#1a1a1a" stroke="#FFD700" stroke-width="2"/>
+      <!-- Diamond shape -->
+      <polygon points="40,8 72,40 40,72 8,40" fill="#FFD700" opacity="0.15"/>
+      <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="#FFD700" stroke-width="2"/>
+      <!-- Inner diamond -->
+      <polygon points="40,18 62,40 40,62 18,40" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.4"/>
+      <!-- Center star -->
+      <polygon points="40,28 43,37 52,37 45,43 48,52 40,46 32,52 35,43 28,37 37,37" fill="#FFD700"/>
+      <!-- Corner diamonds -->
+      <rect x="36" y="4" width="8" height="8" fill="#FFD700" transform="rotate(45 40 8)"/>
+      <rect x="68" y="36" width="8" height="8" fill="#FFD700" transform="rotate(45 72 40)"/>
+      <rect x="36" y="68" width="8" height="8" fill="#FFD700" transform="rotate(45 40 72)"/>
+      <rect x="4" y="36" width="8" height="8" fill="#FFD700" transform="rotate(45 8 40)"/>
+    </svg>
     <div class="pin-title">Home Sale Tracker</div>
     <div class="pin-sub">Trent Family &nbsp;•&nbsp; Bangkok 2026</div>
     <input class="pin-input" type="password" inputmode="numeric" maxlength="6" placeholder="••••" id="pin-input" autocomplete="off" />
@@ -101,17 +149,43 @@ tr:not(.row-sold):hover{background:#222}
     <div class="pin-error" id="pin-error"></div>
   </div>
 </div>
+
+<!-- APP -->
 <div id="app">
-  <div class="app-header">
-    <div>
-      <h1>Home Sale Tracker</h1>
-      <p><span class="sync-dot" id="sync-dot"></span><span id="sync-msg">Connecting...</span> &nbsp;•&nbsp; <span id="item-total">—</span> items</p>
-    </div>
-    <div class="header-btns">
-      <button class="btn btn-dark" onclick="toggleAdd()">+ Add item</button>
-      <button class="btn-ghost" onclick="doLogout()">Sign out</button>
+
+  <!-- Banner -->
+  <div class="banner">
+    <div class="banner-inner">
+      <div class="banner-left">
+        <svg width="52" height="52" viewBox="0 0 80 80">
+          <circle cx="40" cy="40" r="38" fill="#0a0a0a" stroke="#FFD700" stroke-width="2"/>
+          <polygon points="40,8 72,40 40,72 8,40" fill="#FFD700" opacity="0.12"/>
+          <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="#FFD700" stroke-width="2"/>
+          <polygon points="40,18 62,40 40,62 18,40" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.4"/>
+          <polygon points="40,28 43,37 52,37 45,43 48,52 40,46 32,52 35,43 28,37 37,37" fill="#FFD700"/>
+          <rect x="36" y="4" width="8" height="8" fill="#FFD700" transform="rotate(45 40 8)"/>
+          <rect x="68" y="36" width="8" height="8" fill="#FFD700" transform="rotate(45 72 40)"/>
+          <rect x="36" y="68" width="8" height="8" fill="#FFD700" transform="rotate(45 40 72)"/>
+          <rect x="4" y="36" width="8" height="8" fill="#FFD700" transform="rotate(45 8 40)"/>
+        </svg>
+        <div class="banner-text">
+          <h1>Home Sale Tracker</h1>
+          <p>Trent Family &nbsp;•&nbsp; Bangkok 2026</p>
+        </div>
+      </div>
+      <div class="banner-right">
+        <div class="sync-pill">
+          <span class="sync-dot" id="sync-dot"></span>
+          <span id="sync-msg">Connecting...</span>
+          &nbsp;•&nbsp; <span id="item-total">—</span> items
+        </div>
+        <button class="btn btn-dark" onclick="toggleAdd()">+ Add item</button>
+        <button class="btn-ghost" onclick="doLogout()">Sign out</button>
+      </div>
     </div>
   </div>
+
+  <!-- Stats -->
   <div class="stats-grid">
     <div class="stat-card"><div class="stat-label">Total</div><div class="stat-value" id="s-total">—</div></div>
     <div class="stat-card"><div class="stat-label">Phase 1</div><div class="stat-value" id="s-p1">—</div></div>
@@ -120,8 +194,50 @@ tr:not(.row-sold):hover{background:#222}
     <div class="stat-card"><div class="stat-label">Asking</div><div class="stat-value" id="s-ask">$0</div></div>
     <div class="stat-card"><div class="stat-label">Revenue</div><div class="stat-value" id="s-rev" style="color:#4ade80">$0</div></div>
   </div>
+
+  <!-- Charts -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <div class="chart-title">Overall Progress</div>
+      <div class="donut-wrap">
+        <svg width="80" height="80" viewBox="0 0 80 80" id="donut-svg">
+          <circle cx="40" cy="40" r="30" fill="none" stroke="#222" stroke-width="12"/>
+          <circle cx="40" cy="40" r="30" fill="none" stroke="#FFD700" stroke-width="12" stroke-dasharray="0 188" stroke-linecap="round" transform="rotate(-90 40 40)" id="donut-arc" style="transition:stroke-dasharray .8s ease"/>
+          <text x="40" y="44" text-anchor="middle" fill="#FFD700" font-size="14" font-weight="800" id="donut-pct">0%</text>
+        </svg>
+        <div class="donut-legend">
+          <div class="legend-item"><span class="legend-dot" style="background:#FFD700"></span>Listed / Hold / Sold</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#333"></span>Available</div>
+          <div class="legend-item" style="margin-top:8px;color:#FFD700;font-weight:700" id="legend-sold-count">0 sold so far</div>
+        </div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Phase Breakdown</div>
+      <div class="phase-bars">
+        <div class="phase-bar-row">
+          <div class="phase-bar-label"><span style="color:#FFD700;font-weight:700">Phase 1 — Sell Now</span><span id="pb1-count">0 / 0</span></div>
+          <div class="phase-bar-track"><div class="phase-bar-fill" id="pb1-fill" style="width:0%;background:#FFD700"></div></div>
+        </div>
+        <div class="phase-bar-row" style="margin-top:8px">
+          <div class="phase-bar-label"><span style="color:#8888ff;font-weight:700">Phase 2 — Estate Sale</span><span id="pb2-count">0 / 0</span></div>
+          <div class="phase-bar-track"><div class="phase-bar-fill" id="pb2-fill" style="width:0%;background:#8888ff"></div></div>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:#555">
+          Revenue so far: <span style="color:#4ade80;font-weight:700" id="chart-rev">$0</span>
+        </div>
+        <div style="margin-top:4px;font-size:11px;color:#555">
+          Asking total: <span style="color:#FFD700;font-weight:700" id="chart-ask">$0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
   <div class="progress-wrap"><div class="progress-bar" id="prog-bar" style="width:0%"></div></div>
   <div class="progress-text" id="prog-text">Loading...</div>
+
+  <!-- Add form -->
   <div class="add-form" id="add-form">
     <div class="add-form-title">Add New Item</div>
     <div class="add-form-grid">
@@ -140,6 +256,8 @@ tr:not(.row-sold):hover{background:#222}
       <button class="btn" onclick="toggleAdd()">Cancel</button>
     </div>
   </div>
+
+  <!-- Filters -->
   <div class="filters">
     <input type="search" id="f-search" placeholder="Search items..." oninput="renderTable()" />
     <select id="f-room" onchange="renderTable()"><option value="All">All rooms</option></select>
@@ -147,10 +265,12 @@ tr:not(.row-sold):hover{background:#222}
     <select id="f-status" onchange="renderTable()"><option value="All">All statuses</option></select>
     <select id="f-phase" onchange="renderTable()"><option value="All">All phases</option><option value="Phase 1">Phase 1 — Sell now</option><option value="Phase 2">Phase 2 — Estate sale</option></select>
   </div>
+
   <div class="count-bar">
     <span id="count-text">Loading...</span>
     <button class="btn btn-sm" style="color:#444;font-size:11px" onclick="resetData()">↺ Reset list</button>
   </div>
+
   <div class="table-wrap">
     <table>
       <thead><tr>
@@ -165,8 +285,10 @@ tr:not(.row-sold):hover{background:#222}
       <tbody id="tbody"></tbody>
     </table>
   </div>
-  <div class="app-footer">Changes sync in real time across all devices &nbsp;•&nbsp; Trent Family 2026</div>
+  <div class="app-footer">⬡ Trent Family Home Sale Tracker &nbsp;•&nbsp; Bangkok 2026 &nbsp;•&nbsp; Here We Go</div>
 </div>
+
+<!-- Edit Modal -->
 <div class="modal-bg" id="edit-modal" onclick="modalBgClick(event)">
   <div class="modal-box">
     <div class="modal-handle"></div>
@@ -184,6 +306,7 @@ tr:not(.row-sold):hover{background:#222}
     </div>
   </div>
 </div>
+
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
@@ -196,6 +319,7 @@ const PLATS=['','FB Marketplace','Garage Sale','Estate Sale','Other'];
 const SCLASS={Available:'ss-available',Listed:'ss-listed',Hold:'ss-hold',Sold:'ss-sold'};
 const RAW=[['1','85" TV','Electronics','Living Room',2,''],['2','72" TV','Electronics','Living Room',2,''],['3','60" patio TV','Electronics','Patio',2,''],['4','50" TV #1','Electronics','Bedroom 2',2,''],['5','50" TV #2','Electronics','Bedroom 3',2,''],['6','50" TV #3','Electronics','Master Bedroom',2,''],['7','Living room surround sound system','Electronics','Living Room',2,'Full system'],['8','Theater sound system','Electronics','Theater Room',1,'Upstairs'],['9','Theater projector','Electronics','Theater Room',1,''],['10','Mac computer #1','Electronics','Office',1,''],['11','Mac computer #2','Electronics','Office',1,''],['12','Laser printer','Electronics','Office',1,''],['13','Inkjet printer #1','Electronics','Office',1,''],['14','Inkjet printer #2','Electronics','Office',1,''],['15','Cords & cables (lot)','Electronics','Office',1,'Various'],['16','Large sofa','Furniture','Living Room',2,'Oversized'],['17','Loveseat','Furniture','Living Room',2,'Oversized'],['18','Extra large chair','Furniture','Living Room',2,''],['19','Coffee table','Furniture','Living Room',2,''],['20','End tables (set)','Furniture','Living Room',2,''],['21','Curio/entertainment center','Furniture','Living Room',2,'6-7 ft long'],['22','Electric fireplace','Furniture','Living Room',2,''],['23','King bed frame','Furniture','Master Bedroom',2,''],['24','King mattress (bed-in-a-box)','Furniture','Master Bedroom',2,''],['25','Dresser','Furniture','Master Bedroom',2,'Under 4 yrs old'],['26','Nightstand #1','Furniture','Master Bedroom',2,'Under 4 yrs old'],['27','Nightstand #2','Furniture','Master Bedroom',2,'Under 4 yrs old'],['28','Office hutch & main desk','Furniture','Office',2,'Cost $10,000+'],['29','Second office desk','Furniture','Office',2,'Matching set'],['30','Office chair','Furniture','Office',2,''],['31','Dining table','Furniture','Dining Room',2,''],['32','Dining chairs (set)','Furniture','Dining Room',2,''],['33','Antique hutch','Furniture','Dining Room',2,'Heavy, antique'],['34','Curio cabinet','Furniture','Dining Room',2,''],['35','Theater seating (6 seats)','Furniture','Theater Room',2,'Full set'],['36','Refrigerator (glass door)','Appliances','Kitchen',2,'See-through door'],['37','Refrigerator #2','Appliances','Kitchen',2,''],['38','Washer #1','Appliances','Laundry Room',2,''],['39','Washer #2','Appliances','Laundry Room',2,''],['40','Dryer #1','Appliances','Laundry Room',2,''],['41','Dryer #2','Appliances','Laundry Room',2,''],['42','Patio refrigerator','Appliances','Patio',2,''],['43','Patio furniture set','Outdoor & Garden','Patio',2,''],['44','Pool chairs & loungers','Outdoor & Garden','Pool Area',2,''],['45','Hand tool set (full)','Tools & Equipment','Garage',1,''],['46','Garage miscellaneous','Miscellaneous','Garage',1,''],['47','Christmas decorations (full shed)','Seasonal','Shed',1,'High-end'],['48',"Women's clothing",'Clothing','Master Bedroom',1,'Closet full'],['49',"Men's clothing",'Clothing','Master Bedroom',1,'Closet full'],['50','Books — theology & misc (lot)','Books & Media','Office',1,'~10 boxes'],['51','Extra furniture & accent chairs','Furniture','Throughout Home',2,''],['52','Odds & ends (misc lot)','Miscellaneous','Throughout Home',1,''],['53','Bedside lamps (set of 2)','Electronics','Master Bedroom',2,''],['54','Area rug — master bedroom','Home Decor','Master Bedroom',2,''],['55','Full-length mirror','Home Decor','Master Bedroom',2,''],['56','Curtains/drapes — master bedroom','Home Decor','Master Bedroom',2,''],['57','King bedding set','Linens & Bedding','Master Bedroom',1,'Comforter & sheets'],['58','Decorative pillows & throws','Home Decor','Master Bedroom',1,''],['59','Jewelry armoire','Furniture','Master Bedroom',2,''],['60','Bed frame — bedroom 2','Furniture','Bedroom 2',2,''],['61','Mattress — bedroom 2','Furniture','Bedroom 2',2,''],['62','Dresser — bedroom 2','Furniture','Bedroom 2',2,''],['63','Nightstand — bedroom 2','Furniture','Bedroom 2',2,''],['64','Lamp — bedroom 2','Electronics','Bedroom 2',2,''],['65','Bed frame — bedroom 3','Furniture','Bedroom 3',2,''],['66','Mattress — bedroom 3','Furniture','Bedroom 3',2,''],['67','Dresser — bedroom 3','Furniture','Bedroom 3',2,''],['68','Nightstand — bedroom 3','Furniture','Bedroom 3',2,''],['69','Bed frame — guest bedroom','Furniture','Guest Bedroom',2,''],['70','Mattress — guest bedroom','Furniture','Guest Bedroom',2,''],['71','Dresser — guest bedroom','Furniture','Guest Bedroom',2,''],['72','Decorative mirrors (bathrooms)','Home Decor','Bathrooms',2,'Multiple'],['73','Towel sets (all bathrooms)','Linens & Bedding','Bathrooms',1,''],['74','Bath rugs (lot)','Home Decor','Bathrooms',1,''],['75','Bathroom accessories sets','Home Decor','Bathrooms',1,'Soap dispensers, trays'],['76','Bathroom scale','Appliances','Bathrooms',1,''],['77','KitchenAid stand mixer','Appliances','Kitchen',1,''],['78','Coffee maker','Appliances','Kitchen',1,''],['79','Air fryer / toaster oven','Appliances','Kitchen',1,''],['80','Blender','Appliances','Kitchen',1,''],['81','Instant pot / slow cooker','Appliances','Kitchen',1,''],['82','Food processor','Appliances','Kitchen',1,''],['83','Countertop microwave','Appliances','Kitchen',1,''],['84','Toaster','Appliances','Kitchen',1,''],['85','Pots & pans set','Kitchen & Dining','Kitchen',1,''],['86','Cast iron skillet(s)','Kitchen & Dining','Kitchen',1,''],['87','Dutch oven','Kitchen & Dining','Kitchen',1,''],['88','Baking sheets & pans (lot)','Kitchen & Dining','Kitchen',1,''],['89','Dinnerware set (12-piece)','Kitchen & Dining','Kitchen',1,''],['90','Glassware set','Kitchen & Dining','Kitchen',1,''],['91','Flatware/silverware set','Kitchen & Dining','Kitchen',1,''],['92','Serving bowls & platters','Kitchen & Dining','Kitchen',1,''],['93','Kitchen knives set','Kitchen & Dining','Kitchen',1,''],['94','Kitchen gadgets & utensils (lot)','Kitchen & Dining','Kitchen',1,''],['95','Bar stools','Furniture','Kitchen',2,''],['96','Wine rack','Kitchen & Dining','Kitchen',2,''],['97','Cookbook collection','Books & Media','Kitchen',1,''],['98','Formal china set','Kitchen & Dining','Dining Room',1,''],['99','Bar cart','Furniture','Dining Room',2,''],['100','Dining room decor / centerpieces','Home Decor','Dining Room',1,''],['101','Floor lamps (set of 2)','Electronics','Living Room',2,''],['102','Table lamps (set)','Electronics','Living Room',2,''],['103','Area rug — living room','Home Decor','Living Room',2,''],['104','Wall art / framed pictures (lot)','Home Decor','Living Room',1,''],['105','Decorative mirrors — living room','Home Decor','Living Room',2,''],['106','Throw pillows & blankets','Home Decor','Living Room',1,''],['107','Bookshelves / shelving unit','Furniture','Living Room',2,''],['108','Decorative vases & pieces','Home Decor','Living Room',1,''],['109','Wall clock','Home Decor','Living Room',1,''],['110','Ironing board','Tools & Equipment','Laundry Room',1,''],['111','Iron','Appliances','Laundry Room',1,''],['112','Garment steamer','Appliances','Laundry Room',1,''],['113','Laundry baskets (set)','Miscellaneous','Laundry Room',1,''],['114','Filing cabinet','Furniture','Office',2,''],['115','Bookshelf — office','Furniture','Office',2,''],['116','Desk lamp','Electronics','Office',1,''],['117','Office supplies (lot)','Miscellaneous','Office',1,''],['118','Paper shredder','Electronics','Office',1,''],['119','Whiteboard / bulletin board','Miscellaneous','Office',1,''],['120','Riding lawn mower','Tools & Equipment','Garage',2,''],['121','Weed eater / trimmer','Tools & Equipment','Garage',1,''],['122','Leaf blower','Tools & Equipment','Garage',1,''],['123','Pressure washer','Tools & Equipment','Garage',1,''],['124','Garden hoses & sprinklers','Tools & Equipment','Garage',1,''],['125','Extension ladder','Tools & Equipment','Garage',1,''],['126','Step ladder','Tools & Equipment','Garage',1,''],['127','Workbench','Tools & Equipment','Garage',2,''],['128','Garage storage shelving','Tools & Equipment','Garage',2,''],['129','Bikes (set)','Outdoor & Garden','Garage',1,''],['130','Dolly / hand truck','Tools & Equipment','Garage',1,''],['131','Generator','Tools & Equipment','Garage',1,''],['132','Power tools (drills, saws, etc.)','Tools & Equipment','Garage',1,'Lot'],['133','BBQ grill','Outdoor & Garden','Patio',1,''],['134','Smoker','Outdoor & Garden','Patio',1,''],['135','Fire pit / chiminea','Outdoor & Garden','Patio',2,''],['136','Garden tools (shovels, rakes, hoes)','Tools & Equipment','Garage',1,'Lot'],['137','Planters & pots (lot)','Outdoor & Garden','Patio',1,''],['138','Outdoor string lights','Home Decor','Patio',1,''],['139','Wheelbarrow','Tools & Equipment','Garage',1,''],['140','Pool floats & accessories','Outdoor & Garden','Pool Area',1,''],['141','Pool cleaning equipment','Tools & Equipment','Pool Area',1,'Pole, net, vacuum'],['142','Sheet sets (multiple)','Linens & Bedding','Throughout Home',1,''],['143','Blanket & quilt collection','Linens & Bedding','Throughout Home',1,''],['144','Extra pillow collection','Linens & Bedding','Throughout Home',1,''],['145','Luggage set','Miscellaneous','Throughout Home',1,''],['146','Storage bins & totes (lot)','Miscellaneous','Throughout Home',1,''],['147','Video game console(s)','Electronics','Living Room',1,''],['148','Gaming accessories','Electronics','Living Room',1,''],['149','Board games & puzzles (lot)','Books & Media','Throughout Home',1,''],['150','DVD / Blu-ray collection','Books & Media','Theater Room',1,''],['151','Streaming devices (Apple TV, Roku, etc.)','Electronics','Throughout Home',1,''],['152','Treadmill / elliptical','Fitness & Sports','Garage',2,''],['153','Exercise bike','Fitness & Sports','Garage',2,''],['154','Dumbbells / weight set','Fitness & Sports','Garage',1,''],['155','Yoga mats & exercise accessories','Fitness & Sports','Garage',1,''],['156','Digital keyboard / piano','Musical Equipment','Throughout Home',1,''],['157','Guitar(s)','Musical Equipment','Throughout Home',1,''],['158','Microphone & stand','Musical Equipment','Office',1,''],['159','Audio / recording equipment','Musical Equipment','Office',1,''],['160','Area rugs — additional rooms (lot)','Home Decor','Throughout Home',2,''],['161','Picture frames collection (lot)','Home Decor','Throughout Home',1,''],['162','Candles & holders (lot)','Home Decor','Throughout Home',1,''],['163','Artificial plants & greenery','Home Decor','Throughout Home',1,''],['164','Accent tables (throughout)','Furniture','Throughout Home',2,''],['165','Other holiday decor','Seasonal','Shed',1,'Easter, Thanksgiving, etc.'],['166','Curtains/drapes — other rooms (lot)','Home Decor','Throughout Home',2,''],['167','Window treatments / blinds (lot)','Home Decor','Throughout Home',2,''],['168','Bathroom vanity accessories','Home Decor','Bathrooms',1,''],['169','Nightstand lamps — other bedrooms','Electronics','Throughout Home',2,''],['170','Bedroom area rugs (lot)','Home Decor','Throughout Home',2,'']];
 const SEED=RAW.map(([id,name,cat,room,ph,notes])=>({id:String(id),name,category:cat,room:String(room),phase:'Phase '+ph,status:'Available',platform:'',askingPrice:'',soldPrice:'',notes:String(notes)}));
+
 document.getElementById('pin-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkPin();});
 (function(){if(sessionStorage.getItem('hst')===APP_PIN){document.getElementById('pin-screen').style.display='none';document.getElementById('app').style.display='block';boot();}})();
 function checkPin(){const v=document.getElementById('pin-input').value.trim();if(v===APP_PIN){sessionStorage.setItem('hst',APP_PIN);document.getElementById('pin-screen').style.display='none';document.getElementById('app').style.display='block';boot();}else{document.getElementById('pin-error').textContent='Incorrect PIN — try again';document.getElementById('pin-input').value='';document.getElementById('pin-input').focus();}}
@@ -206,8 +330,30 @@ function set(id,field,val){db.ref('items/'+id).update({[field]:val});}
 function del(id){if(confirm('Remove this item?'))db.ref('items/'+id).remove();}
 function addItem(){const name=document.getElementById('ni-name').value.trim();if(!name){alert('Please enter an item name.');return;}const id=Date.now().toString();db.ref('items/'+id).set({id,name,category:document.getElementById('ni-cat').value,room:document.getElementById('ni-room').value,phase:document.getElementById('ni-phase').value,status:document.getElementById('ni-status').value,platform:document.getElementById('ni-plat').value,askingPrice:document.getElementById('ni-ask').value,soldPrice:document.getElementById('ni-sold').value,notes:document.getElementById('ni-notes').value});['ni-name','ni-ask','ni-sold','ni-notes'].forEach(i=>document.getElementById(i).value='');document.getElementById('add-form').classList.remove('open');}
 function resetData(){if(confirm('Reset ALL items to the original list? Cannot be undone.')){const b={};SEED.forEach(i=>{b[i.id]=i;});db.ref('items').set(b);}}
-function renderAll(){renderStats();renderTable();document.getElementById('item-total').textContent=items.length;}
+function renderAll(){renderStats();renderCharts();renderTable();document.getElementById('item-total').textContent=items.length;}
 function renderStats(){const sold=items.filter(i=>i.status==='Sold');const tA=items.reduce((s,i)=>s+(+i.askingPrice||0),0);const tS=sold.reduce((s,i)=>s+(+i.soldPrice||0),0);const act=items.filter(i=>i.status!=='Available').length;document.getElementById('s-total').textContent=items.length;document.getElementById('s-p1').textContent=items.filter(i=>i.phase==='Phase 1').length;document.getElementById('s-listed').textContent=items.filter(i=>i.status==='Listed').length;document.getElementById('s-sold').textContent=sold.length;document.getElementById('s-ask').textContent='$'+Math.round(tA).toLocaleString();document.getElementById('s-rev').textContent='$'+Math.round(tS).toLocaleString();const pct=items.length?Math.round(act/items.length*100):0;document.getElementById('prog-bar').style.width=pct+'%';document.getElementById('prog-text').textContent=act+' of '+items.length+' items listed, sold, or on hold ('+pct+'%)';}
+function renderCharts(){
+  const total=items.length||1;
+  const act=items.filter(i=>i.status!=='Available').length;
+  const sold=items.filter(i=>i.status==='Sold').length;
+  const pct=Math.round(act/total*100);
+  const circ=2*Math.PI*30;
+  document.getElementById('donut-arc').style.strokeDasharray=(circ*pct/100)+' '+circ;
+  document.getElementById('donut-pct').textContent=pct+'%';
+  document.getElementById('legend-sold-count').textContent=sold+' sold so far';
+  const p1=items.filter(i=>i.phase==='Phase 1');
+  const p2=items.filter(i=>i.phase==='Phase 2');
+  const p1act=p1.filter(i=>i.status!=='Available').length;
+  const p2act=p2.filter(i=>i.status!=='Available').length;
+  document.getElementById('pb1-count').textContent=p1act+' / '+p1.length;
+  document.getElementById('pb2-count').textContent=p2act+' / '+p2.length;
+  document.getElementById('pb1-fill').style.width=(p1.length?Math.round(p1act/p1.length*100):0)+'%';
+  document.getElementById('pb2-fill').style.width=(p2.length?Math.round(p2act/p2.length*100):0)+'%';
+  const tA=items.reduce((s,i)=>s+(+i.askingPrice||0),0);
+  const tS=items.filter(i=>i.status==='Sold').reduce((s,i)=>s+(+i.soldPrice||0),0);
+  document.getElementById('chart-rev').textContent='$'+Math.round(tS).toLocaleString();
+  document.getElementById('chart-ask').textContent='$'+Math.round(tA).toLocaleString();
+}
 function filtered(){const s=document.getElementById('f-search').value.toLowerCase();const r=document.getElementById('f-room').value;const c=document.getElementById('f-cat').value;const st=document.getElementById('f-status').value;const ph=document.getElementById('f-phase').value;return items.filter(i=>{if(s&&![i.name,i.room,i.category,i.notes].some(v=>v&&v.toLowerCase().includes(s)))return false;if(r!=='All'&&i.room!==r)return false;if(c!=='All'&&i.category!==c)return false;if(st!=='All'&&i.status!==st)return false;if(ph!=='All'&&i.phase!==ph)return false;return true;});}
 function renderTable(){const fil=filtered();document.getElementById('count-text').textContent='Showing '+fil.length+' of '+items.length+' items';if(!fil.length){document.getElementById('tbody').innerHTML='<tr><td colspan="7" style="text-align:center;padding:2.5rem;color:#555">No items match your filters</td></tr>';return;}document.getElementById('tbody').innerHTML=fil.map(item=>`<tr class="${item.status==='Sold'?'row-sold':''}"><td><div class="item-name">${x(item.name)}</div><div class="item-sub">${x(item.room)}${item.notes?' · '+x(item.notes):''}</div></td><td><span class="badge ${item.phase==='Phase 1'?'bp1':'bp2'}">${item.phase==='Phase 1'?'P1':'P2'}</span></td><td><select class="sel-status ${SCLASS[item.status]||'ss-available'}" onchange="set('${item.id}','status',this.value);this.className='sel-status '+(SCLASS[this.value]||'ss-available')">${STATUS.map(s=>`<option value="${s}"${item.status===s?' selected':''}>${s}</option>`).join('')}</select></td><td><select class="sel-platform" onchange="set('${item.id}','platform',this.value)">${PLATS.map(p=>`<option value="${p}"${item.platform===p?' selected':''}>${p||'— platform —'}</option>`).join('')}</select></td><td><div class="price-wrap">${item.askingPrice?'<span class="price-prefix">$</span>':''}<input class="price-inp" type="number" value="${x(item.askingPrice)}" placeholder="0" style="padding-left:${item.askingPrice?'18px':'8px'}" onblur="set('${item.id}','askingPrice',this.value)" /></div></td><td><div class="price-wrap">${item.soldPrice?'<span class="price-prefix">$</span>':''}<input class="price-inp" type="number" value="${x(item.soldPrice)}" placeholder="0" style="padding-left:${item.soldPrice?'18px':'8px'};${item.soldPrice?'color:#4ade80;font-weight:600':''}" onblur="set('${item.id}','soldPrice',this.value)" /></div></td><td style="white-space:nowrap"><button class="btn btn-icon btn-sm" onclick="openEdit('${item.id}')" title="Edit">✏️</button><button class="btn btn-icon btn-sm" onclick="del('${item.id}')" title="Delete" style="margin-left:3px">🗑</button></td></tr>`).join('');}
 function x(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
