@@ -46,7 +46,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .btn-dark:hover{background:#FFC200;border-color:#FFC200;color:#0a0a0a}
 .btn-sm{padding:6px 10px;font-size:12px;border-radius:8px}
 .btn-icon{padding:6px 8px;border-radius:8px}
-<a href="https://gregorytrent.github.io/thailand-recon-planner.html" style="color:#FFD700;font-size:12px;text-decoration:none;padding:4px 8px;border:1px solid #333;border-radius:8px;margin-right:4px;">🗺 Recon Planner</a>
+<a href="https://gregorytrent.github.io/thailand--planner.html" style="color:#FFD700;font-size:12px;text-decoration:none;padding:4px 8px;border:1px solid #333;border-radius:8px;margin-right:4px;">🗺  Planner</a>
   .btn-ghost{border:none;background:none;color:#555;font-size:12px;cursor:pointer;padding:4px 8px}
 .btn-ghost:hover{color:#FFD700}
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin-bottom:16px}
@@ -109,6 +109,14 @@ tr:not(.row-sold):hover{background:#222}
 </style>
 </head>
 <body>
+  <nav class="top-nav">
+  <a href="index.html">Utilities</a>
+  <a href="packing-list.html">Packing</a>
+  <a href="relocationfinal.html">Thailand Recon</a>
+  <a href="thailand-recon-planner.html">Recon Planner App</a>
+  <a href="home-sale-tracker.html">Home Sale Tracker</a>
+  <a href="theoeducation.html">Theo Education</a>
+</nav>
 <div id="pin-screen">
   <div class="pin-card">
     <svg width="80" height="80" viewBox="0 0 80 80" style="margin:0 auto 16px;display:block">
@@ -277,7 +285,7 @@ if(sessionStorage.getItem('hst')===APP_PIN){document.getElementById('pin-screen'
 function checkPin(){var v=document.getElementById('pin-input').value.trim();if(v===APP_PIN){sessionStorage.setItem('hst',APP_PIN);document.getElementById('pin-screen').style.display='none';document.getElementById('app').style.display='block';boot();}else{document.getElementById('pin-error').textContent='Incorrect PIN — try again';document.getElementById('pin-input').value='';document.getElementById('pin-input').focus();}}
 function doLogout(){sessionStorage.removeItem('hst');location.reload();}
 var db=null;var items=[];var editId=null;
-function boot(){fillSelects();firebase.initializeApp(FIREBASE_CONFIG);db=firebase.database();db.ref('.info/connected').on('value',function(s){var on=s.val();document.getElementById('sync-dot').style.background=on?'#FFD700':'#f59e0b';document.getElementById('sync-msg').textContent=on?'Live sync':'Reconnecting...';});db.ref('items').on('value',function(snap){var d=snap.val();if(d&&Object.keys(d).length){items=Object.values(d).sort(function(a,b){return +a.id-+b.id;});}else{var batch={};SEED.forEach(function(i){batch[i.id]=i;});db.ref('items').set(batch);items=SEED.slice();}renderAll();});}
+function boot(){fillSelects();firebase.initializeApp(FIREBASE_CONFIG);db=firebase.database();db.ref('.info/connected').on('value',function(s){var on=s.val();document.getElementById('sync-dot').style.background=on?'#FFD700':'#f59e0b';document.getElementById('sync-msg').textContent=on?'Live sync':'necting...';});db.ref('items').on('value',function(snap){var d=snap.val();if(d&&Object.keys(d).length){items=Object.values(d).sort(function(a,b){return +a.id-+b.id;});}else{var batch={};SEED.forEach(function(i){batch[i.id]=i;});db.ref('items').set(batch);items=SEED.slice();}renderAll();});}
 function setField(id,field,val){if(db)db.ref('items/'+id).update({[field]:val});}
 function delItem(id){if(confirm('Remove this item?')&&db)db.ref('items/'+id).remove();}
 function addItem(){var name=document.getElementById('ni-name').value.trim();if(!name){alert('Please enter an item name.');return;}var id=Date.now().toString();if(db)db.ref('items/'+id).set({id:id,name:name,category:document.getElementById('ni-cat').value,room:document.getElementById('ni-room').value,phase:document.getElementById('ni-phase').value,status:document.getElementById('ni-status').value,platform:document.getElementById('ni-plat').value,askingPrice:document.getElementById('ni-ask').value,soldPrice:document.getElementById('ni-sold').value,notes:document.getElementById('ni-notes').value});['ni-name','ni-ask','ni-sold','ni-notes'].forEach(function(i){document.getElementById(i).value='';});document.getElementById('add-form').classList.remove('open');}
