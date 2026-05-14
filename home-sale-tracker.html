@@ -1,0 +1,226 @@
+Here is the complete code. Click anywhere in the box, Cmd+A to select all, Cmd+C to copy, then paste into GitHub:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Trent Home Sale Tracker</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3ef;color:#1a1a18;min-height:100vh;font-size:14px}
+#pin-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:#f4f3ef}
+.pin-card{background:white;border-radius:20px;padding:32px 28px;width:100%;max-width:340px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.08)}
+.pin-icon{font-size:48px;margin-bottom:16px}
+.pin-title{font-size:22px;font-weight:700;margin-bottom:4px}
+.pin-sub{font-size:13px;color:#888;margin-bottom:28px}
+.pin-input{width:100%;padding:14px;font-size:28px;text-align:center;letter-spacing:10px;border:2px solid #e8e6e0;border-radius:12px;outline:none;margin-bottom:16px;transition:border-color .2s;background:#fafaf8}
+.pin-input:focus{border-color:#3B82F6}
+.pin-btn{width:100%;padding:15px;background:#1a1a18;color:white;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer}
+.pin-error{color:#E24B4A;font-size:13px;margin-top:10px;min-height:18px}
+#app{display:none;padding:16px;max-width:1100px;margin:0 auto;padding-bottom:40px}
+.app-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;gap:12px;flex-wrap:wrap}
+.app-header h1{font-size:20px;font-weight:700}
+.app-header p{font-size:12px;color:#888;margin-top:3px}
+.sync-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#f59e0b;margin-right:5px;vertical-align:middle}
+.header-btns{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{padding:9px 16px;border:1.5px solid #e0ddd8;border-radius:10px;font-size:13px;background:white;cursor:pointer;transition:all .15s;color:#1a1a18;font-weight:500;white-space:nowrap}
+.btn:hover{background:#f4f3ef}
+.btn:active{transform:scale(0.97)}
+.btn-dark{background:#1a1a18;color:white;border-color:#1a1a18}
+.btn-dark:hover{background:#333;border-color:#333}
+.btn-sm{padding:6px 10px;font-size:12px;border-radius:8px}
+.btn-icon{padding:6px 8px;border-radius:8px}
+.btn-ghost{border:none;background:none;color:#999;font-size:12px;cursor:pointer;padding:4px 8px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin-bottom:16px}
+.stat-card{background:white;border-radius:12px;padding:12px 14px}
+.stat-label{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:0.5px}
+.stat-value{font-size:20px;font-weight:700;margin-top:4px;color:#1a1a18}
+.progress-wrap{background:#ebe9e4;border-radius:20px;height:5px;margin-bottom:6px;overflow:hidden}
+.progress-bar{height:5px;background:#16a34a;border-radius:20px;transition:width .6s ease}
+.progress-text{font-size:11px;color:#aaa;text-align:right;margin-bottom:18px}
+.add-form{background:white;border-radius:14px;padding:18px;margin-bottom:16px;display:none;border:1.5px solid #e0ddd8}
+.add-form.open{display:block}
+.add-form-title{font-size:14px;font-weight:600;margin-bottom:14px}
+.add-form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.add-form-grid .full{grid-column:1/-1}
+.field-label{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px;font-weight:600}
+.add-form-actions{display:flex;gap:8px}
+input,select{width:100%;padding:9px 12px;border:1.5px solid #e0ddd8;border-radius:9px;font-size:13px;background:white;color:#1a1a18;outline:none;appearance:none;-webkit-appearance:none;transition:border-color .2s}
+input:focus,select:focus{border-color:#3B82F6}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23999' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px}
+.filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:12px}
+.count-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+.count-bar span{font-size:12px;color:#888}
+.table-wrap{background:white;border-radius:14px;overflow:hidden;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #ebe9e4}
+table{width:100%;min-width:680px;border-collapse:collapse;font-size:13px}
+thead tr{background:#f8f7f4;border-bottom:1.5px solid #ebe9e4}
+th{padding:10px;text-align:left;font-size:10px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+td{padding:8px;border-bottom:1px solid #f4f3ef;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr.row-sold{background:#f0fdf6}
+tr:not(.row-sold):hover{background:#fafaf8}
+.item-name{font-size:13px;font-weight:500;color:#1a1a18}
+.item-sub{font-size:10px;color:#bbb;margin-top:2px}
+.badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.3px}
+.bp1{background:#FEF3F6;color:#9D174D}
+.bp2{background:#EEF2FF;color:#4338CA}
+.sel-status{font-size:11px;padding:5px 24px 5px 8px;border-radius:7px;border:1.5px solid #e0ddd8;cursor:pointer;font-weight:600;min-width:95px;width:100%}
+.ss-available{background:#f8f7f4;color:#777;border-color:#e0ddd8}
+.ss-listed{background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE}
+.ss-hold{background:#FFFBEB;color:#92400E;border-color:#FDE68A}
+.ss-sold{background:#F0FDF4;color:#166534;border-color:#BBF7D0}
+.sel-platform{font-size:11px;padding:5px 24px 5px 8px;border-radius:7px;border:1.5px solid #e0ddd8;background:white;color:#666;min-width:110px;width:100%;cursor:pointer}
+.price-wrap{position:relative}
+.price-prefix{position:absolute;left:7px;top:50%;transform:translateY(-50%);font-size:12px;color:#bbb;pointer-events:none;z-index:1}
+.price-inp{width:82px;padding:5px 5px 5px 18px;border:1.5px solid #e0ddd8;border-radius:7px;font-size:12px;background:white;color:#1a1a18;appearance:none;-webkit-appearance:none;outline:none}
+.price-inp:focus{border-color:#3B82F6}
+.price-inp::-webkit-outer-spin-button,.price-inp::-webkit-inner-spin-button{-webkit-appearance:none}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:flex-end;justify-content:center}
+@media(min-width:600px){.modal-bg{align-items:center;padding:20px}}
+.modal-bg.open{display:flex}
+.modal-box{background:white;border-radius:20px 20px 0 0;padding:24px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto}
+@media(min-width:600px){.modal-box{border-radius:20px}}
+.modal-box h2{font-size:16px;font-weight:700;margin-bottom:18px}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+.modal-grid .full{grid-column:1/-1}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end}
+.modal-handle{width:40px;height:4px;background:#e0ddd8;border-radius:4px;margin:0 auto 20px}
+.app-footer{text-align:center;padding:20px 0 0;font-size:11px;color:#ccc}
+@media(max-width:500px){.stats-grid{grid-template-columns:repeat(3,1fr)}.stat-value{font-size:17px}.modal-grid{grid-template-columns:1fr}table{min-width:600px}}
+</style>
+</head>
+<body>
+<div id="pin-screen">
+  <div class="pin-card">
+    <div class="pin-icon">🏠</div>
+    <div class="pin-title">Home Sale Tracker</div>
+    <div class="pin-sub">Trent Family &nbsp;•&nbsp; Bangkok 2026</div>
+    <input class="pin-input" type="password" inputmode="numeric" maxlength="6" placeholder="••••" id="pin-input" autocomplete="off" />
+    <button class="pin-btn" onclick="checkPin()">Enter</button>
+    <div class="pin-error" id="pin-error"></div>
+  </div>
+</div>
+<div id="app">
+  <div class="app-header">
+    <div>
+      <h1>Home Sale Tracker</h1>
+      <p><span class="sync-dot" id="sync-dot"></span><span id="sync-msg">Connecting...</span> &nbsp;•&nbsp; <span id="item-total">—</span> items</p>
+    </div>
+    <div class="header-btns">
+      <button class="btn btn-dark" onclick="toggleAdd()">+ Add item</button>
+      <button class="btn-ghost" onclick="doLogout()">Sign out</button>
+    </div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-label">Total</div><div class="stat-value" id="s-total">—</div></div>
+    <div class="stat-card"><div class="stat-label">Phase 1</div><div class="stat-value" id="s-p1">—</div></div>
+    <div class="stat-card"><div class="stat-label">Listed</div><div class="stat-value" id="s-listed">—</div></div>
+    <div class="stat-card"><div class="stat-label">Sold</div><div class="stat-value" id="s-sold">—</div></div>
+    <div class="stat-card"><div class="stat-label">Asking</div><div class="stat-value" id="s-ask">$0</div></div>
+    <div class="stat-card"><div class="stat-label">Revenue</div><div class="stat-value" id="s-rev" style="color:#16a34a">$0</div></div>
+  </div>
+  <div class="progress-wrap"><div class="progress-bar" id="prog-bar" style="width:0%"></div></div>
+  <div class="progress-text" id="prog-text">Loading...</div>
+  <div class="add-form" id="add-form">
+    <div class="add-form-title">Add New Item</div>
+    <div class="add-form-grid">
+      <div class="full"><div class="field-label">Item name *</div><input id="ni-name" placeholder="e.g. Kitchen table" /></div>
+      <div><div class="field-label">Room</div><select id="ni-room"></select></div>
+      <div><div class="field-label">Category</div><select id="ni-cat"></select></div>
+      <div><div class="field-label">Phase</div><select id="ni-phase"><option value="Phase 1">Phase 1 — Sell now</option><option value="Phase 2">Phase 2 — Estate sale</option></select></div>
+      <div><div class="field-label">Status</div><select id="ni-status"></select></div>
+      <div><div class="field-label">Platform</div><select id="ni-plat"></select></div>
+      <div><div class="field-label">Asking price</div><input id="ni-ask" type="number" placeholder="$" /></div>
+      <div><div class="field-label">Sold price</div><input id="ni-sold" type="number" placeholder="$" /></div>
+      <div class="full"><div class="field-label">Notes</div><input id="ni-notes" placeholder="Optional notes" /></div>
+    </div>
+    <div class="add-form-actions">
+      <button class="btn btn-dark" onclick="addItem()">Add item</button>
+      <button class="btn" onclick="toggleAdd()">Cancel</button>
+    </div>
+  </div>
+  <div class="filters">
+    <input type="search" id="f-search" placeholder="Search items..." oninput="renderTable()" />
+    <select id="f-room" onchange="renderTable()"><option value="All">All rooms</option></select>
+    <select id="f-cat" onchange="renderTable()"><option value="All">All categories</option></select>
+    <select id="f-status" onchange="renderTable()"><option value="All">All statuses</option></select>
+    <select id="f-phase" onchange="renderTable()"><option value="All">All phases</option><option value="Phase 1">Phase 1 — Sell now</option><option value="Phase 2">Phase 2 — Estate sale</option></select>
+  </div>
+  <div class="count-bar">
+    <span id="count-text">Loading...</span>
+    <button class="btn btn-sm" style="color:#bbb;font-size:11px" onclick="resetData()">↺ Reset list</button>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th style="width:22%">Item / Room</th>
+        <th style="width:5%">Ph</th>
+        <th style="width:13%">Status</th>
+        <th style="width:14%">Platform</th>
+        <th style="width:10%">Asking</th>
+        <th style="width:10%">Sold</th>
+        <th style="width:9%"></th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+  <div class="app-footer">Changes sync in real time across all devices &nbsp;•&nbsp; Trent Family 2026</div>
+</div>
+<div class="modal-bg" id="edit-modal" onclick="modalBgClick(event)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <h2>Edit Item</h2>
+    <div class="modal-grid">
+      <div class="full"><div class="field-label">Item name</div><input id="e-name" /></div>
+      <div><div class="field-label">Room</div><select id="e-room"></select></div>
+      <div><div class="field-label">Category</div><select id="e-cat"></select></div>
+      <div><div class="field-label">Phase</div><select id="e-phase"><option value="Phase 1">Phase 1 — Sell now</option><option value="Phase 2">Phase 2 — Estate sale</option></select></div>
+      <div class="full"><div class="field-label">Notes</div><input id="e-notes" placeholder="Optional notes" /></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-dark" onclick="saveEdit()">Save changes</button>
+    </div>
+  </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script>
+const FIREBASE_CONFIG={apiKey:"AIzaSyDsITtcbh7nbvn91D96ggfBZQzthUeUmuE",authDomain:"estate-sale-edb3d.firebaseapp.com",databaseURL:"https://estate-sale-edb3d-default-rtdb.firebaseio.com",projectId:"estate-sale-edb3d",storageBucket:"estate-sale-edb3d.firebasestorage.app",messagingSenderId:"825981563204",appId:"1:825981563204:web:461b7100234e9e5814a711"};
+const APP_PIN="2026";
+const ROOMS=['Master Bedroom','Bedroom 2','Bedroom 3','Guest Bedroom','Bathrooms','Kitchen','Living Room','Dining Room','Office','Theater Room','Laundry Room','Garage','Shed','Patio','Pool Area','Throughout Home'];
+const CATS=['Electronics','Furniture','Kitchen & Dining','Appliances','Outdoor & Garden','Tools & Equipment','Clothing','Books & Media','Home Decor','Linens & Bedding','Fitness & Sports','Musical Equipment','Seasonal','Miscellaneous'];
+const STATUS=['Available','Listed','Hold','Sold'];
+const PLATS=['','FB Marketplace','Garage Sale','Estate Sale','Other'];
+const SCLASS={Available:'ss-available',Listed:'ss-listed',Hold:'ss-hold',Sold:'ss-sold'};
+const RAW=[['1','85" TV','Electronics','Living Room',2,''],['2','72" TV','Electronics','Living Room',2,''],['3','60" patio TV','Electronics','Patio',2,''],['4','50" TV #1','Electronics','Bedroom 2',2,''],['5','50" TV #2','Electronics','Bedroom 3',2,''],['6','50" TV #3','Electronics','Master Bedroom',2,''],['7','Living room surround sound system','Electronics','Living Room',2,'Full system'],['8','Theater sound system','Electronics','Theater Room',1,'Upstairs'],['9','Theater projector','Electronics','Theater Room',1,''],['10','Mac computer #1','Electronics','Office',1,''],['11','Mac computer #2','Electronics','Office',1,''],['12','Laser printer','Electronics','Office',1,''],['13','Inkjet printer #1','Electronics','Office',1,''],['14','Inkjet printer #2','Electronics','Office',1,''],['15','Cords & cables (lot)','Electronics','Office',1,'Various'],['16','Large sofa','Furniture','Living Room',2,'Oversized'],['17','Loveseat','Furniture','Living Room',2,'Oversized'],['18','Extra large chair','Furniture','Living Room',2,''],['19','Coffee table','Furniture','Living Room',2,''],['20','End tables (set)','Furniture','Living Room',2,''],['21','Curio/entertainment center','Furniture','Living Room',2,'6-7 ft long'],['22','Electric fireplace','Furniture','Living Room',2,''],['23','King bed frame','Furniture','Master Bedroom',2,''],['24','King mattress (bed-in-a-box)','Furniture','Master Bedroom',2,''],['25','Dresser','Furniture','Master Bedroom',2,'Under 4 yrs old'],['26','Nightstand #1','Furniture','Master Bedroom',2,'Under 4 yrs old'],['27','Nightstand #2','Furniture','Master Bedroom',2,'Under 4 yrs old'],['28','Office hutch & main desk','Furniture','Office',2,'Cost $10,000+'],['29','Second office desk','Furniture','Office',2,'Matching set'],['30','Office chair','Furniture','Office',2,''],['31','Dining table','Furniture','Dining Room',2,''],['32','Dining chairs (set)','Furniture','Dining Room',2,''],['33','Antique hutch','Furniture','Dining Room',2,'Heavy, antique'],['34','Curio cabinet','Furniture','Dining Room',2,''],['35','Theater seating (6 seats)','Furniture','Theater Room',2,'Full set'],['36','Refrigerator (glass door)','Appliances','Kitchen',2,'See-through door'],['37','Refrigerator #2','Appliances','Kitchen',2,''],['38','Washer #1','Appliances','Laundry Room',2,''],['39','Washer #2','Appliances','Laundry Room',2,''],['40','Dryer #1','Appliances','Laundry Room',2,''],['41','Dryer #2','Appliances','Laundry Room',2,''],['42','Patio refrigerator','Appliances','Patio',2,''],['43','Patio furniture set','Outdoor & Garden','Patio',2,''],['44','Pool chairs & loungers','Outdoor & Garden','Pool Area',2,''],['45','Hand tool set (full)','Tools & Equipment','Garage',1,''],['46','Garage miscellaneous','Miscellaneous','Garage',1,''],['47','Christmas decorations (full shed)','Seasonal','Shed',1,'High-end'],['48',"Women's clothing",'Clothing','Master Bedroom',1,'Closet full'],['49',"Men's clothing",'Clothing','Master Bedroom',1,'Closet full'],['50','Books — theology & misc (lot)','Books & Media','Office',1,'~10 boxes'],['51','Extra furniture & accent chairs','Furniture','Throughout Home',2,''],['52','Odds & ends (misc lot)','Miscellaneous','Throughout Home',1,''],['53','Bedside lamps (set of 2)','Electronics','Master Bedroom',2,''],['54','Area rug — master bedroom','Home Decor','Master Bedroom',2,''],['55','Full-length mirror','Home Decor','Master Bedroom',2,''],['56','Curtains/drapes — master bedroom','Home Decor','Master Bedroom',2,''],['57','King bedding set','Linens & Bedding','Master Bedroom',1,'Comforter & sheets'],['58','Decorative pillows & throws','Home Decor','Master Bedroom',1,''],['59','Jewelry armoire','Furniture','Master Bedroom',2,''],['60','Bed frame — bedroom 2','Furniture','Bedroom 2',2,''],['61','Mattress — bedroom 2','Furniture','Bedroom 2',2,''],['62','Dresser — bedroom 2','Furniture','Bedroom 2',2,''],['63','Nightstand — bedroom 2','Furniture','Bedroom 2',2,''],['64','Lamp — bedroom 2','Electronics','Bedroom 2',2,''],['65','Bed frame — bedroom 3','Furniture','Bedroom 3',2,''],['66','Mattress — bedroom 3','Furniture','Bedroom 3',2,''],['67','Dresser — bedroom 3','Furniture','Bedroom 3',2,''],['68','Nightstand — bedroom 3','Furniture','Bedroom 3',2,''],['69','Bed frame — guest bedroom','Furniture','Guest Bedroom',2,''],['70','Mattress — guest bedroom','Furniture','Guest Bedroom',2,''],['71','Dresser — guest bedroom','Furniture','Guest Bedroom',2,''],['72','Decorative mirrors (bathrooms)','Home Decor','Bathrooms',2,'Multiple'],['73','Towel sets (all bathrooms)','Linens & Bedding','Bathrooms',1,''],['74','Bath rugs (lot)','Home Decor','Bathrooms',1,''],['75','Bathroom accessories sets','Home Decor','Bathrooms',1,'Soap dispensers, trays'],['76','Bathroom scale','Appliances','Bathrooms',1,''],['77','KitchenAid stand mixer','Appliances','Kitchen',1,''],['78','Coffee maker','Appliances','Kitchen',1,''],['79','Air fryer / toaster oven','Appliances','Kitchen',1,''],['80','Blender','Appliances','Kitchen',1,''],['81','Instant pot / slow cooker','Appliances','Kitchen',1,''],['82','Food processor','Appliances','Kitchen',1,''],['83','Countertop microwave','Appliances','Kitchen',1,''],['84','Toaster','Appliances','Kitchen',1,''],['85','Pots & pans set','Kitchen & Dining','Kitchen',1,''],['86','Cast iron skillet(s)','Kitchen & Dining','Kitchen',1,''],['87','Dutch oven','Kitchen & Dining','Kitchen',1,''],['88','Baking sheets & pans (lot)','Kitchen & Dining','Kitchen',1,''],['89','Dinnerware set (12-piece)','Kitchen & Dining','Kitchen',1,''],['90','Glassware set','Kitchen & Dining','Kitchen',1,''],['91','Flatware/silverware set','Kitchen & Dining','Kitchen',1,''],['92','Serving bowls & platters','Kitchen & Dining','Kitchen',1,''],['93','Kitchen knives set','Kitchen & Dining','Kitchen',1,''],['94','Kitchen gadgets & utensils (lot)','Kitchen & Dining','Kitchen',1,''],['95','Bar stools','Furniture','Kitchen',2,''],['96','Wine rack','Kitchen & Dining','Kitchen',2,''],['97','Cookbook collection','Books & Media','Kitchen',1,''],['98','Formal china set','Kitchen & Dining','Dining Room',1,''],['99','Bar cart','Furniture','Dining Room',2,''],['100','Dining room decor / centerpieces','Home Decor','Dining Room',1,''],['101','Floor lamps (set of 2)','Electronics','Living Room',2,''],['102','Table lamps (set)','Electronics','Living Room',2,''],['103','Area rug — living room','Home Decor','Living Room',2,''],['104','Wall art / framed pictures (lot)','Home Decor','Living Room',1,''],['105','Decorative mirrors — living room','Home Decor','Living Room',2,''],['106','Throw pillows & blankets','Home Decor','Living Room',1,''],['107','Bookshelves / shelving unit','Furniture','Living Room',2,''],['108','Decorative vases & pieces','Home Decor','Living Room',1,''],['109','Wall clock','Home Decor','Living Room',1,''],['110','Ironing board','Tools & Equipment','Laundry Room',1,''],['111','Iron','Appliances','Laundry Room',1,''],['112','Garment steamer','Appliances','Laundry Room',1,''],['113','Laundry baskets (set)','Miscellaneous','Laundry Room',1,''],['114','Filing cabinet','Furniture','Office',2,''],['115','Bookshelf — office','Furniture','Office',2,''],['116','Desk lamp','Electronics','Office',1,''],['117','Office supplies (lot)','Miscellaneous','Office',1,''],['118','Paper shredder','Electronics','Office',1,''],['119','Whiteboard / bulletin board','Miscellaneous','Office',1,''],['120','Riding lawn mower','Tools & Equipment','Garage',2,''],['121','Weed eater / trimmer','Tools & Equipment','Garage',1,''],['122','Leaf blower','Tools & Equipment','Garage',1,''],['123','Pressure washer','Tools & Equipment','Garage',1,''],['124','Garden hoses & sprinklers','Tools & Equipment','Garage',1,''],['125','Extension ladder','Tools & Equipment','Garage',1,''],['126','Step ladder','Tools & Equipment','Garage',1,''],['127','Workbench','Tools & Equipment','Garage',2,''],['128','Garage storage shelving','Tools & Equipment','Garage',2,''],['129','Bikes (set)','Outdoor & Garden','Garage',1,''],['130','Dolly / hand truck','Tools & Equipment','Garage',1,''],['131','Generator','Tools & Equipment','Garage',1,''],['132','Power tools (drills, saws, etc.)','Tools & Equipment','Garage',1,'Lot'],['133','BBQ grill','Outdoor & Garden','Patio',1,''],['134','Smoker','Outdoor & Garden','Patio',1,''],['135','Fire pit / chiminea','Outdoor & Garden','Patio',2,''],['136','Garden tools (shovels, rakes, hoes)','Tools & Equipment','Garage',1,'Lot'],['137','Planters & pots (lot)','Outdoor & Garden','Patio',1,''],['138','Outdoor string lights','Home Decor','Patio',1,''],['139','Wheelbarrow','Tools & Equipment','Garage',1,''],['140','Pool floats & accessories','Outdoor & Garden','Pool Area',1,''],['141','Pool cleaning equipment','Tools & Equipment','Pool Area',1,'Pole, net, vacuum'],['142','Sheet sets (multiple)','Linens & Bedding','Throughout Home',1,''],['143','Blanket & quilt collection','Linens & Bedding','Throughout Home',1,''],['144','Extra pillow collection','Linens & Bedding','Throughout Home',1,''],['145','Luggage set','Miscellaneous','Throughout Home',1,''],['146','Storage bins & totes (lot)','Miscellaneous','Throughout Home',1,''],['147','Video game console(s)','Electronics','Living Room',1,''],['148','Gaming accessories','Electronics','Living Room',1,''],['149','Board games & puzzles (lot)','Books & Media','Throughout Home',1,''],['150','DVD / Blu-ray collection','Books & Media','Theater Room',1,''],['151','Streaming devices (Apple TV, Roku, etc.)','Electronics','Throughout Home',1,''],['152','Treadmill / elliptical','Fitness & Sports','Garage',2,''],['153','Exercise bike','Fitness & Sports','Garage',2,''],['154','Dumbbells / weight set','Fitness & Sports','Garage',1,''],['155','Yoga mats & exercise accessories','Fitness & Sports','Garage',1,''],['156','Digital keyboard / piano','Musical Equipment','Throughout Home',1,''],['157','Guitar(s)','Musical Equipment','Throughout Home',1,''],['158','Microphone & stand','Musical Equipment','Office',1,''],['159','Audio / recording equipment','Musical Equipment','Office',1,''],['160','Area rugs — additional rooms (lot)','Home Decor','Throughout Home',2,''],['161','Picture frames collection (lot)','Home Decor','Throughout Home',1,''],['162','Candles & holders (lot)','Home Decor','Throughout Home',1,''],['163','Artificial plants & greenery','Home Decor','Throughout Home',1,''],['164','Accent tables (throughout)','Furniture','Throughout Home',2,''],['165','Other holiday decor','Seasonal','Shed',1,'Easter, Thanksgiving, etc.'],['166','Curtains/drapes — other rooms (lot)','Home Decor','Throughout Home',2,''],['167','Window treatments / blinds (lot)','Home Decor','Throughout Home',2,''],['168','Bathroom vanity accessories','Home Decor','Bathrooms',1,''],['169','Nightstand lamps — other bedrooms','Electronics','Throughout Home',2,''],['170','Bedroom area rugs (lot)','Home Decor','Throughout Home',2,'']];
+const SEED=RAW.map(([id,name,cat,room,ph,notes])=>({id:String(id),name,category:cat,room:String(room),phase:'Phase '+ph,status:'Available',platform:'',askingPrice:'',soldPrice:'',notes:String(notes)}));
+document.getElementById('pin-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkPin();});
+(function(){if(sessionStorage.getItem('hst')===APP_PIN){document.getElementById('pin-screen').style.display='none';document.getElementById('app').style.display='block';boot();}})();
+function checkPin(){const v=document.getElementById('pin-input').value.trim();if(v===APP_PIN){sessionStorage.setItem('hst',APP_PIN);document.getElementById('pin-screen').style.display='none';document.getElementById('app').style.display='block';boot();}else{document.getElementById('pin-error').textContent='Incorrect PIN — try again';document.getElementById('pin-input').value='';document.getElementById('pin-input').focus();}}
+function doLogout(){sessionStorage.removeItem('hst');location.reload();}
+let db,items=[],editId=null;
+function boot(){fillSelects();firebase.initializeApp(FIREBASE_CONFIG);db=firebase.database();db.ref('.info/connected').on('value',s=>{const on=s.val();document.getElementById('sync-dot').style.background=on?'#16a34a':'#f59e0b';document.getElementById('sync-msg').textContent=on?'Live sync':'Reconnecting...';});db.ref('items').on('value',snap=>{const d=snap.val();if(d&&Object.keys(d).length){items=Object.values(d).sort((a,b)=>+a.id-+b.id);}else{const batch={};SEED.forEach(i=>{batch[i.id]=i;});db.ref('items').set(batch);items=[...SEED];}renderAll();});}
+function set(id,field,val){db.ref('items/'+id).update({[field]:val});}
+function del(id){if(confirm('Remove this item?'))db.ref('items/'+id).remove();}
+function addItem(){const name=document.getElementById('ni-name').value.trim();if(!name){alert('Please enter an item name.');return;}const id=Date.now().toString();db.ref('items/'+id).set({id,name,category:document.getElementById('ni-cat').value,room:document.getElementById('ni-room').value,phase:document.getElementById('ni-phase').value,status:document.getElementById('ni-status').value,platform:document.getElementById('ni-plat').value,askingPrice:document.getElementById('ni-ask').value,soldPrice:document.getElementById('ni-sold').value,notes:document.getElementById('ni-notes').value});['ni-name','ni-ask','ni-sold','ni-notes'].forEach(i=>document.getElementById(i).value='');document.getElementById('add-form').classList.remove('open');}
+function resetData(){if(confirm('Reset ALL items to the original list? Cannot be undone.')){const b={};SEED.forEach(i=>{b[i.id]=i;});db.ref('items').set(b);}}
+function renderAll(){renderStats();renderTable();document.getElementById('item-total').textContent=items.length;}
+function renderStats(){const sold=items.filter(i=>i.status==='Sold');const tA=items.reduce((s,i)=>s+(+i.askingPrice||0),0);const tS=sold.reduce((s,i)=>s+(+i.soldPrice||0),0);const act=items.filter(i=>i.status!=='Available').length;document.getElementById('s-total').textContent=items.length;document.getElementById('s-p1').textContent=items.filter(i=>i.phase==='Phase 1').length;document.getElementById('s-listed').textContent=items.filter(i=>i.status==='Listed').length;document.getElementById('s-sold').textContent=sold.length;document.getElementById('s-ask').textContent='$'+Math.round(tA).toLocaleString();document.getElementById('s-rev').textContent='$'+Math.round(tS).toLocaleString();const pct=items.length?Math.round(act/items.length*100):0;document.getElementById('prog-bar').style.width=pct+'%';document.getElementById('prog-text').textContent=act+' of '+items.length+' items listed, sold, or on hold ('+pct+'%)';}
+function filtered(){const s=document.getElementById('f-search').value.toLowerCase();const r=document.getElementById('f-room').value;const c=document.getElementById('f-cat').value;const st=document.getElementById('f-status').value;const ph=document.getElementById('f-phase').value;return items.filter(i=>{if(s&&![i.name,i.room,i.category,i.notes].some(v=>v&&v.toLowerCase().includes(s)))return false;if(r!=='All'&&i.room!==r)return false;if(c!=='All'&&i.category!==c)return false;if(st!=='All'&&i.status!==st)return false;if(ph!=='All'&&i.phase!==ph)return false;return true;});}
+function renderTable(){const fil=filtered();document.getElementById('count-text').textContent='Showing '+fil.length+' of '+items.length+' items';if(!fil.length){document.getElementById('tbody').innerHTML='<tr><td colspan="7" style="text-align:center;padding:2.5rem;color:#bbb">No items match your filters</td></tr>';return;}document.getElementById('tbody').innerHTML=fil.map(item=>`<tr class="${item.status==='Sold'?'row-sold':''}"><td><div class="item-name">${x(item.name)}</div><div class="item-sub">${x(item.room)}${item.notes?' · '+x(item.notes):''}</div></td><td><span class="badge ${item.phase==='Phase 1'?'bp1':'bp2'}">${item.phase==='Phase 1'?'P1':'P2'}</span></td><td><select class="sel-status ${SCLASS[item.status]||'ss-available'}" onchange="set('${item.id}','status',this.value);this.className='sel-status '+(SCLASS[this.value]||'ss-available')">${STATUS.map(s=>`<option value="${s}"${item.status===s?' selected':''}>${s}</option>`).join('')}</select></td><td><select class="sel-platform" onchange="set('${item.id}','platform',this.value)">${PLATS.map(p=>`<option value="${p}"${item.platform===p?' selected':''}>${p||'— platform —'}</option>`).join('')}</select></td><td><div class="price-wrap">${item.askingPrice?'<span class="price-prefix">$</span>':''}<input class="price-inp" type="number" value="${x(item.askingPrice)}" placeholder="0" style="padding-left:${item.askingPrice?'18px':'8px'}" onblur="set('${item.id}','askingPrice',this.value)" /></div></td><td><div class="price-wrap">${item.soldPrice?'<span class="price-prefix">$</span>':''}<input class="price-inp" type="number" value="${x(item.soldPrice)}" placeholder="0" style="padding-left:${item.soldPrice?'18px':'8px'};${item.soldPrice?'color:#16a34a;font-weight:600':''}" onblur="set('${item.id}','soldPrice',this.value)" /></div></td><td style="white-space:nowrap"><button class="btn btn-icon btn-sm" onclick="openEdit('${item.id}')" title="Edit">✏️</button><button class="btn btn-icon btn-sm" onclick="del('${item.id}')" title="Delete" style="margin-left:3px">🗑</button></td></tr>`).join('');}
+function x(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function openEdit(id){editId=id;const it=items.find(i=>i.id===id);if(!it)return;document.getElementById('e-name').value=it.name;document.getElementById('e-notes').value=it.notes||'';document.getElementById('e-room').value=it.room;document.getElementById('e-cat').value=it.category;document.getElementById('e-phase').value=it.phase;document.getElementById('edit-modal').classList.add('open');}
+function closeModal(){document.getElementById('edit-modal').classList.remove('open');editId=null;}
+function modalBgClick(e){if(e.target===document.getElementById('edit-modal'))closeModal();}
+function saveEdit(){if(!editId)return;db.ref('items/'+editId).update({name:document.getElementById('e-name').value.trim(),room:document.getElementById('e-room').value,category:document.getElementById('e-cat').value,phase:document.getElementById('e-phase').value,notes:document.getElementById('e-notes').value.trim()});closeModal();}
+function toggleAdd(){document.getElementById('add-form').classList.toggle('open');}
+function fillSelects(){const add=(id,val,label)=>{const o=document.createElement('option');o.value=val;o.textContent=label||val;document.getElementById(id)&&document.getElementById(id).appendChild(o);};ROOMS.forEach(r=>{['f-room','ni-room','e-room'].forEach(id=>add(id,r));});CATS.forEach(c=>{['f-cat','ni-cat','e-cat'].forEach(id=>add(id,c));});STATUS.forEach(s=>{['ni-status','f-status'].forEach(id=>add(id,s));});PLATS.forEach(p=>add('ni-plat',p,p||'— platform —'));}
+</script>
+</body>
+</html>
+```
+
+Select all of that, copy it, paste it into the GitHub editor box, name the file `home-sale-tracker.html`, then click **Commit changes**.
