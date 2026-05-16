@@ -2,298 +2,466 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Trent Home Sale Tracker</title>
-<link rel="apple-touch-icon" href="https://gregorytrent.github.io/icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Thailand Recon Planner</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#f0f0f0;min-height:100vh;font-size:14px}
-.top-nav{display:flex;flex-wrap:wrap;gap:10px;padding:14px;background:#111;justify-content:center;border-bottom:2px solid #FFD700;position:relative;z-index:50}
-.top-nav a{color:#FFD700!important;text-decoration:none!important;font-weight:800;padding:8px 12px;border:1px solid #333;border-radius:8px;background:#1a1a1a;font-size:13px;white-space:nowrap}
-.top-nav a:hover{background:#FFD700;color:#0a0a0a!important}
-#pin-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 58px);padding:20px;background:#0a0a0a}
-.pin-card{background:#1a1a1a;border:2px solid #FFD700;border-radius:20px;padding:32px 28px;width:100%;max-width:340px;text-align:center;box-shadow:0 4px 40px rgba(255,215,0,0.2)}
-.pin-title{font-size:22px;font-weight:800;margin-bottom:4px;color:#FFD700;text-transform:uppercase;letter-spacing:2px}
-.pin-sub{font-size:12px;color:#666;margin-bottom:28px;text-transform:uppercase;letter-spacing:1px}
-.pin-input{width:100%;padding:14px;font-size:28px;text-align:center;letter-spacing:10px;border:2px solid #333;border-radius:12px;outline:none;margin-bottom:16px;background:#111;color:#FFD700}
-.pin-input:focus{border-color:#FFD700}
-.pin-btn{width:100%;padding:15px;background:#FFD700;color:#0a0a0a;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;text-transform:uppercase;letter-spacing:1px}
-.pin-btn:hover{background:#FFC200}
-.pin-error{color:#ff5555;font-size:13px;margin-top:10px;min-height:18px}
-#app{display:none;padding:16px;max-width:1100px;margin:0 auto;padding-bottom:40px}
-.banner{background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 40%,#0a0a0a 100%);border-bottom:3px solid #FFD700;padding:16px 16px 12px;margin:-16px -16px 20px;position:relative;overflow:hidden}
-.banner::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,215,0,0.02) 10px,rgba(255,215,0,0.02) 20px)}
-.banner-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
-.banner-left{display:flex;align-items:center;gap:14px}
-.banner-text h1{font-size:22px;font-weight:900;color:#FFD700;text-transform:uppercase;letter-spacing:2px;line-height:1}
-.banner-text p{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-top:3px}
-.banner-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.sync-pill{display:flex;align-items:center;gap:6px;background:#111;border:1px solid #333;border-radius:20px;padding:5px 12px;font-size:11px;color:#888}
-.sync-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#f59e0b}
-.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-.chart-card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:14px}
-.chart-title{font-size:10px;color:#666;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;font-weight:700}
-.donut-wrap{display:flex;align-items:center;gap:14px}
-.donut-legend{flex:1}
-.legend-item{display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:11px;color:#aaa}
-.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.phase-bars{display:flex;flex-direction:column;gap:8px}
-.phase-bar-row{display:flex;flex-direction:column;gap:3px}
-.phase-bar-label{display:flex;justify-content:space-between;font-size:11px;color:#aaa}
-.phase-bar-track{background:#222;border-radius:4px;height:8px;overflow:hidden}
-.phase-bar-fill{height:8px;border-radius:4px;transition:width .8s ease}
-.btn{padding:9px 16px;border:1.5px solid #333;border-radius:10px;font-size:13px;background:#1a1a1a;cursor:pointer;transition:all .15s;color:#f0f0f0;font-weight:500;white-space:nowrap}
-.btn:hover{border-color:#FFD700;color:#FFD700}
-.btn:active{transform:scale(0.97)}
-.btn-dark{background:#FFD700;color:#0a0a0a;border-color:#FFD700;font-weight:800}
-.btn-dark:hover{background:#FFC200;border-color:#FFC200;color:#0a0a0a}
-.btn-sm{padding:6px 10px;font-size:12px;border-radius:8px}
-.btn-icon{padding:6px 8px;border-radius:8px}
-.btn-ghost{border:none;background:none;color:#555;font-size:12px;cursor:pointer;padding:4px 8px}
-.btn-ghost:hover{color:#FFD700}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin-bottom:16px}
-.stat-card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:12px 14px;position:relative;overflow:hidden}
-.stat-card::after{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:#FFD700}
-.stat-label{font-size:10px;color:#666;text-transform:uppercase;letter-spacing:0.5px}
-.stat-value{font-size:20px;font-weight:700;margin-top:4px;color:#FFD700}
-.progress-wrap{background:#1a1a1a;border-radius:20px;height:6px;margin-bottom:6px;overflow:hidden;border:1px solid #222}
-.progress-bar{height:6px;background:linear-gradient(90deg,#FFD700,#FFC200);border-radius:20px;transition:width .6s ease}
-.progress-text{font-size:11px;color:#555;text-align:right;margin-bottom:18px}
-.add-form{background:#1a1a1a;border-radius:14px;padding:18px;margin-bottom:16px;display:none;border:1.5px solid #FFD700}
-.add-form.open{display:block}
-.add-form-title{font-size:14px;font-weight:700;margin-bottom:14px;color:#FFD700;text-transform:uppercase;letter-spacing:1px}
-.add-form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
-.add-form-grid .full{grid-column:1/-1}
-.field-label{font-size:10px;color:#666;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px;font-weight:600}
-.add-form-actions{display:flex;gap:8px}
-input,select{width:100%;padding:9px 12px;border:1.5px solid #2a2a2a;border-radius:9px;font-size:13px;background:#111;color:#f0f0f0;outline:none;appearance:none;-webkit-appearance:none;transition:border-color .2s}
-input:focus,select:focus{border-color:#FFD700}
-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px}
-.filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:12px}
-.count-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
-.count-bar span{font-size:12px;color:#555}
-.table-wrap{background:#1a1a1a;border-radius:14px;overflow:hidden;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid #2a2a2a}
-table{width:100%;min-width:680px;border-collapse:collapse;font-size:13px}
-thead tr{background:#111;border-bottom:2px solid #FFD700}
-th{padding:10px;text-align:left;font-size:10px;font-weight:800;color:#FFD700;text-transform:uppercase;letter-spacing:0.8px;white-space:nowrap}
-td{padding:8px;border-bottom:1px solid #222;vertical-align:middle}
-tr:last-child td{border-bottom:none}
-tr.row-sold{background:#0d1a0d}
-tr:not(.row-sold):hover{background:#222}
-.item-name{font-size:13px;font-weight:500;color:#f0f0f0}
-.item-sub{font-size:10px;color:#555;margin-top:2px}
-.badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10px;font-weight:800;letter-spacing:0.5px}
-.bp1{background:#3a2800;color:#FFD700;border:1px solid #FFD700}
-.bp2{background:#0d0d2a;color:#8888ff;border:1px solid #333}
-.sel-status{font-size:11px;padding:5px 24px 5px 8px;border-radius:7px;border:1.5px solid #333;cursor:pointer;font-weight:600;min-width:95px;width:100%;color:#f0f0f0}
-.ss-available{background:#1a1a1a;color:#888;border-color:#333}
-.ss-listed{background:#0d1a2a;color:#60a5fa;border-color:#1e3a5f}
-.ss-hold{background:#2a1a00;color:#FFD700;border-color:#5a3a00}
-.ss-sold{background:#0d1a0d;color:#4ade80;border-color:#1a4a1a}
-.sel-platform{font-size:11px;padding:5px 24px 5px 8px;border-radius:7px;border:1.5px solid #333;background:#111;color:#888;min-width:110px;width:100%;cursor:pointer}
-.price-wrap{position:relative}
-.price-prefix{position:absolute;left:7px;top:50%;transform:translateY(-50%);font-size:12px;color:#555;pointer-events:none;z-index:1}
-.price-inp{width:82px;padding:5px 5px 5px 18px;border:1.5px solid #2a2a2a;border-radius:7px;font-size:12px;background:#111;color:#f0f0f0;appearance:none;-webkit-appearance:none;outline:none}
-.price-inp:focus{border-color:#FFD700}
-.price-inp::-webkit-outer-spin-button,.price-inp::-webkit-inner-spin-button{-webkit-appearance:none}
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:200;align-items:flex-end;justify-content:center}
-@media(min-width:600px){.modal-bg{align-items:center;padding:20px}}
-.modal-bg.open{display:flex}
-.modal-box{background:#1a1a1a;border:2px solid #FFD700;border-radius:20px 20px 0 0;padding:24px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto}
-@media(min-width:600px){.modal-box{border-radius:20px}}
-.modal-box h2{font-size:16px;font-weight:800;margin-bottom:18px;color:#FFD700;text-transform:uppercase;letter-spacing:1px}
-.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
-.modal-grid .full{grid-column:1/-1}
-.modal-actions{display:flex;gap:8px;justify-content:flex-end}
-.modal-handle{width:40px;height:4px;background:#333;border-radius:4px;margin:0 auto 20px}
-.app-footer{text-align:center;padding:20px 0 0;font-size:11px;color:#333}
-@media(max-width:500px){.top-nav{gap:6px;padding:10px}.top-nav a{font-size:11px;padding:7px 8px}.stats-grid{grid-template-columns:repeat(3,1fr)}.stat-value{font-size:17px}.modal-grid{grid-template-columns:1fr}table{min-width:600px}.charts-row{grid-template-columns:1fr}}
+:root{--bg:#0b1020;--card:#131a2b;--card2:#1a2338;--text:#eef2ff;--muted:#b8c1d9;--accent:#7c5cff;--ok:#10b981;--line:#2b3650}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,#08101d 0%, #11192b 100%);color:var(--text);padding:env(safe-area-inset-top) 12px calc(24px + env(safe-area-inset-bottom))}
+.app{max-width:980px;margin:0 auto}
+.hero,.card{background:rgba(19,26,43,.96);border:1px solid var(--line);border-radius:20px;box-shadow:0 10px 28px rgba(0,0,0,.28)}
+.hero{padding:18px 16px;position:sticky;top:0;z-index:50;backdrop-filter: blur(8px)}
+h1,h2,h3{margin:0}
+.sub{color:var(--muted);margin-top:6px;line-height:1.35}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.badge{background:#221f43;color:#ece8ff;border:1px solid #3c3473;border-radius:999px;padding:8px 12px;font-size:.9rem;font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.stat{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}
+.stat .n{font-size:1.1rem;font-weight:800}.stat .l{font-size:.8rem;color:var(--muted)}
+.tabs{display:flex;gap:8px;overflow:auto;margin:14px 0 16px;padding-bottom:2px}
+.tabs button{flex:0 0 auto;border:1px solid var(--line);background:#12192a;color:var(--muted);border-radius:999px;padding:10px 14px;font-weight:700;cursor:pointer}
+.tabs button.active{background:var(--accent);color:white;border-color:transparent}
+.panel{display:none}.panel.active{display:block}
+.card{padding:14px;margin-bottom:14px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pill{background:#111827;border:1px solid var(--line);color:#dbe5ff;border-radius:999px;padding:7px 10px;font-size:.85rem}
+.list{display:grid;gap:10px;margin-top:12px}
+.item{display:flex;gap:10px;align-items:flex-start;background:#0d1424;border:1px solid var(--line);border-radius:14px;padding:10px}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--ok);margin-top:2px}
+.done label,.done .txt{text-decoration:line-through;color:#94a3b8}
+.section-title{font-size:1.08rem;font-weight:800}
+.grid{display:grid;gap:14px}
+.notes{width:100%;min-height:220px;resize:vertical;background:#0d1424;color:var(--text);border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit}
+.score-grid{display:grid;gap:14px}
+.score-card{background:#0d1424;border:1px solid var(--line);border-radius:16px;padding:12px}
+.score-row{display:grid;grid-template-columns:1fr 72px;gap:10px;align-items:center;margin:9px 0}
+.score-row input{width:100%;background:#111827;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px}
+.small{font-size:.88rem;color:var(--muted);line-height:1.45}
+.footer{color:var(--muted);font-size:.82rem;margin-top:10px}
+@media(min-width:800px){.hero-grid{display:grid;grid-template-columns:2fr 1fr;gap:14px}.score-grid{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
-<nav class="top-nav">
-  <a href="index.html">Utilities</a>
-  <a href="packing-list.html">Packing</a>
-  <a href="relocationfinal.html">Thailand Recon</a>
-  <a href="thailand-recon-planner.html">Recon Planner App</a>
-  <a href="home-sale-tracker.html">Home Sale Tracker</a>
-  <a href="theoeducation.html">Theo Education</a>
-</nav>
-<div id="pin-screen">
-  <div class="pin-card">
-    <svg width="80" height="80" viewBox="0 0 80 80" style="margin:0 auto 16px;display:block">
-      <circle cx="40" cy="40" r="38" fill="#1a1a1a" stroke="#FFD700" stroke-width="2"/>
-      <polygon points="40,8 72,40 40,72 8,40" fill="#FFD700" opacity="0.15"/>
-      <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="#FFD700" stroke-width="2"/>
-      <polygon points="40,18 62,40 40,62 18,40" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.4"/>
-      <polygon points="40,28 43,37 52,37 45,43 48,52 40,46 32,52 35,43 28,37 37,37" fill="#FFD700"/>
-      <rect x="36" y="4" width="8" height="8" fill="#FFD700" transform="rotate(45 40 8)"/>
-      <rect x="68" y="36" width="8" height="8" fill="#FFD700" transform="rotate(45 72 40)"/>
-      <rect x="36" y="68" width="8" height="8" fill="#FFD700" transform="rotate(45 40 72)"/>
-      <rect x="4" y="36" width="8" height="8" fill="#FFD700" transform="rotate(45 8 40)"/>
-    </svg>
-    <div class="pin-title">Home Sale Tracker</div>
-    <div class="pin-sub">Trent Family &nbsp;•&nbsp; Bangkok 2026</div>
-    <input class="pin-input" type="password" inputmode="numeric" maxlength="6" placeholder="••••" id="pin-input" autocomplete="off" />
-    <button class="pin-btn" onclick="checkPin()">Enter</button>
-    <div class="pin-error" id="pin-error"></div>
-  </div>
+  <div style="padding:14px 18px; background:#131a2b; border-bottom:1px solid #2b3650; font-family:Arial, Helvetica, sans-serif;">
+  <a href="/" style="color:#eef2ff; text-decoration:none; font-weight:bold; margin-right:18px;">Home</a>
+  <a href="/packing-list.html" style="color:#b8c1d9; text-decoration:none; margin-right:18px;">Packing</a>
+  <a href="/relocationfinal.html" style="color:#b8c1d9; text-decoration:none; margin-right:18px;">Thailand Recon</a>
+  <a href="/thailand-recon-planner.html" style="color:#b8c1d9; text-decoration:none; margin-right:18px;">Recon Planner App</a>
+  <a href="/theoeducation.html" style="color:#b8c1d9; text-decoration:none;">Theo Education</a>
 </div>
-<div id="app">
-  <div class="banner">
-    <div class="banner-inner">
-      <div class="banner-left">
-        <svg width="52" height="52" viewBox="0 0 80 80">
-          <circle cx="40" cy="40" r="38" fill="#0a0a0a" stroke="#FFD700" stroke-width="2"/>
-          <polygon points="40,8 72,40 40,72 8,40" fill="#FFD700" opacity="0.12"/>
-          <polygon points="40,8 72,40 40,72 8,40" fill="none" stroke="#FFD700" stroke-width="2"/>
-          <polygon points="40,18 62,40 40,62 18,40" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.4"/>
-          <polygon points="40,28 43,37 52,37 45,43 48,52 40,46 32,52 35,43 28,37 37,37" fill="#FFD700"/>
-          <rect x="36" y="4" width="8" height="8" fill="#FFD700" transform="rotate(45 40 8)"/>
-          <rect x="68" y="36" width="8" height="8" fill="#FFD700" transform="rotate(45 72 40)"/>
-          <rect x="36" y="68" width="8" height="8" fill="#FFD700" transform="rotate(45 40 72)"/>
-          <rect x="4" y="36" width="8" height="8" fill="#FFD700" transform="rotate(45 8 40)"/>
-        </svg>
-        <div class="banner-text">
-          <h1>Home Sale Tracker</h1>
-          <p>Trent Family &nbsp;•&nbsp; Bangkok 2026</p>
+<div class="app">
+  <div class="hero">
+    <div class="hero-grid">
+      <div>
+        <h1>Thailand Recon Planner</h1>
+        <div class="sub">June 5–11, 2026 · Mission-first plan for Hua Hin, Pattaya/Jomtien, and Bangkok outskirts.</div>
+        <div class="badges">
+          <div class="badge">3 nights Hua Hin</div>
+          <div class="badge">2 nights Jomtien</div>
+          <div class="badge">1 night Bangkok outskirts</div>
         </div>
       </div>
-      <div class="banner-right">
-        <div class="sync-pill"><span class="sync-dot" id="sync-dot"></span><span id="sync-msg">Connecting...</span>&nbsp;•&nbsp;<span id="item-total">—</span> items</div>
-        <button class="btn btn-dark" onclick="toggleAdd()">+ Add item</button>
-        <button class="btn-ghost" onclick="doLogout()">Sign out</button>
+      <div class="stats">
+        <div class="stat"><div class="n" id="checkedCount">0</div><div class="l">Checked</div></div>
+        <div class="stat"><div class="n" id="totalCount">0</div><div class="l">Total</div></div>
+        <div class="stat"><div class="n" id="progressPct">0%</div><div class="l">Complete</div></div>
       </div>
     </div>
+    <div class="tabs">
+      <button class="tab active" data-tab="itinerary">Itinerary</button>
+      <button class="tab" data-tab="prep">Prep</button>
+      <button class="tab" data-tab="need">Need To Know</button>
+      <button class="tab" data-tab="utilities">Utilities</button>
+      <button class="tab" data-tab="score">Scoring</button>
+      <button class="tab" data-tab="notes">Notes</button>
+    </div>
   </div>
-  <div class="stats-grid">
-    <div class="stat-card"><div class="stat-label">Total</div><div class="stat-value" id="s-total">—</div></div>
-    <div class="stat-card"><div class="stat-label">Phase 1</div><div class="stat-value" id="s-p1">—</div></div>
-    <div class="stat-card"><div class="stat-label">Listed</div><div class="stat-value" id="s-listed">—</div></div>
-    <div class="stat-card"><div class="stat-label">Sold</div><div class="stat-value" id="s-sold">—</div></div>
-    <div class="stat-card"><div class="stat-label">Asking</div><div class="stat-value" id="s-ask">$0</div></div>
-    <div class="stat-card"><div class="stat-label">Revenue</div><div class="stat-value" id="s-rev" style="color:#4ade80">$0</div></div>
+
+  <div class="panel active" id="itinerary"></div>
+
+  <div class="panel" id="prep">
+    <div class="card">
+      <div class="section-title">Pre-trip Checklist</div>
+      <div class="list" id="prepList"></div>
+    </div>
+    <div class="card">
+      <div class="section-title">Reference Communities</div>
+      <div class="grid" id="communities"></div>
+    </div>
   </div>
-  <div class="charts-row">
-    <div class="chart-card">
-      <div class="chart-title">Overall Progress</div>
-      <div class="donut-wrap">
-        <svg width="80" height="80" viewBox="0 0 80 80">
-          <circle cx="40" cy="40" r="30" fill="none" stroke="#222" stroke-width="12"/>
-          <circle cx="40" cy="40" r="30" fill="none" stroke="#FFD700" stroke-width="12" stroke-dasharray="0 188" stroke-linecap="round" transform="rotate(-90 40 40)" id="donut-arc" style="transition:stroke-dasharray .8s ease"/>
-          <text x="40" y="44" text-anchor="middle" fill="#FFD700" font-size="14" font-weight="800" id="donut-pct">0%</text>
-        </svg>
-        <div class="donut-legend">
-          <div class="legend-item"><span class="legend-dot" style="background:#FFD700"></span>Listed / Hold / Sold</div>
-          <div class="legend-item"><span class="legend-dot" style="background:#333"></span>Available</div>
-          <div class="legend-item" style="margin-top:8px;color:#FFD700;font-weight:700" id="legend-sold-count">0 sold so far</div>
+
+  <div class="panel" id="need">
+    <div class="card">
+      <div class="section-title">Smooth Interactions</div>
+      <div class="list" id="needList"></div>
+    </div>
+    <div class="card">
+      <div class="section-title">Safety Rules</div>
+      <div class="list" id="safeList"></div>
+    </div>
+  </div>
+
+
+  <div class="panel" id="utilities">
+    <div class="card">
+      <div class="section-title">Converters and Transaction Phrases</div>
+      <div class="small" style="margin-top:8px">Use your own exchange rate. The fields save on this device.</div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Baht ⇄ USD Converter</div>
+      <div class="small" style="margin-top:8px">Editable rate = Thai baht per 1 US dollar.</div>
+      <div style="display:grid;gap:12px;margin-top:12px">
+        <div>
+          <div class="small" style="margin-bottom:6px">Exchange rate (THB per 1 USD)</div>
+          <input id="fxRate" class="notes" style="min-height:auto;height:46px" type="number" step="0.01" min="0.01" value="36.50">
+        </div>
+        <div style="display:grid;gap:12px;grid-template-columns:1fr 1fr">
+          <div>
+            <div class="small" style="margin-bottom:6px">Thai baht (THB)</div>
+            <input id="thbInput" class="notes" style="min-height:auto;height:46px" type="number" step="0.01" min="0" placeholder="Enter baht">
+          </div>
+          <div>
+            <div class="small" style="margin-bottom:6px">US dollars (USD)</div>
+            <input id="usdInput" class="notes" style="min-height:auto;height:46px" type="number" step="0.01" min="0" placeholder="Enter dollars">
+          </div>
+        </div>
+        <div style="display:grid;gap:12px;grid-template-columns:1fr 1fr">
+          <div class="card" style="margin:0;padding:12px">
+            <div class="small">THB → USD</div>
+            <div id="thbToUsd" style="font-size:1.5rem;font-weight:800;margin-top:6px">$0.00</div>
+          </div>
+          <div class="card" style="margin:0;padding:12px">
+            <div class="small">USD → THB</div>
+            <div id="usdToThb" style="font-size:1.5rem;font-weight:800;margin-top:6px">฿0.00</div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="chart-card">
-      <div class="chart-title">Phase Breakdown</div>
-      <div class="phase-bars">
-        <div class="phase-bar-row">
-          <div class="phase-bar-label"><span style="color:#FFD700;font-weight:700">Phase 1 — Sell Now</span><span id="pb1-count">0 / 0</span></div>
-          <div class="phase-bar-track"><div class="phase-bar-fill" id="pb1-fill" style="width:0%;background:#FFD700"></div></div>
+
+    <div class="card">
+      <div class="section-title">SQM ⇄ SQFT Converter</div>
+      <div class="small" style="margin-top:8px">Useful for Thailand property listings.</div>
+      <div style="display:grid;gap:12px;margin-top:12px;grid-template-columns:1fr 1fr">
+        <div>
+          <div class="small" style="margin-bottom:6px">Square meters (sqm)</div>
+          <input id="sqmInput" class="notes" style="min-height:auto;height:46px" type="number" step="0.01" min="0" placeholder="Enter sqm">
         </div>
-        <div class="phase-bar-row" style="margin-top:8px">
-          <div class="phase-bar-label"><span style="color:#8888ff;font-weight:700">Phase 2 — Estate Sale</span><span id="pb2-count">0 / 0</span></div>
-          <div class="phase-bar-track"><div class="phase-bar-fill" id="pb2-fill" style="width:0%;background:#8888ff"></div></div>
+        <div>
+          <div class="small" style="margin-bottom:6px">Square feet (sq ft)</div>
+          <input id="sqftInput" class="notes" style="min-height:auto;height:46px" type="number" step="0.01" min="0" placeholder="Enter sq ft">
         </div>
-        <div style="margin-top:12px;font-size:11px;color:#555">Revenue so far: <span style="color:#4ade80;font-weight:700" id="chart-rev">$0</span></div>
-        <div style="margin-top:4px;font-size:11px;color:#555">Asking total: <span style="color:#FFD700;font-weight:700" id="chart-ask">$0</span></div>
       </div>
+      <div style="display:grid;gap:12px;margin-top:12px;grid-template-columns:1fr 1fr">
+        <div class="card" style="margin:0;padding:12px">
+          <div class="small">SQM → SQFT</div>
+          <div id="sqmToSqft" style="font-size:1.5rem;font-weight:800;margin-top:6px">0.00 sq ft</div>
+        </div>
+        <div class="card" style="margin:0;padding:12px">
+          <div class="small">SQFT → SQM</div>
+          <div id="sqftToSqm" style="font-size:1.5rem;font-weight:800;margin-top:6px">0.00 sqm</div>
+        </div>
+      </div>
+      <div class="small" style="margin-top:10px"><strong>Reference:</strong> 232 sqm ≈ 2,497.23 sq ft</div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Transaction Phrases</div>
+      <div class="small" style="margin-top:8px">Large-font quick-reference phrases.</div>
+      <div id="phraseGrid" class="grid" style="margin-top:12px"></div>
     </div>
   </div>
-  <div class="progress-wrap"><div class="progress-bar" id="prog-bar" style="width:0%"></div></div>
-  <div class="progress-text" id="prog-text">Loading...</div>
-  <div class="add-form" id="add-form">
-    <div class="add-form-title">Add New Item</div>
-    <div class="add-form-grid">
-      <div class="full"><div class="field-label">Item name *</div><input id="ni-name" placeholder="e.g. Kitchen table" /></div>
-      <div><div class="field-label">Room</div><select id="ni-room"></select></div>
-      <div><div class="field-label">Category</div><select id="ni-cat"></select></div>
-      <div><div class="field-label">Phase</div><select id="ni-phase"><option value="Phase 1">Phase 1 — Sell now</option><option value="Phase 2">Phase 2 — Estate sale</option></select></div>
-      <div><div class="field-label">Status</div><select id="ni-status"></select></div>
-      <div><div class="field-label">Platform</div><select id="ni-plat"></select></div>
-      <div><div class="field-label">Asking price</div><input id="ni-ask" type="number" placeholder="$" /></div>
-      <div><div class="field-label">Sold price</div><input id="ni-sold" type="number" placeholder="$" /></div>
-      <div class="full"><div class="field-label">Notes</div><input id="ni-notes" placeholder="Optional notes" /></div>
-    </div>
-    <div class="add-form-actions">
-      <button class="btn btn-dark" onclick="addItem()">Add item</button>
-      <button class="btn" onclick="toggleAdd()">Cancel</button>
+
+
+  <div class="panel" id="score">
+    <div class="score-grid" id="scoreGrid"></div>
+  </div>
+
+  <div class="panel" id="notes">
+    <div class="card">
+      <div class="section-title">Working Notes</div>
+      <div class="small" style="margin:8px 0 10px">Track addresses, agents, rent, road feel, flood concerns, grocery distance, wife-fit observations, and final rankings.</div>
+      <textarea class="notes" id="notesBox" placeholder="Type notes here..."></textarea>
     </div>
   </div>
-  <div class="filters">
-    <input type="search" id="f-search" placeholder="Search items..." oninput="renderTable()" />
-    <select id="f-room" onchange="renderTable()"><option value="All">All rooms</option></select>
-    <select id="f-cat" onchange="renderTable()"><option value="All">All categories</option></select>
-    <select id="f-status" onchange="renderTable()"><option value="All">All statuses</option></select>
-    <select id="f-phase" onchange="renderTable()"><option value="All">All phases</option><option value="Phase 1">Phase 1 — Sell now</option><option value="Phase 2">Phase 2 — Estate sale</option></select>
-  </div>
-  <div class="count-bar">
-    <span id="count-text">Loading...</span>
-    <button class="btn btn-sm" style="color:#444;font-size:11px" onclick="resetData()">↺ Reset list</button>
-  </div>
-  <div class="table-wrap">
-    <table>
-      <thead><tr>
-        <th style="width:22%">Item / Room</th>
-        <th style="width:5%">Ph</th>
-        <th style="width:13%">Status</th>
-        <th style="width:14%">Platform</th>
-        <th style="width:10%">Asking</th>
-        <th style="width:10%">Sold</th>
-        <th style="width:9%"></th>
-      </tr></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-  </div>
-  <div class="app-footer">⬡ Trent Family Home Sale Tracker &nbsp;•&nbsp; Bangkok 2026 &nbsp;•&nbsp; Here We Go</div>
+
+  <div class="footer">Checks, scores, and notes save in your browser on this device when local storage is available.</div>
 </div>
-<div class="modal-bg" id="edit-modal" onclick="modalBgClick(event)">
-  <div class="modal-box">
-    <div class="modal-handle"></div>
-    <h2>Edit Item</h2>
-    <div class="modal-grid">
-      <div class="full"><div class="field-label">Item name</div><input id="e-name" /></div>
-      <div><div class="field-label">Room</div><select id="e-room"></select></div>
-      <div><div class="field-label">Category</div><select id="e-cat"></select></div>
-      <div><div class="field-label">Phase</div><select id="e-phase"><option value="Phase 1">Phase 1 — Sell now</option><option value="Phase 2">Phase 2 — Estate sale</option></select></div>
-      <div class="full"><div class="field-label">Notes</div><input id="e-notes" placeholder="Optional notes" /></div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-dark" onclick="saveEdit()">Save changes</button>
-    </div>
-  </div>
-</div>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
 <script>
-var FIREBASE_CONFIG={apiKey:"AIzaSyDsITtcbh7nbvn91D96ggfBZQzthUeUmuE",authDomain:"estate-sale-edb3d.firebaseapp.com",databaseURL:"https://estate-sale-edb3d-default-rtdb.firebaseio.com",projectId:"estate-sale-edb3d",storageBucket:"estate-sale-edb3d.firebasestorage.app",messagingSenderId:"825981563204",appId:"1:825981563204:web:461b7100234e9e5814a711"};
-var APP_PIN="2026";
-var ROOMS=['Master Bedroom','Bedroom 2','Bedroom 3','Guest Bedroom','Bathrooms','Kitchen','Living Room','Dining Room','Office','Theater Room','Laundry Room','Garage','Shed','Patio','Pool Area','Throughout Home'];
-var CATS=['Electronics','Furniture','Kitchen & Dining','Appliances','Outdoor & Garden','Tools & Equipment','Clothing','Books & Media','Home Decor','Linens & Bedding','Fitness & Sports','Musical Equipment','Seasonal','Miscellaneous'];
-var STATUS=['Available','Listed','Hold','Sold'];
-var PLATS=['','FB Marketplace','Garage Sale','Estate Sale','Other'];
-var SCLASS={Available:'ss-available',Listed:'ss-listed',Hold:'ss-hold',Sold:'ss-sold'};
-var RAW=[['1','85" TV','Electronics','Living Room',2,''],['2','72" TV','Electronics','Living Room',2,''],['3','60" patio TV','Electronics','Patio',2,''],['4','50" TV #1','Electronics','Bedroom 2',2,''],['5','50" TV #2','Electronics','Bedroom 3',2,''],['6','50" TV #3','Electronics','Master Bedroom',2,''],['7','Living room surround sound system','Electronics','Living Room',2,'Full system'],['8','Theater sound system','Electronics','Theater Room',1,'Upstairs'],['9','Theater projector','Electronics','Theater Room',1,''],['10','Mac computer #1','Electronics','Office',1,''],['11','Mac computer #2','Electronics','Office',1,''],['12','Laser printer','Electronics','Office',1,''],['13','Inkjet printer #1','Electronics','Office',1,''],['14','Inkjet printer #2','Electronics','Office',1,''],['15','Cords & cables (lot)','Electronics','Office',1,'Various'],['16','Large sofa','Furniture','Living Room',2,'Oversized'],['17','Loveseat','Furniture','Living Room',2,'Oversized'],['18','Extra large chair','Furniture','Living Room',2,''],['19','Coffee table','Furniture','Living Room',2,''],['20','End tables (set)','Furniture','Living Room',2,''],['21','Curio/entertainment center','Furniture','Living Room',2,'6-7 ft long'],['22','Electric fireplace','Furniture','Living Room',2,''],['23','King bed frame','Furniture','Master Bedroom',2,''],['24','King mattress (bed-in-a-box)','Furniture','Master Bedroom',2,''],['25','Dresser','Furniture','Master Bedroom',2,'Under 4 yrs old'],['26','Nightstand #1','Furniture','Master Bedroom',2,'Under 4 yrs old'],['27','Nightstand #2','Furniture','Master Bedroom',2,'Under 4 yrs old'],['28','Office hutch & main desk','Furniture','Office',2,'Cost $10,000+'],['29','Second office desk','Furniture','Office',2,'Matching set'],['30','Office chair','Furniture','Office',2,''],['31','Dining table','Furniture','Dining Room',2,''],['32','Dining chairs (set)','Furniture','Dining Room',2,''],['33','Antique hutch','Furniture','Dining Room',2,'Heavy, antique'],['34','Curio cabinet','Furniture','Dining Room',2,''],['35','Theater seating (6 seats)','Furniture','Theater Room',2,'Full set'],['36','Refrigerator (glass door)','Appliances','Kitchen',2,'See-through door'],['37','Refrigerator #2','Appliances','Kitchen',2,''],['38','Washer #1','Appliances','Laundry Room',2,''],['39','Washer #2','Appliances','Laundry Room',2,''],['40','Dryer #1','Appliances','Laundry Room',2,''],['41','Dryer #2','Appliances','Laundry Room',2,''],['42','Patio refrigerator','Appliances','Patio',2,''],['43','Patio furniture set','Outdoor & Garden','Patio',2,''],['44','Pool chairs & loungers','Outdoor & Garden','Pool Area',2,''],['45','Hand tool set (full)','Tools & Equipment','Garage',1,''],['46','Garage miscellaneous','Miscellaneous','Garage',1,''],['47','Christmas decorations (full shed)','Seasonal','Shed',1,'High-end'],['48',"Women's clothing",'Clothing','Master Bedroom',1,'Closet full'],['49',"Men's clothing",'Clothing','Master Bedroom',1,'Closet full'],['50','Books — theology & misc (lot)','Books & Media','Office',1,'~10 boxes'],['51','Extra furniture & accent chairs','Furniture','Throughout Home',2,''],['52','Odds & ends (misc lot)','Miscellaneous','Throughout Home',1,''],['53','Bedside lamps (set of 2)','Electronics','Master Bedroom',2,''],['54','Area rug — master bedroom','Home Decor','Master Bedroom',2,''],['55','Full-length mirror','Home Decor','Master Bedroom',2,''],['56','Curtains/drapes — master bedroom','Home Decor','Master Bedroom',2,''],['57','King bedding set','Linens & Bedding','Master Bedroom',1,'Comforter & sheets'],['58','Decorative pillows & throws','Home Decor','Master Bedroom',1,''],['59','Jewelry armoire','Furniture','Master Bedroom',2,''],['60','Bed frame — bedroom 2','Furniture','Bedroom 2',2,''],['61','Mattress — bedroom 2','Furniture','Bedroom 2',2,''],['62','Dresser — bedroom 2','Furniture','Bedroom 2',2,''],['63','Nightstand — bedroom 2','Furniture','Bedroom 2',2,''],['64','Lamp — bedroom 2','Electronics','Bedroom 2',2,''],['65','Bed frame — bedroom 3','Furniture','Bedroom 3',2,''],['66','Mattress — bedroom 3','Furniture','Bedroom 3',2,''],['67','Dresser — bedroom 3','Furniture','Bedroom 3',2,''],['68','Nightstand — bedroom 3','Furniture','Bedroom 3',2,''],['69','Bed frame — guest bedroom','Furniture','Guest Bedroom',2,''],['70','Mattress — guest bedroom','Furniture','Guest Bedroom',2,''],['71','Dresser — guest bedroom','Furniture','Guest Bedroom',2,''],['72','Decorative mirrors (bathrooms)','Home Decor','Bathrooms',2,'Multiple'],['73','Towel sets (all bathrooms)','Linens & Bedding','Bathrooms',1,''],['74','Bath rugs (lot)','Home Decor','Bathrooms',1,''],['75','Bathroom accessories sets','Home Decor','Bathrooms',1,'Soap dispensers, trays'],['76','Bathroom scale','Appliances','Bathrooms',1,''],['77','KitchenAid stand mixer','Appliances','Kitchen',1,''],['78','Coffee maker','Appliances','Kitchen',1,''],['79','Air fryer / toaster oven','Appliances','Kitchen',1,''],['80','Blender','Appliances','Kitchen',1,''],['81','Instant pot / slow cooker','Appliances','Kitchen',1,''],['82','Food processor','Appliances','Kitchen',1,''],['83','Countertop microwave','Appliances','Kitchen',1,''],['84','Toaster','Appliances','Kitchen',1,''],['85','Pots & pans set','Kitchen & Dining','Kitchen',1,''],['86','Cast iron skillet(s)','Kitchen & Dining','Kitchen',1,''],['87','Dutch oven','Kitchen & Dining','Kitchen',1,''],['88','Baking sheets & pans (lot)','Kitchen & Dining','Kitchen',1,''],['89','Dinnerware set (12-piece)','Kitchen & Dining','Kitchen',1,''],['90','Glassware set','Kitchen & Dining','Kitchen',1,''],['91','Flatware/silverware set','Kitchen & Dining','Kitchen',1,''],['92','Serving bowls & platters','Kitchen & Dining','Kitchen',1,''],['93','Kitchen knives set','Kitchen & Dining','Kitchen',1,''],['94','Kitchen gadgets & utensils (lot)','Kitchen & Dining','Kitchen',1,''],['95','Bar stools','Furniture','Kitchen',2,''],['96','Wine rack','Kitchen & Dining','Kitchen',2,''],['97','Cookbook collection','Books & Media','Kitchen',1,''],['98','Formal china set','Kitchen & Dining','Dining Room',1,''],['99','Bar cart','Furniture','Dining Room',2,''],['100','Dining room decor / centerpieces','Home Decor','Dining Room',1,''],['101','Floor lamps (set of 2)','Electronics','Living Room',2,''],['102','Table lamps (set)','Electronics','Living Room',2,''],['103','Area rug — living room','Home Decor','Living Room',2,''],['104','Wall art / framed pictures (lot)','Home Decor','Living Room',1,''],['105','Decorative mirrors — living room','Home Decor','Living Room',2,''],['106','Throw pillows & blankets','Home Decor','Living Room',1,''],['107','Bookshelves / shelving unit','Furniture','Living Room',2,''],['108','Decorative vases & pieces','Home Decor','Living Room',1,''],['109','Wall clock','Home Decor','Living Room',1,''],['110','Ironing board','Tools & Equipment','Laundry Room',1,''],['111','Iron','Appliances','Laundry Room',1,''],['112','Garment steamer','Appliances','Laundry Room',1,''],['113','Laundry baskets (set)','Miscellaneous','Laundry Room',1,''],['114','Filing cabinet','Furniture','Office',2,''],['115','Bookshelf — office','Furniture','Office',2,''],['116','Desk lamp','Electronics','Office',1,''],['117','Office supplies (lot)','Miscellaneous','Office',1,''],['118','Paper shredder','Electronics','Office',1,''],['119','Whiteboard / bulletin board','Miscellaneous','Office',1,''],['120','Riding lawn mower','Tools & Equipment','Garage',2,''],['121','Weed eater / trimmer','Tools & Equipment','Garage',1,''],['122','Leaf blower','Tools & Equipment','Garage',1,''],['123','Pressure washer','Tools & Equipment','Garage',1,''],['124','Garden hoses & sprinklers','Tools & Equipment','Garage',1,''],['125','Extension ladder','Tools & Equipment','Garage',1,''],['126','Step ladder','Tools & Equipment','Garage',1,''],['127','Workbench','Tools & Equipment','Garage',2,''],['128','Garage storage shelving','Tools & Equipment','Garage',2,''],['129','Bikes (set)','Outdoor & Garden','Garage',1,''],['130','Dolly / hand truck','Tools & Equipment','Garage',1,''],['131','Generator','Tools & Equipment','Garage',1,''],['132','Power tools (drills, saws, etc.)','Tools & Equipment','Garage',1,'Lot'],['133','BBQ grill','Outdoor & Garden','Patio',1,''],['134','Smoker','Outdoor & Garden','Patio',1,''],['135','Fire pit / chiminea','Outdoor & Garden','Patio',2,''],['136','Garden tools (shovels, rakes, hoes)','Tools & Equipment','Garage',1,'Lot'],['137','Planters & pots (lot)','Outdoor & Garden','Patio',1,''],['138','Outdoor string lights','Home Decor','Patio',1,''],['139','Wheelbarrow','Tools & Equipment','Garage',1,''],['140','Pool floats & accessories','Outdoor & Garden','Pool Area',1,''],['141','Pool cleaning equipment','Tools & Equipment','Pool Area',1,'Pole, net, vacuum'],['142','Sheet sets (multiple)','Linens & Bedding','Throughout Home',1,''],['143','Blanket & quilt collection','Linens & Bedding','Throughout Home',1,''],['144','Extra pillow collection','Linens & Bedding','Throughout Home',1,''],['145','Luggage set','Miscellaneous','Throughout Home',1,''],['146','Storage bins & totes (lot)','Miscellaneous','Throughout Home',1,''],['147','Video game console(s)','Electronics','Living Room',1,''],['148','Gaming accessories','Electronics','Living Room',1,''],['149','Board games & puzzles (lot)','Books & Media','Throughout Home',1,''],['150','DVD / Blu-ray collection','Books & Media','Theater Room',1,''],['151','Streaming devices (Apple TV, Roku, etc.)','Electronics','Throughout Home',1,''],['152','Treadmill / elliptical','Fitness & Sports','Garage',2,''],['153','Exercise bike','Fitness & Sports','Garage',2,''],['154','Dumbbells / weight set','Fitness & Sports','Garage',1,''],['155','Yoga mats & exercise accessories','Fitness & Sports','Garage',1,''],['156','Digital keyboard / piano','Musical Equipment','Throughout Home',1,''],['157','Guitar(s)','Musical Equipment','Throughout Home',1,''],['158','Microphone & stand','Musical Equipment','Office',1,''],['159','Audio / recording equipment','Musical Equipment','Office',1,''],['160','Area rugs — additional rooms (lot)','Home Decor','Throughout Home',2,''],['161','Picture frames collection (lot)','Home Decor','Throughout Home',1,''],['162','Candles & holders (lot)','Home Decor','Throughout Home',1,''],['163','Artificial plants & greenery','Home Decor','Throughout Home',1,''],['164','Accent tables (throughout)','Furniture','Throughout Home',2,''],['165','Other holiday decor','Seasonal','Shed',1,'Easter, Thanksgiving, etc.'],['166','Curtains/drapes — other rooms (lot)','Home Decor','Throughout Home',2,''],['167','Window treatments / blinds (lot)','Home Decor','Throughout Home',2,''],['168','Bathroom vanity accessories','Home Decor','Bathrooms',1,''],['169','Nightstand lamps — other bedrooms','Electronics','Throughout Home',2,''],['170','Bedroom area rugs (lot)','Home Decor','Throughout Home',2,'']];
-var SEED=RAW.map(function(r){return{id:String(r[0]),name:r[1],category:r[2],room:String(r[3]),phase:'Phase '+r[4],status:'Available',platform:'',askingPrice:'',soldPrice:'',notes:String(r[5])};});
-document.getElementById('pin-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkPin();});
-if(sessionStorage.getItem('hst')===APP_PIN){document.getElementById('pin-screen').style.display='none';document.getElementById('app').style.display='block';window.addEventListener('load',boot);}
-function checkPin(){var v=document.getElementById('pin-input').value.trim();if(v===APP_PIN){sessionStorage.setItem('hst',APP_PIN);document.getElementById('pin-screen').style.display='none';document.getElementById('app').style.display='block';boot();}else{document.getElementById('pin-error').textContent='Incorrect PIN — try again';document.getElementById('pin-input').value='';document.getElementById('pin-input').focus();}}
-function doLogout(){sessionStorage.removeItem('hst');location.reload();}
-var db=null;var items=[];var editId=null;
-function boot(){fillSelects();firebase.initializeApp(FIREBASE_CONFIG);db=firebase.database();db.ref('.info/connected').on('value',function(s){var on=s.val();document.getElementById('sync-dot').style.background=on?'#FFD700':'#f59e0b';document.getElementById('sync-msg').textContent=on?'Live sync':'Connecting...';});db.ref('items').on('value',function(snap){var d=snap.val();if(d&&Object.keys(d).length){items=Object.values(d).sort(function(a,b){return +a.id-+b.id;});}else{var batch={};SEED.forEach(function(i){batch[i.id]=i;});db.ref('items').set(batch);items=SEED.slice();}renderAll();});}
-function setField(id,field,val){if(db)db.ref('items/'+id).update({[field]:val});}
-function delItem(id){if(confirm('Remove this item?')&&db)db.ref('items/'+id).remove();}
-function addItem(){var name=document.getElementById('ni-name').value.trim();if(!name){alert('Please enter an item name.');return;}var id=Date.now().toString();if(db)db.ref('items/'+id).set({id:id,name:name,category:document.getElementById('ni-cat').value,room:document.getElementById('ni-room').value,phase:document.getElementById('ni-phase').value,status:document.getElementById('ni-status').value,platform:document.getElementById('ni-plat').value,askingPrice:document.getElementById('ni-ask').value,soldPrice:document.getElementById('ni-sold').value,notes:document.getElementById('ni-notes').value});['ni-name','ni-ask','ni-sold','ni-notes'].forEach(function(i){document.getElementById(i).value='';});document.getElementById('add-form').classList.remove('open');}
-function resetData(){if(confirm('Reset ALL items? Cannot be undone.')&&db){var b={};SEED.forEach(function(i){b[i.id]=i;});db.ref('items').set(b);}}
-function renderAll(){renderStats();renderCharts();renderTable();document.getElementById('item-total').textContent=items.length;}
-function renderStats(){var sold=items.filter(function(i){return i.status==='Sold';});var tA=items.reduce(function(s,i){return s+(+i.askingPrice||0);},0);var tS=sold.reduce(function(s,i){return s+(+i.soldPrice||0);},0);var act=items.filter(function(i){return i.status!=='Available';}).length;document.getElementById('s-total').textContent=items.length;document.getElementById('s-p1').textContent=items.filter(function(i){return i.phase==='Phase 1';}).length;document.getElementById('s-listed').textContent=items.filter(function(i){return i.status==='Listed';}).length;document.getElementById('s-sold').textContent=sold.length;document.getElementById('s-ask').textContent='$'+Math.round(tA).toLocaleString();document.getElementById('s-rev').textContent='$'+Math.round(tS).toLocaleString();var pct=items.length?Math.round(act/items.length*100):0;document.getElementById('prog-bar').style.width=pct+'%';document.getElementById('prog-text').textContent=act+' of '+items.length+' items listed, sold, or on hold ('+pct+'%)';}
-function renderCharts(){var total=items.length||1;var act=items.filter(function(i){return i.status!=='Available';}).length;var sold=items.filter(function(i){return i.status==='Sold';}).length;var pct=Math.round(act/total*100);var circ=2*Math.PI*30;document.getElementById('donut-arc').style.strokeDasharray=(circ*pct/100)+' '+circ;document.getElementById('donut-pct').textContent=pct+'%';document.getElementById('legend-sold-count').textContent=sold+' sold so far';var p1=items.filter(function(i){return i.phase==='Phase 1';});var p2=items.filter(function(i){return i.phase==='Phase 2';});var p1act=p1.filter(function(i){return i.status!=='Available';}).length;var p2act=p2.filter(function(i){return i.status!=='Available';}).length;document.getElementById('pb1-count').textContent=p1act+' / '+p1.length;document.getElementById('pb2-count').textContent=p2act+' / '+p2.length;document.getElementById('pb1-fill').style.width=(p1.length?Math.round(p1act/p1.length*100):0)+'%';document.getElementById('pb2-fill').style.width=(p2.length?Math.round(p2act/p2.length*100):0)+'%';var tA=items.reduce(function(s,i){return s+(+i.askingPrice||0);},0);var tS=items.filter(function(i){return i.status==='Sold';}).reduce(function(s,i){return s+(+i.soldPrice||0);},0);document.getElementById('chart-rev').textContent='$'+Math.round(tS).toLocaleString();document.getElementById('chart-ask').textContent='$'+Math.round(tA).toLocaleString();}
-function getFiltered(){var s=document.getElementById('f-search').value.toLowerCase();var r=document.getElementById('f-room').value;var c=document.getElementById('f-cat').value;var st=document.getElementById('f-status').value;var ph=document.getElementById('f-phase').value;return items.filter(function(i){if(s&&![i.name,i.room,i.category,i.notes].some(function(v){return v&&v.toLowerCase().includes(s);}))return false;if(r!=='All'&&i.room!==r)return false;if(c!=='All'&&i.category!==c)return false;if(st!=='All'&&i.status!==st)return false;if(ph!=='All'&&i.phase!==ph)return false;return true;});}
-function renderTable(){var fil=getFiltered();document.getElementById('count-text').textContent='Showing '+fil.length+' of '+items.length+' items';if(!fil.length){document.getElementById('tbody').innerHTML='<tr><td colspan="7" style="text-align:center;padding:2.5rem;color:#555">No items match your filters</td></tr>';return;}document.getElementById('tbody').innerHTML=fil.map(function(item){return '<tr class="'+(item.status==='Sold'?'row-sold':'')+'"><td><div class="item-name">'+x(item.name)+'</div><div class="item-sub">'+x(item.room)+(item.notes?' · '+x(item.notes):'')+'</div></td><td><span class="badge '+(item.phase==='Phase 1'?'bp1':'bp2')+'">'+(item.phase==='Phase 1'?'P1':'P2')+'</span></td><td><select class="sel-status '+(SCLASS[item.status]||'ss-available')+'" onchange="setField(\''+item.id+'\',\'status\',this.value);this.className=\'sel-status \'+(SCLASS[this.value]||\'ss-available\')">'+STATUS.map(function(s){return'<option value="'+s+'"'+(item.status===s?' selected':'')+'>'+s+'</option>';}).join('')+'</select></td><td><select class="sel-platform" onchange="setField(\''+item.id+'\',\'platform\',this.value)">'+PLATS.map(function(p){return'<option value="'+p+'"'+(item.platform===p?' selected':'')+'>'+(p||'— platform —')+'</option>';}).join('')+'</select></td><td><div class="price-wrap">'+(item.askingPrice?'<span class="price-prefix">$</span>':'')+'<input class="price-inp" type="number" value="'+x(item.askingPrice)+'" placeholder="0" style="padding-left:'+(item.askingPrice?'18px':'8px')+'" onblur="setField(\''+item.id+'\',\'askingPrice\',this.value)" /></div></td><td><div class="price-wrap">'+(item.soldPrice?'<span class="price-prefix">$</span>':'')+'<input class="price-inp" type="number" value="'+x(item.soldPrice)+'" placeholder="0" style="pad
+const itinerary = [
+  {day:"Day 1",date:"Fri, Jun 5",title:"Bangkok arrival → Hua Hin",city:"Hua Hin",mode:"Official airport coach from BKK to Hua Hin; backup = official taxi / Grab",stay:"Nong Kae / Soi 94–102 corridor",objective:"Recover, orient, and do only a light evening recon.",tasks:["Land, clear immigration, collect bags, get cash/SIM/water","Take official airport coach if timing works","Check in and rest","Do one short loop: grocery, pharmacy, road feel, neighborhood quiet","No major property tours"]},
+  {day:"Day 2",date:"Sat, Jun 6",title:"Hua Hin full recon",city:"Hua Hin",mode:"Morning = Grab/taxi, afternoon = realtor haul, evening = Grab/taxi",stay:"Hua Hin base",objective:"Pressure-test Nong Kae, Thap Tai, and Hin Lek Fai.",tasks:["Tour Nong Kae, Thap Tai, and Hin Lek Fai","See only homes/villas 232+ sqm / 2,500+ sq ft","Ask about rent, utilities, management, repairs, flood history, internet","Revisit top 1–2 zones after dark","Rank best area, best community, best property"]},
+  {day:"Day 3",date:"Sun, Jun 7",title:"Hua Hin second pass → Pattaya/Jomtien",city:"Pattaya/Jomtien",mode:"Morning = Grab/taxi, then direct coach Hua Hin → Pattaya, then Grab/taxi",stay:"Jomtien or Pratumnak",objective:"Lock your Hua Hin baseline, then shift to Jomtien.",tasks:["Revisit top 1–2 Hua Hin finalists only","Take direct coach to Pattaya/Jomtien","Check in at Jomtien/Pratumnak base","Walk or drive a short evening neighborhood loop"]},
+  {day:"Day 4",date:"Mon, Jun 8",title:"Pattaya/Jomtien full recon",city:"Pattaya/Jomtien",mode:"Morning = Grab/taxi, afternoon = realtor haul, evening = Grab/taxi",stay:"Jomtien or Pratumnak",objective:"Test whether Jomtien beats Hua Hin on convenience without becoming too busy.",tasks:["Focus on Jomtien and Pratumnak","Evaluate noise, traffic, grocery access, clinic access, livability","Compare convenience vs crowding","Revisit the strongest area at night"]},
+  {day:"Day 5",date:"Tue, Jun 9",title:"Pattaya/Jomtien second pass → Bangkok outskirts",city:"Bangkok outskirts",mode:"Morning = Grab/taxi, then bus/private car to Bangkok side, then Grab",stay:"Bang Na / Prawet / Lat Krabang side",objective:"Treat Bangkok as a fallback and departure buffer, not a main scouting market.",tasks:["Revisit top Pattaya/Jomtien finalists only","Travel to Bangkok outskirts / airport side","Check in and do a short evening services-and-roads test","Pack and confirm airport transfer plan"]},
+  {day:"Day 6",date:"Wed, Jun 10",title:"Bangkok outskirts fallback test",city:"Bangkok outskirts",mode:"Grab/taxi only",stay:"Airport-side hotel",objective:"Answer whether Bangkok-edge living is acceptable as a fallback.",tasks:["Test one corridor only: Bang Na/Prawet or Lat Krabang","Check traffic, groceries, healthcare, calm, airport practicality","Finalize rankings and notes","Sleep early for 7:00 AM departure next day"]},
+  {day:"Day 7",date:"Thu, Jun 11",title:"Hotel → BKK → depart",city:"BKK",mode:"Hotel car / official taxi / Grab",stay:"Departure day",objective:"No friction. Airport only.",tasks:["Depart hotel early","Go straight to BKK","No detours, no sightseeing"]}
+];
+const prepChecklist = ["Complete TDAC within 3 days of arrival","Confirm passport has 6+ months validity","Install Grab and save payment method","Save hotel addresses and confirmations","Create recon spreadsheet","Message at least one agent in each target market","Set rule: do not sign on first viewing","Keep meds, chargers, one change of clothes, and key papers in carry-on"];
+const needToKnow = [["Hello","Sawasdee khráp"],["Thank you","Khop khun khráp"],["Excuse me / sorry","Khor thot khráp"],["Tourist police","1155"],["Behavior","Stay calm, soft-spoken, patient, and respectful"],["Customs","Remove shoes where others do, avoid touching heads, do not point feet at people or sacred things"]];
+const safetyRules = ["Use official airport coach, official taxi, hotel car, or Grab. Skip random ride offers.","Do half-day realtor haul maximum. Finish each city with self-guided testing.","Morning for neighborhood walks and road tests. Afternoon for meetings and indoor admin.","Last night stays airport-side. No downtown Bangkok gamble before a 7:00 AM flight.","No signing on first viewing. Revisit finalists at night if possible."];
+
+const phrases = [
+  {en:"How much is this?", th:"อันนี้ราคาเท่าไหร่ครับ", rom:"an-nee raa-khaa thao-rai khráp", note:"Basic price question."},
+  {en:"Can you lower the price?", th:"ลดราคาได้ไหมครับ", rom:"lót raa-khaa dâai mái khráp", note:"Polite negotiation."},
+  {en:"Too expensive.", th:"แพงไปครับ", rom:"phaeng bpai khráp", note:"Useful reaction to a quote."},
+  {en:"I’m just looking.", th:"ขอดูก่อนครับ", rom:"khǎaw doo gàawn khráp", note:"Reduces pressure."},
+  {en:"I want to rent long term.", th:"ผมต้องการเช่าระยะยาวครับ", rom:"phǒm dtông-gaan châo rá-yá-yaao khráp", note:"Useful with landlords and agents."},
+  {en:"Is there a better monthly price?", th:"มีราคาต่อเดือนที่ดีกว่านี้ไหมครับ", rom:"mee raa-khaa dtàaw deuan thêe dee gwàa nee mái khráp", note:"Long-stay negotiation phrase."},
+  {en:"Does this include utilities?", th:"รวมค่าน้ำค่าไฟไหมครับ", rom:"ruam khâa-nám khâa-fai mái khráp", note:"Ask about water and electric."},
+  {en:"Please take me here.", th:"กรุณาพาผมไปที่นี่ครับ", rom:"gà-rú-naa phaa phǒm bpai thêe nêe khráp", note:"Show this to drivers."},
+  {en:"Please slow down.", th:"ช่วยขับช้าลงหน่อยครับ", rom:"chûay khàp cháa long nòi khráp", note:"Good for ride-share or taxi."},
+  {en:"Thank you.", th:"ขอบคุณครับ", rom:"khàawp khun khráp", note:"Always useful."}
+];
+
+const starterCommunities = {"Hua Hin":["Mali Boutique","Mali Prestige","Mali Signature","Baan Ing Phu","Palm Hills"],"Pattaya/Jomtien":["Jomtien core","Pratumnak","Selected managed developments near Jomtien beach side"],"Bangkok outskirts":["Bang Na","Prawet","Lat Krabang"]};
+const scoreCats = ["Calm","Convenience","Housing fit","Healthcare access","Grocery access","Road stress","Noise","Wife-fit","Cost-value","Could I do ordinary life here?"];
+const cities = ["Hua Hin","Pattaya/Jomtien","Bangkok outskirts"];
+
+function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+
+const itineraryEl = document.getElementById('itinerary');
+itinerary.forEach((d, di) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = '<div class="section-title">'+d.day+' · '+d.title+'</div><div class="small" style="margin-top:4px">'+d.date+' · '+d.city+'</div><div class="meta"><div class="pill">Mode: '+d.mode+'</div><div class="pill">Stay: '+d.stay+'</div></div><div class="small" style="margin-top:10px"><strong>Objective:</strong> '+d.objective+'</div><div class="list" id="tasks-'+di+'"></div>';
+  itineraryEl.appendChild(card);
+  const tasksEl = card.querySelector('#tasks-'+di);
+  d.tasks.forEach((t, ti) => {
+    const key = 'day-'+di+'-'+ti;
+    const row = document.createElement('div');
+    row.className = 'item';
+    row.innerHTML = '<input type="checkbox" id="'+key+'"><label for="'+key+'" class="txt">'+t+'</label>';
+    tasksEl.appendChild(row);
+  });
+});
+
+const prepList = document.getElementById('prepList');
+prepChecklist.forEach((t, i) => {
+  const key = 'prep-'+i;
+  const row = document.createElement('div');
+  row.className = 'item';
+  row.innerHTML = '<input type="checkbox" id="'+key+'"><label for="'+key+'" class="txt">'+t+'</label>';
+  prepList.appendChild(row);
+});
+
+const communities = document.getElementById('communities');
+Object.entries(starterCommunities).forEach(([city, arr]) => {
+  const c = document.createElement('div');
+  c.className = 'card';
+  c.innerHTML = '<div class="section-title">'+city+'</div><div class="list">'+arr.map(x=>'<div class="item"><div class="txt">'+x+'</div></div>').join('')+'</div>';
+  communities.appendChild(c);
+});
+
+const needList = document.getElementById('needList');
+needToKnow.forEach(([k,v]) => {
+  const row = document.createElement('div');
+  row.className = 'item';
+  row.innerHTML = '<div><strong>'+k+'</strong><div class="small" style="margin-top:3px">'+v+'</div></div>';
+  needList.appendChild(row);
+});
+
+const safeList = document.getElementById('safeList');
+safetyRules.forEach(v => {
+  const row = document.createElement('div');
+  row.className = 'item';
+  row.innerHTML = '<div class="txt">'+v+'</div>';
+  safeList.appendChild(row);
+});
+
+
+const phraseGrid = document.getElementById('phraseGrid');
+if (phraseGrid){
+  phrases.forEach(p => {
+    const row = document.createElement('div');
+    row.className = 'card';
+    row.style.margin = '0';
+    row.style.padding = '14px';
+    row.innerHTML = '<div style="font-size:1.05rem;font-weight:800">'+p.en+'</div><div style="font-size:1.5rem;font-weight:800;line-height:1.35;margin-top:8px">'+p.th+'</div><div style="font-size:1.12rem;color:#d8d2ff;margin-top:8px">'+p.rom+'</div><div class="small" style="margin-top:8px">'+p.note+'</div>';
+    phraseGrid.appendChild(row);
+  });
+}
+
+const scoreGrid = document.getElementById('scoreGrid');
+cities.forEach(city => {
+  const wrap = document.createElement('div');
+  wrap.className = 'score-card';
+  wrap.innerHTML = '<div class="section-title">'+city+' <span id="total-'+city+'"></span></div>';
+  scoreCats.forEach(cat => {
+    const row = document.createElement('div');
+    row.className = 'score-row';
+    row.innerHTML = '<label>'+cat+'</label><input type="number" min="0" max="10" id="score-'+city+'-'+cat+'" value="0">';
+    wrap.appendChild(row);
+  });
+  scoreGrid.appendChild(wrap);
+});
+
+const notesBox = document.getElementById('notesBox');
+notesBox.value = safeGet('recon-notes') || '';
+notesBox.addEventListener('input', () => safeSet('recon-notes', notesBox.value));
+
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    safeSet('recon-active-tab', btn.dataset.tab);
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+function updateTotals(){
+  const checks = [...document.querySelectorAll('input[type="checkbox"]')];
+  let checked = 0;
+  checks.forEach(c => {
+    const row = c.closest('.item');
+    if (c.checked){checked++; row.classList.add('done');}
+    else row.classList.remove('done');
+  });
+  document.getElementById('checkedCount').textContent = checked;
+  document.getElementById('totalCount').textContent = checks.length;
+  document.getElementById('progressPct').textContent = (checks.length ? Math.round(checked/checks.length*100) : 0) + '%';
+
+  cities.forEach(city => {
+    let total = 0;
+    scoreCats.forEach(cat => {
+      const el = document.getElementById('score-'+city+'-'+cat);
+      total += Number(el.value || 0);
+      safeSet('score-'+city+'-'+cat, el.value || 0);
+    });
+    document.getElementById('total-'+city).textContent = '· Total ' + total;
+  });
+}
+
+document.querySelectorAll('input[type="checkbox"]').forEach(c => {
+  const saved = safeGet('check-'+c.id);
+  c.checked = saved === '1';
+  c.addEventListener('change', () => {
+    safeSet('check-'+c.id, c.checked ? '1' : '0');
+    
+const fxRate = document.getElementById('fxRate');
+const thbInput = document.getElementById('thbInput');
+const usdInput = document.getElementById('usdInput');
+if (fxRate && thbInput && usdInput){
+  fxRate.value = safeGet('fx-rate') || '36.50';
+  thbInput.value = safeGet('fx-thb') || '';
+  usdInput.value = safeGet('fx-usd') || '';
+  fxRate.addEventListener('input', () => updateFX());
+  thbInput.addEventListener('input', () => updateFX('thb'));
+  usdInput.addEventListener('input', () => updateFX('usd'));
+}
+
+const sqmInput = document.getElementById('sqmInput');
+const sqftInput = document.getElementById('sqftInput');
+if (sqmInput && sqftInput){
+  sqmInput.value = safeGet('area-sqm') || '';
+  sqftInput.value = safeGet('area-sqft') || '';
+  sqmInput.addEventListener('input', () => updateArea('sqm'));
+  sqftInput.addEventListener('input', () => updateArea('sqft'));
+}
+
+updateFX();
+updateArea();
+
+updateTotals();
+  });
+});
+
+cities.forEach(city => {
+  scoreCats.forEach(cat => {
+    const el = document.getElementById('score-'+city+'-'+cat);
+    const saved = safeGet('score-'+city+'-'+cat);
+    if (saved !== null) el.value = saved;
+    el.addEventListener('input', updateTotals);
+  });
+});
+
+
+function fmtUSD(n){ return '$' + Number(n || 0).toFixed(2); }
+function fmtTHB(n){ return '฿' + Number(n || 0).toFixed(2); }
+
+function updateFX(from){
+  const rateEl = document.getElementById('fxRate');
+  const thbEl = document.getElementById('thbInput');
+  const usdEl = document.getElementById('usdInput');
+  if (!rateEl || !thbEl || !usdEl) return;
+  let rate = Number(rateEl.value || 0);
+  if (!rate || rate <= 0) rate = 36.5;
+
+  if (from === 'thb'){
+    const thb = Number(thbEl.value || 0);
+    usdEl.value = thb ? (thb / rate).toFixed(2) : '';
+  } else if (from === 'usd'){
+    const usd = Number(usdEl.value || 0);
+    thbEl.value = usd ? (usd * rate).toFixed(2) : '';
+  }
+
+  const thb = Number(thbEl.value || 0);
+  const usd = Number(usdEl.value || 0);
+  document.getElementById('thbToUsd').textContent = fmtUSD(thb / rate);
+  document.getElementById('usdToThb').textContent = fmtTHB(usd * rate);
+
+  safeSet('fx-rate', rateEl.value);
+  safeSet('fx-thb', thbEl.value);
+  safeSet('fx-usd', usdEl.value);
+}
+
+function updateArea(from){
+  const sqmEl = document.getElementById('sqmInput');
+  const sqftEl = document.getElementById('sqftInput');
+  if (!sqmEl || !sqftEl) return;
+
+  if (from === 'sqm'){
+    const sqm = Number(sqmEl.value || 0);
+    sqftEl.value = sqm ? (sqm * 10.7639).toFixed(2) : '';
+  } else if (from === 'sqft'){
+    const sqft = Number(sqftEl.value || 0);
+    sqmEl.value = sqft ? (sqft / 10.7639).toFixed(2) : '';
+  }
+
+  const sqm = Number(sqmEl.value || 0);
+  const sqft = Number(sqftEl.value || 0);
+  document.getElementById('sqmToSqft').textContent = (sqm * 10.7639).toFixed(2) + ' sq ft';
+  document.getElementById('sqftToSqm').textContent = (sqft / 10.7639).toFixed(2) + ' sqm';
+
+  safeSet('area-sqm', sqmEl.value);
+  safeSet('area-sqft', sqftEl.value);
+}
+
+const savedTab = safeGet('recon-active-tab');
+if (savedTab && document.getElementById(savedTab)) {
+  document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b.dataset.tab === savedTab));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === savedTab));
+}
+
+const fxRate = document.getElementById('fxRate');
+const thbInput = document.getElementById('thbInput');
+const usdInput = document.getElementById('usdInput');
+if (fxRate && thbInput && usdInput){
+  fxRate.value = safeGet('fx-rate') || '36.50';
+  thbInput.value = safeGet('fx-thb') || '';
+  usdInput.value = safeGet('fx-usd') || '';
+  fxRate.addEventListener('input', () => updateFX());
+  thbInput.addEventListener('input', () => updateFX('thb'));
+  usdInput.addEventListener('input', () => updateFX('usd'));
+}
+
+const sqmInput = document.getElementById('sqmInput');
+const sqftInput = document.getElementById('sqftInput');
+if (sqmInput && sqftInput){
+  sqmInput.value = safeGet('area-sqm') || '';
+  sqftInput.value = safeGet('area-sqft') || '';
+  sqmInput.addEventListener('input', () => updateArea('sqm'));
+  sqftInput.addEventListener('input', () => updateArea('sqft'));
+}
+
+updateFX();
+updateArea();
+
+updateTotals();
+</script>
+</body>
+</html>
