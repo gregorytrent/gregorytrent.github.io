@@ -74,6 +74,8 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--ok);margin-top:2p
       <button class="tab" data-tab="utilities">Utilities</button>
       <button class="tab" data-tab="score">Scoring</button>
       <button class="tab" data-tab="notes">Notes</button>
+      <button onclick="show('bookings')">Bookings</button>
+
     </div>
   </div>
 
@@ -182,8 +184,129 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--ok);margin-top:2p
       <div class="section-title">Working Notes</div>
       <div class="small" style="margin:8px 0 10px">Track addresses, agents, rent, road feel, flood concerns, grocery distance, wife-fit observations, and final rankings.</div>
       <textarea class="notes" id="notesBox" placeholder="Type notes here..."></textarea>
+    </div><div class="panel" id="bookings">
+  <div class="card">
+    <div class="section-title">✈️ Flight — Air Canada A7OGKU</div>
+    <div class="small" style="margin-top:8px">
+      <p><strong>Tue Jun 2</strong> — DFW → Toronto (YYZ) · AC1030 · Departs 9:00 PM · Seat 16C</p>
+      <p><strong>Wed Jun 3</strong> — Toronto → Vancouver (YVR) · AC33 · Departs 9:00 PM · Seat 21K</p>
+      <p><strong>Wed Jun 3</strong> — Vancouver → Bangkok (BKK) · AC65 · Departs 11:20 PM · Seat 18G</p>
+      <p><strong>Fri Jun 5</strong> — Arrive Bangkok Suvarnabhumi 5:05 AM</p>
+      <p style="margin-top:8px"><strong>Return: Mon Jun 15</strong> — BKK → Tokyo (NRT) · AC7411 · 7:45 AM · Seat TBA</p>
+      <p><strong>Mon Jun 15</strong> — Tokyo → Montreal · AC6 · 5:35 PM · Seat 18A</p>
+      <p><strong>Mon Jun 15</strong> — Montreal → Dallas (DFW) · AC1071 · 6:35 PM · Arrives 9:55 PM</p>
+      <p style="margin-top:8px;color:#10b981">1 free checked bag each way (50 lb / 23 kg)</p>
     </div>
   </div>
+  <div class="card" style="margin-top:14px">
+    <div class="section-title">🏨 Hotel — Hua Hin (Jun 5–6)</div>
+    <div class="small" style="margin-top:8px">
+      <p><strong>Kiang Haad Beach Hua Hin</strong> · 1 night · Deluxe King Room · $34.55</p>
+      <p>131/105 Petchkasem Road, Hua Hin · +66 32 521 222</p>
+      <p>Confirmation: <strong>102177573837628352</strong> · PIN: <strong>377867</strong></p>
+      <p>Check-in: Sat Jun 6 · Check-out: Sun Jun 6</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="section-title">🏨 Hotel — Hua Hin (Jun 6–11)</div>
+    <div class="small" style="margin-top:8px">
+      <p><strong>Kiang Haad Beach Hua Hin</strong> · 5 nights · Deluxe King Room · THB 7,105.20</p>
+      <p>131/105 Petchkasem Road, Prachuapkhirikhan, 77110 Hua Hin · +66 32 521 222</p>
+      <p>Confirmation: <strong>6021316715</strong> · PIN: <strong>0742</strong></p>
+      <p>Check-in: Sat Jun 6 @ 2:00 PM · Check-out: Thu Jun 11 · Free cancel until Jun 4</p>
+      <p style="color:#f59e0b">⚠️ Name on booking: Trent Gregory — email property to correct</p>
+      <p>Charged Jun 3 to •••• 1429</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="section-title">🏨 Hotel — Pattaya (Jun 11–14)</div>
+    <div class="small" style="margin-top:8px">
+      <p><strong>The Siam Guest House - SHA Extra Plus</strong> · 3 nights · Budget Double Room · THB 1,905.12</p>
+      <p>528/27 Moo 10, Soi 12, Pattaya Sai Song 2nd Road, Pattaya, Chonburi 20260 · +66 86 147 4919</p>
+      <p>Confirmation: <strong>5388835626</strong> · PIN: <strong>7557</strong></p>
+      <p>Check-in: Thu Jun 11 @ 1:30 PM · Check-out: Sun Jun 14 · Free cancel until Jun 7</p>
+      <p>Charged Jun 6 to •••• 4921</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="section-title">🏨 Hotel — Bangkok Airport (Jun 14) — TBD</div>
+    <div class="small" style="margin-top:8px">
+      <p>Near Suvarnabhumi Airport · Flight departs Jun 15 at 7:45 AM · Must be at airport by 5:45 AM</p>
+      <p style="color:#f59e0b">⚠️ Not yet booked — add before departure</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="section-title">📋 Key References</div>
+    <div class="small" style="margin-top:8px">
+      <p><strong>Marriott Corp Code:</strong> MMA</p>
+      <p><strong>Air Canada Reservations:</strong> 1-888-247-2262</p>
+      <p><strong>Booking Ref:</strong> A7OGKU · Ticket: 0142327407574</p>
+      <p><strong>Email:</strong> gregorytrent@verizon.net</p>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="panel" id="bookings">
+  <div class="card">
+    <div class="section-title">✈️ Flight — Air Canada A7OGKU</div>
+    <div class="small" style="margin-top:8px">
+      <p><strong>Tue Jun 2</strong> — DFW → Toronto (YYZ) · AC1030 · Departs 9:00 PM · Seat 16C</p>
+      <p><strong>Wed Jun 3</strong> — Toronto → Vancouver (YVR) · AC33 · Departs 9:00 PM · Seat 21K</p>
+      <p><strong>Wed Jun 3</strong> — Vancouver → Bangkok (BKK) · AC65 · Departs 11:20 PM · Seat 18G</p>
+      <p><strong>Fri Jun 5</strong> — Arrive Bangkok Suvarnabhumi 5:05 AM</p>
+      <p style="margin-top:8px"><strong>Return: Mon Jun 15</strong> — BKK → Tokyo (NRT) · AC7411 · 7:45 AM · Seat TBA</p>
+      <p><strong>Mon Jun 15</strong> — Tokyo → Montreal · AC6 · 5:35 PM · Seat 18A</p>
+      <p><strong>Mon Jun 15</strong> — Montreal → Dallas (DFW) · AC1071 · 6:35 PM · Arrives 9:55 PM</p>
+      <p style="margin-top:8px;color:#10b981">1 free checked bag each way (50 lb / 23 kg)</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="section-title">🏨 Hotel — Hua Hin (Jun 5–6)</div>
+    <div class="small" style="margin-top:8px">
+      <p><strong>Kiang Haad Beach Hua Hin</strong> · 1 night · Deluxe King Room · $34.55</p>
+      <p>131/105 Petchkasem Road, Hua Hin · +66 32 521 222</p>
+      <p>Confirmation: <strong>102177573837628352</strong> · PIN: <strong>377867</strong></p>
+      <p>Check-in: Sat Jun 6 · Check-out: Sun Jun 6</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="section-title">🏨 Hotel — Hua Hin (Jun 6–11)</div>
+    <div class="small" style="margin-top:8px">
+      <p><strong>Kiang Haad Beach Hua Hin</strong> · 5 nights · Deluxe King Room · THB 7,105.20</p>
+      <p>131/105 Petchkasem Road, Prachuapkhirikhan, 77110 Hua Hin · +66 32 521 222</p>
+      <p>Confirmation: <strong>6021316715</strong> · PIN: <strong>0742</strong></p>
+      <p>Check-in: Sat Jun 6 @ 2:00 PM · Check-out: Thu Jun 11 · Free cancel until Jun 4</p>
+      <p style="color:#f59e0b">⚠️ Name on booking: Trent Gregory — email property to correct</p>
+      <p>Charged Jun 3 to •••• 1429</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="section-title">🏨 Hotel — Pattaya (Jun 11–14)</div>
+    <div class="small" style="margin-top:8px">
+      <p><strong>The Siam Guest House - SHA Extra Plus</strong> · 3 nights · Budget Double Room · THB 1,905.12</p>
+      <p>528/27 Moo 10, Soi 12, Pattaya Sai Song 2nd Road, Pattaya, Chonburi 20260 · +66 86 147 4919</p>
+      <p>Confirmation: <strong>5388835626</strong> · PIN: <strong>7557</strong></p>
+      <p>Check-in: Thu Jun 11 @ 1:30 PM · Check-out: Sun Jun 14 · Free cancel until Jun 7</p>
+      <p>Charged Jun 6 to •••• 4921</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="section-title">🏨 Hotel — Bangkok Airport (Jun 14) — TBD</div>
+    <div class="small" style="margin-top:8px">
+      <p>Near Suvarnabhumi Airport · Flight departs Jun 15 at 7:45 AM · Must be at airport by 5:45 AM</p>
+      <p style="color:#f59e0b">⚠️ Not yet booked — add before departure</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="section-title">📋 Key References</div>
+    <div class="small" style="margin-top:8px">
+      <p><strong>Marriott Corp Code:</strong> MMA</p>
+      <p><strong>Air Canada Reservations:</strong> 1-888-247-2262</p>
+      <p><strong>Booking Ref:</strong> A7OGKU · Ticket: 0142327407574</p>
+      <p><strong>Email:</strong> gregorytrent@verizon.net</p>
+    </div>
+  </div>
+</div>
 
   <div class="footer">Checks, scores, and notes save in your browser on this device when local storage is available.</div>
 </div>
