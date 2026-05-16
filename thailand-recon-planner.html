@@ -1,6 +1,76 @@
+Here it is — find the `<script>` tag at the bottom of `thailand-recon-planner.html`, select everything from `<script>` to `</script>`, delete it all, and paste this entire block:
+
+```html
 <script>
+const itinerary = [
+  {day:"Day 1",date:"Fri, Jun 5",title:"Bangkok arrival → Hua Hin",city:"Hua Hin",mode:"Official airport coach from BKK to Hua Hin; backup = official taxi / Grab",stay:"Kiang Haad Beach Hua Hin (arrival night)",objective:"Recover, orient, and do only a light evening recon.",tasks:["Land at BKK 5:05 AM, clear immigration, collect bags","Get cash, SIM card, and water","Take official airport coach to Hua Hin","Check in and rest","Do one short loop: grocery, pharmacy, road feel","No major property tours today"]},
+  {day:"Day 2",date:"Sat, Jun 6",title:"Hua Hin full recon",city:"Hua Hin",mode:"Morning = Grab/taxi, afternoon = realtor haul, evening = Grab/taxi",stay:"Kiang Haad Beach Hua Hin",objective:"Pressure-test Nong Kae, Thap Tai, and Hin Lek Fai.",tasks:["Tour Nong Kae, Thap Tai, and Hin Lek Fai","See only homes/villas 232+ sqm / 2,500+ sq ft","Ask about rent, utilities, management, repairs, flood history, internet","Revisit top 1–2 zones after dark","Rank best area, best community, best property"]},
+  {day:"Day 3",date:"Sun, Jun 7",title:"Hua Hin second pass",city:"Hua Hin",mode:"Grab/taxi",stay:"Kiang Haad Beach Hua Hin",objective:"Lock Hua Hin baseline — revisit finalists only.",tasks:["Revisit top 1–2 Hua Hin finalists only","Document notes, photos, scores","Rest and prep for travel day tomorrow"]},
+  {day:"Day 4",date:"Mon, Jun 8",title:"Hua Hin → Pattaya transfer + recon",city:"Pattaya",mode:"Direct coach Hua Hin → Pattaya then Grab/taxi",stay:"Pattaya accommodation",objective:"Arrive and begin Jomtien/Pratumnak recon.",tasks:["Travel Hua Hin to Pattaya by direct coach","Check in to accommodation","Evening neighborhood walk — Jomtien and Pratumnak","Test noise, traffic, and vibe"]},
+  {day:"Day 5",date:"Tue, Jun 9",title:"Pattaya/Jomtien full recon",city:"Pattaya",mode:"Morning = Grab/taxi, afternoon = realtor haul",stay:"Pattaya",objective:"Test whether Jomtien beats Hua Hin on convenience without becoming too busy.",tasks:["Focus on Jomtien and Pratumnak","Evaluate noise, traffic, grocery access, clinic access, livability","Compare convenience vs crowding vs cost","Revisit the strongest area at night"]},
+  {day:"Day 6",date:"Wed, Jun 10",title:"Pattaya second pass",city:"Pattaya",mode:"Grab/taxi",stay:"Pattaya",objective:"Lock Pattaya baseline — revisit finalists only.",tasks:["Revisit top Pattaya/Jomtien finalists","Finalize rankings and notes","Rest — less is more today"]},
+  {day:"Day 7",date:"Thu, Jun 11",title:"Check in — The Siam Guest House",city:"Pattaya",mode:"Grab/taxi",stay:"The Siam Guest House, Pattaya (3 nights)",objective:"Check in and do any final Pattaya exploration.",tasks:["Check in: Thu Jun 11 @ 1:30 PM · Confirmation: 5388835626","528/27 Moo 10, Soi 12, Pattaya Sai Song 2nd Road","Any remaining recon in area","Book Bangkok airport hotel if not yet done"]},
+  {day:"Day 8",date:"Fri, Jun 12",title:"Pattaya wrap-up",city:"Pattaya",mode:"Grab/taxi",stay:"The Siam Guest House",objective:"Finalize all rankings and scoring.",tasks:["Complete scoring for all cities","Review and finalize notes","Pack and prepare for Bangkok transfer","Confirm airport transfer plan"]},
+  {day:"Day 9",date:"Sat, Jun 13",title:"Pattaya → Bangkok transfer",city:"Bangkok",mode:"Bus or private car to Bangkok airport-side",stay:"Bangkok airport hotel (TBD)",objective:"Smooth transfer — no drama.",tasks:["Travel Pattaya to Bangkok airport side","Check in to airport hotel","Short local services test if energy allows","Confirm Jun 15 7:45 AM departure plan"]},
+  {day:"Day 10",date:"Sun, Jun 14",title:"Bangkok airport buffer day",city:"Bangkok",mode:"Grab/taxi only",stay:"Bangkok airport hotel (TBD)",objective:"Rest, pack, and prepare for early departure.",tasks:["Rest — this is a buffer day","Confirm check-out time and airport transfer","Pack everything","Sleep early — 4:45 AM wake-up for 7:45 AM flight"]},
+  {day:"Day 11",date:"Mon, Jun 15",title:"Depart Bangkok — Return to Dallas",city:"BKK → DFW",mode:"Hotel car / official taxi to BKK airport",stay:"Home",objective:"No friction. Airport only.",tasks:["Wake 4:45 AM","Airport transfer — be at BKK by 5:45 AM","BKK → Tokyo (NRT) AC7411 departs 7:45 AM","Tokyo → Montreal AC6 departs 5:35 PM","Montreal → Dallas AC1071 departs 6:35 PM · Arrives 9:55 PM"]}
+];
+
+const prepChecklist = ["Complete TDAC within 3 days of arrival","Confirm passport has 6+ months validity","Install Grab and save payment method","Save hotel addresses and confirmations offline","Download Booking.com app — has QR codes offline","Message at least one agent in each target market","Set rule: do not sign on first viewing","Keep meds, chargers, one change of clothes, and key papers in carry-on","Screenshot all confirmation numbers and PINs","Book Bangkok airport hotel (Jun 14) before departure"];
+
+const needToKnow = [["Hello","Sawasdee khráp"],["Thank you","Khop khun khráp"],["Excuse me / sorry","Khor thot khráp"],["Tourist police","1155"],["Behavior","Stay calm, soft-spoken, patient, and respectful"],["Customs","Remove shoes where others do, avoid touching heads, do not point feet at people or sacred things"]];
+
+const safetyRules = ["Use official airport coach, official taxi, hotel car, or Grab. Skip random ride offers.","Do half-day realtor haul maximum. Finish each city with self-guided testing.","Morning for neighborhood walks and road tests. Afternoon for meetings and indoor admin.","Last night stays airport-side. No downtown Bangkok gamble before a 7:45 AM flight.","No signing on first viewing. Revisit finalists at night if possible."];
+
+const phrases = [
+  {en:"How much is this?",th:"อันนี้ราคาเท่าไหร่ครับ",rom:"an-nee raa-khaa thao-rai khráp",note:"Basic price question."},
+  {en:"Can you lower the price?",th:"ลดราคาได้ไหมครับ",rom:"lót raa-khaa dâai mái khráp",note:"Polite negotiation."},
+  {en:"Too expensive.",th:"แพงไปครับ",rom:"phaeng bpai khráp",note:"Useful reaction to a quote."},
+  {en:"I'm just looking.",th:"ขอดูก่อนครับ",rom:"khǎaw doo gàawn khráp",note:"Reduces pressure."},
+  {en:"I want to rent long term.",th:"ผมต้องการเช่าระยะยาวครับ",rom:"phǒm dtông-gaan châo rá-yá-yaao khráp",note:"Useful with landlords and agents."},
+  {en:"Is there a better monthly price?",th:"มีราคาต่อเดือนที่ดีกว่านี้ไหมครับ",rom:"mee raa-khaa dtàaw deuan thêe dee gwàa nee mái khráp",note:"Long-stay negotiation phrase."},
+  {en:"Does this include utilities?",th:"รวมค่าน้ำค่าไฟไหมครับ",rom:"ruam khâa-nám khâa-fai mái khráp",note:"Ask about water and electric."},
+  {en:"Please take me here.",th:"กรุณาพาผมไปที่นี่ครับ",rom:"gà-rú-naa phaa phǒm bpai thêe nêe khráp",note:"Show this to drivers."},
+  {en:"Please slow down.",th:"ช่วยขับช้าลงหน่อยครับ",rom:"chûay khàp cháa long nòi khráp",note:"Good for ride-share or taxi."},
+  {en:"Thank you.",th:"ขอบคุณครับ",rom:"khàawp khun khráp",note:"Always useful."}
+];
+
+const starterCommunities = {"Hua Hin":["Mali Boutique","Mali Prestige","Mali Signature","Baan Ing Phu","Palm Hills"],"Pattaya/Jomtien":["Jomtien core","Pratumnak","Selected managed developments near Jomtien beach side"],"Bangkok outskirts":["Bang Na","Prawet","Lat Krabang"]};
+const scoreCats = ["Calm","Convenience","Housing fit","Healthcare access","Grocery access","Road stress","Noise","Wife-fit","Cost-value","Could I do ordinary life here?"];
+const cities = ["Hua Hin","Pattaya/Jomtien","Bangkok outskirts"];
+
 function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+
+const itineraryEl = document.getElementById('itinerary');
+itinerary.forEach((d,di)=>{
+  const card=document.createElement('div');card.className='card';
+  card.innerHTML='<div class="section-title">'+d.day+' · '+d.title+'</div><div class="small" style="margin-top:4px">'+d.date+' · '+d.city+'</div><div class="meta"><div class="pill">Mode: '+d.mode+'</div><div class="pill">Stay: '+d.stay+'</div></div><div class="small" style="margin-top:10px"><strong>Objective:</strong> '+d.objective+'</div><div class="list" id="tasks-'+di+'"></div>';
+  itineraryEl.appendChild(card);
+  const tasksEl=card.querySelector('#tasks-'+di);
+  d.tasks.forEach((t,ti)=>{const key='day-'+di+'-'+ti;const row=document.createElement('div');row.className='item';row.innerHTML='<input type="checkbox" id="'+key+'"><label for="'+key+'" class="txt">'+t+'</label>';tasksEl.appendChild(row);});
+});
+
+const prepList=document.getElementById('prepList');
+prepChecklist.forEach((t,i)=>{const key='prep-'+i;const row=document.createElement('div');row.className='item';row.innerHTML='<input type="checkbox" id="'+key+'"><label for="'+key+'" class="txt">'+t+'</label>';prepList.appendChild(row);});
+
+const communities=document.getElementById('communities');
+Object.entries(starterCommunities).forEach(([city,arr])=>{const c=document.createElement('div');c.className='card';c.innerHTML='<div class="section-title">'+city+'</div><div class="list">'+arr.map(x=>'<div class="item"><div class="txt">'+x+'</div></div>').join('')+'</div>';communities.appendChild(c);});
+
+const needList=document.getElementById('needList');
+needToKnow.forEach(([k,v])=>{const row=document.createElement('div');row.className='item';row.innerHTML='<div><strong>'+k+'</strong><div class="small" style="margin-top:3px">'+v+'</div></div>';needList.appendChild(row);});
+
+const safeList=document.getElementById('safeList');
+safetyRules.forEach(v=>{const row=document.createElement('div');row.className='item';row.innerHTML='<div class="txt">'+v+'</div>';safeList.appendChild(row);});
+
+const phraseGrid=document.getElementById('phraseGrid');
+if(phraseGrid){phrases.forEach(p=>{const row=document.createElement('div');row.className='card';row.style.margin='0';row.style.padding='14px';row.innerHTML='<div style="font-size:1.05rem;font-weight:800">'+p.en+'</div><div style="font-size:1.5rem;font-weight:800;line-height:1.35;margin-top:8px">'+p.th+'</div><div style="font-size:1.12rem;color:#d8d2ff;margin-top:8px">'+p.rom+'</div><div class="small" style="margin-top:8px">'+p.note+'</div>';phraseGrid.appendChild(row);});}
+
+const scoreGrid=document.getElementById('scoreGrid');
+cities.forEach(city=>{const wrap=document.createElement('div');wrap.className='score-card';wrap.innerHTML='<div class="section-title">'+city+' <span id="total-'+city+'"></span></div>';scoreCats.forEach(cat=>{const row=document.createElement('div');row.className='score-row';row.innerHTML='<label>'+cat+'</label><input type="number" min="0" max="10" id="score-'+city+'-'+cat+'" value="0">';wrap.appendChild(row);});scoreGrid.appendChild(wrap);});
+
+const notesBox=document.getElementById('notesBox');
+if(notesBox){notesBox.value=safeGet('recon-notes')||'';notesBox.addEventListener('input',()=>safeSet('recon-notes',notesBox.value));}
 
 // Main nav tabs
 document.querySelectorAll('.tab').forEach(btn=>{
@@ -8,123 +78,87 @@ document.querySelectorAll('.tab').forEach(btn=>{
     document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-    var panel=document.getElementById(btn.dataset.tab);
+    const panel=document.getElementById(btn.dataset.tab);
     if(panel)panel.classList.add('active');
     safeSet('recon-active-tab',btn.dataset.tab);
     window.scrollTo({top:0,behavior:'smooth'});
   });
 });
 
-// Phase sub-tabs
+// Phase sub-tabs (Itinerary 30/60/90 buttons)
 document.querySelectorAll('.tab-button').forEach(button=>{
   button.addEventListener('click',()=>{
-    var group=button.getAttribute('data-group');
-    var target=button.getAttribute('data-tab');
+    const group=button.getAttribute('data-group');
+    const target=button.getAttribute('data-tab');
     document.querySelectorAll('.tab-button[data-group="'+group+'"]').forEach(b=>b.classList.remove('active'));
     document.querySelectorAll('.tab-panel[data-group="'+group+'"]').forEach(p=>p.classList.remove('active'));
     button.classList.add('active');
-    var el=document.getElementById(target);
+    const el=document.getElementById(target);
     if(el)el.classList.add('active');
   });
 });
 
 function updateTotals(){
-  var checks=[...document.querySelectorAll('input[type="checkbox"]')];
-  var checked=0;
-  checks.forEach(c=>{
-    var row=c.closest('.item');
-    if(c.checked){checked++;if(row)row.classList.add('done');}
-    else if(row)row.classList.remove('done');
-  });
+  const checks=[...document.querySelectorAll('input[type="checkbox"]')];
+  let checked=0;
+  checks.forEach(c=>{const row=c.closest('.item');if(c.checked){checked++;if(row)row.classList.add('done');}else if(row)row.classList.remove('done');});
   document.getElementById('checkedCount').textContent=checked;
   document.getElementById('totalCount').textContent=checks.length;
   document.getElementById('progressPct').textContent=(checks.length?Math.round(checked/checks.length*100):0)+'%';
-  var cities=["Hua Hin","Pattaya/Jomtien","Bangkok outskirts"];
-  var scoreCats=["Calm","Convenience","Housing fit","Healthcare access","Grocery access","Road stress","Noise","Wife-fit","Cost-value","Could I do ordinary life here?"];
-  cities.forEach(city=>{
-    var total=0;
-    scoreCats.forEach(cat=>{
-      var el=document.getElementById('score-'+city+'-'+cat);
-      if(el){total+=Number(el.value||0);safeSet('score-'+city+'-'+cat,el.value||0);}
-    });
-    var tot=document.getElementById('total-'+city);
-    if(tot)tot.textContent='· Total '+total;
-  });
+  cities.forEach(city=>{let total=0;scoreCats.forEach(cat=>{const el=document.getElementById('score-'+city+'-'+cat);if(el){total+=Number(el.value||0);safeSet('score-'+city+'-'+cat,el.value||0);}});const tot=document.getElementById('total-'+city);if(tot)tot.textContent='· Total '+total;});
 }
 
 document.querySelectorAll('input[type="checkbox"]').forEach(c=>{
-  var saved=safeGet('check-'+c.id);
-  c.checked=saved==='1';
+  const saved=safeGet('check-'+c.id);c.checked=saved==='1';
   c.addEventListener('change',()=>{safeSet('check-'+c.id,c.checked?'1':'0');updateTotals();});
 });
 
-var cities=["Hua Hin","Pattaya/Jomtien","Bangkok outskirts"];
-var scoreCats=["Calm","Convenience","Housing fit","Healthcare access","Grocery access","Road stress","Noise","Wife-fit","Cost-value","Could I do ordinary life here?"];
-cities.forEach(city=>{
-  scoreCats.forEach(cat=>{
-    var el=document.getElementById('score-'+city+'-'+cat);
-    if(el){var saved=safeGet('score-'+city+'-'+cat);if(saved!==null)el.value=saved;el.addEventListener('input',updateTotals);}
-  });
-});
+cities.forEach(city=>{scoreCats.forEach(cat=>{const el=document.getElementById('score-'+city+'-'+cat);if(el){const saved=safeGet('score-'+city+'-'+cat);if(saved!==null)el.value=saved;el.addEventListener('input',updateTotals);}});});
 
 function fmtUSD(n){return'$'+Number(n||0).toFixed(2);}
 function fmtTHB(n){return'฿'+Number(n||0).toFixed(2);}
 
 function updateFX(from){
-  var rateEl=document.getElementById('fxRate');
-  var thbEl=document.getElementById('thbInput');
-  var usdEl=document.getElementById('usdInput');
+  const rateEl=document.getElementById('fxRate');const thbEl=document.getElementById('thbInput');const usdEl=document.getElementById('usdInput');
   if(!rateEl||!thbEl||!usdEl)return;
-  var rate=Number(rateEl.value||0);if(!rate||rate<=0)rate=36.5;
-  if(from==='thb'){var thb=Number(thbEl.value||0);usdEl.value=thb?(thb/rate).toFixed(2):'';}
-  else if(from==='usd'){var usd=Number(usdEl.value||0);thbEl.value=usd?(usd*rate).toFixed(2):'';}
-  var thb=Number(thbEl.value||0);var usd=Number(usdEl.value||0);
+  let rate=Number(rateEl.value||0);if(!rate||rate<=0)rate=36.5;
+  if(from==='thb'){const thb=Number(thbEl.value||0);usdEl.value=thb?(thb/rate).toFixed(2):'';}
+  else if(from==='usd'){const usd=Number(usdEl.value||0);thbEl.value=usd?(usd*rate).toFixed(2):'';}
+  const thb=Number(thbEl.value||0);const usd=Number(usdEl.value||0);
   document.getElementById('thbToUsd').textContent=fmtUSD(thb/rate);
   document.getElementById('usdToThb').textContent=fmtTHB(usd*rate);
   safeSet('fx-rate',rateEl.value);safeSet('fx-thb',thbEl.value);safeSet('fx-usd',usdEl.value);
 }
 
 function updateArea(from){
-  var sqmEl=document.getElementById('sqmInput');
-  var sqftEl=document.getElementById('sqftInput');
+  const sqmEl=document.getElementById('sqmInput');const sqftEl=document.getElementById('sqftInput');
   if(!sqmEl||!sqftEl)return;
-  if(from==='sqm'){var sqm=Number(sqmEl.value||0);sqftEl.value=sqm?(sqm*10.7639).toFixed(2):'';}
-  else if(from==='sqft'){var sqft=Number(sqftEl.value||0);sqmEl.value=sqft?(sqft/10.7639).toFixed(2):'';}
-  var sqm=Number(sqmEl.value||0);var sqft=Number(sqftEl.value||0);
+  if(from==='sqm'){const sqm=Number(sqmEl.value||0);sqftEl.value=sqm?(sqm*10.7639).toFixed(2):'';}
+  else if(from==='sqft'){const sqft=Number(sqftEl.value||0);sqmEl.value=sqft?(sqft/10.7639).toFixed(2):'';}
+  const sqm=Number(sqmEl.value||0);const sqft=Number(sqftEl.value||0);
   document.getElementById('sqmToSqft').textContent=(sqm*10.7639).toFixed(2)+' sq ft';
   document.getElementById('sqftToSqm').textContent=(sqft/10.7639).toFixed(2)+' sqm';
   safeSet('area-sqm',sqmEl.value);safeSet('area-sqft',sqftEl.value);
 }
 
-var savedTab=safeGet('recon-active-tab');
+const savedTab=safeGet('recon-active-tab');
 if(savedTab&&document.getElementById(savedTab)){
   document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===savedTab));
   document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===savedTab));
 }
 
-var fxRate=document.getElementById('fxRate');
-var thbInput=document.getElementById('thbInput');
-var usdInput=document.getElementById('usdInput');
+const fxRate=document.getElementById('fxRate');const thbInput=document.getElementById('thbInput');const usdInput=document.getElementById('usdInput');
 if(fxRate&&thbInput&&usdInput){
-  fxRate.value=safeGet('fx-rate')||'36.50';
-  thbInput.value=safeGet('fx-thb')||'';
-  usdInput.value=safeGet('fx-usd')||'';
-  fxRate.addEventListener('input',()=>updateFX());
-  thbInput.addEventListener('input',()=>updateFX('thb'));
-  usdInput.addEventListener('input',()=>updateFX('usd'));
+  fxRate.value=safeGet('fx-rate')||'36.50';thbInput.value=safeGet('fx-thb')||'';usdInput.value=safeGet('fx-usd')||'';
+  fxRate.addEventListener('input',()=>updateFX());thbInput.addEventListener('input',()=>updateFX('thb'));usdInput.addEventListener('input',()=>updateFX('usd'));
 }
 
-var sqmInput=document.getElementById('sqmInput');
-var sqftInput=document.getElementById('sqftInput');
+const sqmInput=document.getElementById('sqmInput');const sqftInput=document.getElementById('sqftInput');
 if(sqmInput&&sqftInput){
-  sqmInput.value=safeGet('area-sqm')||'';
-  sqftInput.value=safeGet('area-sqft')||'';
-  sqmInput.addEventListener('input',()=>updateArea('sqm'));
-  sqftInput.addEventListener('input',()=>updateArea('sqft'));
+  sqmInput.value=safeGet('area-sqm')||'';sqftInput.value=safeGet('area-sqft')||'';
+  sqmInput.addEventListener('input',()=>updateArea('sqm'));sqftInput.addEventListener('input',()=>updateArea('sqft'));
 }
-
-var notesBox=document.getElementById('notesBox');
-if(notesBox){notesBox.value=safeGet('recon-notes')||'';notesBox.addEventListener('input',()=>safeSet('recon-notes',notesBox.value));}
 
 updateFX();updateArea();updateTotals();
 </script>
+```
