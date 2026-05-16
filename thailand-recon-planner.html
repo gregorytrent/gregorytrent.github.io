@@ -1,109 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Thailand Recon Planner</title>
-<style>
-:root{--bg:#0b1020;--card:#131a2b;--card2:#1a2338;--text:#eef2ff;--muted:#b8c1d9;--accent:#7c5cff;--ok:#10b981;--line:#2b3650}
-*{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,#08101d 0%, #11192b 100%);color:var(--text);padding:env(safe-area-inset-top) 12px calc(24px + env(safe-area-inset-bottom))}
-.app{max-width:980px;margin:0 auto}
-.hero,.card{background:rgba(19,26,43,.96);border:1px solid var(--line);border-radius:20px;box-shadow:0 10px 28px rgba(0,0,0,.28)}
-.hero{padding:18px 16px;position:sticky;top:0;z-index:50;backdrop-filter: blur(8px)}
-h1,h2,h3{margin:0}
-.sub{color:var(--muted);margin-top:6px;line-height:1.35}
-.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.badge{background:#221f43;color:#ece8ff;border:1px solid #3c3473;border-radius:999px;padding:8px 12px;font-size:.9rem;font-weight:700}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-.stat{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}
-.stat .n{font-size:1.1rem;font-weight:800}.stat .l{font-size:.8rem;color:var(--muted)}
-.tabs{display:flex;gap:8px;overflow:auto;margin:14px 0 16px;padding-bottom:2px}
-.tabs button{flex:0 0 auto;border:1px solid var(--line);background:#12192a;color:var(--muted);border-radius:999px;padding:10px 14px;font-weight:700;cursor:pointer}
-.tabs button.active{background:var(--accent);color:white;border-color:transparent}
-.panel{display:none}.panel.active{display:block}
-.card{padding:14px;margin-bottom:14px}
-.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.pill{background:#111827;border:1px solid var(--line);color:#dbe5ff;border-radius:999px;padding:7px 10px;font-size:.85rem}
-.list{display:grid;gap:10px;margin-top:12px}
-.item{display:flex;gap:10px;align-items:flex-start;background:#0d1424;border:1px solid var(--line);border-radius:14px;padding:10px}
-input[type=checkbox]{width:18px;height:18px;accent-color:var(--ok);margin-top:2px}
-.done label,.done .txt{text-decoration:line-through;color:#94a3b8}
-.section-title{font-size:1.08rem;font-weight:800}
-.grid{display:grid;gap:14px}
-.notes{width:100%;min-height:220px;resize:vertical;background:#0d1424;color:var(--text);border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit}
-.score-grid{display:grid;gap:14px}
-.score-card{background:#0d1424;border:1px solid var(--line);border-radius:16px;padding:12px}
-.score-row{display:grid;grid-template-columns:1fr 72px;gap:10px;align-items:center;margin:9px 0}
-.score-row input{width:100%;background:#111827;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px}
-.small{font-size:.88rem;color:var(--muted);line-height:1.45}
-.footer{color:var(--muted);font-size:.82rem;margin-top:10px}
-.booking-card{background:#0d1424;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:14px}
-.booking-card p{margin:4px 0;font-size:.88rem;color:var(--muted);line-height:1.5}
-.booking-card strong{color:var(--text)}
-@media(min-width:800px){.hero-grid{display:grid;grid-template-columns:2fr 1fr;gap:14px}.score-grid{grid-template-columns:repeat(3,1fr)}}
-</style>
-</head>
-<body>
-<div style="padding:14px 18px;background:#131a2b;border-bottom:1px solid #2b3650;font-family:Arial,Helvetica,sans-serif;display:flex;flex-wrap:wrap;gap:8px;">
-  <a href="/" style="color:#eef2ff;text-decoration:none;font-weight:bold;margin-right:10px;">Home</a>
-  <a href="/packing-list.html" style="color:#b8c1d9;text-decoration:none;margin-right:10px;">Packing</a>
-  <a href="/relocationfinal.html" style="color:#b8c1d9;text-decoration:none;margin-right:10px;">Thailand Recon</a>
-  <a href="/thailand-recon-planner.html" style="color:#b8c1d9;text-decoration:none;margin-right:10px;">Recon Planner App</a>
-  <a href="/theoeducation.html" style="color:#b8c1d9;text-decoration:none;margin-right:10px;">Theo Education</a>
-  <a href="/home-sale-tracker.html" style="color:#b8c1d9;text-decoration:none;">Home Sale Tracker</a>
-</div>
-<div class="app">
-  <div class="hero">
-    <div class="hero-grid">
-      <div>
-        <h1>Thailand Recon Planner</h1>
-        <div class="sub">June 2–15, 2026 · Hua Hin, Pattaya, and Bangkok · Air Canada A7OGKU</div>
-        <div class="badges">
-          <div class="badge">6 nights Hua Hin</div>
-          <div class="badge">3 nights Pattaya</div>
-          <div class="badge">BKK depart Jun 15</div>
-        </div>
-      </div>
-      <div class="stats">
-        <div class="stat"><div class="n" id="checkedCount">0</div><div class="l">Checked</div></div>
-        <div class="stat"><div class="n" id="totalCount">0</div><div class="l">Total</div></div>
-        <div class="stat"><div class="n" id="progressPct">0%</div><div class="l">Complete</div></div>
-      </div>
-    </div>
-    <div class="tabs">
-      <button class="tab active" data-tab="itinerary">Itinerary</button>
-      <button class="tab" data-tab="prep">Prep</button>
-      <button class="tab" data-tab="need">Need To Know</button>
-      <button class="tab" data-tab="utilities">Utilities</button>
-      <button class="tab" data-tab="score">Scoring</button>
-      <button class="tab" data-tab="notes">Notes</button>
-      <button class="tab" data-tab="bookings">Bookings</button>
-    </div>
-  </div>
+<script>
+function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 
-  <div class="panel active" id="itinerary"></div>
+// Main nav tabs
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    var panel=document.getElementById(btn.dataset.tab);
+    if(panel)panel.classList.add('active');
+    safeSet('recon-active-tab',btn.dataset.tab);
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
 
-  <div class="panel" id="prep">
-    <div class="card">
-      <div class="section-title">Pre-trip Checklist</div>
-      <div class="list" id="prepList"></div>
-    </div>
-    <div class="card">
-      <div class="section-title">Reference Communities</div>
-      <div class="grid" id="communities"></div>
-    </div>
-  </div>
+// Phase sub-tabs
+document.querySelectorAll('.tab-button').forEach(button=>{
+  button.addEventListener('click',()=>{
+    var group=button.getAttribute('data-group');
+    var target=button.getAttribute('data-tab');
+    document.querySelectorAll('.tab-button[data-group="'+group+'"]').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel[data-group="'+group+'"]').forEach(p=>p.classList.remove('active'));
+    button.classList.add('active');
+    var el=document.getElementById(target);
+    if(el)el.classList.add('active');
+  });
+});
 
-  <div class="panel" id="need">
-    <div class="card">
-      <div class="section-title">Smooth Interactions</div>
-      <div class="list" id="needList"></div>
-    </div>
-    <div class="card">
-      <div class="section-title">Safety Rules</div>
-      <div class="list" id="safeList"></div>
-    </div>
-  </div>
+function updateTotals(){
+  var checks=[...document.querySelectorAll('input[type="checkbox"]')];
+  var checked=0;
+  checks.forEach(c=>{
+    var row=c.closest('.item');
+    if(c.checked){checked++;if(row)row.classList.add('done');}
+    else if(row)row.classList.remove('done');
+  });
+  document.getElementById('checkedCount').textContent=checked;
+  document.getElementById('totalCount').textContent=checks.length;
+  document.getElementById('progressPct').textContent=(checks.length?Math.round(checked/checks.length*100):0)+'%';
+  var cities=["Hua Hin","Pattaya/Jomtien","Bangkok outskirts"];
+  var scoreCats=["Calm","Convenience","Housing fit","Healthcare access","Grocery access","Road stress","Noise","Wife-fit","Cost-value","Could I do ordinary life here?"];
+  cities.forEach(city=>{
+    var total=0;
+    scoreCats.forEach(cat=>{
+      var el=document.getElementById('score-'+city+'-'+cat);
+      if(el){total+=Number(el.value||0);safeSet('score-'+city+'-'+cat,el.value||0);}
+    });
+    var tot=document.getElementById('total-'+city);
+    if(tot)tot.textContent='· Total '+total;
+  });
+}
 
-  <div clas
+document.querySelectorAll('input[type="checkbox"]').forEach(c=>{
+  var saved=safeGet('check-'+c.id);
+  c.checked=saved==='1';
+  c.addEventListener('change',()=>{safeSet('check-'+c.id,c.checked?'1':'0');updateTotals();});
+});
+
+var cities=["Hua Hin","Pattaya/Jomtien","Bangkok outskirts"];
+var scoreCats=["Calm","Convenience","Housing fit","Healthcare access","Grocery access","Road stress","Noise","Wife-fit","Cost-value","Could I do ordinary life here?"];
+cities.forEach(city=>{
+  scoreCats.forEach(cat=>{
+    var el=document.getElementById('score-'+city+'-'+cat);
+    if(el){var saved=safeGet('score-'+city+'-'+cat);if(saved!==null)el.value=saved;el.addEventListener('input',updateTotals);}
+  });
+});
+
+function fmtUSD(n){return'$'+Number(n||0).toFixed(2);}
+function fmtTHB(n){return'฿'+Number(n||0).toFixed(2);}
+
+function updateFX(from){
+  var rateEl=document.getElementById('fxRate');
+  var thbEl=document.getElementById('thbInput');
+  var usdEl=document.getElementById('usdInput');
+  if(!rateEl||!thbEl||!usdEl)return;
+  var rate=Number(rateEl.value||0);if(!rate||rate<=0)rate=36.5;
+  if(from==='thb'){var thb=Number(thbEl.value||0);usdEl.value=thb?(thb/rate).toFixed(2):'';}
+  else if(from==='usd'){var usd=Number(usdEl.value||0);thbEl.value=usd?(usd*rate).toFixed(2):'';}
+  var thb=Number(thbEl.value||0);var usd=Number(usdEl.value||0);
+  document.getElementById('thbToUsd').textContent=fmtUSD(thb/rate);
+  document.getElementById('usdToThb').textContent=fmtTHB(usd*rate);
+  safeSet('fx-rate',rateEl.value);safeSet('fx-thb',thbEl.value);safeSet('fx-usd',usdEl.value);
+}
+
+function updateArea(from){
+  var sqmEl=document.getElementById('sqmInput');
+  var sqftEl=document.getElementById('sqftInput');
+  if(!sqmEl||!sqftEl)return;
+  if(from==='sqm'){var sqm=Number(sqmEl.value||0);sqftEl.value=sqm?(sqm*10.7639).toFixed(2):'';}
+  else if(from==='sqft'){var sqft=Number(sqftEl.value||0);sqmEl.value=sqft?(sqft/10.7639).toFixed(2):'';}
+  var sqm=Number(sqmEl.value||0);var sqft=Number(sqftEl.value||0);
+  document.getElementById('sqmToSqft').textContent=(sqm*10.7639).toFixed(2)+' sq ft';
+  document.getElementById('sqftToSqm').textContent=(sqft/10.7639).toFixed(2)+' sqm';
+  safeSet('area-sqm',sqmEl.value);safeSet('area-sqft',sqftEl.value);
+}
+
+var savedTab=safeGet('recon-active-tab');
+if(savedTab&&document.getElementById(savedTab)){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===savedTab));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===savedTab));
+}
+
+var fxRate=document.getElementById('fxRate');
+var thbInput=document.getElementById('thbInput');
+var usdInput=document.getElementById('usdInput');
+if(fxRate&&thbInput&&usdInput){
+  fxRate.value=safeGet('fx-rate')||'36.50';
+  thbInput.value=safeGet('fx-thb')||'';
+  usdInput.value=safeGet('fx-usd')||'';
+  fxRate.addEventListener('input',()=>updateFX());
+  thbInput.addEventListener('input',()=>updateFX('thb'));
+  usdInput.addEventListener('input',()=>updateFX('usd'));
+}
+
+var sqmInput=document.getElementById('sqmInput');
+var sqftInput=document.getElementById('sqftInput');
+if(sqmInput&&sqftInput){
+  sqmInput.value=safeGet('area-sqm')||'';
+  sqftInput.value=safeGet('area-sqft')||'';
+  sqmInput.addEventListener('input',()=>updateArea('sqm'));
+  sqftInput.addEventListener('input',()=>updateArea('sqft'));
+}
+
+var notesBox=document.getElementById('notesBox');
+if(notesBox){notesBox.value=safeGet('recon-notes')||'';notesBox.addEventListener('input',()=>safeSet('recon-notes',notesBox.value));}
+
+updateFX();updateArea();updateTotals();
+</script>
