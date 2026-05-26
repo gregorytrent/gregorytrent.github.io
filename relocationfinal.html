@@ -1,562 +1,507 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thailand Relocation Plan | Gregory Trent Sr.</title>
-  <style>
-    :root{--bg:#0f1115;--card:#171a21;--card2:#1d2230;--card3:#202635;--text:#f3f5f7;--muted:#b5bcc7;--accent:#c8a96b;--line:#2b3242;--good:#85d7a4;--warn:#ffd27a;--bad:#ff9a9a;--blue:#91c4ff}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,#0d1016 0%,#111621 100%);color:var(--text);line-height:1.55}
-    .wrap{max-width:1260px;margin:0 auto;padding:28px 18px 60px}
-    .hero,.section,.tab-panel,.card{background:rgba(23,26,33,.92);border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
-    .hero{padding:26px}
-    .section{padding:22px;margin-top:20px}
-    h1,h2,h3,h4{margin:0 0 10px}
-    h1{font-size:2rem;line-height:1.12}
-    h2{font-size:1.25rem;color:var(--accent);margin-top:2px;padding-bottom:8px;border-bottom:1px solid var(--line)}
-    h3{font-size:1rem;color:#fff;margin-top:18px}
-    h4{font-size:.96rem;color:var(--blue);margin-top:14px}
-    p{margin:8px 0 12px}
-    .sub{color:var(--muted);max-width:1040px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:14px}
-    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    .card{padding:16px}
-    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#232a39;color:var(--accent);border:1px solid #36415a;font-size:.84rem;margin:4px 6px 0 0}
-    .mini{font-size:.9rem;color:var(--muted)}
-    .note{background:#18202d;border-left:4px solid var(--accent);padding:14px 16px;border-radius:10px;margin:14px 0}
-    .good{color:var(--good);font-weight:700}
-    .warn{color:var(--warn);font-weight:700}
-    .bad{color:var(--bad);font-weight:700}
-    .blue{color:var(--blue);font-weight:700}
-    ul,ol{margin:8px 0 12px 22px;padding:0}
-    li{margin:6px 0}
-    table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.95rem}
-    th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
-    th{background:var(--card2);color:var(--accent)}
-    .checklist{display:grid;gap:10px;margin-top:10px}
-    .check-item{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#151922}
-    .check-item input{margin-top:3px;transform:scale(1.05)}
-    .decision{border:1px solid #3b465f;border-radius:14px;padding:14px;background:#161c28;margin-top:12px}
-    .decision strong{color:var(--accent)}
-    .tabset{margin-top:16px}
-    .tabs{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .tab-button{background:#1b2130;color:var(--text);border:1px solid #37445e;border-radius:999px;padding:10px 14px;cursor:pointer;font-weight:600}
-    .tab-button.active{background:#273148;color:#fff;border-color:#536688}
-    .tab-panel{display:none;padding:20px;margin-top:14px}
-    .tab-panel.active{display:block}
-    .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:12px}
-    .kpi .card{background:#151922}
-    .pill{display:inline-block;padding:4px 8px;border-radius:999px;background:#202838;color:#dfe7f3;border:1px solid #3a4864;font-size:.78rem;margin-right:6px;margin-bottom:6px}
-    .phase-nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .phase-link{display:inline-block;text-decoration:none;color:var(--text);background:#1b2130;border:1px solid #37445e;padding:10px 12px;border-radius:999px;font-weight:600}
-    .footer{color:var(--muted);font-size:.9rem;margin-top:24px}
-    @media(max-width:860px){.grid-2,.grid-3{grid-template-columns:1fr}h1{font-size:1.65rem}.wrap{padding:18px 12px 40px}.hero,.section,.tab-panel,.card{padding:16px}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Big Move</title>
+
+<style>
+
+:root{
+--bg:#08101d;
+--card:#131a2b;
+--card2:#1a2338;
+--text:#eef2ff;
+--muted:#b8c1d9;
+--accent:#7c5cff;
+--line:#2b3650;
+--gold:#ffd700;
+--danger:#7f0000;
+}
+
+*{
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+margin:0;
+padding:0;
+overflow-x:hidden;
+background:linear-gradient(180deg,#08101d 0%,#11192b 100%);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+color:var(--text);
+}
+
+body{
+padding-bottom:40px;
+}
+
+.top-nav{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+padding:18px;
+background:#111827;
+border-bottom:2px solid var(--gold);
+width:100%;
+}
+
+.top-nav a{
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+min-height:48px;
+padding:10px;
+border-radius:16px;
+border:1px solid #334155;
+background:#131a2b;
+color:var(--gold);
+text-decoration:none;
+font-weight:700;
+font-size:15px;
+width:100%;
+}
+
+.top-nav a:hover{
+background:var(--gold);
+color:#000;
+}
+
+.app{
+width:100%;
+max-width:980px;
+margin:auto;
+padding:12px;
+overflow-x:hidden;
+}
+
+.hero{
+background:#131a2b;
+border:1px solid var(--line);
+border-radius:24px;
+padding:20px;
+width:100%;
+box-shadow:0 10px 28px rgba(0,0,0,.28);
+}
+
+.hero h1{
+margin:0;
+font-size:2.5rem;
+line-height:1;
+}
+
+.sub{
+margin-top:10px;
+font-size:1rem;
+color:var(--muted);
+line-height:1.5;
+}
+
+.badges{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:16px;
+}
+
+.badge{
+padding:8px 14px;
+border-radius:999px;
+background:#2a2154;
+border:1px solid #4c3d99;
+font-size:.85rem;
+font-weight:700;
+white-space:nowrap;
+}
+
+.card{
+background:#131a2b;
+border:1px solid var(--line);
+border-radius:22px;
+padding:20px;
+margin-top:16px;
+width:100%;
+box-shadow:0 10px 28px rgba(0,0,0,.20);
+}
+
+.section-title{
+font-size:1.5rem;
+font-weight:800;
+line-height:1.2;
+}
+
+.small{
+font-size:1rem;
+color:var(--muted);
+line-height:1.6;
+margin-top:10px;
+}
+
+.list{
+display:grid;
+gap:12px;
+margin-top:16px;
+}
+
+.item{
+background:#0d1424;
+border:1px solid var(--line);
+border-radius:18px;
+padding:16px;
+font-size:1rem;
+line-height:1.55;
+}
+
+.alert{
+background:#3b0000;
+border:2px solid #ff2d2d;
+}
+
+.alert .section-title{
+color:#ff6b6b;
+}
+
+.phase-grid{
+display:grid;
+gap:14px;
+margin-top:16px;
+}
+
+.phase{
+background:#0d1424;
+border:1px solid var(--line);
+border-radius:18px;
+padding:18px;
+}
+
+.phase h3{
+margin:0;
+font-size:1.2rem;
+color:var(--gold);
+}
+
+.phase p{
+margin-top:10px;
+color:var(--muted);
+line-height:1.55;
+}
+
+.footer{
+padding:30px 10px;
+text-align:center;
+font-size:.85rem;
+color:var(--muted);
+}
+
+@media(min-width:700px){
+
+.top-nav{
+grid-template-columns:repeat(3,1fr);
+}
+
+.phase-grid{
+grid-template-columns:1fr 1fr;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
-<div style="padding:14px 18px;background:#131a2b;border-bottom:1px solid #2b3650;font-family:Arial,Helvetica,sans-serif;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-  <a href="/" style="color:#eef2ff;text-decoration:none;font-weight:bold;">Home</a>
-  <a href="/packing-list.html" style="color:#b8c1d9;text-decoration:none;">Packing</a>
-  <a href="/relocationfinal.html" style="color:#b8c1d9;text-decoration:none;">Thailand Recon</a>
-  <a href="/thailand-recon-planner.html" style="color:#b8c1d9;text-decoration:none;">Recon Planner App</a>
-  <a href="/theoeducation.html" style="color:#b8c1d9;text-decoration:none;">Theo Education</a>
-  <a href="/home-sale-tracker.html" style="color:#b8c1d9;text-decoration:none;">Home Sale Tracker</a>
+<nav class="top-nav">
+
+<a href="index.html">Home</a>
+
+<a href="relocationfinal.html">Big Move</a>
+
+<a href="thailand-recon-planner.html">Recon Planner App</a>
+
+<a href="packing-list.html">Packing</a>
+
+<a href="theoeducation.html">Theo Education</a>
+
+<a href="home-sale-tracker.html">Home Sale Tracker</a>
+
+</nav>
+
+<div class="app">
+
+<div class="hero">
+
+<h1>Big Move</h1>
+
+<div class="sub">
+Thailand relocation strategy, recon structure, operational movement plan, medical travel safeguards, and phased transition framework.
 </div>
 
-<div style="position:sticky;top:0;z-index:999;padding:16px;border:3px solid #ff0000;background:#2a0000;color:#fff;">
-  <strong style="color:#ff4d4d;font-size:18px;">MANDATORY LONG-FLIGHT MEDICAL PROTOCOL (ALL FLIGHTS OVER 6 HOURS)</strong>
-  <ul style="margin-top:10px;">
-    <li><strong>Clot Prevention:</strong> Compression socks required, aggressive hydration, no prolonged sitting.</li>
-    <li><strong>Doctor Authorization:</strong> Written clearance + medication guidance required prior to travel.</li>
-    <li><strong>Movement Schedule:</strong> Stand/walk every 45–60 minutes (pre-select aisle seating).</li>
-  </ul>
+<div class="badges">
+
+<div class="badge">
+Hua Hin Priority
 </div>
 
-<div class="wrap">
-  <div class="hero">
-    <h1>Thailand Relocation Plan</h1>
-    <p class="sub">Target destination: <strong>Pattaya, Thailand</strong>. Structure: visitor-based scouting and temporary lawful stays before June 2028, then retirement-based relocation after VR&amp;E restrictions end. This version breaks the plan into rolling <strong>30 / 60 / 90-day action tabs for each major phase between now and the move</strong>, plus declutter, home sale, savings, scouting, and final relocation execution.</p>
-    <div>
-      <span class="tag">Official move after June 2028</span>
-      <span class="tag">October scouting trip</span>
-      <span class="tag">Pattaya first</span>
-      <span class="tag">Savings-first plan</span>
-      <span class="tag">Retirement path</span>
-      <span class="tag">Home sale + declutter</span>
-      <span class="tag">Phase-by-phase 30 / 60 / 90</span>
-    </div>
-  </div>
+<div class="badge">
+Pattaya/Jomtien Comparison
+</div>
 
-  <div class="section">
-    <h2>Locked-In Facts</h2>
-    <div class="grid">
-      <div class="card"><strong>Official Move Window</strong><br>After June 2028 due to VR&amp;E restrictions.</div>
-      <div class="card"><strong>Current VA Income</strong><br><span class="blue">US$30,000/year</span> = about <span class="blue">US$2,500/month</span>.</div>
-      <div class="card"><strong>Expected VA Income</strong><br><span class="blue">US$50,000/year</span> = about <span class="blue">US$4,167/month</span> once approved.</div>
-      <div class="card"><strong>Social Security Timing</strong><br>Born 8/1/1965. Earliest age 62 in August 2027. Age 62.5 around February 2028.</div>
-    </div>
-    <div class="note">
-      <strong>Base doctrine:</strong> do not build the relocation around Thai employment. Build it around benefits, legal visitor stays, disciplined savings, declutter and housing simplification, then retirement-based relocation after June 2028.
-    </div>
-  </div>
+<div class="badge">
+Bangkok Transit Only
+</div>
 
-  <div class="section">
-    <h2>Thailand Cost Anchors for Pattaya</h2>
-    <table>
-      <thead><tr><th>Style</th><th>Monthly Range</th><th>Meaning</th></tr></thead>
-      <tbody>
-        <tr><td>Bare disciplined</td><td>US$1,000–US$1,300 / ฿35,000–฿45,000</td><td>Basic but workable. Tight control on rent, food, and entertainment.</td></tr>
-        <tr><td>Comfortable long-stay</td><td>US$1,430–US$2,000 / ฿50,000–฿70,000</td><td>Better condo choices, mixed dining, practical transportation, room to breathe.</td></tr>
-        <tr><td>Comfortable with cushion</td><td>US$2,000–US$2,715 / ฿70,000–฿95,000</td><td>More Western habits, larger healthcare margin, easier discretionary spending.</td></tr>
-      </tbody>
-    </table>
-    <div class="kpi">
-      <div class="card"><strong>At current VA only</strong><br>Pattaya is viable, but discipline matters.</div>
-      <div class="card"><strong>At expected VA</strong><br>Pattaya becomes much stronger.</div>
-      <div class="card"><strong>At VA + Social Security</strong><br>Move becomes materially easier and more resilient.</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>October Scouting Trip Budget</h2>
-    <table>
-      <thead><tr><th>Category</th><th>Working Range</th></tr></thead>
-      <tbody>
-        <tr><td>Flight</td><td>US$900–US$1,300</td></tr>
-        <tr><td>Lodging</td><td>US$500–US$1,000</td></tr>
-        <tr><td>Transport</td><td>US$100–US$250 / ฿3,500–฿8,750</td></tr>
-        <tr><td>Food</td><td>US$250–US$500 / ฿8,750–฿17,500</td></tr>
-        <tr><td>SIM / fees / cushion</td><td>US$250–US$450 / ฿8,750–฿15,750</td></tr>
-        <tr><td><strong>Total</strong></td><td><strong>US$2,200–US$3,500</strong></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="section">
-    <h2>Lifestyle Simulation — Pattaya (Personalized)</h2>
-    <p class="mini">Modeled on your likely routine: gym use, supplements, protein-heavy eating, daily coffee, healthcare awareness, lower-chaos living, and a likely Jomtien base.</p>
-    <table>
-      <thead><tr><th>Category</th><th>Estimated Monthly Range</th><th>Notes</th></tr></thead>
-      <tbody>
-        <tr><td>Housing</td><td>US$515–US$715 / ฿18,000–฿25,000</td><td>Modern Jomtien condo with strong long-stay fit.</td></tr>
-        <tr><td>Utilities</td><td>US$85–US$130 / ฿3,000–฿4,500</td><td>Assumes meaningful air-conditioning use.</td></tr>
-        <tr><td>Food</td><td>US$630–US$860 / ฿22,000–฿30,000</td><td>Higher than average due to protein-heavy eating.</td></tr>
-        <tr><td>Gym + Supplements</td><td>US$105–US$150 / ฿3,700–฿5,200</td><td>Gym membership plus protein and workout support.</td></tr>
-        <tr><td>Transport</td><td>US$70–US$115 / ฿2,500–฿4,000</td><td>Ride apps, taxi use, and moderate local movement.</td></tr>
-        <tr><td>Healthcare</td><td>US$170–US$340 / ฿6,000–฿12,000</td><td>Insurance and out-of-pocket buffer.</td></tr>
-        <tr><td>Lifestyle / Coffee / Outings</td><td>US$140–US$285 / ฿5,000–฿10,000</td><td>Controlled but not stripped-down living.</td></tr>
-      </tbody>
-    </table>
-    <div class="grid-3">
-      <div class="card"><h3>Tight Discipline Version</h3><p><strong>US$1,700 / ฿60,000</strong></p><p class="mini">More home cooking, tighter discretionary spending, strong cost control.</p></div>
-      <div class="card"><h3>Likely Real Pattern</h3><p><strong>US$2,000–US$2,300 / ฿70,000–฿80,000</strong></p><p class="mini">Best estimate for your routine, health priorities, and comfort level.</p></div>
-      <div class="card"><h3>Lifestyle Drift Version</h3><p><strong>US$2,600+ / ฿90,000+</strong></p><p class="mini">Frequent Western dining, convenience spending, and weaker spending control.</p></div>
-    </div>
-    <div class="note"><strong>Most realistic planning target:</strong> <span class="good">US$1,850–US$2,150 / ฿65,000–฿75,000 per month</span>. This fits a health-conscious, routine-driven lifestyle without forcing a stripped-down budget profile.</div>
-    <div class="decision">
-      <strong>Income Stress Test</strong>
-      <ul>
-        <li><strong>At current VA only:</strong> workable, but tighter if spending stays near the likely-real-pattern range.</li>
-        <li><strong>At expected VA:</strong> strong and flexible.</li>
-        <li><strong>At VA + Social Security:</strong> comfortable with significantly more margin.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Master Phase Navigation</h2>
-    <div class="phase-nav">
-      <a class="phase-link" href="#phase1">Phase 1: Foundation Build</a>
-      <a class="phase-link" href="#phase2">Phase 2: October Trip Execution</a>
-      <a class="phase-link" href="#phase3">Phase 3: Post-Trip Reset</a>
-      <a class="phase-link" href="#phase4">Phase 4: 2027 Income + Validation</a>
-      <a class="phase-link" href="#phase5">Phase 5: Late 2027 to Mid-2028 Prep</a>
-      <a class="phase-link" href="#phase6">Phase 6: Final Move Execution</a>
-    </div>
-  </div>
-
-  <div id="phase1" class="section">
-    <h2>Phase 1 — Foundation Build | Now through Pre-Booking</h2>
-    <p class="mini">Primary objective: organize finances, documents, declutter, home-sale decision path, and scouting readiness.</p>
-    <div class="tabset">
-      <div class="tabs">
-        <button class="tab-button active" data-group="phase1" data-tab="phase1-30">First 30 Days</button>
-        <button class="tab-button" data-group="phase1" data-tab="phase1-60">Days 31–60</button>
-        <button class="tab-button" data-group="phase1" data-tab="phase1-90">Days 61–90</button>
-      </div>
-      <div id="phase1-30" class="tab-panel active" data-group="phase1">
-        <h3>First 30 Days</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Open a dedicated Thailand fund.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Build four folders: Passport / IDs, Income Proof, Medical, Thailand Research.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Check passport expiration and resolve renewal risk now.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Create a baseline budget with a visible Thailand savings line.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Pull latest VA benefit letters and save clean PDFs.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Start a room-by-room declutter map: closet, office, garage, storage.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Build home-sale file: mortgage/payoff data, tax record, repair list, comps, agent shortlist.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Fix the October scouting target at <strong>US$3,500</strong>.</span></label>
-        </div>
-        <div class="decision">
-          <strong>Decision Options</strong>
-          <ul>
-            <li><input type="radio" name="phase1-trip"> 10-day October trip if preserving cash is the top priority.</li>
-            <li><input type="radio" name="phase1-trip"> 14-day October trip if field validation is the top priority.</li>
-          </ul>
-        </div>
-      </div>
-      <div id="phase1-60" class="tab-panel" data-group="phase1">
-        <h3>Days 31–60</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Track VA increase decision and prepare to revise the savings model immediately.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Begin weekly flight tracking from Dallas to Bangkok.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Shortlist lodging zones in Jomtien and Pratumnak.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Create Pattaya field checklist: hospitals, groceries, pharmacies, gyms, transport, walkability, noise.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Sort belongings into five categories: Keep U.S., Keep Thailand, Sell, Donate, Trash/Shred.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Prepare concise medical summary and active medication list for travel.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Estimate home sale timing: sell soon, prepare now and sell later, or hold until 2027.</span></label>
-        </div>
-        <div class="decision">
-          <strong>Decision Options</strong>
-          <ul>
-            <li><input type="radio" name="phase1-home"> Sell home soon to simplify the 2028 launch.</li>
-            <li><input type="radio" name="phase1-home"> Delay listing but fully declutter and keep property move-ready.</li>
-          </ul>
-        </div>
-      </div>
-      <div id="phase1-90" class="tab-panel" data-group="phase1">
-        <h3>Days 61–90</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Choose final October trip dates.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Build an on-trip neighborhood scorecard for Jomtien, Pratumnak, and Central Pattaya.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Complete first-wave declutter and start selling easy high-clutter items.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Finish first pass of home-sale prep list: repairs, staging, photo readiness, net proceeds estimate.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Choose whether the home will be listed soon or merely prepared for later listing.</span></label>
-        </div>
-        <div class="decision">
-          <strong>Checkpoint</strong>
-          <ul>
-            <li>If flight prices are acceptable, move into booking mode.</li>
-            <li>If cash is tight, reduce trip length before sacrificing the recon trip entirely.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="phase2" class="section">
-    <h2>Phase 2 — October Trip Execution</h2>
-    <p class="mini">Primary objective: convert assumptions into real Pattaya numbers and a clear yes / no / modify decision.</p>
-    <div class="tabset">
-      <div class="tabs">
-        <button class="tab-button active" data-group="phase2" data-tab="phase2-30">30 Days Before Trip</button>
-        <button class="tab-button" data-group="phase2" data-tab="phase2-60">14–30 Days Before Trip</button>
-        <button class="tab-button" data-group="phase2" data-tab="phase2-90">Trip Window</button>
-      </div>
-      <div id="phase2-30" class="tab-panel active" data-group="phase2">
-        <h3>30 Days Before Trip</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Book flight and lodging.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Keep Jomtien as the base unless Pratumnak becomes the stronger test fit.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Buy travel insurance if using it for medical and disruption protection.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Save digital copies of passport, itinerary, hotel confirmation, insurance, VA proof, and bank proof.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Create an expense tracker in both U.S. dollars and Thai baht.</span></label>
-        </div>
-      </div>
-      <div id="phase2-60" class="tab-panel" data-group="phase2">
-        <h3>14–30 Days Before Trip</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Confirm airport transfer plan from Bangkok to Pattaya.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Finalize field checklist for rent quotes, food costs, transport, healthcare, and noise scoring.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Carry medication list and any needed prescription support documents.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Set a hard daily spend guide for discretionary spending.</span></label>
-        </div>
-        <div class="decision">
-          <strong>Decision Options</strong>
-          <ul>
-            <li><input type="radio" name="phase2-base"> Jomtien-heavy trip plan</li>
-            <li><input type="radio" name="phase2-base"> Equal split between Jomtien and Pratumnak</li>
-          </ul>
-        </div>
-      </div>
-      <div id="phase2-90" class="tab-panel" data-group="phase2">
-        <h3>Trip Window</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Collect at least 5 real housing quotes in <strong>US$ and ฿</strong>.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Log food costs for local and Western meals separately.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Test transport patterns at different times of day.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Visit hospital and pharmacy zones you would realistically use.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Score each area for noise, safety, walkability, beach use, and routine livability.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Write a blunt go / no-go note before leaving Thailand.</span></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="phase3" class="section">
-    <h2>Phase 3 — Post-Trip Reset | First 90 Days After Return</h2>
-    <p class="mini">Primary objective: replace estimate-based planning with field-tested numbers and adjust the long-range strategy.</p>
-    <div class="tabset">
-      <div class="tabs">
-        <button class="tab-button active" data-group="phase3" data-tab="phase3-30">First 30 Days After Return</button>
-        <button class="tab-button" data-group="phase3" data-tab="phase3-60">Days 31–60 After Return</button>
-        <button class="tab-button" data-group="phase3" data-tab="phase3-90">Days 61–90 After Return</button>
-      </div>
-      <div id="phase3-30" class="tab-panel active" data-group="phase3">
-        <h3>First 30 Days After Return</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Rebuild Pattaya budget with actual field costs in <strong>US$ and ฿</strong>.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Rank Jomtien, Pratumnak, and Central Pattaya based on lived reality.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Decide: Pattaya confirmed, Pattaya modified, or Pattaya rejected.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Update savings targets based on actual trip spending and expected move style.</span></label>
-        </div>
-      </div>
-      <div id="phase3-60" class="tab-panel" data-group="phase3">
-        <h3>Days 31–60 After Return</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Decide whether a second Thailand validation trip is required in 2027.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Refine home-sale strategy using the clearer Thailand cost picture.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Continue declutter with the benefit of now knowing what may actually go to Thailand.</span></label>
-        </div>
-        <div class="decision">
-          <strong>Decision Options</strong>
-          <ul>
-            <li><input type="radio" name="phase3-secondtrip"> No second trip needed if Pattaya is already clearly confirmed.</li>
-            <li><input type="radio" name="phase3-secondtrip"> Add a second trip in 2027 if climate, housing, or routine still need validation.</li>
-          </ul>
-        </div>
-      </div>
-      <div id="phase3-90" class="tab-panel" data-group="phase3">
-        <h3>Days 61–90 After Return</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Lock in the revised Thailand budget model.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Set new monthly savings target for the next 12 months.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Push home prep into either active sale mode or controlled hold mode.</span></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="phase4" class="section">
-    <h2>Phase 4 — 2027 Income, Validation, and Positioning</h2>
-    <p class="mini">Primary objective: finalize income strategy, possible second recon trip, and long-range housing simplification.</p>
-    <div class="tabset">
-      <div class="tabs">
-        <button class="tab-button active" data-group="phase4" data-tab="phase4-30">First 30 Days of 2027 Cycle</button>
-        <button class="tab-button" data-group="phase4" data-tab="phase4-60">Mid-Cycle 60-Day Push</button>
-        <button class="tab-button" data-group="phase4" data-tab="phase4-90">Late-Cycle 90-Day Checkpoint</button>
-      </div>
-      <div id="phase4-30" class="tab-panel active" data-group="phase4">
-        <h3>First 30 Days of 2027 Cycle</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Review actual reserve balance against the June 2028 target.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Decide whether to start Social Security at 62, 62.5, or later.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Revisit the Thai long-stay temporary strategy before 2028: short visits vs longer visitor-style stays.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Review whether a second Pattaya trip is strategically worth the cost.</span></label>
-        </div>
-      </div>
-      <div id="phase4-60" class="tab-panel" data-group="phase4">
-        <h3>Mid-Cycle 60-Day Push</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>If needed, book the second Thailand validation trip.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Continue aggressive declutter and narrow belongings to true keep vs release.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>If the house has not been sold, make a firm decision whether it must be sold before 2028.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Refresh Pattaya rents and cost assumptions using current market listings.</span></label>
-        </div>
-      </div>
-      <div id="phase4-90" class="tab-panel" data-group="phase4">
-        <h3>Late-Cycle 90-Day Checkpoint</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Confirm final Pattaya target zone: Jomtien, Pratumnak, or hybrid start.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Confirm Social Security start plan and its effect on the move budget.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Move the home into sold, listed, or fully prepped status.</span></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="phase5" class="section">
-    <h2>Phase 5 — Late 2027 to Mid-2028 Final Preparation</h2>
-    <p class="mini">Primary objective: complete the financial, logistical, and document runway needed for a lawful post-June 2028 relocation.</p>
-    <div class="tabset">
-      <div class="tabs">
-        <button class="tab-button active" data-group="phase5" data-tab="phase5-30">30-Day Sprint</button>
-        <button class="tab-button" data-group="phase5" data-tab="phase5-60">60-Day Sprint</button>
-        <button class="tab-button" data-group="phase5" data-tab="phase5-90">90-Day Sprint</button>
-      </div>
-      <div id="phase5-30" class="tab-panel active" data-group="phase5">
-        <h3>30-Day Sprint</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Gather all income proof for retirement-style visa planning.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Update final reserve model: move cash, first lease, healthcare, transport, setup, emergency fund.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Make a final inventory of what will be sold, stored, shipped, or abandoned.</span></label>
-        </div>
-      </div>
-      <div id="phase5-60" class="tab-panel" data-group="phase5">
-        <h3>60-Day Sprint</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Confirm first-lease strategy: 3 months, 6 months, or 12 months.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Set up U.S. continuity plan for banking, mail, taxes, and critical accounts.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Complete home-sale closeout or final hold decision.</span></label>
-        </div>
-        <div class="decision">
-          <strong>Decision Options</strong>
-          <ul>
-            <li><input type="radio" name="phase5-lease"> First Thailand lease at 3 months for maximum flexibility.</li>
-            <li><input type="radio" name="phase5-lease"> First Thailand lease at 6 months for more stability.</li>
-          </ul>
-        </div>
-      </div>
-      <div id="phase5-90" class="tab-panel" data-group="phase5">
-        <h3>90-Day Sprint</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Run final cash test for the first 6 months in Thailand in <strong>US$ and ฿</strong>.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Confirm travel date window after June 2028.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Resolve any lingering clutter, storage, or U.S. property issues.</span></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="phase6" class="section">
-    <h2>Phase 6 — Final Move Execution | After June 2028</h2>
-    <p class="mini">Primary objective: move legally, land cleanly, and begin with a controlled first lease and routine.</p>
-    <div class="tabset">
-      <div class="tabs">
-        <button class="tab-button active" data-group="phase6" data-tab="phase6-30">30 Days Before Departure</button>
-        <button class="tab-button" data-group="phase6" data-tab="phase6-60">Departure Window</button>
-        <button class="tab-button" data-group="phase6" data-tab="phase6-90">First 90 Days in Thailand</button>
-      </div>
-      <div id="phase6-30" class="tab-panel active" data-group="phase6">
-        <h3>30 Days Before Departure</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Book flight and first Thailand stay or lease.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Confirm all required documents are duplicated digitally and physically.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Settle final U.S. property, utilities, and service obligations.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Carry a move cash plan in <strong>US$ and ฿</strong>.</span></label>
-        </div>
-      </div>
-      <div id="phase6-60" class="tab-panel" data-group="phase6">
-        <h3>Departure Window</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Land in Thailand with clear transportation, lodging, and first-week setup plan.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Stay disciplined during the first 2 weeks; do not overspend out of excitement.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Set up the local routine around healthcare, groceries, transport, and beach/day rhythm.</span></label>
-        </div>
-      </div>
-      <div id="phase6-90" class="tab-panel" data-group="phase6">
-        <h3>First 90 Days in Thailand</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Validate the real first-month Pattaya budget in <strong>US$ and ฿</strong>.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Assess whether Jomtien remains the right long-stay base.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Do not buy property or lock into long commitments until routine proves stable.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Run a 90-day review: housing, healthcare, transport, social fit, and monthly burn rate.</span></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Home Sale and Declutter Core Checklist</h2>
-    <div class="grid-2">
-      <div class="card">
-        <h3>Declutter</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Digitize important paper files.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Eliminate duplicate furniture and electronics.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Keep only what supports U.S. continuity, Thailand relocation, or genuine sentimental value.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Reduce storage needs before the move, not after.</span></label>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Home Sale</h3>
-        <div class="checklist">
-          <label class="check-item"><input type="checkbox"> <span>Calculate realistic net proceeds, not gross sale price.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Factor in mortgage payoff, arrears, repairs, concessions, fees, and closing costs.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Decide whether sale timing should fund the Thailand reserve or simply remove a future constraint.</span></label>
-          <label class="check-item"><input type="checkbox"> <span>Keep the home from becoming the item that delays the move.</span></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Year 1 &amp; Year 2 Financial + Travel Plan</h2>
-    <p class="mini">Includes structured savings and 2 round-trip flights per year for you and your wife.</p>
-    <h3>Annual Travel Requirement (U.S. Trips)</h3>
-    <table>
-      <thead><tr><th>Item</th><th>Cost (USD)</th><th>Cost (THB)</th></tr></thead>
-      <tbody>
-        <tr><td>Roundtrip Flight (per person)</td><td>$1,200–$1,800</td><td>฿42,000–฿63,000</td></tr>
-        <tr><td>2 Trips x 2 People</td><td>$4,800–$7,200</td><td>฿168,000–฿252,000</td></tr>
-      </tbody>
-    </table>
-    <div class="note"><strong>Annual travel budget target:</strong> <span class="good">$6,000 / ฿210,000</span></div>
-    <h3>Year 1 (Stabilization Year)</h3>
-    <table>
-      <thead><tr><th>Category</th><th>Monthly</th><th>Annual</th></tr></thead>
-      <tbody>
-        <tr><td>Living Expenses</td><td>$2,000 / ฿70,000</td><td>$24,000 / ฿840,000</td></tr>
-        <tr><td>Travel Fund</td><td>$500 / ฿17,500</td><td>$6,000 / ฿210,000</td></tr>
-        <tr><td>Savings</td><td>$1,500–$2,000</td><td>$18,000–$24,000</td></tr>
-      </tbody>
-    </table>
-    <div class="note"><strong>Year 1 Objective:</strong> Stabilize lifestyle, validate costs, maintain strong liquidity.</div>
-    <h3>Year 2 (Optimization Year)</h3>
-    <table>
-      <thead><tr><th>Category</th><th>Monthly</th><th>Annual</th></tr></thead>
-      <tbody>
-        <tr><td>Living Expenses</td><td>$2,000–$2,200</td><td>$24,000–$26,400</td></tr>
-        <tr><td>Travel Fund</td><td>$500</td><td>$6,000</td></tr>
-        <tr><td>Savings</td><td>$2,000–$3,000</td><td>$24,000–$36,000</td></tr>
-      </tbody>
-    </table>
-    <div class="decision">
-      <strong>Optimization Options</strong>
-      <ul>
-        <li><input type="radio" name="year2"> Increase travel comfort (premium seats, better timing)</li>
-        <li><input type="radio" name="year2"> Increase savings rate for long-term security</li>
-        <li><input type="radio" name="year2"> Hybrid approach (moderate upgrades + savings)</li>
-      </ul>
-    </div>
-    <div class="note">
-      <strong>2-Year Position Outcome:</strong>
-      <ul>
-        <li>All living costs covered comfortably</li>
-        <li>4 international trips completed</li>
-        <li>$40K–$60K+ accumulated savings (post-move)</li>
-      </ul>
-    </div>
-  </div>
-
-  <p class="footer">Prepared as a phase-based planning file with rolling 30 / 60 / 90-day tabs for each major segment between now and the move.</p>
-
-  <div style="margin-top:20px;padding:16px;border:2px solid #ff4d4d;border-radius:14px;background:#2a1212;">
-    <strong style="color:#ff4d4d;">CRITICAL TRAVEL PROTOCOL (ALL FLIGHTS)</strong>
-    <ul style="margin-top:10px;">
-      <li><strong>Clot Prevention:</strong> Compression socks, hydration strategy, avoid prolonged immobility.</li>
-      <li><strong>Doctor Clearance:</strong> Obtain written medical clearance and medication guidance prior to travel.</li>
-      <li><strong>Movement Protocol:</strong> Stand and walk every 45–60 minutes during flight; pre-plan aisle access.</li>
-    </ul>
-  </div>
+<div class="badge">
+2026 Recon
+</div>
 
 </div>
 
-<script>
-  const buttons = document.querySelectorAll('.tab-button');
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      const group = button.getAttribute('data-group');
-      const target = button.getAttribute('data-tab');
-      document.querySelectorAll('.tab-button[data-group="' + group + '"]').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-panel[data-group="' + group + '"]').forEach(p => p.classList.remove('active'));
-      button.classList.add('active');
-      document.getElementById(target).classList.add('active');
-    });
-  });
-</script>
+</div>
+
+<div class="card alert">
+
+<div class="section-title">
+MANDATORY LONG-FLIGHT MEDICAL PROTOCOL (ALL FLIGHTS OVER 6 HOURS)
+</div>
+
+<div class="list">
+
+<div class="item">
+<strong>Clot Prevention:</strong>
+Compression socks required, aggressive hydration, and no prolonged sitting.
+</div>
+
+<div class="item">
+<strong>Doctor Authorization:</strong>
+Written clearance and medication guidance required prior to travel.
+</div>
+
+<div class="item">
+<strong>Movement Schedule:</strong>
+Stand or walk every 45–60 minutes. Pre-select aisle seating whenever possible.
+</div>
+
+<div class="item">
+<strong>Fatigue Rule:</strong>
+No aggressive recon activity immediately after long-haul arrival days.
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">
+Thailand Relocation Strategy
+</div>
+
+<div class="small">
+Primary objective is a structured, reality-based relocation evaluation rather than tourism. The recon phase is designed to determine sustainable daily living compatibility, healthcare practicality, transportation stress levels, housing quality, grocery access, beach accessibility, long-term comfort, and operational simplicity.
+</div>
+
+<div class="list">
+
+<div class="item">
+Primary target area:
+<strong>Hua Hin</strong>
+because of calmer atmosphere, beach accessibility, lower chaos, and stronger retirement/lifestyle alignment.
+</div>
+
+<div class="item">
+Secondary comparison area:
+<strong>Pattaya/Jomtien</strong>
+to evaluate convenience, healthcare concentration, transportation practicality, and housing value.
+</div>
+
+<div class="item">
+Bangkok functions primarily as a transit and infrastructure node rather than a preferred long-term residential target.
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">
+Current Confirmed Hotel Structure
+</div>
+
+<div class="list">
+
+<div class="item">
+<strong>Kiang Haad Beach Hua Hin</strong><br>
+Jun 5–11<br>
+Primary recon base
+</div>
+
+<div class="item">
+<strong>The Siam Guest House – SHA Extra Plus</strong><br>
+Jun 11–14<br>
+Secondary comparison base
+</div>
+
+<div class="item">
+Bangkok overnight currently removed from front-end structure to improve efficiency and reduce unnecessary unpack/repack movement.
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">
+Operational Logic
+</div>
+
+<div class="list">
+
+<div class="item">
+Land at BKK → transfer directly to Hua Hin.
+</div>
+
+<div class="item">
+Use Hua Hin for primary housing, lifestyle, and operational recon.
+</div>
+
+<div class="item">
+Move to Pattaya/Jomtien afterward for comparative analysis rather than primary commitment.
+</div>
+
+<div class="item">
+Use Bangkok only for airport connectivity and transit flexibility.
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">
+Phased Move Structure
+</div>
+
+<div class="phase-grid">
+
+<div class="phase">
+
+<h3>Phase 1 — Recon</h3>
+
+<p>
+Validate actual livability, transportation stress, medical practicality, neighborhood compatibility, and daily operational comfort before making commitments.
+</p>
+
+</div>
+
+<div class="phase">
+
+<h3>Phase 2 — Trial Living</h3>
+
+<p>
+Extended temporary stay structure while maintaining fallback flexibility and evaluating sustainability beyond vacation conditions.
+</p>
+
+</div>
+
+<div class="phase">
+
+<h3>Phase 3 — Long-Term Positioning</h3>
+
+<p>
+Transition toward stable long-term living structure after confirming healthcare systems, housing stability, budgeting, and overall life alignment.
+</p>
+
+</div>
+
+<div class="phase">
+
+<h3>Phase 4 — Optimization</h3>
+
+<p>
+Refine transportation systems, community integration, cost structure, medical logistics, and operational simplicity for sustainable long-term execution.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">
+Core Decision Filters
+</div>
+
+<div class="list">
+
+<div class="item">
+Does this location support peace rather than constant friction?
+</div>
+
+<div class="item">
+Can ordinary daily life operate efficiently without exhaustion?
+</div>
+
+<div class="item">
+Is healthcare realistically accessible?
+</div>
+
+<div class="item">
+Would this still feel sustainable after novelty disappears?
+</div>
+
+<div class="item">
+Does this environment support long-term stability rather than temporary excitement?
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">
+Reality Rules
+</div>
+
+<div class="list">
+
+<div class="item">
+Do not sign leases immediately after first impressions.
+</div>
+
+<div class="item">
+Revisit finalist neighborhoods at multiple times of day.
+</div>
+
+<div class="item">
+Test grocery access, pharmacy access, and traffic patterns directly.
+</div>
+
+<div class="item">
+Evaluate transportation fatigue honestly.
+</div>
+
+<div class="item">
+Comfort and sustainability matter more than social-media aesthetics.
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+Big Move • Gregory Trent • Thailand Relocation Framework
+</div>
+
+</div>
+
 </body>
 </html>
