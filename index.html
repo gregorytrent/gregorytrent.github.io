@@ -1,158 +1,162 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Utilities</title>
-  <style>
-    :root{--bg:#071124;--card:#0b1730;--line:#223257;--text:#eef2ff;--muted:#c8d0e6;--soft:#04102a}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#06101f 0%,#0a1730 100%);color:var(--text);padding:0}
-    .topnav{padding:14px 18px;background:#101b38;border-bottom:1px solid #2b3c67;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-    .topnav a{color:#cbd4ec;text-decoration:none;font-weight:600}
-    .topnav a.active{color:#eef2ff;font-weight:800}
-    .wrap{max-width:1100px;margin:0 auto;padding:24px}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:24px;margin-bottom:18px;box-shadow:0 10px 28px rgba(0,0,0,.28)}
-    h1,h2{margin:0}
-    h1{font-size:56px;line-height:1.05;font-weight:800;letter-spacing:-1px;margin-bottom:18px}
-    h2{font-size:32px;margin-bottom:10px}
-    .sub{color:var(--muted);font-size:18px;line-height:1.5;font-weight:600;margin-bottom:20px;max-width:950px}
-    .small{color:var(--muted);font-size:15px;line-height:1.5}
-    textarea{width:100%;min-height:380px;background:var(--soft);color:var(--text);border:2px solid #31457a;border-radius:28px;padding:28px;font:inherit;font-size:28px;line-height:1.5;resize:vertical;outline:none}
-    textarea::placeholder{color:#d6dcef;opacity:1;font-weight:700}
-    .toolbar{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-    button{border:1px solid #31457a;background:#132247;color:#eef2ff;padding:12px 18px;border-radius:14px;cursor:pointer;font-size:16px;font-weight:700}
-    button:hover{background:#1a2d5e}
-    .two{display:grid;gap:16px}
-    .label{font-size:14px;color:var(--muted);margin-bottom:6px}
-    input{width:100%;background:var(--soft);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:20px}
-    .result{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:14px}
-    .big{font-size:32px;font-weight:800;margin-top:6px}
-    .phrase-grid{display:grid;gap:16px}
-    .phrase{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:16px}
-    .phrase-en{font-size:18px;font-weight:800}
-    .phrase-th{font-size:32px;font-weight:800;margin-top:8px;line-height:1.35}
-    .phrase-rom{font-size:22px;color:#d8d2ff;margin-top:8px}
-    .phrase-note{font-size:15px;color:var(--muted);margin-top:8px;line-height:1.45}
-    @media(min-width:800px){.two{grid-template-columns:1fr 1fr}.phrase-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:900px){.wrap{padding:14px}.card{padding:18px;border-radius:22px}h1{font-size:38px}h2{font-size:26px}.sub{font-size:18px;line-height:1.45}textarea{min-height:300px;font-size:22px;padding:20px;border-radius:22px}.phrase-th{font-size:24px}.phrase-rom{font-size:18px}.big{font-size:26px}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Home</title>
+<style>
+:root{--bg:#08101d;--card:#131a2b;--card2:#1a2338;--text:#eef2ff;--muted:#b8c1d9;--accent:#7c5cff;--line:#2b3650;--gold:#ffd700}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;overflow-x:hidden;background:linear-gradient(180deg,#08101d 0%,#11192b 100%);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text)}
+body{padding-bottom:40px}
+.top-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px;background:#111827;border-bottom:2px solid var(--gold);width:100%}
+.top-nav a{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:10px;border-radius:16px;border:1px solid #334155;background:#131a2b;color:var(--gold);text-decoration:none;font-weight:700;font-size:15px;width:100%}
+.top-nav a:hover{background:var(--gold);color:#000}
+.app{width:100%;max-width:980px;margin:0 auto;padding:12px}
+.hero,.card{background:rgba(19,26,43,.96);border:1px solid var(--line);border-radius:22px;box-shadow:0 10px 28px rgba(0,0,0,.28)}
+.hero{padding:18px;margin-bottom:14px}
+h1{margin:0;font-size:2.4rem;line-height:1}
+h2{margin:0;font-size:1.4rem}
+.sub{margin-top:8px;font-size:1rem;color:var(--muted);line-height:1.4}
+.grid{display:grid;gap:14px;margin-top:14px}
+.card{padding:18px}
+.card a{color:var(--text);text-decoration:none}
+.card-title{font-size:1.25rem;font-weight:800;color:#fff}
+.card-text{font-size:.95rem;color:var(--muted);line-height:1.45;margin-top:6px}
+.button{display:inline-block;margin-top:14px;padding:10px 14px;border-radius:999px;background:var(--accent);color:#fff!important;text-decoration:none;font-weight:800}
+.utility-grid{display:grid;gap:14px;margin-top:14px}
+label{display:block;font-size:.9rem;color:var(--muted);margin-bottom:6px}
+input,textarea{width:100%;background:#0d1424;color:var(--text);border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit}
+textarea{min-height:180px;resize:vertical}
+.result{background:#0d1424;border:1px solid var(--line);border-radius:14px;padding:14px}
+.result strong{font-size:1.4rem}
+.footer{padding:24px 10px;text-align:center;font-size:.85rem;color:var(--muted)}
+@media(min-width:700px){.top-nav{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.utility-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
 </head>
 <body>
-  <div class="topnav">
- <div style="padding:14px 18px;background:#131a2b;border-bottom:1px solid #2b3650;font-family:Arial,Helvetica,sans-serif;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-  <a href="/" style="color:#eef2ff;text-decoration:none;font-weight:bold;">Home</a>
-  <a href="/packing-list.html" style="color:#b8c1d9;text-decoration:none;">Packing</a>
-  <a href="/relocationfinal.html" style="color:#b8c1d9;text-decoration:none;">Big Move</a>
-  <a href="/thailand-recon-planner.html" style="color:#b8c1d9;text-decoration:none;">Big Move Planner</a>
-  <a href="/theoeducation.html" style="color:#b8c1d9;text-decoration:none;">Theo Education</a>
-  <a href="/home-sale-tracker.html" style="color:#b8c1d9;text-decoration:none;">Home Sale Tracker</a>
+<nav class="top-nav">
+<a href="index.html">Home</a>
+<a href="relocationfinal.html">Big Move</a>
+<a href="thailand-recon-planner.html">Recon Planner App</a>
+<a href="packing-list.html">Packing</a>
+<a href="theoeducation.html">Theo Education</a>
+<a href="home-sale-tracker.html">Home Sale Tracker</a>
+</nav>
+<div class="app">
+<div class="hero">
+<h1>Home</h1>
+<div class="sub">Central command hub for the Thailand move, recon planning, packing, theological education, and home-sale tracking.</div>
 </div>
-  <div class="wrap">
-    <div class="card">
-      <h1>Utilities</h1>
-      <div class="sub">Baht converter, property-size converter, working notes, and large-font transaction phrases.</div>
-    </div>
-    <div class="card">
-      <h2>Baht ⇄ USD Converter</h2>
-      <div class="small">Set your own exchange rate. Default is Thai baht per 1 USD.</div>
-      <div style="margin-top:16px">
-        <div class="label">Exchange rate (THB per 1 USD)</div>
-        <input id="fxRate" type="number" step="0.01" min="0.01" value="36.50">
-      </div>
-      <div class="two" style="margin-top:16px">
-        <div><div class="label">Thai baht (THB)</div><input id="thbInput" type="number" step="0.01" min="0" placeholder="Enter baht"></div>
-        <div><div class="label">US dollars (USD)</div><input id="usdInput" type="number" step="0.01" min="0" placeholder="Enter dollars"></div>
-      </div>
-      <div class="two" style="margin-top:16px">
-        <div class="result"><div class="label">THB → USD</div><div class="big" id="thbToUsd">$0.00</div></div>
-        <div class="result"><div class="label">USD → THB</div><div class="big" id="usdToThb">฿0.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <h2>SQM ⇄ SQFT Converter</h2>
-      <div class="small">Useful for Thailand property listings.</div>
-      <div class="two" style="margin-top:16px">
-        <div><div class="label">Square meters (sqm)</div><input id="sqmInput" type="number" step="0.01" min="0" placeholder="Enter sqm"></div>
-        <div><div class="label">Square feet (sq ft)</div><input id="sqftInput" type="number" step="0.01" min="0" placeholder="Enter sq ft"></div>
-      </div>
-      <div class="two" style="margin-top:16px">
-        <div class="result"><div class="label">SQM → SQFT</div><div class="big" id="sqmToSqft">0.00 sq ft</div></div>
-        <div class="result"><div class="label">SQFT → SQM</div><div class="big" id="sqftToSqm">0.00 sqm</div></div>
-      </div>
-      <div class="small" style="margin-top:12px"><strong>Reference:</strong> 232 sqm ≈ 2,497.23 sq ft</div>
-    </div>
-    <div class="card">
-      <h2>Working Notes</h2>
-      <div class="sub">Track addresses, agents, rent, road feel, flood concerns, grocery distance, wife-fit observations, and final rankings.</div>
-      <textarea id="notesBox" placeholder="Type notes here..."></textarea>
-      <div class="toolbar">
-        <button onclick="copyNotes()">Copy Notes</button>
-        <button onclick="clearNotes()">Clear Notes</button>
-      </div>
-      <div class="small" style="margin-top:14px">Notes save in this browser on this device.</div>
-    </div>
-    <div class="card">
-      <h2>Transaction Phrases</h2>
-      <div class="phrase-grid" style="margin-top:16px">
-        <div class="phrase"><div class="phrase-en">How much is this?</div><div class="phrase-th">อันนี้ราคาเท่าไหร่ครับ</div><div class="phrase-rom">an-nee raa-khaa thao-rai khráp</div><div class="phrase-note">Basic price question.</div></div>
-        <div class="phrase"><div class="phrase-en">Can you lower the price?</div><div class="phrase-th">ลดราคาได้ไหมครับ</div><div class="phrase-rom">lót raa-khaa dâai mái khráp</div><div class="phrase-note">Polite negotiation phrase.</div></div>
-        <div class="phrase"><div class="phrase-en">Too expensive.</div><div class="phrase-th">แพงไปครับ</div><div class="phrase-rom">phaeng bpai khráp</div><div class="phrase-note">Useful reaction to a quoted price.</div></div>
-        <div class="phrase"><div class="phrase-en">I'm just looking.</div><div class="phrase-th">ขอดูก่อนครับ</div><div class="phrase-rom">khǎaw doo gàawn khráp</div><div class="phrase-note">Helps reduce sales pressure.</div></div>
-        <div class="phrase"><div class="phrase-en">I want to rent long term.</div><div class="phrase-th">ผมต้องการเช่าระยะยาวครับ</div><div class="phrase-rom">phǒm dtông-gaan châo rá-yá-yaao khráp</div><div class="phrase-note">Useful with landlords and agents.</div></div>
-        <div class="phrase"><div class="phrase-en">Is there a better monthly price?</div><div class="phrase-th">มีราคาต่อเดือนที่ดีกว่านี้ไหมครับ</div><div class="phrase-rom">mee raa-khaa dtàaw deuan thêe dee gwàa nee mái khráp</div><div class="phrase-note">Long-stay negotiation phrase.</div></div>
-        <div class="phrase"><div class="phrase-en">Does this include utilities?</div><div class="phrase-th">รวมค่าน้ำค่าไฟไหมครับ</div><div class="phrase-rom">ruam khâa-nám khâa-fai mái khráp</div><div class="phrase-note">Ask about water and electricity.</div></div>
-        <div class="phrase"><div class="phrase-en">Please take me here.</div><div class="phrase-th">กรุณาพาผมไปที่นี่ครับ</div><div class="phrase-rom">gà-rú-naa phaa phǒm bpai thêe nêe khráp</div><div class="phrase-note">Show this to drivers.</div></div>
-        <div class="phrase"><div class="phrase-en">Please slow down.</div><div class="phrase-th">ช่วยขับช้าลงหน่อยครับ</div><div class="phrase-rom">chûay khàp cháa long nòi khráp</div><div class="phrase-note">Useful in taxis and ride-share.</div></div>
-        <div class="phrase"><div class="phrase-en">Thank you.</div><div class="phrase-th">ขอบคุณครับ</div><div class="phrase-rom">khàawp khun khráp</div><div class="phrase-note">Always useful.</div></div>
-      </div>
-    </div>
-  </div>
-  <script>
-    const notesBox=document.getElementById('notesBox');
-    try{notesBox.value=localStorage.getItem('site-notes')||'';notesBox.addEventListener('input',()=>{localStorage.setItem('site-notes',notesBox.value);});}catch(e){}
-    function copyNotes(){notesBox.select();notesBox.setSelectionRange(0,999999);try{document.execCommand('copy');}catch(e){}}
-    function clearNotes(){notesBox.value='';try{localStorage.setItem('site-notes','');}catch(e){}}
-    function saveValue(key,value){try{localStorage.setItem(key,value);}catch(e){}}
-    function loadValue(key,fallback){try{const v=localStorage.getItem(key);return v!==null?v:fallback;}catch(e){return fallback;}}
-    function fmtUSD(n){return'$'+Number(n||0).toFixed(2);}
-    function fmtTHB(n){return'฿'+Number(n||0).toFixed(2);}
-    const fxRate=document.getElementById('fxRate');
-    const thbInput=document.getElementById('thbInput');
-    const usdInput=document.getElementById('usdInput');
-    const thbToUsd=document.getElementById('thbToUsd');
-    const usdToThb=document.getElementById('usdToThb');
-    fxRate.value=loadValue('fx-rate','36.50');
-    thbInput.value=loadValue('fx-thb','');
-    usdInput.value=loadValue('fx-usd','');
-    function updateFX(from){
-      let rate=Number(fxRate.value||0);if(!rate||rate<=0)rate=36.5;
-      if(from==='thb'){const thb=Number(thbInput.value||0);usdInput.value=thb?(thb/rate).toFixed(2):'';}
-      else if(from==='usd'){const usd=Number(usdInput.value||0);thbInput.value=usd?(usd*rate).toFixed(2):'';}
-      const thb=Number(thbInput.value||0);const usd=Number(usdInput.value||0);
-      thbToUsd.textContent=fmtUSD(thb/rate);usdToThb.textContent=fmtTHB(usd*rate);
-      saveValue('fx-rate',fxRate.value);saveValue('fx-thb',thbInput.value);saveValue('fx-usd',usdInput.value);
-    }
-    fxRate.addEventListener('input',()=>updateFX());
-    thbInput.addEventListener('input',()=>updateFX('thb'));
-    usdInput.addEventListener('input',()=>updateFX('usd'));
-    const sqmInput=document.getElementById('sqmInput');
-    const sqftInput=document.getElementById('sqftInput');
-    const sqmToSqft=document.getElementById('sqmToSqft');
-    const sqftToSqm=document.getElementById('sqftToSqm');
-    sqmInput.value=loadValue('area-sqm','');
-    sqftInput.value=loadValue('area-sqft','');
-    function updateArea(from){
-      if(from==='sqm'){const sqm=Number(sqmInput.value||0);sqftInput.value=sqm?(sqm*10.7639).toFixed(2):'';}
-      else if(from==='sqft'){const sqft=Number(sqftInput.value||0);sqmInput.value=sqft?(sqft/10.7639).toFixed(2):'';}
-      const sqm=Number(sqmInput.value||0);const sqft=Number(sqftInput.value||0);
-      sqmToSqft.textContent=(sqm*10.7639).toFixed(2)+' sq ft';
-      sqftToSqm.textContent=(sqft/10.7639).toFixed(2)+' sqm';
-      saveValue('area-sqm',sqmInput.value);saveValue('area-sqft',sqftInput.value);
-    }
-    sqmInput.addEventListener('input',()=>updateArea('sqm'));
-    sqftInput.addEventListener('input',()=>updateArea('sqft'));
-    updateFX();updateArea();
-  </script>
+<div class="grid">
+<div class="card">
+<div class="card-title">Big Move</div>
+<div class="card-text">Main Thailand relocation plan, medical travel protocol, destination logic, and move strategy.</div>
+<a class="button" href="relocationfinal.html">Open Big Move</a>
+</div>
+<div class="card">
+<div class="card-title">Recon Planner App</div>
+<div class="card-text">Step-by-step Thailand recon planner with airport transfer, bookings, checklists, scoring, and notes.</div>
+<a class="button" href="thailand-recon-planner.html">Open Recon Planner</a>
+</div>
+<div class="card">
+<div class="card-title">Packing</div>
+<div class="card-text">Packing list and preparation tracker for travel and relocation readiness.</div>
+<a class="button" href="packing-list.html">Open Packing</a>
+</div>
+<div class="card">
+<div class="card-title">Theo Education</div>
+<div class="card-text">Theological education resources, study structure, and teaching materials.</div>
+<a class="button" href="theoeducation.html">Open Theo Education</a>
+</div>
+<div class="card">
+<div class="card-title">Home Sale Tracker</div>
+<div class="card-text">Inventory, sales tracking, pricing, and progress monitoring for the home-sale process.</div>
+<a class="button" href="home-sale-tracker.html">Open Tracker</a>
+</div>
+</div>
+<div class="card" style="margin-top:14px">
+<h2>Quick Utilities</h2>
+<div class="sub">Baht/USD and square-meter/square-foot tools.</div>
+<div class="utility-grid">
+<div>
+<label>Exchange Rate: THB per 1 USD</label>
+<input id="fxRate" type="number" step="0.01" value="36.50">
+</div>
+<div>
+<label>USD Amount</label>
+<input id="usdInput" type="number" step="0.01" placeholder="Enter USD">
+</div>
+<div class="result">
+<div class="card-text">USD → THB</div>
+<strong id="usdToThb">฿0.00</strong>
+</div>
+<div class="result">
+<div class="card-text">THB → USD</div>
+<strong id="thbToUsd">$0.00</strong>
+</div>
+<div>
+<label>Thai Baht Amount</label>
+<input id="thbInput" type="number" step="0.01" placeholder="Enter THB">
+</div>
+<div>
+<label>Square Meters</label>
+<input id="sqmInput" type="number" step="0.01" placeholder="Enter sqm">
+</div>
+<div class="result">
+<div class="card-text">SQM → SQFT</div>
+<strong id="sqmToSqft">0.00 sq ft</strong>
+</div>
+</div>
+</div>
+<div class="card" style="margin-top:14px">
+<h2>Working Notes</h2>
+<div class="sub">Notes save on this device.</div>
+<textarea id="notesBox" placeholder="Type notes here..."></textarea>
+</div>
+<div class="footer">Home • Big Move System • Gregory Trent</div>
+</div>
+<script>
+function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function money(n,prefix){return prefix+Number(n||0).toFixed(2)}
+var fxRate=document.getElementById('fxRate');
+var usdInput=document.getElementById('usdInput');
+var thbInput=document.getElementById('thbInput');
+var usdToThb=document.getElementById('usdToThb');
+var thbToUsd=document.getElementById('thbToUsd');
+var sqmInput=document.getElementById('sqmInput');
+var sqmToSqft=document.getElementById('sqmToSqft');
+var notesBox=document.getElementById('notesBox');
+fxRate.value=safeGet('home-fx-rate')||'36.50';
+usdInput.value=safeGet('home-usd')||'';
+thbInput.value=safeGet('home-thb')||'';
+sqmInput.value=safeGet('home-sqm')||'';
+notesBox.value=safeGet('home-notes')||'';
+function updateMoney(){
+var rate=Number(fxRate.value||36.5);
+var usd=Number(usdInput.value||0);
+var thb=Number(thbInput.value||0);
+usdToThb.textContent='฿'+(usd*rate).toFixed(2);
+thbToUsd.textContent='$'+(thb/rate).toFixed(2);
+safeSet('home-fx-rate',fxRate.value);
+safeSet('home-usd',usdInput.value);
+safeSet('home-thb',thbInput.value);
+}
+function updateArea(){
+var sqm=Number(sqmInput.value||0);
+sqmToSqft.textContent=(sqm*10.7639).toFixed(2)+' sq ft';
+safeSet('home-sqm',sqmInput.value);
+}
+fxRate.addEventListener('input',updateMoney);
+usdInput.addEventListener('input',updateMoney);
+thbInput.addEventListener('input',updateMoney);
+sqmInput.addEventListener('input',updateArea);
+notesBox.addEventListener('input',function(){safeSet('home-notes',notesBox.value)});
+updateMoney();
+updateArea();
+</script>
 </body>
 </html>
