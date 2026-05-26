@@ -1,220 +1,284 @@
-<div class="panel" id="airport">
 
-  <div class="card">
-    <div class="section-title">Primary Plan: BKK → Hua Hin Direct</div>
-
-    <div class="small" style="margin-top:8px">
-      Current hotel structure sends you directly from Bangkok Suvarnabhumi Airport to Hua Hin on June 5.
-      This is the preferred plan because your first confirmed hotel night is already in Hua Hin.
-    </div>
-
-    <div class="list">
-
-      <div class="item">
-        <div class="txt">
-          Land at BKK at 5:05 AM.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Deplane and follow signs for Immigration / Passport Control.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Estimated timing:
-          5:15–5:35 AM for deplaning and walking to immigration.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Clear immigration.
-          Estimated timing:
-          5:35–6:15 AM.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Go to baggage claim and customs.
-          Estimated timing:
-          6:15–6:45 AM.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Exit customs into the public arrivals area.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Get cash, SIM/data, and water before leaving the airport.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Meet premium private driver or go to the official transport desk.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Transfer directly to Kiang Haad Beach Hua Hin.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Target arrival in Hua Hin:
-          roughly 9:30 AM–11:30 AM depending transport and traffic.
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="card">
-
-    <div class="section-title">
-      Backup Plan: Airport Rail Link to Bangkok City
-    </div>
-
-    <div class="small" style="margin-top:8px">
-      Use this only if a Bangkok stop becomes necessary.
-      The front-end Bangkok overnight has been removed from the current plan.
-    </div>
-
-    <div class="list">
-
-      <div class="item">
-        <div class="txt">
-          After customs, enter the public arrivals area.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Follow signs for Airport Rail Link / Train to City.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Take elevator or escalator down to Basement Level B.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Buy token/ticket at the machine or counter.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Reach Airport Rail Link around 6:45–7:00 AM.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Likely boarding window:
-          7:00–7:15 AM.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Board the Airport Rail Link City Line.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Use Makkasan Station for:
-          Sukhumvit / Asok / Nana / Phrom Phong.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Use Phaya Thai Station for:
-          Siam / Phaya Thai / Victory Monument.
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Best luggage strategy:
-          BKK → Makkasan by train → Grab/taxi to hotel.
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="card">
-
-    <div class="section-title">
-      Door-to-Door Detail Still Needed
-    </div>
-
-    <div class="small" style="margin-top:8px">
-      If a Bangkok hotel is added later, update this section with:
-    </div>
-
-    <div class="list">
-
-      <div class="item">
-        <div class="txt">
-          Exact hotel name and address
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Best station exit
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Elevator/escalator directions
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Grab vs train recommendation
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Estimated arrival timing
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Lobby/floor/navigation notes
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="txt">
-          Thai-friendly backup taxi wording
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Thailand Recon Planner</title>
+<style>
+:root{--bg:#08101d;--card:#131a2b;--card2:#1a2338;--text:#eef2ff;--muted:#b8c1d9;--accent:#7c5cff;--ok:#10b981;--line:#2b3650;--gold:#ffd700}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,#08101d 0%,#11192b 100%);color:var(--text);padding:env(safe-area-inset-top) 12px calc(24px + env(safe-area-inset-bottom))}
+.top-nav{display:flex;flex-wrap:wrap;gap:14px;padding:16px 18px;margin:0 -12px 14px;background:#111827;justify-content:center;align-items:center;border-bottom:2px solid var(--gold)}
+.top-nav a{color:var(--gold)!important;text-decoration:none!important;font-weight:800;padding:10px 16px;border:1px solid #334155;border-radius:10px;background:#131a2b;margin:4px;white-space:nowrap;font-size:14px}
+.top-nav a:hover{background:var(--gold);color:#0a0a0a!important}
+.app{max-width:980px;margin:0 auto}
+.hero,.card{background:rgba(19,26,43,.96);border:1px solid var(--line);border-radius:20px;box-shadow:0 10px 28px rgba(0,0,0,.28)}
+.hero{padding:18px 16px;position:sticky;top:0;z-index:50;backdrop-filter:blur(8px)}
+h1{margin:0}
+.sub{color:var(--muted);margin-top:6px;line-height:1.35}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.badge{background:#221f43;color:#ece8ff;border:1px solid #3c3473;border-radius:999px;padding:8px 12px;font-size:.9rem;font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.stat{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}
+.stat .n{font-size:1.1rem;font-weight:800}
+.stat .l{font-size:.8rem;color:var(--muted)}
+.tabs{display:flex;gap:8px;overflow:auto;margin:14px 0 16px;padding-bottom:2px}
+.tabs button{flex:0 0 auto;border:1px solid var(--line);background:#12192a;color:var(--muted);border-radius:999px;padding:10px 14px;font-weight:700;cursor:pointer}
+.tabs button.active{background:var(--accent);color:white;border-color:transparent}
+.panel{display:none}
+.panel.active{display:block}
+.card{padding:14px;margin-bottom:14px}
+.section-title{font-size:1.08rem;font-weight:800}
+.small{font-size:.88rem;color:var(--muted);line-height:1.45}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pill{background:#111827;border:1px solid var(--line);color:#dbe5ff;border-radius:999px;padding:7px 10px;font-size:.85rem}
+.list{display:grid;gap:10px;margin-top:12px}
+.item{display:flex;gap:10px;align-items:flex-start;background:#0d1424;border:1px solid var(--line);border-radius:14px;padding:10px}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--ok);margin-top:2px}
+.done label,.done .txt{text-decoration:line-through;color:#94a3b8}
+.grid{display:grid;gap:14px}
+.notes{width:100%;min-height:220px;resize:vertical;background:#0d1424;color:var(--text);border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit}
+.score-grid{display:grid;gap:14px}
+.score-card{background:#0d1424;border:1px solid var(--line);border-radius:16px;padding:12px}
+.score-row{display:grid;grid-template-columns:1fr 72px;gap:10px;align-items:center;margin:9px 0}
+.score-row input{width:100%;background:#111827;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px}
+.footer{color:var(--muted);font-size:.82rem;margin-top:10px}
+@media(min-width:800px){.hero-grid{display:grid;grid-template-columns:2fr 1fr;gap:14px}.score-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:500px){.top-nav{gap:8px;padding:12px 10px}.top-nav a{font-size:12px;padding:8px 10px;margin:3px}.stats{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<nav class="top-nav">
+<a href="index.html">Utilities</a>
+<a href="packing-list.html">Packing</a>
+<a href="relocationfinal.html">Thailand Recon</a>
+<a href="thailand-recon-planner.html">Recon Planner App</a>
+<a href="home-sale-tracker.html">Home Sale Tracker</a>
+<a href="theoeducation.html">Theo Education</a>
+</nav>
+<div class="app">
+<div class="hero">
+<div class="hero-grid">
+<div>
+<h1>Thailand Recon Planner</h1>
+<div class="sub">Confirmed flow: BKK arrival → Hua Hin Jun 5–11 → Pattaya/Jomtien Jun 11–14 → Bangkok transit only.</div>
+<div class="badges">
+<div class="badge">6 nights Hua Hin</div>
+<div class="badge">3 nights Pattaya/Jomtien</div>
+<div class="badge">Bangkok = transit only</div>
 </div>
+</div>
+<div class="stats">
+<div class="stat"><div class="n" id="checkedCount">0</div><div class="l">Checked</div></div>
+<div class="stat"><div class="n" id="totalCount">0</div><div class="l">Total</div></div>
+<div class="stat"><div class="n" id="progressPct">0%</div><div class="l">Complete</div></div>
+</div>
+</div>
+<div class="tabs">
+<button data-tab="itinerary" class="active">Itinerary</button>
+<button data-tab="airport">Airport Transfer</button>
+<button data-tab="bookings">Bookings</button>
+<button data-tab="prep">Prep</button>
+<button data-tab="need">Need To Know</button>
+<button data-tab="score">Scoring</button>
+<button data-tab="notes">Notes</button>
+</div>
+</div>
+<div class="panel active" id="itinerary"></div>
+<div class="panel" id="airport">
+<div class="card">
+<div class="section-title">Primary Plan: BKK → Hua Hin Direct</div>
+<div class="small" style="margin-top:8px">Current hotel structure sends you directly from Bangkok Suvarnabhumi Airport to Hua Hin on June 5. This is the preferred plan because your first confirmed hotel night is already in Hua Hin.</div>
+<div class="list">
+<div class="item"><div class="txt">Land at BKK at 5:05 AM.</div></div>
+<div class="item"><div class="txt">Deplane and follow signs for Immigration / Passport Control.</div></div>
+<div class="item"><div class="txt">Clear immigration, then go to baggage claim.</div></div>
+<div class="item"><div class="txt">Exit customs into the public arrivals area.</div></div>
+<div class="item"><div class="txt">Get cash, SIM/data, and water before leaving the airport.</div></div>
+<div class="item"><div class="txt">Meet premium private driver or go to the official transport desk.</div></div>
+<div class="item"><div class="txt">Transfer directly to Kiang Haad Beach Hua Hin.</div></div>
+<div class="item"><div class="txt">Target arrival in Hua Hin: roughly 9:30 AM–11:30 AM depending transport and traffic.</div></div>
+</div>
+</div>
+<div class="card">
+<div class="section-title">Backup Plan: BKK → Bangkok City by Airport Rail Link</div>
+<div class="small" style="margin-top:8px">Use this only if a Bangkok stop becomes necessary. It is not the primary plan because the front-end Bangkok overnight has been removed.</div>
+<div class="list">
+<div class="item"><div class="txt">After customs, enter the public arrivals area.</div></div>
+<div class="item"><div class="txt">Follow signs for Airport Rail Link / Train to City.</div></div>
+<div class="item"><div class="txt">Take elevator or escalator down to Basement Level B.</div></div>
+<div class="item"><div class="txt">Buy token/ticket at the machine or counter.</div></div>
+<div class="item"><div class="txt">Board the Airport Rail Link City Line.</div></div>
+<div class="item"><div class="txt">Use Makkasan Station for Sukhumvit / Asok / Nana / Phrom Phong area.</div></div>
+<div class="item"><div class="txt">Use Phaya Thai Station for Siam / Phaya Thai / Victory Monument area.</div></div>
+<div class="item"><div class="txt">With luggage, best practical move: BKK → Makkasan by train → Grab/taxi to hotel.</div></div>
+</div>
+</div>
+<div class="card">
+<div class="section-title">Realistic Airport Timing</div>
+<div class="list">
+<div class="item"><div class="txt">5:05 AM — Land at BKK.</div></div>
+<div class="item"><div class="txt">5:15–5:35 AM — Deplane and walk to immigration.</div></div>
+<div class="item"><div class="txt">5:35–6:15 AM — Immigration.</div></div>
+<div class="item"><div class="txt">6:15–6:45 AM — Baggage and customs.</div></div>
+<div class="item"><div class="txt">6:45–7:00 AM — Reach Airport Rail Link if using train.</div></div>
+<div class="item"><div class="txt">7:00–7:15 AM — Likely train boarding window.</div></div>
+</div>
+</div>
+</div>
+<div class="panel" id="bookings"><div id="bookingGrid"></div></div>
+<div class="panel" id="prep">
+<div class="card"><div class="section-title">Pre-trip Checklist</div><div class="list" id="prepList"></div></div>
+<div class="card"><div class="section-title">Reference Communities</div><div class="grid" id="communities"></div></div>
+</div>
+<div class="panel" id="need">
+<div class="card"><div class="section-title">Smooth Interactions</div><div class="list" id="needList"></div></div>
+<div class="card"><div class="section-title">Safety Rules</div><div class="list" id="safeList"></div></div>
+</div>
+<div class="panel" id="score"><div class="score-grid" id="scoreGrid"></div></div>
+<div class="panel" id="notes">
+<div class="card">
+<div class="section-title">Working Notes</div>
+<div class="small" style="margin:8px 0 10px">Track addresses, agents, rent, road feel, flood concerns, grocery distance, comfort observations, and final rankings.</div>
+<textarea class="notes" id="notesBox" placeholder="Type notes here..."></textarea>
+</div>
+</div>
+<div class="footer">Checks, scores, and notes save in your browser on this device.</div>
+</div>
+<script>
+var itinerary=[
+{day:'Day 1',date:'Fri, Jun 5',title:'BKK Arrival → Direct to Hua Hin',city:'Hua Hin',mode:'Premium private car recommended; fast train possible; airport coach backup',stay:'Kiang Haad Beach Hua Hin',objective:'Recover, arrive safely, and begin in the true priority location.',tasks:['Land BKK at 5:05 AM','Clear immigration, collect bags, get cash/SIM/water','Transfer directly to Hua Hin — no Bangkok overnight','Arrival target: 9:30 AM–11:30 AM depending transport','Ask Kiang Haad to combine both consecutive reservations','Light beach recovery and neighborhood orientation only']},
+{day:'Day 2',date:'Sat, Jun 6',title:'Hua Hin Full Recon',city:'Hua Hin',mode:'Grab/taxi + scheduled realtor haul',stay:'Kiang Haad Beach Hua Hin',objective:'Begin primary housing recon in the strongest target area.',tasks:['Tour Nong Kae / Khao Takiab / Soi 94–102 corridor','Identify grocery, pharmacy, beach, clinic, and restaurant practicality','Focus on 3–4 bedroom homes/villas or equivalent space','Ask about rent, utilities, internet, water pressure, flood history, maintenance','Score each area before the day ends']},
+{day:'Day 3',date:'Sun, Jun 7',title:'Hua Hin Second Pass',city:'Hua Hin',mode:'Grab/taxi',stay:'Kiang Haad Beach Hua Hin',objective:'Revisit what actually felt livable, not just what looked good online.',tasks:['Revisit top 1–2 neighborhoods from Saturday','Test Sunday traffic, noise, beach access, and food access','Walk or ride the area during daytime and evening if possible','Update rankings and notes']},
+{day:'Day 4',date:'Mon, Jun 8',title:'Hua Hin Inland Options',city:'Hua Hin',mode:'Realtor haul + self-guided checks',stay:'Kiang Haad Beach Hua Hin',objective:'Pressure-test Thap Tai, Hin Lek Fai, and managed villa communities.',tasks:['Tour inland villa communities','Compare calm, space, road stress, and distance to beach/services','Ask about HOA/common fees, pool care, security, and maintenance','Rule out anything too isolated or vehicle-dependent']},
+{day:'Day 5',date:'Tue, Jun 9',title:'Hua Hin Practical Living Day',city:'Hua Hin',mode:'Normal-life simulation',stay:'Kiang Haad Beach Hua Hin',objective:'Test ordinary life: groceries, medical access, errands, meals, and daily comfort.',tasks:['Visit grocery store, pharmacy, and nearby clinic/hospital option','Time travel from hotel to target neighborhoods','Check restaurant availability and comfort level','Confirm if Hua Hin feels sustainable beyond vacation mode']},
+{day:'Day 6',date:'Wed, Jun 10',title:'Hua Hin Final Decision Day',city:'Hua Hin',mode:'Grab/taxi',stay:'Kiang Haad Beach Hua Hin',objective:'Close the Hua Hin evaluation cleanly before moving to Pattaya/Jomtien.',tasks:['Revisit final 1–2 favorites only','Finalize Hua Hin pros/cons','Capture photos, names, addresses, and rent ranges','Pack for Pattaya/Jomtien transfer']},
+{day:'Day 7',date:'Thu, Jun 11',title:'Hua Hin → Pattaya/Jomtien',city:'Pattaya/Jomtien',mode:'Private car or direct coach; private car preferred',stay:'The Siam Guest House – SHA Extra Plus',objective:'Transfer smoothly and begin secondary comparison.',tasks:['Check out Kiang Haad Beach Hua Hin','Transfer to Pattaya/Jomtien','Check in at The Siam Guest House','Set expectations: budget-level, basic, compact','Do a light evening Jomtien/Pratumnak orientation only']},
+{day:'Day 8',date:'Fri, Jun 12',title:'Pattaya/Jomtien Full Recon',city:'Pattaya/Jomtien',mode:'Grab/taxi + realtor haul',stay:'The Siam Guest House',objective:'Determine whether Jomtien gives better convenience without too much chaos.',tasks:['Focus on Jomtien and Pratumnak','Assess noise, traffic, grocery access, beach access, healthcare, and walkability','Compare convenience vs crowding','Score against Hua Hin honestly']},
+{day:'Day 9',date:'Sat, Jun 13',title:'Pattaya/Jomtien Second Pass',city:'Pattaya/Jomtien',mode:'Grab/taxi',stay:'The Siam Guest House',objective:'Decide whether Pattaya/Jomtien is backup, serious contender, or no-go.',tasks:['Revisit top Pattaya/Jomtien area only','Test Saturday traffic and nighttime feel','Finalize Pattaya/Jomtien notes','Prepare for Bangkok/airport-side transit planning']},
+{day:'Day 10',date:'Sun, Jun 14',title:'Pattaya/Jomtien → Bangkok Airport-Side',city:'Bangkok Transit',mode:'Private car recommended',stay:'Airport-side hotel if added',objective:'Use Bangkok only as a departure buffer, not a recon priority.',tasks:['Check out The Siam Guest House','Transfer to Bangkok airport-side area if needed','Check in near BKK if booked','Pack and sleep early for morning departure']}
+];
+var bookings=[
+{title:'Confirmed Hotel Structure',lines:['Hua Hin: Kiang Haad Beach Hua Hin — Jun 5–6 — 1 night — $34.55 USD','Hua Hin: Kiang Haad Beach Hua Hin — Jun 6–11 — 5 nights — $218.82 USD','Pattaya/Jomtien: The Siam Guest House – SHA Extra Plus — Jun 11–14 — 3 nights — $58.67 USD','Bangkok: no front-end overnight; transit only unless an airport-side buffer hotel is added']},
+{title:'Operational Meaning',lines:['Go directly to Hua Hin after landing at BKK on Jun 5 at 5:05 AM.','Bangkok overnight has been removed from the front end.','Hua Hin is the primary recon/housing focus: Jun 5–11.','Pattaya/Jomtien is the secondary comparison: Jun 11–14.']},
+{title:'Action: Contact Kiang Haad',lines:['Ask the hotel to combine both consecutive reservations.','Ask for luggage storage or early check-in due to early BKK arrival.','Script: I have two consecutive reservations and would like them combined so I do not need to check out and check back in.']},
+{title:'Comfort Note',lines:['The Siam Guest House is very budget-level.','Expect basic, compact, and less comfort than Hua Hin.','Use it as a recon base, not a comfort anchor.']}
+];
+var prepChecklist=['Complete TDAC within 3 days of arrival','Confirm passport has 6+ months validity','Install Grab and save payment method','Save all hotel confirmations offline','Message Kiang Haad to combine both Hua Hin reservations','Arrange premium transfer from BKK to Hua Hin','Set rule: no signing on first viewing','Keep meds, chargers, one change of clothes, and key papers in carry-on','Book airport-side Bangkok hotel for Jun 14 only if needed'];
+var needToKnow=[['Hello','Sawasdee khrap'],['Thank you','Khop khun khrap'],['Excuse me / sorry','Khor thot khrap'],['Tourist police','1155'],['Behavior','Stay calm, soft-spoken, patient, and respectful'],['Customs','Remove shoes where others do, avoid touching heads, do not point feet at people or sacred things']];
+var safetyRules=['Use official airport transport, hotel car, premium private car, or Grab. Skip random ride offers.','Do not overload the first day after arrival; recover first, scout second.','Do realtor hauls in half-day blocks maximum. Finish each city with self-guided testing.','Use Bangkok as transit only; do not add unnecessary Bangkok complexity before departure.','No signing on first viewing. Revisit finalists at night if possible.'];
+var starterCommunities={'Hua Hin':['Nong Kae / Khao Takiab','Soi 94–102 corridor','Thap Tai','Hin Lek Fai','Palm Hills / managed communities'],'Pattaya/Jomtien':['Jomtien core','Pratumnak','Na Jomtien','Selected managed communities near Jomtien side'],'Bangkok Transit':['Airport-side only','Lat Krabang','Suvarnabhumi hotel zone']};
+var scoreCats=['Calm','Convenience','Housing fit','Healthcare access','Grocery access','Road stress','Noise','Comfort fit','Cost-value','Could I do ordinary life here?'];
+var cities=['Hua Hin','Pattaya/Jomtien','Bangkok Transit'];
+function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function addCheck(container,key,text){var row=document.createElement('div');row.className='item';row.innerHTML='<input type="checkbox" id="'+key+'"><label for="'+key+'" class="txt">'+text+'</label>';container.appendChild(row)}
+var it=document.getElementById('itinerary');
+itinerary.forEach(function(d,di){
+var card=document.createElement('div');
+card.className='card';
+card.innerHTML='<div class="section-title">'+d.day+' · '+d.title+'</div><div class="small" style="margin-top:4px">'+d.date+' · '+d.city+'</div><div class="meta"><div class="pill">Mode: '+d.mode+'</div><div class="pill">Stay: '+d.stay+'</div></div><div class="small" style="margin-top:10px"><strong>Objective:</strong> '+d.objective+'</div><div class="list" id="task-'+di+'"></div>';
+it.appendChild(card);
+var box=card.querySelector('#task-'+di);
+d.tasks.forEach(function(t,ti){addCheck(box,'day-'+di+'-'+ti,t)});
+});
+var prep=document.getElementById('prepList');
+prepChecklist.forEach(function(t,i){addCheck(prep,'prep-'+i,t)});
+var comm=document.getElementById('communities');
+Object.keys(starterCommunities).forEach(function(city){
+var c=document.createElement('div');
+c.className='card';
+c.innerHTML='<div class="section-title">'+city+'</div><div class="list">'+starterCommunities[city].map(function(x){return'<div class="item"><div class="txt">'+x+'</div></div>'}).join('')+'</div>';
+comm.appendChild(c);
+});
+var need=document.getElementById('needList');
+needToKnow.forEach(function(p){
+var row=document.createElement('div');
+row.className='item';
+row.innerHTML='<div><strong>'+p[0]+'</strong><div class="small" style="margin-top:3px">'+p[1]+'</div></div>';
+need.appendChild(row);
+});
+var safe=document.getElementById('safeList');
+safetyRules.forEach(function(v){
+var row=document.createElement('div');
+row.className='item';
+row.innerHTML='<div class="txt">'+v+'</div>';
+safe.appendChild(row);
+});
+var book=document.getElementById('bookingGrid');
+bookings.forEach(function(b){
+var card=document.createElement('div');
+card.className='card';
+card.innerHTML='<div class="section-title">'+b.title+'</div>'+b.lines.map(function(l){return'<p class="small" style="margin:8px 0 0">'+l+'</p>'}).join('');
+book.appendChild(card);
+});
+var sg=document.getElementById('scoreGrid');
+cities.forEach(function(city){
+var wrap=document.createElement('div');
+wrap.className='score-card';
+wrap.innerHTML='<div class="section-title">'+city+' <span id="total-'+city+'"></span></div>';
+scoreCats.forEach(function(cat){
+var row=document.createElement('div');
+row.className='score-row';
+row.innerHTML='<label>'+cat+'</label><input type="number" min="0" max="10" id="score-'+city+'-'+cat+'" value="0">';
+wrap.appendChild(row);
+});
+sg.appendChild(wrap);
+});
+var notes=document.getElementById('notesBox');
+notes.value=safeGet('recon-notes')||'';
+notes.addEventListener('input',function(){safeSet('recon-notes',notes.value)});
+document.querySelectorAll('.tabs button').forEach(function(btn){
+btn.addEventListener('click',function(){
+document.querySelectorAll('.tabs button').forEach(function(b){b.classList.remove('active')});
+btn.classList.add('active');
+document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
+document.getElementById(btn.dataset.tab).classList.add('active');
+safeSet('recon-active-tab',btn.dataset.tab);
+window.scrollTo({top:0,behavior:'smooth'});
+});
+});
+function updateTotals(){
+var checks=[].slice.call(document.querySelectorAll('input[type="checkbox"]'));
+var checked=0;
+checks.forEach(function(c){
+var row=c.closest('.item');
+if(c.checked){checked++;row.classList.add('done')}else row.classList.remove('done');
+});
+document.getElementById('checkedCount').textContent=checked;
+document.getElementById('totalCount').textContent=checks.length;
+document.getElementById('progressPct').textContent=(checks.length?Math.round(checked/checks.length*100):0)+'%';
+cities.forEach(function(city){
+var total=0;
+scoreCats.forEach(function(cat){
+var id='score-'+city+'-'+cat;
+var el=document.getElementById(id);
+total+=Number(el.value||0);
+safeSet(id,el.value||0);
+});
+document.getElementById('total-'+city).textContent='· Total '+total;
+});
+}
+document.querySelectorAll('input[type="checkbox"]').forEach(function(c){
+c.checked=safeGet('check-'+c.id)==='1';
+c.addEventListener('change',function(){safeSet('check-'+c.id,c.checked?'1':'0');updateTotals()});
+});
+cities.forEach(function(city){
+scoreCats.forEach(function(cat){
+var id='score-'+city+'-'+cat;
+var el=document.getElementById(id);
+var saved=safeGet(id);
+if(saved!==null)el.value=saved;
+el.addEventListener('input',updateTotals);
+});
+});
+var savedTab=safeGet('recon-active-tab');
+if(savedTab&&document.getElementById(savedTab)){
+document.querySelectorAll('.tabs button').forEach(function(b){b.classList.toggle('active',b.dataset.tab===savedTab)});
+document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active',p.id===savedTab)});
+}
+updateTotals();
+</script>
+</body>
+</html>
