@@ -245,7 +245,7 @@ h1{margin:0;font-size:2.2rem;line-height:1}
 <button class="tab active" data-tab="priority">Priority</button>
 <button class="tab" data-tab="documents">Documents</button>
 <button class="tab" data-tab="medical">Medical</button>
-<button class="tab" data-tab="tech">Tech</button>
+<button class="tab" data-tab="tech">Technology</button>
 <button class="tab" data-tab="clothing">Clothing</button>
 <button class="tab" data-tab="comfort">Comfort</button>
 <button class="tab" data-tab="final">Final Check</button>
@@ -279,8 +279,8 @@ h1{margin:0;font-size:2.2rem;line-height:1}
 
 <div class="panel" id="tech">
 <div class="card">
-<div class="section-title">Tech & Connectivity</div>
-<div class="small">Make sure the phone, eSIM/SIM plan, chargers, and backup power are ready before leaving home.</div>
+<div class="section-title">Technology Command List</div>
+<div class="small">Phones, chargers, OTP access, eSIM setup, app readiness, maps, cloud backups, and travel-security checks.</div>
 <div class="list" id="techList"></div>
 </div>
 </div>
@@ -369,18 +369,49 @@ medical:[
   ['Medical alert card / medication card']
 ],
 tech:[
-  ['iPhone and case'],
-  ['Charging cables'],
-  ['Fast wall charger'],
-  ['Power bank'],
-  ['Universal travel adapter'],
+  ['iPhone 16 Pro Max and protective case',true],
+  ['iPad or tablet if bringing',true],
+  ['Laptop if needed for school, work, or recon planning'],
   ['Noise-canceling headphones or earbuds'],
-  ['Tablet or laptop'],
-  ['Backup charging cable in separate bag'],
-  ['AIS / Thai eSIM plan researched or installed'],
-  ['Grab installed and login tested'],
-  ['Airline app installed and login tested'],
-  ['Offline maps saved for Bangkok, Hua Hin, and Pattaya']
+  ['Primary fast wall charger',true],
+  ['Backup wall charger packed in separate bag',true],
+  ['USB-C cable #1',true],
+  ['USB-C cable #2',true],
+  ['Extra short charging cable for airport/plane use'],
+  ['Power bank fully charged',true],
+  ['Universal travel adapter for Thailand',true],
+  ['Small extension cord or compact power strip'],
+  ['CPAP-compatible plug/adapter check completed',true],
+  ['U.S. eSIM active for texts and OTP access',true],
+  ['Thai eSIM / AIS plan researched or installed',true],
+  ['Backup eSIM QR code saved offline',true],
+  ['Phone roaming settings reviewed'],
+  ['Wi-Fi calling enabled and tested'],
+  ['Google Voice access verified'],
+  ['Password manager synced and accessible offline',true],
+  ['Two-factor authentication tested before departure',true],
+  ['Recovery codes saved securely offline',true],
+  ['Find My iPhone enabled'],
+  ['Device passcodes updated and known'],
+  ['Airline app installed and login tested',true],
+  ['Hotel / booking apps installed and login tested'],
+  ['Grab installed and login tested',true],
+  ['Google Maps offline maps saved for Bangkok, Hua Hin, and Pattaya',true],
+  ['Translation app installed and offline language pack downloaded'],
+  ['Currency converter installed or bookmarked'],
+  ['Banking apps login tested'],
+  ['Credit card apps login tested'],
+  ['Passport copy saved offline on phone and tablet'],
+  ['Flight itinerary saved offline on phone and tablet'],
+  ['Hotel confirmations saved offline on phone and tablet'],
+  ['Travel insurance saved offline on phone and tablet'],
+  ['Medication list saved offline on phone and tablet'],
+  ['Emergency contact sheet saved offline'],
+  ['Phone storage cleared for photos and videos'],
+  ['Photos backed up before departure'],
+  ['Cloud storage available and syncing confirmed'],
+  ['Small microfiber cloth for screens/camera lenses'],
+  ['Optional HDMI cable or USB-C hub if needed']
 ],
 clothing:[
   ['Lightweight shirts'],
@@ -472,7 +503,6 @@ restoreChecks();
 var notes=document.getElementById('notesBox');
 notes.value=safeGet('packing-notes')||'';
 notes.addEventListener('input',function(){safeSet('packing-notes',notes.value)});
-
 
 document.querySelectorAll('.tab').forEach(function(btn){
   btn.addEventListener('click',function(){
