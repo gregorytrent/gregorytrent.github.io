@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,32 +6,269 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Recon Planner App</title>
 <style>
-:root{--bg:#08101d;--card:#131a2b;--card2:#1a2338;--text:#eef2ff;--muted:#b8c1d9;--accent:#7c5cff;--line:#2b3650;--gold:#ffd700;--ok:#10b981}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;overflow-x:hidden;background:linear-gradient(180deg,#08101d,#11192b);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text)}
-.site-banner{background:#111827;border-bottom:2px solid var(--gold);padding:16px}
-.site-nav{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.site-nav a{display:flex;justify-content:center;align-items:center;text-align:center;min-height:46px;padding:10px;border-radius:14px;border:1px solid #334155;background:#131a2b;color:var(--gold);text-decoration:none;font-weight:800}
-.app{max-width:980px;margin:0 auto;padding:12px}
-.hero,.card{background:rgba(19,26,43,.96);border:1px solid var(--line);border-radius:22px;box-shadow:0 10px 28px rgba(0,0,0,.28)}
-.hero{padding:14px}
-h1{margin:0;font-size:2.2rem}.sub{margin-top:8px;color:var(--muted)}
-.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.badge{padding:7px 12px;border-radius:999px;background:#2a2154;border:1px solid #4c3d99;font-weight:800}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.stat{background:var(--card2);border:1px solid var(--line);border-radius:18px;padding:14px;text-align:center}.stat .n{font-size:2rem;font-weight:900}.stat .l{color:var(--muted)}
-.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 0 2px;margin-top:12px}.tabs button{flex:0 0 auto;padding:11px 18px;border-radius:999px;border:1px solid var(--line);background:#12192a;color:var(--text);font-weight:800;cursor:pointer}.tabs button.active{background:var(--accent)}
-.panel{display:none;margin-top:12px}.panel.active{display:block}
-.card{padding:18px;margin-top:14px}.section-title{font-size:1.35rem;font-weight:900}.small{color:var(--muted);line-height:1.5;margin-top:8px}
-.list{display:grid;gap:10px;margin-top:14px}.item{background:#0d1424;border:1px solid var(--line);border-radius:16px;padding:14px;line-height:1.45}
-.check-item{display:flex;gap:10px}.check-item input{width:18px;height:18px;accent-color:var(--ok)}
-.done label{text-decoration:line-through;color:#94a3b8}
-.notes{width:100%;min-height:220px;background:#0d1424;color:var(--text);border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit}
-.score-grid{display:grid;gap:14px}.score-card{background:#0d1424;border:1px solid var(--line);border-radius:16px;padding:14px}.score-row{display:grid;grid-template-columns:1fr 70px;gap:10px;margin:10px 0}.score-row input{background:#111827;color:white;border:1px solid var(--line);border-radius:10px;padding:8px}
-.footer{text-align:center;color:var(--muted);padding:24px}
-@media(max-width:700px){.site-nav{grid-template-columns:1fr 1fr}.stats{grid-template-columns:repeat(3,1fr)}}
+:root{
+  --bg:#08101d;
+  --card:#131a2b;
+  --card2:#1a2338;
+  --text:#eef2ff;
+  --muted:#b8c1d9;
+  --accent:#7c5cff;
+  --line:#2b3650;
+  --gold:#ffd700;
+  --ok:#10b981;
+}
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+html,body{
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
+  background:linear-gradient(180deg,#08101d,#11192b);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--text);
+}
+body{
+  padding-bottom:40px;
+}
+.site-banner{
+  width:100%;
+  background:#111827;
+  border-bottom:2px solid var(--gold);
+  padding:16px;
+}
+.site-nav{
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.site-nav a{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  min-height:46px;
+  padding:10px;
+  border-radius:14px;
+  border:1px solid #334155;
+  background:#131a2b;
+  color:var(--gold);
+  text-decoration:none;
+  font-weight:800;
+}
+.app{
+  max-width:980px;
+  margin:0 auto;
+  padding:12px;
+}
+.hero,.card{
+  background:rgba(19,26,43,.96);
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:0 10px 28px rgba(0,0,0,.28);
+}
+.hero{
+  padding:14px;
+}
+h1{
+  margin:0;
+  font-size:2.2rem;
+  line-height:1;
+}
+.sub{
+  margin-top:8px;
+  color:var(--muted);
+  line-height:1.45;
+}
+.badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+.badge{
+  padding:7px 12px;
+  border-radius:999px;
+  background:#2a2154;
+  border:1px solid #4c3d99;
+  font-weight:800;
+  font-size:.85rem;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:16px;
+}
+.stat{
+  background:var(--card2);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+  text-align:center;
+}
+.stat .n{
+  font-size:2rem;
+  font-weight:900;
+}
+.stat .l{
+  color:var(--muted);
+}
+.tabs{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:12px 0 2px;
+  margin-top:12px;
+  scrollbar-width:none;
+}
+.tabs::-webkit-scrollbar{
+  display:none;
+}
+.tabs button{
+  flex:0 0 auto;
+  padding:11px 18px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:#12192a;
+  color:var(--text);
+  font-weight:800;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.tabs button.active{
+  background:var(--accent);
+}
+.panel{
+  display:none;
+  margin-top:12px;
+}
+.panel.active{
+  display:block;
+}
+.card{
+  padding:18px;
+  margin-top:14px;
+}
+.section-title{
+  font-size:1.35rem;
+  font-weight:900;
+  line-height:1.2;
+}
+.small{
+  color:var(--muted);
+  line-height:1.5;
+  margin-top:8px;
+}
+.list{
+  display:grid;
+  gap:10px;
+  margin-top:14px;
+}
+.item{
+  background:#0d1424;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+  line-height:1.45;
+}
+.check-item{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+}
+.check-item input{
+  width:18px;
+  height:18px;
+  accent-color:var(--ok);
+  margin-top:2px;
+  flex:0 0 auto;
+}
+.done label{
+  text-decoration:line-through;
+  color:#94a3b8;
+}
+.radio-box{
+  margin-top:15px;
+  padding:14px;
+  background:#0d1424;
+  border:1px solid var(--line);
+  border-radius:16px;
+}
+.radio-title{
+  font-weight:900;
+  color:var(--gold);
+  margin-bottom:12px;
+}
+.radio-box label{
+  display:block;
+  margin-bottom:10px;
+  cursor:pointer;
+  line-height:1.4;
+}
+.radio-box input{
+  margin-right:8px;
+  accent-color:var(--ok);
+}
+.notes{
+  width:100%;
+  min-height:220px;
+  background:#0d1424;
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+  font:inherit;
+  resize:vertical;
+}
+.score-grid{
+  display:grid;
+  gap:14px;
+}
+.score-card{
+  background:#0d1424;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+}
+.score-row{
+  display:grid;
+  grid-template-columns:1fr 70px;
+  gap:10px;
+  margin:10px 0;
+  align-items:center;
+}
+.score-row input{
+  background:#111827;
+  color:white;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:8px;
+  width:100%;
+}
+.footer{
+  text-align:center;
+  color:var(--muted);
+  padding:24px;
+  font-size:.85rem;
+}
+@media(max-width:700px){
+  .site-nav{
+    grid-template-columns:1fr 1fr;
+  }
+  .stats{
+    grid-template-columns:repeat(3,1fr);
+  }
+  h1{
+    font-size:1.9rem;
+  }
+}
 </style>
 </head>
 <body>
-
 <header class="site-banner">
 <nav class="site-nav">
 <a href="index.html">Home</a>
@@ -41,12 +279,15 @@ h1{margin:0;font-size:2.2rem}.sub{margin-top:8px;color:var(--muted)}
 <a href="home-sale-tracker.html">Home Sale Tracker</a>
 </nav>
 </header>
-
 <div class="app">
 <div class="hero">
 <h1>Recon Planner App</h1>
 <div class="sub">BKK arrival → Hua Hin Jun 5–11 → Pattaya/Jomtien Jun 11–14 → Bangkok transit only</div>
-<div class="badges"><div class="badge">6 nights Hua Hin</div><div class="badge">3 nights Pattaya</div><div class="badge">Transit only</div></div>
+<div class="badges">
+<div class="badge">6 nights Hua Hin</div>
+<div class="badge">3 nights Pattaya</div>
+<div class="badge">Transit only</div>
+</div>
 <div class="stats">
 <div class="stat"><div class="n" id="checkedCount">0</div><div class="l">Checked</div></div>
 <div class="stat"><div class="n" id="totalCount">0</div><div class="l">Total</div></div>
@@ -62,40 +303,112 @@ h1{margin:0;font-size:2.2rem}.sub{margin-top:8px;color:var(--muted)}
 <button class="tab" data-tab="notes">Notes</button>
 </div>
 </div>
-
 <div class="panel active" id="itinerary"></div>
-
 <div class="panel" id="airport">
-<div class="card"><div class="section-title">Primary Plan: BKK → Hua Hin Direct</div><div class="list">
-<div class="item">Land at BKK at 5:05 AM.</div><div class="item">Clear immigration and retrieve baggage.</div><div class="item">Exit customs into public arrivals.</div><div class="item">Meet premium driver or official airport transport.</div><div class="item">Transfer directly to Kiang Haad Beach Hua Hin.</div><div class="item">Expected arrival: 9:30–11:30 AM.</div>
-</div></div>
-<div class="card"><div class="section-title">BKK → Kiang Haad Beach Hua Hin by Train</div><div class="list">
-<div class="item">Go to Basement Level B for Airport Rail Link.</div><div class="item">Ride Airport Rail Link to Makkasan Station.</div><div class="item">Transfer to MRT Phetchaburi Station.</div><div class="item">Take MRT Blue Line toward Krung Thep Aphiwat.</div><div class="item">Exit at Krung Thep Aphiwat Central Terminal.</div><div class="item">Board southbound train to Hua Hin Railway Station.</div><div class="item">Take Grab/taxi to Kiang Haad Beach Hua Hin.</div><div class="item">Expected total travel time: 5–7 hours.</div>
-</div></div>
+<div class="card">
+<div class="section-title">Primary Plan: BKK → Hua Hin Direct</div>
+<div class="small">Preferred plan because the first confirmed hotel night is already in Hua Hin.</div>
+<div class="radio-box">
+<div class="radio-title">Selected Transfer Method</div>
+<label><input type="radio" name="airportTransfer" value="privatecar">Premium Private Car — Recommended</label>
+<label><input type="radio" name="airportTransfer" value="train">Train to Hua Hin</label>
+<label><input type="radio" name="airportTransfer" value="bus">VIP Bus</label>
+<label><input type="radio" name="airportTransfer" value="taxi">Airport Taxi</label>
+<label><input type="radio" name="airportTransfer" value="undecided">Undecided</label>
 </div>
-
+<div class="list">
+<div class="item">Land at BKK at 5:05 AM.</div>
+<div class="item">Follow signs for Immigration / Passport Control.</div>
+<div class="item">Clear immigration and retrieve baggage.</div>
+<div class="item">Exit customs into the public arrivals area.</div>
+<div class="item">Get cash, SIM/data, and water before leaving the airport.</div>
+<div class="item">Meet premium private driver or official airport transport.</div>
+<div class="item">Transfer directly to Kiang Haad Beach Hua Hin.</div>
+<div class="item">Expected Hua Hin arrival: approximately 9:30–11:30 AM.</div>
+</div>
+</div>
+<div class="card">
+<div class="section-title">BKK → Kiang Haad Beach Hua Hin by Train</div>
+<div class="small">Use this if choosing rail instead of private car. This requires moving from Suvarnabhumi Airport into Bangkok’s rail system before continuing south to Hua Hin.</div>
+<div class="list">
+<div class="item">Land at BKK at 5:05 AM.</div>
+<div class="item">Follow signs for Immigration / Passport Control.</div>
+<div class="item">Clear immigration, collect baggage, and exit customs.</div>
+<div class="item">Go to Basement Level B for the Airport Rail Link.</div>
+<div class="item">Purchase Airport Rail Link token/ticket.</div>
+<div class="item">Board the Airport Rail Link City Line.</div>
+<div class="item">Ride from Suvarnabhumi Airport to Makkasan Station.</div>
+<div class="item">Walk/transfer to MRT Phetchaburi Station.</div>
+<div class="item">Board MRT Blue Line toward Bang Sue / Krung Thep Aphiwat.</div>
+<div class="item">Exit at Krung Thep Aphiwat Central Terminal.</div>
+<div class="item">Purchase or collect train ticket for Hua Hin.</div>
+<div class="item">Board southbound train to Hua Hin Railway Station.</div>
+<div class="item">Ride train to Hua Hin.</div>
+<div class="item">Exit Hua Hin Railway Station.</div>
+<div class="item">Open Grab or use taxi queue outside station.</div>
+<div class="item">Travel to Kiang Haad Beach Hua Hin, 131/105 Petchkasem Rd, Hua Hin.</div>
+<div class="item">Expected total travel time: approximately 5–7 hours depending transfers and train schedule.</div>
+</div>
+</div>
+</div>
 <div class="panel" id="bookings">
-<div class="card"><div class="section-title">Confirmed Hotel Structure</div><div class="list">
+<div class="card">
+<div class="section-title">Confirmed Hotel Structure</div>
+<div class="list">
 <div class="item">Kiang Haad Beach Hua Hin — Jun 5–6 — 1 night — $34.55 USD</div>
 <div class="item">Kiang Haad Beach Hua Hin — Jun 6–11 — 5 nights — $218.82 USD</div>
 <div class="item">The Siam Guest House – SHA Extra Plus — Jun 11–14 — 3 nights — $58.67 USD</div>
 <div class="item">Bangkok: transit only unless airport-side hotel is added.</div>
-</div></div>
 </div>
-
-<div class="panel" id="prep"><div class="card"><div class="section-title">Pre-trip Checklist</div><div class="list" id="prepList"></div></div></div>
-
-<div class="panel" id="need"><div class="card"><div class="section-title">Need To Know</div><div class="list">
-<div class="item">Hello: Sawasdee khrap</div><div class="item">Thank you: Khop khun khrap</div><div class="item">Tourist police: 1155</div><div class="item">Stay calm, soft-spoken, patient, and respectful.</div>
-</div></div></div>
-
-<div class="panel" id="score"><div class="score-grid" id="scoreGrid"></div></div>
-
-<div class="panel" id="notes"><div class="card"><div class="section-title">Working Notes</div><textarea class="notes" id="notesBox"></textarea></div></div>
-
+</div>
+</div>
+<div class="panel" id="prep">
+<div class="card">
+<div class="section-title">Pre-trip Checklist</div>
+<div class="list" id="prepList"></div>
+</div>
+</div>
+<div class="panel" id="need">
+<div class="card">
+<div class="section-title">Need To Know</div>
+<div class="list">
+<div class="item">Thai people generally value calmness, patience, and respectful interactions. Raising your voice rarely improves outcomes.</div>
+<div class="item">Hello: Sawasdee khrap</div>
+<div class="item">Thank you: Khop khun khrap</div>
+<div class="item">Excuse me / Sorry: Khor thot khrap</div>
+<div class="item">Tourist Police: 1155</div>
+<div class="item">Emergency Medical Services: 1669</div>
+<div class="item">Most malls, restaurants, and convenience stores accept credit cards, but cash remains useful for local markets, taxis, and small vendors.</div>
+<div class="item">Download Grab before arrival. Grab will likely become your primary transportation tool.</div>
+<div class="item">7-Eleven stores are everywhere and are often the fastest place for snacks, drinks, SIM top-ups, medicine, and basic necessities.</div>
+<div class="item">The hottest part of the day is typically between noon and 4 PM. Schedule heavy recon activities early morning whenever possible.</div>
+<div class="item">Always carry water. Thailand’s heat and humidity can dehydrate visitors much faster than expected.</div>
+<div class="item">Crosswalks do not guarantee vehicles will stop. Always verify traffic before crossing.</div>
+<div class="item">Motorbikes are everywhere. Check both directions even on one-way streets.</div>
+<div class="item">When evaluating neighborhoods, revisit them during morning, afternoon, evening, and weekend periods before making judgments.</div>
+<div class="item">Do not sign a long-term lease during the recon trip. Use the trip to narrow choices rather than make permanent commitments.</div>
+<div class="item">Pay attention to grocery access, pharmacy access, hospital access, and daily convenience more than beach views or tourism appeal.</div>
+<div class="item">Ask yourself: Could I comfortably live an ordinary Tuesday here?</div>
+<div class="item">Hua Hin generally offers a calmer lifestyle, while Pattaya offers more services and activity.</div>
+<div class="item">Always compare housing locations based on travel time rather than distance.</div>
+<div class="item">Use this trip to identify deal-breakers as much as advantages.</div>
+<div class="item">If a location feels significantly different at night than during the day, document it immediately in your notes.</div>
+<div class="item">The goal of this recon is not to fall in love with Thailand. The goal is to determine whether daily life in Thailand aligns with your actual lifestyle needs.</div>
+</div>
+</div>
+</div>
+<div class="panel" id="score">
+<div class="score-grid" id="scoreGrid"></div>
+</div>
+<div class="panel" id="notes">
+<div class="card">
+<div class="section-title">Working Notes</div>
+<div class="small">Notes save on this device.</div>
+<textarea class="notes" id="notesBox" placeholder="Type notes here..."></textarea>
+</div>
+</div>
 <div class="footer">Recon Planner App • Gregory Trent • Thailand Recon</div>
 </div>
-
 <script>
 var itinerary=[
 ['Day 1','Fri, Jun 5','BKK Arrival → Direct to Hua Hin',['Land BKK at 5:05 AM','Transfer directly to Hua Hin','Ask Kiang Haad to combine reservations']],
@@ -109,29 +422,108 @@ var itinerary=[
 ['Day 9','Sat, Jun 13','Pattaya/Jomtien Second Pass',['Revisit top area','Finalize notes']],
 ['Day 10','Sun, Jun 14','Pattaya → Bangkok Airport-Side',['Transfer to airport-side area if needed','Sleep early']]
 ];
-
-var prepChecklist=['Complete TDAC within 3 days of arrival','Confirm passport validity','Install Grab','Save hotel confirmations offline','Arrange premium transfer from BKK to Hua Hin','Keep meds and essentials in carry-on'];
+var prepChecklist=[
+'Complete TDAC within 3 days of arrival',
+'Confirm passport validity',
+'Install Grab',
+'Save hotel confirmations offline',
+'Message Kiang Haad to combine both Hua Hin reservations',
+'Arrange premium transfer from BKK to Hua Hin',
+'Keep meds and essentials in carry-on'
+];
 var scoreCats=['Calm','Convenience','Housing fit','Healthcare','Grocery','Road stress','Noise','Comfort','Cost-value','Ordinary life fit'];
 var cities=['Hua Hin','Pattaya/Jomtien','Bangkok Transit'];
-
 function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
-function addCheck(container,key,text){var row=document.createElement('div');row.className='item check-item';row.innerHTML='<input type="checkbox" id="'+key+'"><label for="'+key+'">'+text+'</label>';container.appendChild(row)}
-
+function addCheck(container,key,text){
+var row=document.createElement('div');
+row.className='item check-item';
+row.innerHTML='<input type="checkbox" id="'+key+'"><label for="'+key+'">'+text+'</label>';
+container.appendChild(row);
+}
 var it=document.getElementById('itinerary');
-itinerary.forEach(function(d,di){var card=document.createElement('div');card.className='card';card.innerHTML='<div class="section-title">'+d[0]+' · '+d[2]+'</div><div class="small">'+d[1]+'</div><div class="list" id="task-'+di+'"></div>';it.appendChild(card);d[3].forEach(function(t,ti){addCheck(card.querySelector('#task-'+di),'day-'+di+'-'+ti,t)})});
-
-prepChecklist.forEach(function(t,i){addCheck(document.getElementById('prepList'),'prep-'+i,t)});
-
+itinerary.forEach(function(d,di){
+var card=document.createElement('div');
+card.className='card';
+card.innerHTML='<div class="section-title">'+d[0]+' · '+d[2]+'</div><div class="small">'+d[1]+'</div><div class="list" id="task-'+di+'"></div>';
+it.appendChild(card);
+d[3].forEach(function(t,ti){addCheck(card.querySelector('#task-'+di),'day-'+di+'-'+ti,t)});
+});
+prepChecklist.forEach(function(t,i){
+addCheck(document.getElementById('prepList'),'prep-'+i,t);
+});
 var sg=document.getElementById('scoreGrid');
-cities.forEach(function(city){var wrap=document.createElement('div');wrap.className='score-card';wrap.innerHTML='<div class="section-title">'+city+' <span id="total-'+city+'"></span></div>';scoreCats.forEach(function(cat){var row=document.createElement('div');row.className='score-row';row.innerHTML='<label>'+cat+'</label><input type="number" min="0" max="10" id="score-'+city+'-'+cat+'" value="0">';wrap.appendChild(row)});sg.appendChild(wrap)});
-
-document.querySelectorAll('.tab').forEach(function(btn){btn.addEventListener('click',function(){document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});document.getElementById(btn.dataset.tab).classList.add('active');safeSet('recon-active-tab',btn.dataset.tab)})});
-
-var notes=document.getElementById('notesBox');notes.value=safeGet('recon-notes')||'';notes.addEventListener('input',function(){safeSet('recon-notes',notes.value)});
-
-function updateTotals(){var checks=[].slice.call(document.querySelectorAll('input[type="checkbox"]'));var checked=0;checks.forEach(function(c){if(c.checked)checked++});document.getElementById('checkedCount').textContent=checked;document.getElementById('totalCount').textContent=checks.length;document.getElementById('progressPct').textContent=(checks.length?Math.round(checked/checks.length*100):0)+'%'}
-document.querySelectorAll('input[type="checkbox"]').forEach(function(c){c.checked=safeGet('check-'+c.id)==='1';c.addEventListener('change',function(){safeSet('check-'+c.id,c.checked?'1':'0');updateTotals()})});
+cities.forEach(function(city){
+var wrap=document.createElement('div');
+wrap.className='score-card';
+wrap.innerHTML='<div class="section-title">'+city+' <span id="total-'+city+'"></span></div>';
+scoreCats.forEach(function(cat){
+var row=document.createElement('div');
+row.className='score-row';
+row.innerHTML='<label>'+cat+'</label><input type="number" min="0" max="10" id="score-'+city+'-'+cat+'" value="0">';
+wrap.appendChild(row);
+});
+sg.appendChild(wrap);
+});
+document.querySelectorAll('.tab').forEach(function(btn){
+btn.addEventListener('click',function(){
+document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active')});
+btn.classList.add('active');
+document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
+document.getElementById(btn.dataset.tab).classList.add('active');
+safeSet('recon-active-tab',btn.dataset.tab);
+});
+});
+document.querySelectorAll('input[name="airportTransfer"]').forEach(function(radio){
+var saved=safeGet('airportTransfer');
+if(saved===radio.value){radio.checked=true}
+radio.addEventListener('change',function(){safeSet('airportTransfer',radio.value)});
+});
+var notes=document.getElementById('notesBox');
+notes.value=safeGet('recon-notes')||'';
+notes.addEventListener('input',function(){safeSet('recon-notes',notes.value)});
+function updateTotals(){
+var checks=[].slice.call(document.querySelectorAll('input[type="checkbox"]'));
+var checked=0;
+checks.forEach(function(c){
+var row=c.closest('.item');
+if(c.checked){checked++;row.classList.add('done')}else{row.classList.remove('done')}
+});
+document.getElementById('checkedCount').textContent=checked;
+document.getElementById('totalCount').textContent=checks.length;
+document.getElementById('progressPct').textContent=(checks.length?Math.round(checked/checks.length*100):0)+'%';
+cities.forEach(function(city){
+var total=0;
+scoreCats.forEach(function(cat){
+var id='score-'+city+'-'+cat;
+var el=document.getElementById(id);
+total+=Number(el.value||0);
+safeSet(id,el.value||0);
+});
+document.getElementById('total-'+city).textContent='· Total '+total;
+});
+}
+document.querySelectorAll('input[type="checkbox"]').forEach(function(c){
+c.checked=safeGet('check-'+c.id)==='1';
+c.addEventListener('change',function(){
+safeSet('check-'+c.id,c.checked?'1':'0');
+updateTotals();
+});
+});
+cities.forEach(function(city){
+scoreCats.forEach(function(cat){
+var id='score-'+city+'-'+cat;
+var el=document.getElementById(id);
+var saved=safeGet(id);
+if(saved!==null){el.value=saved}
+el.addEventListener('input',updateTotals);
+});
+});
+var savedTab=safeGet('recon-active-tab');
+if(savedTab&&document.getElementById(savedTab)){
+document.querySelectorAll('.tab').forEach(function(b){b.classList.toggle('active',b.dataset.tab===savedTab)});
+document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active',p.id===savedTab)});
+}
 updateTotals();
 </script>
 </body>
