@@ -18,10 +18,7 @@
   --ok:#10b981;
 }
 
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 
 html,body{
   margin:0;
@@ -32,9 +29,7 @@ html,body{
   color:var(--text);
 }
 
-body{
-  padding-bottom:40px;
-}
+body{padding-bottom:40px}
 
 .site-banner{
   width:100%;
@@ -66,11 +61,7 @@ body{
   font-weight:800;
 }
 
-.app{
-  max-width:980px;
-  margin:0 auto;
-  padding:12px;
-}
+.app{max-width:980px;margin:0 auto;padding:12px}
 
 .hero,.card{
   background:rgba(19,26,43,.96);
@@ -79,28 +70,13 @@ body{
   box-shadow:0 10px 28px rgba(0,0,0,.28);
 }
 
-.hero{
-  padding:14px;
-}
+.hero{padding:14px}
 
-h1{
-  margin:0;
-  font-size:2.2rem;
-  line-height:1;
-}
+h1{margin:0;font-size:2.2rem;line-height:1}
 
-.sub{
-  margin-top:8px;
-  color:var(--muted);
-  line-height:1.45;
-}
+.sub{margin-top:8px;color:var(--muted);line-height:1.45}
 
-.badges{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:12px;
-}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 
 .badge{
   padding:7px 12px;
@@ -126,14 +102,8 @@ h1{
   text-align:center;
 }
 
-.stat .n{
-  font-size:2rem;
-  font-weight:900;
-}
-
-.stat .l{
-  color:var(--muted);
-}
+.stat .n{font-size:2rem;font-weight:900}
+.stat .l{color:var(--muted)}
 
 .tabs{
   display:flex;
@@ -144,9 +114,7 @@ h1{
   scrollbar-width:none;
 }
 
-.tabs::-webkit-scrollbar{
-  display:none;
-}
+.tabs::-webkit-scrollbar{display:none}
 
 .tabs button{
   flex:0 0 auto;
@@ -160,41 +128,18 @@ h1{
   white-space:nowrap;
 }
 
-.tabs button.active{
-  background:var(--accent);
-}
+.tabs button.active{background:var(--accent)}
 
-.panel{
-  display:none;
-  margin-top:12px;
-}
+.panel{display:none;margin-top:12px}
+.panel.active{display:block}
 
-.panel.active{
-  display:block;
-}
+.card{padding:18px;margin-top:14px}
 
-.card{
-  padding:18px;
-  margin-top:14px;
-}
+.section-title{font-size:1.35rem;font-weight:900;line-height:1.2}
 
-.section-title{
-  font-size:1.35rem;
-  font-weight:900;
-  line-height:1.2;
-}
+.small{color:var(--muted);line-height:1.5;margin-top:8px}
 
-.small{
-  color:var(--muted);
-  line-height:1.5;
-  margin-top:8px;
-}
-
-.list{
-  display:grid;
-  gap:10px;
-  margin-top:14px;
-}
+.list{display:grid;gap:10px;margin-top:14px}
 
 .item{
   background:#0d1424;
@@ -204,11 +149,7 @@ h1{
   line-height:1.45;
 }
 
-.check-item{
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-}
+.check-item{display:flex;gap:10px;align-items:flex-start}
 
 .check-item input{
   width:18px;
@@ -218,12 +159,9 @@ h1{
   flex:0 0 auto;
 }
 
-.done label{
-  text-decoration:line-through;
-  color:#94a3b8;
-}
+.done label{text-decoration:line-through;color:#94a3b8}
 
-.radio-box{
+.choice-box{
   margin-top:15px;
   padding:14px;
   background:#0d1424;
@@ -231,31 +169,40 @@ h1{
   border-radius:16px;
 }
 
-.radio-title{
+.choice-title{
   font-weight:900;
   color:var(--gold);
   margin-bottom:12px;
 }
 
-.radio-option{
-  display:flex;
-  align-items:center;
+.choice-grid{
+  display:grid;
   gap:10px;
-  margin-bottom:10px;
-  cursor:pointer;
-  line-height:1.4;
-  padding:8px;
-  border-radius:12px;
 }
 
-.radio-option:hover{
+.choice-btn{
+  width:100%;
+  text-align:left;
+  border:1px solid var(--line);
   background:#111827;
+  color:var(--text);
+  border-radius:14px;
+  padding:14px;
+  font-weight:800;
+  font-size:1rem;
+  cursor:pointer;
 }
 
-.radio-option input{
-  width:18px;
-  height:18px;
-  accent-color:var(--ok);
+.choice-btn.selected{
+  border-color:var(--gold);
+  background:#2a2154;
+  color:#fff7c2;
+}
+
+.choice-hint{
+  color:var(--muted);
+  font-size:.85rem;
+  margin-top:10px;
 }
 
 .notes{
@@ -270,10 +217,7 @@ h1{
   resize:vertical;
 }
 
-.score-grid{
-  display:grid;
-  gap:14px;
-}
+.score-grid{display:grid;gap:14px}
 
 .score-card{
   background:#0d1424;
@@ -299,25 +243,12 @@ h1{
   width:100%;
 }
 
-.footer{
-  text-align:center;
-  color:var(--muted);
-  padding:24px;
-  font-size:.85rem;
-}
+.footer{text-align:center;color:var(--muted);padding:24px;font-size:.85rem}
 
 @media(max-width:700px){
-  .site-nav{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .stats{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  h1{
-    font-size:1.9rem;
-  }
+  .site-nav{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  h1{font-size:1.9rem}
 }
 </style>
 </head>
@@ -372,34 +303,18 @@ h1{
 <div class="section-title">Primary Plan: BKK → Hua Hin Direct</div>
 <div class="small">Preferred plan because the first confirmed hotel night is already in Hua Hin.</div>
 
-<div class="radio-box">
-<div class="radio-title">Selected Transfer Method</div>
+<div class="choice-box">
+<div class="choice-title">Selected Transfer Method</div>
 
-<label class="radio-option">
-<input type="radio" name="airportTransfer" value="privatecar">
-<span>Premium Private Car — Recommended</span>
-</label>
+<div class="choice-grid">
+<button type="button" class="choice-btn" data-transfer="privatecar">Premium Private Car — Recommended</button>
+<button type="button" class="choice-btn" data-transfer="train">Train to Hua Hin</button>
+<button type="button" class="choice-btn" data-transfer="bus">VIP Bus</button>
+<button type="button" class="choice-btn" data-transfer="taxi">Airport Taxi</button>
+<button type="button" class="choice-btn" data-transfer="undecided">Undecided</button>
+</div>
 
-<label class="radio-option">
-<input type="radio" name="airportTransfer" value="train">
-<span>Train to Hua Hin</span>
-</label>
-
-<label class="radio-option">
-<input type="radio" name="airportTransfer" value="bus">
-<span>VIP Bus</span>
-</label>
-
-<label class="radio-option">
-<input type="radio" name="airportTransfer" value="taxi">
-<span>Airport Taxi</span>
-</label>
-
-<label class="radio-option">
-<input type="radio" name="airportTransfer" value="undecided">
-<span>Undecided</span>
-</label>
-
+<div class="choice-hint">Tap once to select. Tap the selected option again to clear it.</div>
 </div>
 
 <div class="list">
@@ -580,39 +495,27 @@ safeSet('recon-active-tab',btn.dataset.tab);
 });
 });
 
-var radioLastState={};
+var transferChoice=safeGet('airportTransfer')||'';
 
-document.querySelectorAll('input[name="airportTransfer"]').forEach(function(radio){
-var saved=safeGet('airportTransfer');
-if(saved===radio.value){
-radio.checked=true;
-radioLastState[radio.value]=true;
+function renderTransferChoice(){
+document.querySelectorAll('.choice-btn').forEach(function(btn){
+btn.classList.toggle('selected',btn.dataset.transfer===transferChoice);
+});
+safeSet('airportTransfer',transferChoice);
 }
 
-radio.addEventListener('mousedown',function(){
-radio.dataset.wasChecked=radio.checked ? 'true' : 'false';
-});
-
-radio.addEventListener('click',function(){
-if(radio.dataset.wasChecked==='true'){
-radio.checked=false;
-safeSet('airportTransfer','');
-radio.dataset.wasChecked='false';
+document.querySelectorAll('.choice-btn').forEach(function(btn){
+btn.addEventListener('click',function(){
+if(transferChoice===btn.dataset.transfer){
+transferChoice='';
 }else{
-safeSet('airportTransfer',radio.value);
+transferChoice=btn.dataset.transfer;
 }
+renderTransferChoice();
+});
 });
 
-radio.addEventListener('touchstart',function(){
-radio.dataset.wasChecked=radio.checked ? 'true' : 'false';
-},{passive:true});
-
-radio.addEventListener('change',function(){
-if(radio.checked){
-safeSet('airportTransfer',radio.value);
-}
-});
-});
+renderTransferChoice();
 
 var notes=document.getElementById('notesBox');
 notes.value=safeGet('recon-notes')||'';
@@ -669,447 +572,4 @@ updateTotals();
 </script>
 
 </body>
-</html>  padding:14px;
-}
-h1{
-  margin:0;
-  font-size:2.2rem;
-  line-height:1;
-}
-.sub{
-  margin-top:8px;
-  color:var(--muted);
-  line-height:1.45;
-}
-.badges{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:12px;
-}
-.badge{
-  padding:7px 12px;
-  border-radius:999px;
-  background:#2a2154;
-  border:1px solid #4c3d99;
-  font-weight:800;
-  font-size:.85rem;
-}
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-top:16px;
-}
-.stat{
-  background:var(--card2);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:14px;
-  text-align:center;
-}
-.stat .n{
-  font-size:2rem;
-  font-weight:900;
-}
-.stat .l{
-  color:var(--muted);
-}
-.tabs{
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  padding:12px 0 2px;
-  margin-top:12px;
-  scrollbar-width:none;
-}
-.tabs::-webkit-scrollbar{
-  display:none;
-}
-.tabs button{
-  flex:0 0 auto;
-  padding:11px 18px;
-  border-radius:999px;
-  border:1px solid var(--line);
-  background:#12192a;
-  color:var(--text);
-  font-weight:800;
-  cursor:pointer;
-  white-space:nowrap;
-}
-.tabs button.active{
-  background:var(--accent);
-}
-.panel{
-  display:none;
-  margin-top:12px;
-}
-.panel.active{
-  display:block;
-}
-.card{
-  padding:18px;
-  margin-top:14px;
-}
-.section-title{
-  font-size:1.35rem;
-  font-weight:900;
-  line-height:1.2;
-}
-.small{
-  color:var(--muted);
-  line-height:1.5;
-  margin-top:8px;
-}
-.list{
-  display:grid;
-  gap:10px;
-  margin-top:14px;
-}
-.item{
-  background:#0d1424;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:14px;
-  line-height:1.45;
-}
-.check-item{
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-}
-.check-item input{
-  width:18px;
-  height:18px;
-  accent-color:var(--ok);
-  margin-top:2px;
-  flex:0 0 auto;
-}
-.done label{
-  text-decoration:line-through;
-  color:#94a3b8;
-}
-.controls{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:14px;
-}
-.control-btn{
-  border:1px solid var(--line);
-  background:#12192a;
-  color:var(--text);
-  border-radius:14px;
-  padding:10px 14px;
-  font-weight:800;
-  cursor:pointer;
-}
-.control-btn.danger{
-  border-color:#7f1d1d;
-  background:#2a1111;
-  color:#fecaca;
-}
-.notes{
-  width:100%;
-  min-height:180px;
-  background:#0d1424;
-  color:var(--text);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:12px;
-  font:inherit;
-  resize:vertical;
-  margin-top:12px;
-}
-.footer{
-  text-align:center;
-  color:var(--muted);
-  padding:24px;
-  font-size:.85rem;
-}
-@media(max-width:700px){
-  .site-nav{
-    grid-template-columns:1fr 1fr;
-  }
-  .stats{
-    grid-template-columns:repeat(3,1fr);
-  }
-  h1{
-    font-size:1.9rem;
-  }
-}
-</style>
-</head>
-<body>
-<header class="site-banner">
-<nav class="site-nav">
-<a href="index.html">Home</a>
-<a href="relocationfinal.html">Big Move</a>
-<a href="thailand-recon-planner.html">Recon Planner App</a>
-<a href="packing-list.html">Packing</a>
-<a href="theoeducation.html">Theo Education</a>
-<a href="home-sale-tracker.html">Home Sale Tracker</a>
-</nav>
-</header>
-<div class="app">
-<div class="hero">
-<h1>Packing</h1>
-<div class="sub">Travel packing, flight essentials, medical safeguards, Thailand recon gear, and move-readiness checklist.</div>
-<div class="badges">
-<div class="badge">Carry-On Priority</div>
-<div class="badge">Medical Protocol</div>
-<div class="badge">Thailand Ready</div>
-</div>
-<div class="stats">
-<div class="stat"><div class="n" id="checkedCount">0</div><div class="l">Packed</div></div>
-<div class="stat"><div class="n" id="totalCount">0</div><div class="l">Total</div></div>
-<div class="stat"><div class="n" id="progressPct">0%</div><div class="l">Complete</div></div>
-</div>
-<div class="tabs">
-<button class="tab active" data-tab="carryon">Carry-On</button>
-<button class="tab" data-tab="medical">Medical</button>
-<button class="tab" data-tab="clothing">Clothing</button>
-<button class="tab" data-tab="tech">Tech</button>
-<button class="tab" data-tab="documents">Documents</button>
-<button class="tab" data-tab="thailand">Thailand</button>
-<button class="tab" data-tab="notes">Notes</button>
-</div>
-</div>
-<div class="panel active" id="carryon">
-<div class="card">
-<div class="section-title">Carry-On Essentials</div>
-<div class="small">Items that should stay with you and never go into checked luggage.</div>
-<div class="list" id="carryonList"></div>
-</div>
-</div>
-<div class="panel" id="medical">
-<div class="card">
-<div class="section-title">Medical / Long-Flight Protocol</div>
-<div class="small">Long-haul flight protections and required health-support items.</div>
-<div class="list" id="medicalList"></div>
-</div>
-</div>
-<div class="panel" id="clothing">
-<div class="card">
-<div class="section-title">Clothing</div>
-<div class="small">Lightweight, breathable, and practical clothing for heat, humidity, and recon movement.</div>
-<div class="list" id="clothingList"></div>
-</div>
-</div>
-<div class="panel" id="tech">
-<div class="card">
-<div class="section-title">Tech / Charging</div>
-<div class="small">Power, adapters, mobile workflow, and documentation tools.</div>
-<div class="list" id="techList"></div>
-</div>
-</div>
-<div class="panel" id="documents">
-<div class="card">
-<div class="section-title">Documents</div>
-<div class="small">Travel documents, backups, confirmations, and emergency access.</div>
-<div class="list" id="documentsList"></div>
-</div>
-</div>
-<div class="panel" id="thailand">
-<div class="card">
-<div class="section-title">Thailand Recon Gear</div>
-<div class="small">Practical items for hotel checks, property tours, walking neighborhoods, and daily-life testing.</div>
-<div class="list" id="thailandList"></div>
-</div>
-</div>
-<div class="panel" id="notes">
-<div class="card">
-<div class="section-title">Packing Notes</div>
-<div class="small">Notes save on this device.</div>
-<textarea class="notes" id="notesBox" placeholder="Type packing notes here..."></textarea>
-<div class="controls">
-<button class="control-btn" onclick="copyNotes()">Copy Notes</button>
-<button class="control-btn danger" onclick="clearNotes()">Clear Notes</button>
-<button class="control-btn danger" onclick="resetChecks()">Clear All Checks</button>
-</div>
-</div>
-</div>
-<div class="footer">Packing • Gregory Trent • Thailand Recon</div>
-</div>
-<script>
-var packingData={
-carryon:[
-'Passport',
-'Wallet / primary cards',
-'Backup credit card',
-'Cash for arrival',
-'Phone',
-'Phone charging cable',
-'Portable power bank',
-'Prescription medications',
-'Compression socks',
-'One full change of clothes',
-'Basic toiletries',
-'Reading glasses / sunglasses',
-'Noise-canceling earbuds or headphones',
-'Travel pillow',
-'Light jacket or travel hoodie',
-'Snacks for long-haul travel',
-'Empty water bottle for refill after security'
-],
-medical:[
-'Compression socks',
-'Medication supply for full trip plus buffer',
-'Eliquis supply packed in carry-on',
-'Gabapentin supply packed in carry-on',
-'Medication list',
-'Doctor clearance or guidance notes if needed',
-'CPAP machine and power cord if traveling with it',
-'CPAP mask and backup supplies if applicable',
-'Pain relief / approved OTC medication',
-'Stomach medication / anti-diarrheal',
-'Oral rehydration packets',
-'Electrolyte packets',
-'Bandages / basic first aid',
-'Hand sanitizer',
-'Movement schedule reminder: stand/walk every 45–60 minutes'
-],
-clothing:[
-'Lightweight shirts',
-'Lightweight pants',
-'Shorts',
-'Undergarments',
-'Socks',
-'Comfortable walking shoes',
-'Sandals or slides',
-'Sleepwear',
-'Swimwear',
-'Light rain jacket or poncho',
-'Hat or cap',
-'Church / nicer outfit',
-'Laundry bag',
-'Travel-size detergent sheets'
-],
-tech:[
-'iPhone',
-'iPad or laptop',
-'Charging cables',
-'USB-C charger',
-'International plug adapter',
-'Portable charger',
-'Headphones / earbuds',
-'Lapel mic if recording content',
-'Backup storage / cloud sync checked',
-'AirTags or luggage trackers',
-'Printed hotel addresses saved as screenshots',
-'Offline maps downloaded',
-'Grab app installed',
-'Airline app installed'
-],
-documents:[
-'Passport photo page screenshot',
-'Flight itinerary',
-'Hotel confirmations',
-'Travel insurance documents',
-'Medical insurance cards',
-'Medication list',
-'Emergency contacts',
-'Copies of prescriptions',
-'Driver license',
-'Bank phone numbers',
-'Thailand entry / TDAC confirmation when completed',
-'Printed address for Kiang Haad Beach Hua Hin',
-'Printed address for The Siam Guest House'
-],
-thailand:[
-'Small day bag',
-'Reusable water bottle',
-'Cooling towel',
-'Pocket umbrella',
-'Small flashlight',
-'Notebook or notes app setup',
-'Tape measure for property tours',
-'Photos checklist for housing tours',
-'Neighborhood scoring notes',
-'Comfortable walking shoes',
-'Bug spray',
-'Sunscreen',
-'Small pack of tissues',
-'Wet wipes',
-'Cash for taxis / small vendors'
-]
-};
-function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
-function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
-function addCheck(container,key,text){
-var row=document.createElement('div');
-row.className='item check-item';
-row.innerHTML='<input type="checkbox" id="'+key+'"><label for="'+key+'">'+text+'</label>';
-container.appendChild(row);
-}
-Object.keys(packingData).forEach(function(section){
-var container=document.getElementById(section+'List');
-if(container){
-packingData[section].forEach(function(item,i){
-addCheck(container,'pack-'+section+'-'+i,item);
-});
-}
-});
-document.querySelectorAll('.tab').forEach(function(btn){
-btn.addEventListener('click',function(){
-document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active')});
-btn.classList.add('active');
-document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
-document.getElementById(btn.dataset.tab).classList.add('active');
-safeSet('packing-active-tab',btn.dataset.tab);
-});
-});
-var notes=document.getElementById('notesBox');
-notes.value=safeGet('packing-notes')||'';
-notes.addEventListener('input',function(){safeSet('packing-notes',notes.value)});
-function updateTotals(){
-var checks=[].slice.call(document.querySelectorAll('input[type="checkbox"]'));
-var checked=0;
-checks.forEach(function(c){
-var row=c.closest('.item');
-if(c.checked){
-checked++;
-row.classList.add('done');
-}else{
-row.classList.remove('done');
-}
-});
-document.getElementById('checkedCount').textContent=checked;
-document.getElementById('totalCount').textContent=checks.length;
-document.getElementById('progressPct').textContent=(checks.length?Math.round(checked/checks.length*100):0)+'%';
-}
-document.querySelectorAll('input[type="checkbox"]').forEach(function(c){
-c.checked=safeGet('check-'+c.id)==='1';
-c.addEventListener('change',function(){
-safeSet('check-'+c.id,c.checked?'1':'0');
-updateTotals();
-});
-});
-function copyNotes(){
-notes.select();
-notes.setSelectionRange(0,999999);
-try{document.execCommand('copy')}catch(e){}
-}
-function clearNotes(){
-notes.value='';
-safeSet('packing-notes','');
-}
-function resetChecks(){
-if(!confirm('Clear all packing checks?')){return}
-document.querySelectorAll('input[type="checkbox"]').forEach(function(c){
-c.checked=false;
-safeSet('check-'+c.id,'0');
-});
-updateTotals();
-}
-var savedTab=safeGet('packing-active-tab');
-if(savedTab&&document.getElementById(savedTab)){
-document.querySelectorAll('.tab').forEach(function(b){b.classList.toggle('active',b.dataset.tab===savedTab)});
-document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active',p.id===savedTab)});
-}
-updateTotals();
-</script>
-</body>
 </html>
-
-After this is done, we’ll rebuild thailand-recon-planner.html again with clearable radio buttons.
