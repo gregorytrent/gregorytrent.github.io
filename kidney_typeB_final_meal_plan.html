@@ -1,216 +1,38 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kidney Meal Plan</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  .container { padding: 1rem 0; }
-  .day-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.2rem; }
-  .day-tab { padding: 6px 14px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); font-size: 13px; cursor: pointer; background: var(--color-background-primary); color: var(--color-text-secondary); transition: all 0.15s; }
-  .day-tab.active { background: var(--color-background-secondary); color: var(--color-text-primary); border-color: var(--color-border-primary); font-weight: 500; }
-  .meal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-  .meal-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.1rem; }
-  .meal-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-tertiary); margin-bottom: 6px; }
-  .meal-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 8px; }
-  .protein-tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 99px; margin-bottom: 8px; font-weight: 500; }
-  .tag-lamb   { background: #FAECE7; color: #993C1D; }
-  .tag-turkey { background: #E1F5EE; color: #0F6E56; }
-  .tag-fish   { background: #E6F1FB; color: #185FA5; }
-  .tag-egg    { background: #FAEEDA; color: #854F0B; }
-  .meal-items { list-style: none; }
-  .meal-items li { font-size: 13px; color: var(--color-text-secondary); padding: 2px 0; display: flex; align-items: flex-start; gap: 6px; line-height: 1.5; }
-  .meal-items li::before { content: "·"; color: var(--color-text-tertiary); flex-shrink: 0; }
-  .tea-bar { margin-top: 1rem; background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; font-size: 13px; color: var(--color-text-secondary); }
-  .tea-bar strong { color: var(--color-text-primary); font-weight: 500; }
-  .legend { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 1.1rem; }
-  .legend-item { font-size: 12px; color: var(--color-text-secondary); display: flex; align-items: center; gap: 5px; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+:root{--bg:#08101d;--card:#131a2b;--card2:#1a2338;--text:#eef2ff;--muted:#b8c1d9;--accent:#7c5cff;--line:#2b3650;--gold:#ffd700;--ok:#10b981;--danger:#ef4444}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;padding:0;overflow-x:hidden;background:linear-gradient(180deg,#08101d,#11192b);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text)}body{padding-bottom:40px}.site-banner{width:100%;background:#111827;border-bottom:2px solid var(--gold);padding:16px}.site-nav{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.site-nav a{display:flex;justify-content:center;align-items:center;text-align:center;min-height:46px;padding:10px;border-radius:14px;border:1px solid #334155;background:#131a2b;color:var(--gold);text-decoration:none;font-weight:800}.app{max-width:980px;margin:0 auto;padding:12px}.hero,.card{background:rgba(19,26,43,.96);border:1px solid var(--line);border-radius:22px;box-shadow:0 10px 28px rgba(0,0,0,.28)}.hero{padding:16px}h1{margin:0;font-size:2.2rem;line-height:1}.sub{margin-top:8px;color:var(--muted);line-height:1.45}.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.badge{padding:7px 12px;border-radius:999px;background:#2a2154;border:1px solid #4c3d99;font-weight:800;font-size:.85rem}.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 0 2px;margin-top:12px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tabs button{flex:0 0 auto;padding:11px 18px;border-radius:999px;border:1px solid var(--line);background:#12192a;color:var(--text);font-weight:800;cursor:pointer;white-space:nowrap}.tabs button.active{background:var(--accent)}.panel{display:none;margin-top:12px}.panel.active{display:block}.card{padding:18px;margin-top:14px}.section-title{font-size:1.35rem;font-weight:900;line-height:1.2}.small{color:var(--muted);line-height:1.5;margin-top:8px}.list{display:grid;gap:10px;margin-top:14px}.item{background:#0d1424;border:1px solid var(--line);border-radius:16px;padding:14px;line-height:1.45}.item strong{color:#fff}.check-item{display:flex;gap:10px;align-items:flex-start}.check-item input{width:18px;height:18px;accent-color:var(--ok);margin-top:2px;flex:0 0 auto}.done label{text-decoration:line-through;color:#94a3b8}.day-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.day-tab{padding:9px 14px;border-radius:999px;border:1px solid var(--line);font-size:13px;cursor:pointer;background:#12192a;color:var(--text);font-weight:800}.day-tab.active{background:var(--accent);color:#fff}.meal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.meal-card{background:#0d1424;border:1px solid var(--line);border-radius:18px;padding:16px}.meal-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px}.meal-title{font-size:1rem;font-weight:900;color:var(--text);margin-bottom:8px}.protein-tag{display:inline-block;font-size:11px;padding:3px 9px;border-radius:99px;margin-bottom:8px;font-weight:800}.tag-lamb{background:#FAECE7;color:#993C1D}.tag-turkey{background:#E1F5EE;color:#0F6E56}.tag-fish{background:#E6F1FB;color:#185FA5}.tag-egg{background:#FAEEDA;color:#854F0B}.meal-items{list-style:none;padding:0;margin:0}.meal-items li{font-size:.92rem;color:var(--muted);padding:3px 0;line-height:1.5}.meal-items li::before{content:"• ";color:var(--gold)}.tea-bar{margin-top:14px;background:#0d1424;border:1px solid var(--line);border-radius:16px;padding:14px;color:var(--muted)}.tea-bar strong{color:var(--gold)}.legend{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}.legend-item{font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:6px}.dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}.notes{width:100%;min-height:220px;background:#0d1424;color:var(--text);border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit;resize:vertical}.footer{text-align:center;color:var(--muted);padding:24px;font-size:.85rem}@media(max-width:700px){.site-nav{grid-template-columns:1fr 1fr}h1{font-size:1.9rem}}
 </style>
-<div class="container">
-  <div class="legend">
-    <div class="legend-item"><div class="dot" style="background:#D85A30"></div>Lamb</div>
-    <div class="legend-item"><div class="dot" style="background:#1D9E75"></div>Turkey</div>
-    <div class="legend-item"><div class="dot" style="background:#378ADD"></div>Fish / Salmon</div>
-    <div class="legend-item"><div class="dot" style="background:#EF9F27"></div>Eggs</div>
-  </div>
-  <div class="day-tabs" id="tabs"></div>
-  <div class="meal-grid" id="meals"></div>
-  <div class="tea-bar" id="tea"></div>
+</head>
+<body>
+<header class="site-banner"><nav class="site-nav"><a href="index.html">Home</a><a href="relocationfinal.html">Big Move</a><a href="thailand-recon-planner.html">Recon Planner App</a><a href="packing-list.html">Packing</a><a href="theoeducation.html">Theo Education</a><a href="home-sale-tracker.html">Home Sale Tracker</a><a href="kidney_typeB_final_meal_plan.html">Kidney Meal Plan</a></nav></header>
+<div class="app">
+<div class="hero"><h1>Kidney Meal Plan</h1><div class="sub">Type B kidney-conscious weekly meal plan, Thailand pre-trip immune preparation, flight-day protocol, and personal health notes.</div><div class="badges"><div class="badge">Weekly Meals</div><div class="badge">Pre-Trip Immune Prep</div><div class="badge">Long-Haul Flight Protocol</div><div class="badge">Health Notes</div></div><div class="tabs"><button class="tab active" data-tab="meals">Meal Plan</button><button class="tab" data-tab="immune">Pre-Trip Immune Plan</button><button class="tab" data-tab="flight">Flight Day Protocol</button><button class="tab" data-tab="thailand">Thailand Health Prep</button><button class="tab" data-tab="notes">Health Notes</button></div></div>
+<div class="panel active" id="meals"><div class="card"><div class="section-title">Weekly Meal Planner</div><div class="small">Monday–Sunday tabs with breakfast, lunch, dinner, snack, and herbal tea pairing.</div><div class="legend"><div class="legend-item"><div class="dot" style="background:#D85A30"></div>Lamb</div><div class="legend-item"><div class="dot" style="background:#1D9E75"></div>Turkey</div><div class="legend-item"><div class="dot" style="background:#378ADD"></div>Fish / Salmon</div><div class="legend-item"><div class="dot" style="background:#EF9F27"></div>Eggs</div></div><div class="day-tabs" id="tabs"></div><div class="meal-grid" id="meals"></div><div class="tea-bar" id="tea"></div></div></div>
+<div class="panel" id="immune"><div class="card"><div class="section-title">Pre-Trip Immune Preparation</div><div class="small">Use this as a planning checklist before the Bangkok flight. Review supplements and vaccines with your clinician because of current medications and medical history.</div><div class="list" id="immuneList"></div></div></div>
+<div class="panel" id="flight"><div class="card"><div class="section-title">Flight Day Protocol</div><div class="small">Long-haul flight checklist for hydration, hygiene, movement, and medication control.</div><div class="list" id="flightList"></div></div></div>
+<div class="panel" id="thailand"><div class="card"><div class="section-title">Thailand Health Preparation</div><div class="list" id="thaiHealthList"></div></div></div>
+<div class="panel" id="notes"><div class="card"><div class="section-title">Personal Health Notes</div><div class="small">Use this for blood pressure, oxygen, medication notes, doctor instructions, food reactions, and Thailand medical observations. Notes save on this device.</div><textarea class="notes" id="healthNotes" placeholder="Type health notes here..."></textarea></div></div>
+<div class="footer">Kidney Meal Plan • Gregory Trent • Thailand Health Prep</div>
 </div>
 <script>
-const days = [
-  {
-    label: "Mon",
-    tea: "Green tea + ginger — immune support + digestion",
-    meals: [
-      {
-        slot: "Breakfast", title: "Eggs & Greens Skillet", tag: "Eggs", tagClass: "tag-egg",
-        items: ["2 eggs scrambled with garlic & red onion in olive oil", "Wilted spinach + kale", "Rice cakes on the side", "Grapefruit juice or water with lemon"]
-      },
-      {
-        slot: "Lunch", title: "Lamb Kale Bowl", tag: "Lamb", tagClass: "tag-lamb",
-        items: ["Ground lamb sautéed with garlic, curry & turmeric", "Kale + collard greens in olive oil", "Red onion, walnuts", "Brown rice bread on the side"]
-      },
-      {
-        slot: "Dinner", title: "Baked Grouper & Greens", tag: "Fish", tagClass: "tag-fish",
-        items: ["Grouper baked with lemon, garlic & cayenne", "Collard greens braised in olive oil", "Okra sautéed with red onion", "Rice cakes"]
-      },
-      {
-        slot: "Snack", title: "Yogurt & Fruit Bowl", tag: "Eggs", tagClass: "tag-egg",
-        items: ["Plain yogurt with blueberries + cherries", "Walnuts scattered on top", "Drizzle of honey", "Green tea"]
-      }
-    ]
-  },
-  {
-    label: "Tue",
-    tea: "Alfalfa + rose hips — antioxidant + kidney tonic",
-    meals: [
-      {
-        slot: "Breakfast", title: "Egg & Turkey Rice Cakes", tag: "Eggs", tagClass: "tag-egg",
-        items: ["Soft-boiled eggs with sliced turkey on rice cakes", "Alfalfa sprouts + red onion", "Apricot juice or black cherry juice", "Walnuts on the side"]
-      },
-      {
-        slot: "Lunch", title: "Salmon Spinach Bowl", tag: "Fish", tagClass: "tag-fish",
-        items: ["Salmon fillet baked with lemon, dill & olive oil", "Spinach + romaine base", "Walnuts, red onion", "Olive oil & lemon dressing"]
-      },
-      {
-        slot: "Dinner", title: "Lamb Okra Plate", tag: "Lamb", tagClass: "tag-lamb",
-        items: ["Lamb chops seasoned with curry, turmeric & garlic", "Okra + spinach sautéed in olive oil", "Red onion finish", "Rice cakes on the side"]
-      },
-      {
-        slot: "Snack", title: "Turkey & Berry Plate", tag: "Turkey", tagClass: "tag-turkey",
-        items: ["Cold turkey slices with goat cheese on rice cake", "Blackberries + plums", "Cranberry or prune juice"]
-      }
-    ]
-  },
-  {
-    label: "Wed",
-    tea: "Milk thistle + chamomile — liver tonic + stress relief",
-    meals: [
-      {
-        slot: "Breakfast", title: "Yogurt Fruit Bowl", tag: "Eggs", tagClass: "tag-egg",
-        items: ["Plain yogurt with sliced apricots + figs", "Walnuts + drizzle of honey", "Puffed rice mixed in for crunch", "Green tea"]
-      },
-      {
-        slot: "Lunch", title: "Turkey Collard Bowl", tag: "Turkey", tagClass: "tag-turkey",
-        items: ["Roasted turkey breast with garlic & tamari", "Collard greens + kale braised in olive oil", "Red onion + walnuts", "Brown rice bread"]
-      },
-      {
-        slot: "Dinner", title: "Salmon & Okra Plate", tag: "Fish", tagClass: "tag-fish",
-        items: ["Salmon fillet pan-seared with cayenne & lemon", "Okra + spinach in olive oil", "Garlic & red onion seasoning", "Rice cakes on the side"]
-      },
-      {
-        slot: "Snack", title: "Lamb Bites & Fruit", tag: "Lamb", tagClass: "tag-lamb",
-        items: ["Cold lamb strips with mozzarella on rice cake", "Fresh cherries + plums", "Water with lemon"]
-      }
-    ]
-  },
-  {
-    label: "Thu",
-    tea: "Burdock + echinacea — immune boost + detox",
-    meals: [
-      {
-        slot: "Breakfast", title: "Eggs & Lamb Hash", tag: "Eggs", tagClass: "tag-egg",
-        items: ["2 eggs fried in olive oil with ground lamb", "Garlic, turmeric & cayenne seasoning", "Wilted spinach + red onion", "Grapefruit juice"]
-      },
-      {
-        slot: "Lunch", title: "Grouper & Greens Bowl", tag: "Fish", tagClass: "tag-fish",
-        items: ["Grouper baked in olive oil, lemon & garlic", "Romaine + kale + alfalfa sprouts", "Walnuts, red onion dressing", "Rice cakes"]
-      },
-      {
-        slot: "Dinner", title: "Lamb Curry Plate", tag: "Lamb", tagClass: "tag-lamb",
-        items: ["Lamb slow-cooked with curry, turmeric, garlic & ginger", "Collard greens + okra on the side", "Brown rice bread", "Fresh plums or figs"]
-      },
-      {
-        slot: "Snack", title: "Turkey & Nut Plate", tag: "Turkey", tagClass: "tag-turkey",
-        items: ["Cold turkey slices with walnuts", "Dried figs + fresh cherries", "Black cherry or prune juice"]
-      }
-    ]
-  },
-  {
-    label: "Fri",
-    tea: "Valerian root + chamomile — end-of-week stress relief",
-    meals: [
-      {
-        slot: "Breakfast", title: "Yogurt & Berry Bowl", tag: "Eggs", tagClass: "tag-egg",
-        items: ["Plain yogurt with blueberries + cranberries", "Walnuts + honey drizzle", "Puffed rice on the side", "Green tea or cranberry juice"]
-      },
-      {
-        slot: "Lunch", title: "Turkey Kale Bowl", tag: "Turkey", tagClass: "tag-turkey",
-        items: ["Sliced turkey over kale + romaine + alfalfa sprouts", "Olive oil, lemon & garlic dressing", "Red onion + walnuts", "Rice cakes"]
-      },
-      {
-        slot: "Dinner", title: "Whitefish & Greens Plate", tag: "Fish", tagClass: "tag-fish",
-        items: ["Whitefish baked with cayenne, lemon & olive oil", "Collard greens + spinach in olive oil", "Okra sautéed with garlic", "Brown rice bread"]
-      },
-      {
-        slot: "Snack", title: "Lamb & Cheese Plate", tag: "Lamb", tagClass: "tag-lamb",
-        items: ["Cold lamb strips with ricotta on rice cake", "Boysenberries + figs", "Pineapple juice"]
-      }
-    ]
-  },
-  {
-    label: "Sat",
-    tea: "Hawthorn + ginseng — cardiovascular + energy tonic",
-    meals: [
-      {
-        slot: "Breakfast", title: "Eggs & Spinach Skillet", tag: "Eggs", tagClass: "tag-egg",
-        items: ["2 eggs poached over spinach + kale in olive oil", "Garlic, turmeric & red onion seasoning", "Rice cakes on the side", "Fresh plums + blueberries"]
-      },
-      {
-        slot: "Lunch", title: "Lamb & Greens Bowl", tag: "Lamb", tagClass: "tag-lamb",
-        items: ["Ground lamb with curry, garlic & ginger over romaine", "Kale + red onion + walnuts", "Olive oil & lemon dressing", "Brown rice bread"]
-      },
-      {
-        slot: "Dinner", title: "Salmon Collard Plate", tag: "Fish", tagClass: "tag-fish",
-        items: ["Salmon baked with garlic, lemon & cayenne", "Collard greens braised in olive oil", "Okra + red onion sauté", "Rice cakes"]
-      },
-      {
-        slot: "Snack", title: "Turkey & Berry Board", tag: "Turkey", tagClass: "tag-turkey",
-        items: ["Cold turkey with goat cheese on rice cake", "Cranberries + dried figs", "Black cherry juice"]
-      }
-    ]
-  },
-  {
-    label: "Sun",
-    tea: "St. John's Wort + slippery elm — wellness + digestion reset",
-    meals: [
-      {
-        slot: "Breakfast", title: "Sunday Egg & Turkey Plate", tag: "Eggs", tagClass: "tag-egg",
-        items: ["2 eggs scrambled with sliced turkey & garlic", "Wilted spinach + alfalfa sprouts", "Fresh apricots + blueberries on the side", "Prune juice or water with lemon"]
-      },
-      {
-        slot: "Lunch", title: "Red Snapper & Greens Bowl", tag: "Fish", tagClass: "tag-fish",
-        items: ["Red snapper grilled with lemon-tamari & cayenne", "Romaine + spinach + alfalfa sprouts", "Walnuts + red onion", "Rice cakes"]
-      },
-      {
-        slot: "Dinner", title: "Sunday Lamb Roast Plate", tag: "Lamb", tagClass: "tag-lamb",
-        items: ["Roasted lamb with garlic, rosemary, curry & turmeric", "Collard greens + okra in olive oil", "Kale sautéed with red onion & garlic", "Brown rice bread"]
-      },
-      {
-        slot: "Snack", title: "Yogurt Wind-Down Bowl", tag: "Eggs", tagClass: "tag-egg",
-        items: ["Plain yogurt with dried prunes + plums", "Walnuts + honey drizzle", "Chamomile or valerian tea"]
-      }
-    ]
-  }
-];
-
-let active = 0;
-function render() {
-  const tabsEl = document.getElementById('tabs');
-  const mealsEl = document.getElementById('meals');
-  const teaEl = document.getElementById('tea');
-  tabsEl.innerHTML = days.map((d, i) =>
-    `<button class="day-tab ${i === active ? 'active' : ''}" onclick="setDay(${i})">${d.label}</button>`
-  ).join('');
-  const day = days[active];
-  mealsEl.innerHTML = day.meals.map(m => `
-    <div class="meal-card">
-      <div class="meal-label">${m.slot}</div>
-      <div class="meal-title">${m.title}</div>
-      <span class="protein-tag ${m.tagClass}">${m.tag}</span>
-      <ul class="meal-items">${m.items.map(item => `<li>${item}</li>`).join('')}</ul>
-    </div>
-  `).join('');
-  teaEl.innerHTML = `<strong>Herbal tea:</strong> ${day.tea}`;
-}
-window.setDay = function(i) { active = i; render(); };
-render();
+const days=[{label:"Mon",tea:"Green tea + ginger — immune support + digestion",meals:[{slot:"Breakfast",title:"Eggs & Greens Skillet",tag:"Eggs",tagClass:"tag-egg",items:["2 eggs scrambled with garlic & red onion in olive oil","Wilted spinach + kale","Rice cakes on the side","Grapefruit juice or water with lemon"]},{slot:"Lunch",title:"Lamb Kale Bowl",tag:"Lamb",tagClass:"tag-lamb",items:["Ground lamb sautéed with garlic, curry & turmeric","Kale + collard greens in olive oil","Red onion, walnuts","Brown rice bread on the side"]},{slot:"Dinner",title:"Baked Grouper & Greens",tag:"Fish",tagClass:"tag-fish",items:["Grouper baked with lemon, garlic & cayenne","Collard greens braised in olive oil","Okra sautéed with red onion","Rice cakes"]},{slot:"Snack",title:"Yogurt & Fruit Bowl",tag:"Eggs",tagClass:"tag-egg",items:["Plain yogurt with blueberries + cherries","Walnuts scattered on top","Drizzle of honey","Green tea"]}]},{label:"Tue",tea:"Alfalfa + rose hips — antioxidant + kidney tonic",meals:[{slot:"Breakfast",title:"Egg & Turkey Rice Cakes",tag:"Eggs",tagClass:"tag-egg",items:["Soft-boiled eggs with sliced turkey on rice cakes","Alfalfa sprouts + red onion","Apricot juice or black cherry juice","Walnuts on the side"]},{slot:"Lunch",title:"Salmon Spinach Bowl",tag:"Fish",tagClass:"tag-fish",items:["Salmon fillet baked with lemon, dill & olive oil","Spinach + romaine base","Walnuts, red onion","Olive oil & lemon dressing"]},{slot:"Dinner",title:"Lamb Okra Plate",tag:"Lamb",tagClass:"tag-lamb",items:["Lamb chops seasoned with curry, turmeric & garlic","Okra + spinach sautéed in olive oil","Red onion finish","Rice cakes on the side"]},{slot:"Snack",title:"Turkey & Berry Plate",tag:"Turkey",tagClass:"tag-turkey",items:["Cold turkey slices with goat cheese on rice cake","Blackberries + plums","Cranberry or prune juice"]}]},{label:"Wed",tea:"Milk thistle + chamomile — liver tonic + stress relief",meals:[{slot:"Breakfast",title:"Yogurt Fruit Bowl",tag:"Eggs",tagClass:"tag-egg",items:["Plain yogurt with sliced apricots + figs","Walnuts + drizzle of honey","Puffed rice mixed in for crunch","Green tea"]},{slot:"Lunch",title:"Turkey Collard Bowl",tag:"Turkey",tagClass:"tag-turkey",items:["Roasted turkey breast with garlic & tamari","Collard greens + kale braised in olive oil","Red onion + walnuts","Brown rice bread"]},{slot:"Dinner",title:"Salmon & Okra Plate",tag:"Fish",tagClass:"tag-fish",items:["Salmon fillet pan-seared with cayenne & lemon","Okra + spinach in olive oil","Garlic & red onion seasoning","Rice cakes on the side"]},{slot:"Snack",title:"Lamb Bites & Fruit",tag:"Lamb",tagClass:"tag-lamb",items:["Cold lamb strips with mozzarella on rice cake","Fresh cherries + plums","Water with lemon"]}]},{label:"Thu",tea:"Burdock + echinacea — immune boost + detox",meals:[{slot:"Breakfast",title:"Eggs & Lamb Hash",tag:"Eggs",tagClass:"tag-egg",items:["2 eggs fried in olive oil with ground lamb","Garlic, turmeric & cayenne seasoning","Wilted spinach + red onion","Grapefruit juice"]},{slot:"Lunch",title:"Grouper & Greens Bowl",tag:"Fish",tagClass:"tag-fish",items:["Grouper baked in olive oil, lemon & garlic","Romaine + kale + alfalfa sprouts","Walnuts, red onion dressing","Rice cakes"]},{slot:"Dinner",title:"Lamb Curry Plate",tag:"Lamb",tagClass:"tag-lamb",items:["Lamb slow-cooked with curry, turmeric, garlic & ginger","Collard greens + okra on the side","Brown rice bread","Fresh plums or figs"]},{slot:"Snack",title:"Turkey & Nut Plate",tag:"Turkey",tagClass:"tag-turkey",items:["Cold turkey slices with walnuts","Dried figs + fresh cherries","Black cherry or prune juice"]}]},{label:"Fri",tea:"Valerian root + chamomile — end-of-week stress relief",meals:[{slot:"Breakfast",title:"Yogurt & Berry Bowl",tag:"Eggs",tagClass:"tag-egg",items:["Plain yogurt with blueberries + cranberries","Walnuts + honey drizzle","Puffed rice on the side","Green tea or cranberry juice"]},{slot:"Lunch",title:"Turkey Kale Bowl",tag:"Turkey",tagClass:"tag-turkey",items:["Sliced turkey over kale + romaine + alfalfa sprouts","Olive oil, lemon & garlic dressing","Red onion + walnuts","Rice cakes"]},{slot:"Dinner",title:"Whitefish & Greens Plate",tag:"Fish",tagClass:"tag-fish",items:["Whitefish baked with cayenne, lemon & olive oil","Collard greens + spinach in olive oil","Okra sautéed with garlic","Brown rice bread"]},{slot:"Snack",title:"Lamb & Cheese Plate",tag:"Lamb",tagClass:"tag-lamb",items:["Cold lamb strips with ricotta on rice cake","Boysenberries + figs","Pineapple juice"]}]},{label:"Sat",tea:"Hawthorn + ginseng — cardiovascular + energy tonic",meals:[{slot:"Breakfast",title:"Eggs & Spinach Skillet",tag:"Eggs",tagClass:"tag-egg",items:["2 eggs poached over spinach + kale in olive oil","Garlic, turmeric & red onion seasoning","Rice cakes on the side","Fresh plums + blueberries"]},{slot:"Lunch",title:"Lamb & Greens Bowl",tag:"Lamb",tagClass:"tag-lamb",items:["Ground lamb with curry, garlic & ginger over romaine","Kale + red onion + walnuts","Olive oil & lemon dressing","Brown rice bread"]},{slot:"Dinner",title:"Salmon Collard Plate",tag:"Fish",tagClass:"tag-fish",items:["Salmon baked with garlic, lemon & cayenne","Collard greens braised in olive oil","Okra + red onion sauté","Rice cakes"]},{slot:"Snack",title:"Turkey & Berry Board",tag:"Turkey",tagClass:"tag-turkey",items:["Cold turkey with goat cheese on rice cake","Cranberries + dried figs","Black cherry juice"]}]},{label:"Sun",tea:"St. John's Wort + slippery elm — wellness + digestion reset",meals:[{slot:"Breakfast",title:"Sunday Egg & Turkey Plate",tag:"Eggs",tagClass:"tag-egg",items:["2 eggs scrambled with sliced turkey & garlic","Wilted spinach + alfalfa sprouts","Fresh apricots + blueberries on the side","Prune juice or water with lemon"]},{slot:"Lunch",title:"Red Snapper & Greens Bowl",tag:"Fish",tagClass:"tag-fish",items:["Red snapper grilled with lemon-tamari & cayenne","Romaine + spinach + alfalfa sprouts","Walnuts + red onion","Rice cakes"]},{slot:"Dinner",title:"Sunday Lamb Roast Plate",tag:"Lamb",tagClass:"tag-lamb",items:["Roasted lamb with garlic, rosemary, curry & turmeric","Collard greens + okra in olive oil","Kale sautéed with red onion & garlic","Brown rice bread"]},{slot:"Snack",title:"Yogurt Wind-Down Bowl",tag:"Eggs",tagClass:"tag-egg",items:["Plain yogurt with dried prunes + plums","Walnuts + honey drizzle","Chamomile or valerian tea"]}]}];
+const immuneItems=['Start zinc and Vitamin C only if cleared for your current medication profile','Consider elderberry only if cleared by clinician','Consider probiotic support for gut health','Prioritize 7–8 hours of sleep nightly','Begin shifting sleep schedule 3–5 days before departure','Increase water intake 24–48 hours before flight','Use electrolytes as appropriate','Limit excess caffeine before travel','Focus meals on greens, fish, citrus, almonds, walnuts, and adequate protein','Call doctor or travel clinic about Hepatitis A, Typhoid, routine vaccines, and destination-specific recommendations'];
+const flightItems=['Pack hand sanitizer','Pack disinfectant wipes','Wipe tray table and armrests','Consider mask during crowded boarding and deplaning','Wear compression socks unless clinician advises otherwise','Keep prescriptions in carry-on','Hydrate continuously during the flight','Walk or stand every 45–60 minutes when safe','Do calf exercises while seated','Keep passport, insurance, and hotel details accessible'];
+const thaiHealthItems=['Tourist Police: 1155','Medical Emergency: 1669','Save nearby hospital options for Bangkok, Hua Hin, and Pattaya/Jomtien','Keep hotel addresses saved offline','Track food reactions and hydration status','Document blood pressure, oxygen readings, symptoms, and medication notes'];
+let active=0;function renderMeals(){const tabsEl=document.getElementById('tabs'),mealsEl=document.getElementById('meals'),teaEl=document.getElementById('tea');tabsEl.innerHTML=days.map((d,i)=>`<button class="day-tab ${i===active?'active':''}" onclick="setDay(${i})">${d.label}</button>`).join('');const day=days[active];mealsEl.innerHTML=day.meals.map(m=>`<div class="meal-card"><div class="meal-label">${m.slot}</div><div class="meal-title">${m.title}</div><span class="protein-tag ${m.tagClass}">${m.tag}</span><ul class="meal-items">${m.items.map(item=>`<li>${item}</li>`).join('')}</ul></div>`).join('');teaEl.innerHTML=`<strong>Herbal tea:</strong> ${day.tea}`;}window.setDay=function(i){active=i;renderMeals();};
+function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function addCheck(container,key,text){var row=document.createElement('div');row.className='item check-item';row.innerHTML='<input type="checkbox" id="'+key+'"><label for="'+key+'">'+text+'</label>';container.appendChild(row)}
+function buildList(id,prefix,items){var c=document.getElementById(id);items.forEach(function(t,i){addCheck(c,prefix+'-'+i,t)})}
+document.querySelectorAll('.tab').forEach(function(btn){btn.addEventListener('click',function(){document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});document.getElementById(btn.dataset.tab).classList.add('active');safeSet('kidney-active-tab',btn.dataset.tab)})});
+buildList('immuneList','immune',immuneItems);buildList('flightList','flight',flightItems);buildList('thaiHealthList','thai',thaiHealthItems);
+document.querySelectorAll('input[type="checkbox"]').forEach(function(c){c.checked=safeGet('check-'+c.id)==='1';if(c.checked)c.closest('.item').classList.add('done');c.addEventListener('change',function(){safeSet('check-'+c.id,c.checked?'1':'0');c.closest('.item').classList.toggle('done',c.checked)})});
+var notes=document.getElementById('healthNotes');notes.value=safeGet('kidney-health-notes')||'';notes.addEventListener('input',function(){safeSet('kidney-health-notes',notes.value)});var saved=safeGet('kidney-active-tab');if(saved&&document.getElementById(saved)){document.querySelectorAll('.tab').forEach(function(b){b.classList.toggle('active',b.dataset.tab===saved)});document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active',p.id===saved)})}renderMeals();
 </script>
+</body>
+</html>
