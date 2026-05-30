@@ -5,162 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Home</title>
 <style>
-:root{--bg:#08101d;--card:#131a2b;--card2:#1a2338;--text:#eef2ff;--muted:#b8c1d9;--accent:#7c5cff;--line:#2b3650;--gold:#ffd700}
+:root{--bg:#08101d;--card:#131a2b;--card2:#1a2338;--text:#eef2ff;--muted:#b8c1d9;--accent:#7c5cff;--line:#2b3650;--gold:#ffd700;--ok:#10b981;--warn:#f59e0b;--bad:#ef4444}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;overflow-x:hidden;background:linear-gradient(180deg,#08101d 0%,#11192b 100%);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text)}
-body{padding-bottom:40px}
-.top-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px;background:#111827;border-bottom:2px solid var(--gold);width:100%}
-.top-nav a{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:10px;border-radius:16px;border:1px solid #334155;background:#131a2b;color:var(--gold);text-decoration:none;font-weight:700;font-size:15px;width:100%}
-.top-nav a:hover{background:var(--gold);color:#000}
-.app{width:100%;max-width:980px;margin:0 auto;padding:12px}
-.hero,.card{background:rgba(19,26,43,.96);border:1px solid var(--line);border-radius:22px;box-shadow:0 10px 28px rgba(0,0,0,.28)}
-.hero{padding:18px;margin-bottom:14px}
-h1{margin:0;font-size:2.4rem;line-height:1}
-h2{margin:0;font-size:1.4rem}
-.sub{margin-top:8px;font-size:1rem;color:var(--muted);line-height:1.4}
-.grid{display:grid;gap:14px;margin-top:14px}
-.card{padding:18px}
-.card a{color:var(--text);text-decoration:none}
-.card-title{font-size:1.25rem;font-weight:800;color:#fff}
-.card-text{font-size:.95rem;color:var(--muted);line-height:1.45;margin-top:6px}
-.button{display:inline-block;margin-top:14px;padding:10px 14px;border-radius:999px;background:var(--accent);color:#fff!important;text-decoration:none;font-weight:800}
-.utility-grid{display:grid;gap:14px;margin-top:14px}
-label{display:block;font-size:.9rem;color:var(--muted);margin-bottom:6px}
-input,textarea{width:100%;background:#0d1424;color:var(--text);border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit}
-textarea{min-height:180px;resize:vertical}
-.result{background:#0d1424;border:1px solid var(--line);border-radius:14px;padding:14px}
-.result strong{font-size:1.4rem}
-.footer{padding:24px 10px;text-align:center;font-size:.85rem;color:var(--muted)}
-@media(min-width:700px){.top-nav{grid-template-columns:repeat(4,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.utility-grid{grid-template-columns:repeat(2,1fr)}}
+body{padding-bottom:40px}.top-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px;background:#111827;border-bottom:2px solid var(--gold);width:100%}.top-nav a{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:10px;border-radius:16px;border:1px solid #334155;background:#131a2b;color:var(--gold);text-decoration:none;font-weight:700;font-size:15px;width:100%}.top-nav a:hover{background:var(--gold);color:#000}.app{width:100%;max-width:1040px;margin:0 auto;padding:12px}.hero,.card{background:rgba(19,26,43,.96);border:1px solid var(--line);border-radius:22px;box-shadow:0 10px 28px rgba(0,0,0,.28)}.hero{padding:18px;margin-bottom:14px}h1{margin:0;font-size:2.4rem;line-height:1}h2{margin:0;font-size:1.4rem}.sub{margin-top:8px;font-size:1rem;color:var(--muted);line-height:1.4}.grid{display:grid;gap:14px;margin-top:14px}.dashboard-grid{display:grid;gap:12px;margin-top:14px}.dash-card{background:#0d1424;border:1px solid var(--line);border-radius:18px;padding:16px}.dash-label{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:800}.dash-value{font-size:1.8rem;font-weight:950;margin-top:6px;color:var(--gold)}.dash-note{font-size:.9rem;color:var(--muted);line-height:1.35;margin-top:6px}.progress-track{height:10px;background:#111827;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-top:10px}.progress-bar{height:100%;width:0%;background:var(--ok);transition:width .25s ease}.card{padding:18px}.card a{color:var(--text);text-decoration:none}.card-title{font-size:1.25rem;font-weight:800;color:#fff}.card-text{font-size:.95rem;color:var(--muted);line-height:1.45;margin-top:6px}.button{display:inline-block;margin-top:14px;padding:10px 14px;border-radius:999px;background:var(--accent);color:#fff!important;text-decoration:none;font-weight:800}.button.gold{background:var(--gold);color:#000!important}.utility-grid{display:grid;gap:14px;margin-top:14px}label{display:block;font-size:.9rem;color:var(--muted);margin-bottom:6px}input,textarea{width:100%;background:#0d1424;color:var(--text);border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit}textarea{min-height:180px;resize:vertical}.result{background:#0d1424;border:1px solid var(--line);border-radius:14px;padding:14px}.result strong{font-size:1.4rem}.emergency{border:2px solid var(--gold);background:#101827}.emergency .card-title{color:var(--gold)}.compact-list{display:grid;gap:10px;margin-top:12px}.compact-item{background:#0d1424;border:1px solid var(--line);border-radius:14px;padding:12px;color:var(--muted);line-height:1.45}.compact-item strong{color:#fff}.footer{padding:24px 10px;text-align:center;font-size:.85rem;color:var(--muted)}@media(min-width:700px){.top-nav{grid-template-columns:repeat(4,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.dashboard-grid{grid-template-columns:repeat(4,1fr)}.utility-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
-<nav class="top-nav">
-<a href="index.html">Home</a>
-<a href="relocationfinal.html">Big Move</a>
-<a href="thailand-recon-planner.html">Recon Planner App</a>
-<a href="packing-list.html">Packing</a>
-<a href="theoeducation.html">Theo Education</a>
-<a href="home-sale-tracker.html">Home Sale Tracker</a>
-<a href="kidney_typeB_final_meal_plan.html">Kidney Meal Plan</a>
-</nav>
+<nav class="top-nav"><a href="index.html">Home</a><a href="relocationfinal.html">Big Move</a><a href="thailand-recon-planner.html">Recon Planner App</a><a href="packing-list.html">Packing</a><a href="theoeducation.html">Theo Education</a><a href="home-sale-tracker.html">Home Sale Tracker</a><a href="kidney_typeB_final_meal_plan.html">Kidney Meal Plan</a></nav>
 <div class="app">
-<div class="hero">
-<h1>Home</h1>
-<div class="sub">Central command hub for the Thailand move, recon planning, packing, theological education, home-sale tracking, and health preparation.</div>
-</div>
+<div class="hero"><h1>Master Dashboard</h1><div class="sub">Central command hub for the Thailand move, recon planning, packing, theological education, home-sale tracking, and health preparation.</div><div class="dashboard-grid"><div class="dash-card"><div class="dash-label">Departure Countdown</div><div class="dash-value" id="countdownDays">—</div><div class="dash-note">Days until DFW departure on Jun 2, 2026.</div></div><div class="dash-card"><div class="dash-label">Packing Progress</div><div class="dash-value" id="packingPct">—</div><div class="progress-track"><div class="progress-bar" id="packingBar"></div></div><div class="dash-note" id="packingNote">Reads this device’s packing checks.</div></div><div class="dash-card"><div class="dash-label">Recon Progress</div><div class="dash-value" id="reconPct">—</div><div class="progress-track"><div class="progress-bar" id="reconBar"></div></div><div class="dash-note" id="reconNote">Reads this device’s recon checks.</div></div><div class="dash-card"><div class="dash-label">Health Prep</div><div class="dash-value" id="healthPct">—</div><div class="progress-track"><div class="progress-bar" id="healthBar"></div></div><div class="dash-note" id="healthNote">Reads Kidney Meal Plan checklist items.</div></div></div></div>
+<div class="card emergency"><div class="card-title">Do Not Lose — Travel Command Card</div><div class="card-text">Keep this available before airport movement, BKK arrival, and hotel transfer.</div><div class="compact-list"><div class="compact-item"><strong>Air Canada Booking:</strong> A7OGKU</div><div class="compact-item"><strong>Outbound:</strong> AC1030 DFW → YYZ · AC33 YYZ → YVR · AC65 YVR → BKK · Arrive BKK Jun 5 at 5:05 AM</div><div class="compact-item"><strong>Hua Hin Hotel:</strong> Kiang Haad Beach Hua Hin · 131/105 Petchkasem Rd, Hua Hin · Jun 5–11</div><div class="compact-item"><strong>Pattaya/Jomtien Hotel:</strong> The Siam Guest House – SHA Extra Plus · Jun 11–14</div><div class="compact-item"><strong>Emergency Thailand:</strong> Tourist Police 1155 · Medical Emergency 1669</div></div></div>
 <div class="grid">
-<div class="card">
-<div class="card-title">Big Move</div>
-<div class="card-text">Main Thailand relocation plan, medical travel protocol, destination logic, and move strategy.</div>
-<a class="button" href="relocationfinal.html">Open Big Move</a>
+<div class="card"><div class="card-title">Big Move</div><div class="card-text">Main Thailand relocation plan, medical travel protocol, destination logic, and move strategy.</div><a class="button" href="relocationfinal.html">Open Big Move</a></div>
+<div class="card"><div class="card-title">Recon Planner App</div><div class="card-text">Step-by-step Thailand recon planner with airport transfer, bookings, checklists, scoring, and notes.</div><a class="button" href="thailand-recon-planner.html">Open Recon Planner</a></div>
+<div class="card"><div class="card-title">Packing</div><div class="card-text">Packing list and preparation tracker for travel and relocation readiness.</div><a class="button" href="packing-list.html">Open Packing</a></div>
+<div class="card"><div class="card-title">Theo Education</div><div class="card-text">Theological education resources, study structure, and teaching materials.</div><a class="button" href="theoeducation.html">Open Theo Education</a></div>
+<div class="card"><div class="card-title">Home Sale Tracker</div><div class="card-text">Inventory, sales tracking, pricing, and progress monitoring for the home-sale process.</div><a class="button" href="home-sale-tracker.html">Open Tracker</a></div>
+<div class="card"><div class="card-title">Kidney Meal Plan</div><div class="card-text">Weekly kidney-conscious meal planner, pre-trip immune preparation, flight-day health protocol, and personal health notes.</div><a class="button" href="kidney_typeB_final_meal_plan.html">Open Kidney Meal Plan</a></div>
 </div>
-<div class="card">
-<div class="card-title">Recon Planner App</div>
-<div class="card-text">Step-by-step Thailand recon planner with airport transfer, bookings, checklists, scoring, and notes.</div>
-<a class="button" href="thailand-recon-planner.html">Open Recon Planner</a>
-</div>
-<div class="card">
-<div class="card-title">Packing</div>
-<div class="card-text">Packing list and preparation tracker for travel and relocation readiness.</div>
-<a class="button" href="packing-list.html">Open Packing</a>
-</div>
-<div class="card">
-<div class="card-title">Theo Education</div>
-<div class="card-text">Theological education resources, study structure, and teaching materials.</div>
-<a class="button" href="theoeducation.html">Open Theo Education</a>
-</div>
-<div class="card">
-<div class="card-title">Home Sale Tracker</div>
-<div class="card-text">Inventory, sales tracking, pricing, and progress monitoring for the home-sale process.</div>
-<a class="button" href="home-sale-tracker.html">Open Tracker</a>
-</div>
-<div class="card">
-<div class="card-title">Kidney Meal Plan</div>
-<div class="card-text">Weekly kidney-conscious meal planner, pre-trip immune preparation, flight-day health protocol, and personal health notes.</div>
-<a class="button" href="kidney_typeB_final_meal_plan.html">Open Kidney Meal Plan</a>
-</div>
-</div>
-<div class="card" style="margin-top:14px">
-<h2>Quick Utilities</h2>
-<div class="sub">Baht/USD and square-meter/square-foot tools.</div>
-<div class="utility-grid">
-<div>
-<label>Exchange Rate: THB per 1 USD</label>
-<input id="fxRate" type="number" step="0.01" value="36.50">
-</div>
-<div>
-<label>USD Amount</label>
-<input id="usdInput" type="number" step="0.01" placeholder="Enter USD">
-</div>
-<div class="result">
-<div class="card-text">USD → THB</div>
-<strong id="usdToThb">฿0.00</strong>
-</div>
-<div class="result">
-<div class="card-text">THB → USD</div>
-<strong id="thbToUsd">$0.00</strong>
-</div>
-<div>
-<label>Thai Baht Amount</label>
-<input id="thbInput" type="number" step="0.01" placeholder="Enter THB">
-</div>
-<div>
-<label>Square Meters</label>
-<input id="sqmInput" type="number" step="0.01" placeholder="Enter sqm">
-</div>
-<div class="result">
-<div class="card-text">SQM → SQFT</div>
-<strong id="sqmToSqft">0.00 sq ft</strong>
-</div>
-</div>
-</div>
-<div class="card" style="margin-top:14px">
-<h2>Working Notes</h2>
-<div class="sub">Notes save on this device.</div>
-<textarea id="notesBox" placeholder="Type notes here..."></textarea>
-</div>
-<div class="footer">Home • Big Move System • Gregory Trent</div>
+<div class="card" style="margin-top:14px"><h2>Quick Utilities</h2><div class="sub">Baht/USD and square-meter/square-foot tools.</div><div class="utility-grid"><div><label>Exchange Rate: THB per 1 USD</label><input id="fxRate" type="number" step="0.01" value="36.50"></div><div><label>USD Amount</label><input id="usdInput" type="number" step="0.01" placeholder="Enter USD"></div><div class="result"><div class="card-text">USD → THB</div><strong id="usdToThb">฿0.00</strong></div><div class="result"><div class="card-text">THB → USD</div><strong id="thbToUsd">$0.00</strong></div><div><label>Thai Baht Amount</label><input id="thbInput" type="number" step="0.01" placeholder="Enter THB"></div><div><label>Square Meters</label><input id="sqmInput" type="number" step="0.01" placeholder="Enter sqm"></div><div class="result"><div class="card-text">SQM → SQFT</div><strong id="sqmToSqft">0.00 sq ft</strong></div></div></div>
+<div class="card" style="margin-top:14px"><h2>Working Notes</h2><div class="sub">Notes save on this device.</div><textarea id="notesBox" placeholder="Type notes here..."></textarea></div>
+<div class="footer">Home • Master Dashboard • Gregory Trent</div>
 </div>
 <script>
-function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
-function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
-function money(n,prefix){return prefix+Number(n||0).toFixed(2)}
-var fxRate=document.getElementById('fxRate');
-var usdInput=document.getElementById('usdInput');
-var thbInput=document.getElementById('thbInput');
-var usdToThb=document.getElementById('usdToThb');
-var thbToUsd=document.getElementById('thbToUsd');
-var sqmInput=document.getElementById('sqmInput');
-var sqmToSqft=document.getElementById('sqmToSqft');
-var notesBox=document.getElementById('notesBox');
-fxRate.value=safeGet('home-fx-rate')||'36.50';
-usdInput.value=safeGet('home-usd')||'';
-thbInput.value=safeGet('home-thb')||'';
-sqmInput.value=safeGet('home-sqm')||'';
-notesBox.value=safeGet('home-notes')||'';
-function updateMoney(){
-var rate=Number(fxRate.value||36.5);
-var usd=Number(usdInput.value||0);
-var thb=Number(thbInput.value||0);
-usdToThb.textContent='฿'+(usd*rate).toFixed(2);
-thbToUsd.textContent='$'+(thb/rate).toFixed(2);
-safeSet('home-fx-rate',fxRate.value);
-safeSet('home-usd',usdInput.value);
-safeSet('home-thb',thbInput.value);
-}
-function updateArea(){
-var sqm=Number(sqmInput.value||0);
-sqmToSqft.textContent=(sqm*10.7639).toFixed(2)+' sq ft';
-safeSet('home-sqm',sqmInput.value);
-}
-fxRate.addEventListener('input',updateMoney);
-usdInput.addEventListener('input',updateMoney);
-thbInput.addEventListener('input',updateMoney);
-sqmInput.addEventListener('input',updateArea);
-notesBox.addEventListener('input',function(){safeSet('home-notes',notesBox.value)});
-updateMoney();
-updateArea();
+function safeGet(k){try{return localStorage.getItem(k)}catch(e){return null}}function safeSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function setProgress(prefix,pct,total,checked){document.getElementById(prefix+'Pct').textContent=total?pct+'%':'0%';document.getElementById(prefix+'Bar').style.width=(total?pct:0)+'%';document.getElementById(prefix+'Note').textContent=total?checked+' of '+total+' complete on this device.':'Open the page and check items to start tracking.'}
+function calcChecks(patterns){var total=0,checked=0;for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(patterns.some(function(p){return k.indexOf(p)===0})){total++;if(localStorage.getItem(k)==='1')checked++}}var pct=total?Math.round(checked/total*100):0;return{total:total,checked:checked,pct:pct}}
+var dep=new Date('2026-06-02T21:00:00-05:00');var now=new Date();var days=Math.ceil((dep-now)/(1000*60*60*24));document.getElementById('countdownDays').textContent=days>0?days:'Go Time';
+var pack=calcChecks(['check-pack-']);setProgress('packing',pack.pct,pack.total,pack.checked);var recon=calcChecks(['check-day-','check-prep-']);setProgress('recon',recon.pct,recon.total,recon.checked);var health=calcChecks(['check-immune-','check-flight-','check-thai-']);setProgress('health',health.pct,health.total,health.checked);
+var fxRate=document.getElementById('fxRate'),usdInput=document.getElementById('usdInput'),thbInput=document.getElementById('thbInput'),usdToThb=document.getElementById('usdToThb'),thbToUsd=document.getElementById('thbToUsd'),sqmInput=document.getElementById('sqmInput'),sqmToSqft=document.getElementById('sqmToSqft'),notesBox=document.getElementById('notesBox');
+fxRate.value=safeGet('home-fx-rate')||'36.50';usdInput.value=safeGet('home-usd')||'';thbInput.value=safeGet('home-thb')||'';sqmInput.value=safeGet('home-sqm')||'';notesBox.value=safeGet('home-notes')||'';
+function updateMoney(){var rate=Number(fxRate.value||36.5),usd=Number(usdInput.value||0),thb=Number(thbInput.value||0);usdToThb.textContent='฿'+(usd*rate).toFixed(2);thbToUsd.textContent='$'+(thb/rate).toFixed(2);safeSet('home-fx-rate',fxRate.value);safeSet('home-usd',usdInput.value);safeSet('home-thb',thbInput.value)}
+function updateArea(){var sqm=Number(sqmInput.value||0);sqmToSqft.textContent=(sqm*10.7639).toFixed(2)+' sq ft';safeSet('home-sqm',sqmInput.value)}
+fxRate.addEventListener('input',updateMoney);usdInput.addEventListener('input',updateMoney);thbInput.addEventListener('input',updateMoney);sqmInput.addEventListener('input',updateArea);notesBox.addEventListener('input',function(){safeSet('home-notes',notesBox.value)});updateMoney();updateArea();
 </script>
 </body>
 </html>
