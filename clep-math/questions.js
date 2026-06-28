@@ -1,1 +1,1 @@
-window.QUESTIONS = [];
+window.QUESTIONS=[{topic:"Arithmetic",type:"mc",q:"What is 25 percent of 84?",choices:["18","20","21","24"],answer:"21",accepted:["21"],explanation:"25 percent means one quarter. 84 divided by 4 equals 21."},{topic:"Arithmetic",type:"mc",q:"Simplify: 3/4 + 1/8",choices:["5/8","7/8","1","9/8"],answer:"7/8",accepted:["7/8"],explanation:"3/4 equals 6/8. Then 6/8 plus 1/8 equals 7/8."}];
