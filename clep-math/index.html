@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>CLEP College Mathematics Diagnostic</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="cap">🎓</div>
+      <div>
+        <h1>CLEP College Mathematics Diagnostic</h1>
+        <p>25-question readiness exam with scoring, topic breakdown, and missed-question review.</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="app">
+    <aside class="panel">
+      <h2>Progress</h2>
+      <div class="big" id="progressText">1 of 25</div>
+      <div class="meter"><div id="answerMeter"></div></div>
+      <p id="answeredText">0 answered</p>
+      <h3>Question Navigator</h3>
+      <div id="navGrid" class="nav-grid"></div>
+      <div class="actions">
+        <button class="green" id="scoreBtn">Score Exam</button>
+        <button class="dark" id="clearBtn">Clear Answers</button>
+        <button class="light" id="printBtn">Print / Save PDF</button>
+      </div>
+      <p class="note">No internet required after loading. Your answers save on this device.</p>
+    </aside>
+
+    <main class="main">
+      <section class="card" id="examCard">
+        <div class="top">
+          <span id="topicBadge" class="badge"></span>
+          <span id="counter"></span>
+        </div>
+        <div class="meter mini"><div id="questionMeter"></div></div>
+        <div class="question-line"><span id="qNum"></span><h2 id="qText"></h2></div>
+        <div id="answerArea"></div>
+        <div class="row">
+          <button class="light" id="prevBtn">← Previous</button>
+          <button class="blue" id="nextBtn">Next →</button>
+        </div>
+      </section>
+
+      <section class="card hidden" id="resultsCard"></section>
+
+      <section class="card formula">
+        <h2>Formula Sheet</h2>
+        <div class="formula-grid">
+          <p><strong>Rectangle Area:</strong> A = lw</p>
+          <p><strong>Triangle Area:</strong> A = 1/2bh</p>
+          <p><strong>Circle Circumference:</strong> C = 2πr</p>
+          <p><strong>Pythagorean Theorem:</strong> a² + b² = c²</p>
+          <p><strong>Mean:</strong> sum ÷ count</p>
+          <p><strong>Probability:</strong> favorable ÷ total</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
