@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APA Paper Formatter</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docx/8.5.0/docx.umd.min.js"></script>
+<style>
+  :root{
+    --desk:#e6e3dc; --paper:#ffffff; --ink:#1b1b1f; --rule:#c9c5ba;
+    --blue:#1f3a93; --blue-dark:#15286b; --pencil:#b3261e; --muted:#5d5b56;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--desk);color:var(--ink);font:15px/1.5 "Segoe UI",Helvetica,Arial,sans-serif}
+  header{padding:22px 24px 6px}
+  header h1{margin:0;font-size:22px;font-weight:600}
+  header p{margin:4px 0 0;color:var(--muted);max-width:60ch}
+  main{display:grid;grid-template-columns:minmax(320px,440px) 1fr;gap:24px;padding:14px 24px 40px}
+  @media (max-width:900px){main{grid-template-columns:1fr}}
+  form{display:flex;flex-direction:column;gap:10px}
+  label{display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--muted)}
+  input,textarea{font:inherit;color:var(--ink);border:1px solid var(--rule);border-radius:3px;padding:8px 10px;background:var(--paper)}
+  input:focus,textarea:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--blue)}
+  textarea{min-height:320px;resize:vertical;font-family:Georgia,"Times New Roman",serif;line-height:1.55}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .help{border-left:3px solid var(--blue);padding:8px 12px;font-size:13px;color:var(--muted);background:#f4f2ec;border-radius:0 3px 3px 0}
+  .help code{font-family:Consolas,Menlo,monospace;color:var(--ink);background:#e8e5dd;padding:0 4px;border-radius:2px}
+  .actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:4px}
+  button{font:inherit;font-weight:600;padding:10px 18px;border-radius:3px;border:1px solid var(--blue-dark);background:var(--blue);color:#fff;cursor:pointer}
+  button:hover{background:var(--blue-dark)}
+  button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  button.secondary{background:var(--paper);color:var(--blue);border-color:var(--blue)}
+  #status{font-size:13px;color:var(--muted)}
+  #status.err{color:var(--pencil)}
+  /* preview: a real 8.5 x 11 sheet at reduced scale */
+  .stage{display:flex;flex-direction:column;align-items:center;gap:18px;padding-top:6px}
+  .sheet{width:8.5in;min-height:11in;background:var(--paper);padding:1in;box-shadow:0 1px 2px rgba(0,0,0,.18),0 12px 30px rgba(0,0,0,.12);
+    font-family:"Times New Roman",Times,serif;font-size:12pt;line-height:2;color:#000;position:relative;
+    transform-origin:top center}
+  .sheet .pn{position:absolute;top:.5in;right:1in;line-height:1}
+  .sheet p{margin:0}
+  .sheet .center{text-align:center}
+  .sheet .bold{font-weight:bold}
+  .sheet .indent{text-indent:.5in}
+  .sheet .h2{font-weight:bold}
+  .sheet .h3{font-weight:bold;font-style:italic}
+  .sheet .ref{padding-left:.5in;text-indent:-.5in}
+  .sheet .quote{margin-left:.5in}
+  .stage-wrap{overflow:hidden}
+  .stage-note{font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <h1>APA Paper Formatter</h1>
+  <p>Fill in the title page, paste your paper as plain text, and download a Word document set up to APA 7 student-paper standards: Times New Roman 12, double spacing, one-inch margins, page numbers, headings, and a hanging-indent reference list.</p>
+</header>
+<main>
+  <form id="f" onsubmit="return false">
+    <label>Paper title<input id="title" placeholder="Effects of Sleep on Memory Consolidation"></label>
+    <label>Your name<input id="author" placeholder="First M. Last"></label>
+    <label>Department and university<input id="affil" placeholder="Department of Psychology, Fort Valley State University"></label>
+    <div class="row">
+      <label>Course<input id="course" placeholder="PSYC 1101: Introduction to Psychology"></label>
+      <label>Instructor<input id="instr" placeholder="Dr. Jane Smith"></label>
+    </div>
+    <label>Due date<input id="date" placeholder="September 15, 2026"></label>
+    <label>Paper text<textarea id="body" placeholder="Paste your paper here. Separate paragraphs with a blank line."></textarea></label>
+    <div class="help">
+      Headings: start a line with <code>#</code> for a main section, <code>##</code> for a subsection, <code>###</code> for a sub-subsection.
+      A line that says only <code>Abstract</code> or <code>References</code> starts that section automatically. Begin a long quotation with <code>&gt;</code> to set it as a block quote.
+    </div>
+    <div class="actions">
+      <button id="dl">Download Word file</button>
+      <button class="secondary" id="sample">Load sample</button>
+      <span id="status"></span>
+    </div>
+  </form>
+
+  <div class="stage-wrap">
+    <div class="stage">
+      <div class="sheet" id="p1"></div>
+      <div class="sheet" id="p2"></div>
+      <p class="stage-note">Preview shows the title page and the first page of text. The Word file contains the whole paper.</p>
+    </div>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const fields = ["title","author","affil","course","instr","date","body"];
+
+/* ---------- parse plain text into blocks ---------- */
+function parse(text){
+  const blocks = []; let mode = "body";
+  const chunks = text.replace(/\r/g,"").split(/\n\s*\n/);
+  for (let raw of chunks){
+    const lines = raw.split("\n").map(s=>s.trim()).filter(Boolean);
+    for (const line of lines){
+      const low = line.toLowerCase().replace(/^#+\s*/,"");
+      if (low === "abstract"){ mode="abstract"; blocks.push({t:"h1",s:"Abstract"}); continue; }
+      if (low === "references"){ mode="refs"; blocks.push({t:"h1",s:"References"}); continue; }
+      let m;
+      if (m = line.match(/^###\s+(.*)/)) { blocks.push({t:"h3",s:m[1]}); mode="body"; continue; }
+      if (m = line.match(/^##\s+(.*)/))  { blocks.push({t:"h2",s:m[1]}); mode="body"; continue; }
+      if (m = line.match(/^#\s+(.*)/))   { blocks.push({t:"h1",s:m[1]}); mode="body"; continue; }
+      if (m = line.match(/^>\s*(.*)/))   { blocks.push({t:"quote",s:m[1]}); continue; }
+      if (mode==="refs")     blocks.push({t:"ref",s:line});
+      else if (mode==="abstract") { blocks.push({t:"flush",s:line}); }
+      else if (lines.length>1 && blocks.length && blocks[blocks.length-1].t==="para" && !raw.includes("\n\n")) {
+        // multiple lines in one chunk: join as a single paragraph
+        blocks[blocks.length-1].s += " " + line;
+      } else blocks.push({t:"para",s:line});
+    }
+  }
+  return blocks;
+}
+
+/* ---------- live preview ---------- */
+function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+function preview(){
+  const v = Object.fromEntries(fields.map(k=>[k,$(k).value.trim()]));
+  const t = v.title || "Paper Title";
+  let h = `<div class="pn">1</div>` + "<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>";
+  h += `<p class="center bold">${esc(t)}</p><p>&nbsp;</p>`;
+  for (const k of ["author","affil","course","instr","date"]) h += `<p class="center">${esc(v[k]||"")}</p>`;
+  $("p1").innerHTML = h;
+  let b = `<div class="pn">2</div><p class="center bold">${esc(t)}</p>`;
+  const blocks = parse(v.body);
+  let lines = 1;
+  for (const k of blocks){
+    const est = Math.ceil(k.s.length/85) || 1; if ((lines+=est) > 23) break;
+    if (k.t==="h1") b += `<p class="center bold">${esc(k.s)}</p>`;
+    else if (k.t==="h2") b += `<p class="h2">${esc(k.s)}</p>`;
+    else if (k.t==="h3") b += `<p class="h3">${esc(k.s)}</p>`;
+    else if (k.t==="ref") b += `<p class="ref">${esc(k.s)}</p>`;
+    else if (k.t==="quote") b += `<p class="quote">${esc(k.s)}</p>`;
+    else if (k.t==="flush") b += `<p>${esc(k.s)}</p>`;
+    else b += `<p class="indent">${esc(k.s)}</p>`;
+  }
+  if (!blocks.length) b += `<p class="indent" style="color:#888">Your paper text will appear here.</p>`;
+  $("p2").innerHTML = b;
+}
+function scaleSheets(){
+  const w = $("p1").parentElement.parentElement.clientWidth;
+  const s = Math.min(1, (w-8)/ (8.5*96));
+  document.querySelectorAll(".sheet").forEach(el=>{el.style.transform=`scale(${s})`; el.style.marginBottom = `${(s-1)*11*96}px`;});
+}
+fields.forEach(k=>$(k).addEventListener("input",preview));
+window.addEventListener("resize",scaleSheets);
+
+/* ---------- Word file ---------- */
+function build(){
+  const {Document,Packer,Paragraph,TextRun,AlignmentType,Header,PageNumber,PageBreak} = docx;
+  const v = Object.fromEntries(fields.map(k=>[k,$(k).value.trim()]));
+  const run = (s,o={}) => new TextRun({text:s, font:"Times New Roman", size:24, ...o});
+  const P = (children,o={}) => new Paragraph({spacing:{line:480,before:0,after:0}, ...o, children});
+  const centerBold = s => P([run(s,{bold:true})],{alignment:AlignmentType.CENTER});
+  const center = s => P([run(s)],{alignment:AlignmentType.CENTER});
+  const blank = () => P([run("")]);
+
+  const kids = [blank(),blank(),blank(), centerBold(v.title||"Title"), blank()];
+  ["author","affil","course","instr","date"].forEach(k=>{ if(v[k]) kids.push(center(v[k])); });
+  kids.push(new Paragraph({children:[new PageBreak()]}));
+  kids.push(centerBold(v.title||"Title"));
+
+  for (const k of parse(v.body)){
+    if (k.t==="h1")       kids.push(centerBold(k.s));
+    else if (k.t==="h2")  kids.push(P([run(k.s,{bold:true})]));
+    else if (k.t==="h3")  kids.push(P([run(k.s,{bold:true,italics:true})]));
+    else if (k.t==="ref") kids.push(P([run(k.s)],{indent:{left:720,hanging:720}}));
+    else if (k.t==="quote") kids.push(P([run(k.s)],{indent:{left:720}}));
+    else if (k.t==="flush") kids.push(P([run(k.s)]));
+    else kids.push(P([run(k.s)],{indent:{firstLine:720}}));
+  }
+  return new Document({
+    styles:{default:{document:{run:{font:"Times New Roman",size:24}}}},
+    sections:[{
+      properties:{page:{margin:{top:1440,right:1440,bottom:1440,left:1440}}},
+      headers:{default:new Header({children:[new Paragraph({alignment:AlignmentType.RIGHT,
+        children:[new TextRun({children:[PageNumber.CURRENT],font:"Times New Roman",size:24})]})]})},
+      children:kids
+    }]
+  });
+}
+$("dl").addEventListener("click", async ()=>{
+  const st=$("status"); st.className=""; st.textContent="Building…";
+  try{
+    if (typeof docx==="undefined") throw new Error("The document library did not load. Check your internet connection and reload the page.");
+    const blob = await docx.Packer.toBlob(build());
+    const a = document.createElement("a");
+    const name = ($("title").value.trim()||"APA Paper").replace(/[^\w\- ]+/g,"").slice(0,60);
+    a.href = URL.createObjectURL(blob); a.download = name+".docx"; a.click();
+    URL.revokeObjectURL(a.href); st.textContent="Downloaded "+name+".docx";
+  }catch(e){ st.className="err"; st.textContent=e.message; }
+});
+$("sample").addEventListener("click", ()=>{
+  $("title").value="Sleep Duration and Memory Consolidation in College Students";
+  $("author").value="Jordan A. Wilson";
+  $("affil").value="Department of Psychology, Fort Valley State University";
+  $("course").value="PSYC 1101: Introduction to Psychology";
+  $("instr").value="Dr. Angela Reed";
+  $("date").value="September 15, 2026";
+  $("body").value=
+`Sleep is one of the most reliable predictors of academic performance, yet college students routinely average fewer than seven hours per night. This paper reviews recent evidence on how sleep duration shapes memory consolidation and considers what those findings mean for first-year students.
+
+# Literature Review
+
+## Sleep and Memory
+
+Research consistently shows that memories are strengthened during slow-wave sleep (Walker, 2017). Students who sleep fewer than six hours retain measurably less of what they studied the previous day.
+
+> Sleep after learning is essential to cement new memories into the brain's architecture, meaning that you are less likely to forget them.
+
+## Student Sleep Habits
+
+Survey data from several universities indicate that most undergraduates underestimate how much sleep they lose during the semester.
+
+# Conclusion
+
+Improving sleep is a low-cost intervention with strong evidence behind it.
+
+References
+
+Walker, M. (2017). Why we sleep: Unlocking the power of sleep and dreams. Scribner.
+
+Hershner, S. D., & Chervin, R. D. (2014). Causes and consequences of sleepiness among college students. Nature and Science of Sleep, 6, 73–84. https://doi.org/10.2147/NSS.S62907`;
+  preview();
+});
+preview(); scaleSheets();
+</script>
+</body>
+</html>
