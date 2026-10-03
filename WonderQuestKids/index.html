@@ -87,8 +87,8 @@ p{font-size:19px;line-height:1.4}
 .cameo img{width:100%;height:100%;object-fit:cover}
 @keyframes cameoshow{0%{opacity:0;transform:scale(.4) rotate(-12deg)}15%{opacity:1;transform:scale(1.08) rotate(3deg)}25%{transform:scale(1) rotate(0)}85%{opacity:1}100%{opacity:0;transform:scale(.7)}}
 
-.filmstrip{display:flex;gap:10px;overflow-x:auto;padding:10px 4px;justify-content:center;flex-wrap:wrap}
-.filmstrip img{width:64px;height:64px;object-fit:cover;border-radius:16px;border:3px solid #fff;box-shadow:0 6px 14px rgba(0,0,0,.18)}
+.filmstrip{display:flex;gap:24px;padding:10px 4px;justify-content:center;flex-wrap:wrap}
+.filmstrip img{width:120px;height:120px;object-fit:cover;border-radius:20px;border:3px solid #fff;box-shadow:0 6px 14px rgba(0,0,0,.18)}
 
 .leveltile{border:0;border-radius:22px;padding:16px;min-height:90px;font-size:17px;font-weight:800;color:#fff;cursor:pointer;background:linear-gradient(135deg,var(--purple),var(--pink));position:relative}
 .leveltile.locked{background:#c7cbd6;color:#6b7280;cursor:not-allowed}
@@ -129,6 +129,7 @@ p{font-size:19px;line-height:1.4}
 
 var KIDS=['IMG_5684.jpeg','IMG_2341.jpeg','IMG_0833.jpeg','IMG_2265.jpeg','IMG_0951.jpeg','IMG_5699.jpeg','IMG_5640.jpeg','IMG_2280.jpeg','IMG_5585.jpeg','IMG_5570.jpeg','IMG_2276.jpeg','IMG_3431.jpeg','IMG_6255.jpeg'].map(function(f){ return 'assets/kids/'+f; });
 var PAPA='assets/papa.png';
+var JASMINE=KIDS[0], BUBS=KIDS[4];
 
 /* ===== audio engine ===== */
 var Snd=(function(){
@@ -286,7 +287,8 @@ function rerenderCurrent(){
 /* ===== home ===== */
 window.home=function(){
   currentScreen='home'; currentWorld=''; Snd.stopMusic(); wakaPlay();
-  var film='<div class="filmstrip">'+KIDS.map(function(k){ return '<img src="'+k+'">'; }).join('')+'</div>';
+  var film='<div class="filmstrip"><div><img src="'+JASMINE+'"><p class="center" style="margin:4px 0 0;font-weight:800">Jasmine</p></div>'+
+    '<div><img src="'+BUBS+'"><p class="center" style="margin:4px 0 0;font-weight:800">Bubs</p></div></div>';
   render(papaImg('happy')+
     '<h1>Bubs and Jasmine Kids Adventure</h1>'+
     '<p class="center">Where little minds go on big adventures.</p>'+
