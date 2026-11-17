@@ -1,4 +1,11 @@
-<!doctype html><html><head><meta charset=utf8><title>Trent Travel</title><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><title>Trent Travel</title><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.route .stop{font:inherit;color:inherit;letter-spacing:inherit;cursor:pointer;min-height:36px}
+.route .stop[aria-pressed="true"]{background:#fff;color:#0E1B3D;border-color:#fff}
+.leg-note{font-size:13px;opacity:.85;margin:8px 0 0}
+body[data-leg="dallas"] .stay, body[data-leg="dallas"] #transfer-card, body[data-leg="dallas"] #disney-card, body[data-leg="dallas"] #stays, body[data-leg="dallas"] #stay-cards{display:none}
+body[data-leg="tokyo"] .stay.th{display:none}
+body[data-leg="bangkok"] .stay.jp, body[data-leg="bangkok"] #transfer-card, body[data-leg="bangkok"] #disney-card{display:none}
+body[data-leg="dallas"] .place:not(.c-fl), body[data-leg="tokyo"] .place:not(.c-jp), body[data-leg="bangkok"] .place:not(.c-th){display:none}
+</style></head><body>
 <title>Trent Family Travel</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="app-icon-180.png"><link rel="icon" href="app-icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Trent Travel"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#0E1B3D">
@@ -288,8 +295,9 @@ h3{font-size:17px;font-weight:700}
         <h1>TRENT FAMILY TRAVEL</h1>
         <div class="names">Gregory • Edwina • Roger • Maurice</div>
         <div class="route" aria-label="Route: Dallas, Tokyo, Bangkok">
-          <span class="stop">DALLAS</span><span class="arrow">→</span><span class="stop jp">TOKYO</span><span class="arrow">→</span><span class="stop th">BANGKOK</span>
+          <button type="button" class="stop" data-leg="dallas" aria-pressed="false">DALLAS</button><span class="arrow">→</span><button type="button" class="stop jp" data-leg="tokyo" aria-pressed="false">TOKYO</button><span class="arrow">→</span><button type="button" class="stop th" data-leg="bangkok" aria-pressed="false">BANGKOK</button>
         </div>
+        <div class="leg-note" id="leg-note">Tap a city to see only that part of the trip</div>
         <div class="clocks" id="clocks"></div>
       </div>
     </div>
@@ -498,6 +506,10 @@ const pill = s => `<span class="pill ${STATUS[s][0]}">${STATUS[s][1]}</span>`;
 const mapsUrl = (q, mode) => "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(q) + (mode ? "&travelmode=" + mode : "");
 const placeQ = id => PLACES.find(p => p.id === id).q;
 let who = store.get("who", "all");
+let leg = "all";
+const LEG_OF_TZ = {"America/Chicago":"dallas","Asia/Tokyo":"tokyo","Asia/Bangkok":"bangkok"};
+const FLIGHT_LEGS = {aa61:["dallas","tokyo"], jl31:["tokyo","bangkok"]};
+const LEG_NAME = {dallas:"Dallas", tokyo:"Tokyo", bangkok:"Bangkok"};
 
 function toast(msg){ const t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(toast._t); toast._t = setTimeout(() => t.hidden = true, 1800); }
 function copyText(text, label){
@@ -555,12 +567,12 @@ function renderNext(){
 }
 function renderTimeline(){
   const now = Date.now();
-  $("#timeline").innerHTML = visibleEvents().map(e => {
+  $("#timeline").innerHTML = visibleEvents().filter(e => leg === "all" || LEG_OF_TZ[e.tz] === leg).map(e => {
     const done = new Date(e.at).getTime() < now;
     return `<div class="tl${done ? " past" : ""}"><div class="when"><b>${fmtLocal(e.at, e.tz, {month:"short", day:"numeric"})}</b>${esc(e.atLabel || fmtLocal(e.at, e.tz, {hour:"numeric", minute:"2-digit"}))}</div>
       <span class="dot ${done ? "done" : e.c === "fl" ? "" : e.c}" aria-hidden="true"></span>
       <div class="what"><b>${esc(e.title)}</b><span class="muted" style="font-size:14px">${esc(e.sub)}</span><div>${done ? pill("accomplished") : pill(e.status)}</div></div></div>`;
-  }).join("") + disneyTimelineRow();
+  }).join("") + (leg === "all" || leg === "tokyo" ? disneyTimelineRow() : "");
 }
 function disneyTimelineRow(){
   const d = store.get("disney", null);
@@ -583,7 +595,7 @@ function renderAttention(){
 
 /* ---------- Trips ---------- */
 function renderFlights(){
-  $("#flight-cards").innerHTML = FLIGHTS.map(f => {
+  $("#flight-cards").innerHTML = FLIGHTS.filter(f => leg === "all" || FLIGHT_LEGS[f.id].includes(leg)).map(f => {
     const onFlight = who === "all" || f.pax.includes(who);
     const seats = f.seats ? `<div class="seats">${f.pax.map(p => `<span class="seat${who === p ? " me" : ""}">${p} <b>${f.seats[p].split(" ")[0]}</b> <span class="muted">${f.seats[p].split(" ")[1]}</span></span>`).join("")}</div>` : `<span class="pill s-verify">NEEDS VERIFICATION</span> <span class="muted" style="font-size:13px">Seats not recorded</span>`;
     return `<article class="card ticket">
@@ -615,7 +627,7 @@ function renderFlights(){
         </div>
       </div>
     </article>`;
-  }).join("") + (who === "all" || who === "Maurice" ? `<article class="card ticket"><div class="head"><span class="air">Maurice's flights</span><span class="pill s-verify">NEEDS VERIFICATION</span></div><div class="kv"><div><small>Status</small><b>Booked separately</b></div><div><small>Flight details</small><b>Not provided yet</b></div></div><div class="foot"><p class="muted" style="margin:0">Airline, flight numbers, times, seats and confirmation for Maurice will appear here once they are added to the itinerary. Nothing has been filled in on his behalf.</p></div></article>` : "");
+  }).join("") + ((leg === "all" && (who === "all" || who === "Maurice")) ? `<article class="card ticket"><div class="head"><span class="air">Maurice's flights</span><span class="pill s-verify">NEEDS VERIFICATION</span></div><div class="kv"><div><small>Status</small><b>Booked separately</b></div><div><small>Flight details</small><b>Not provided yet</b></div></div><div class="foot"><p class="muted" style="margin:0">Airline, flight numbers, times, seats and confirmation for Maurice will appear here once they are added to the itinerary. Nothing has been filled in on his behalf.</p></div></article>` : "");
 
   $("#transfer-card").innerHTML = `
     <div class="head" style="background:var(--warn-soft)"><span class="air" style="color:var(--warn)">Airport transfer • Fri, Nov 6</span>${pill(isPast("2026-11-06T02:20:00Z") ? "accomplished" : "notbooked")}</div>
@@ -706,7 +718,7 @@ function renderSplit(){
 
 /* ---------- Maps ---------- */
 function renderPlaces(){
-  $("#place-cards").innerHTML = PLACES.map(p => `<article class="card place ${p.c === "jp" ? "" : ""}" style="border-top:4px solid var(--${p.c === "fl" ? "fl" : p.c})">
+  $("#place-cards").innerHTML = PLACES.map(p => `<article class="card place c-${p.c}" style="border-top:4px solid var(--${p.c === "fl" ? "fl" : p.c})">
     <div><div class="eyebrow" style="color:var(--${p.c === "fl" ? "fl" : p.c})">${p.c === "jp" ? "Japan" : p.c === "th" ? "Thailand" : "Dallas"}</div><h3>${esc(p.name)}</h3><div class="muted" style="font-size:14px">${esc(p.sub)}</div></div>
     <div class="modes">${linkBtn(mapsUrl(p.q, "driving"), "Drive", ICON.car)}${linkBtn(mapsUrl(p.q, "transit"), "Transit", ICON.pin)}${linkBtn(mapsUrl(p.q, "walking"), "Walk", ICON.pin)}</div>
     ${copyBtn(p.q, "Address", "Copy address")}
@@ -729,6 +741,12 @@ function go(tab, anchor){
   if(anchor){ const el = document.getElementById(anchor === "transfer" ? "transfer-card" : anchor === "stays" ? "stays" : anchor); if(el) requestAnimationFrame(() => el.scrollIntoView({behavior:"smooth", block:"start"})); }
   else window.scrollTo({top:0});
 }
+function applyLeg(){
+  document.body.dataset.leg = leg;
+  document.querySelectorAll("[data-leg]").forEach(b => { if(b.classList.contains("stop")) b.setAttribute("aria-pressed", b.dataset.leg === leg); });
+  const n = $("#leg-note"); if(n) n.textContent = leg === "all" ? "Tap a city to see only that part of the trip" : "Showing " + LEG_NAME[leg] + " only. Tap " + LEG_NAME[leg] + " again to show everything.";
+}
+function setLeg(l){ leg = leg === l ? "all" : l; applyLeg(); renderTimeline(); renderFlights(); }
 function setWho(w){
   who = w; store.set("who", w);
   document.querySelectorAll("[data-who]").forEach(b => b.setAttribute("aria-pressed", b.dataset.who === w));
@@ -743,6 +761,7 @@ function renderAll(){ renderClocks(); renderNext(); renderTimeline(); renderAtte
 
 /* ---------- Events ---------- */
 document.addEventListener("click", e => {
+  const lg = e.target.closest(".stop[data-leg]"); if(lg){ setLeg(lg.dataset.leg); return; }
   const c = e.target.closest("[data-copy]"); if(c){ copyText(c.dataset.copy, c.dataset.label); return; }
   const g = e.target.closest("[data-go]"); if(g){ go(g.dataset.go, g.dataset.anchor); return; }
   const t = e.target.closest("[data-tab]"); if(t){ go(t.dataset.tab); return; }
@@ -869,6 +888,7 @@ $("#from").setAttribute("autocomplete","off"); $("#to").setAttribute("autocomple
 window.addEventListener("pageshow", ev => { if(ev.persisted){ $("#from").value = "THB"; $("#to").value = "USD"; renderConv(); } });
 applyTheme(store.get("theme", "system"));
 document.querySelectorAll("[data-who]").forEach(b => b.setAttribute("aria-pressed", b.dataset.who === who));
+applyLeg();
 renderAll();
 const startTab = (location.hash || "").replace("#", "");
 go(TABS.includes(startTab) ? startTab : store.get("tab", "home"));
